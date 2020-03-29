@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Sky</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li *ngIf="userRole == 'Regular'" class="nav-item">
+          <a class="nav-link" href="#">My History</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Airlines</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Rent-A-Car</a>
+        </li>
+        <li *ngIf="userRole == 'Regular'" class="nav-item" >
+          <a class="nav-link" href="#">Friends</a>
+        </li>
+        <li *ngIf="userRole == 'Regular'" class="nav-item">
+          <a class="nav-link" href="#">Invitations</a>
+        </li>
+      </ul>
+      <div *ngIf="userRole == 'Unregistred'" >
+        <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+          Sign In
+        </a>
+      </div>
+      <div *ngIf="userRole != 'Unregistred'" ngbDropdown class="nav-item dropdown">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile
+        </a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">My Profile</a>
+          <a class="dropdown-item" href="#">Log out</a>
+        </div>
+      </div>
+    </div>
+  </nav>

@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="#">Sky</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -6,19 +7,19 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li *ngIf="userRole == 'Regular'" class="nav-item">
+        <li *ngIf="userRole == 'Regular'" class="nav-item" #history (click)="changeAcitve('MyHistory')" [class.active]="isMyHistoryActive">
           <a class="nav-link" href="#">My History</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Airlines</a>
+        <li class="nav-item" #airlines  (click)="changeAcitve('Airlines')" [class.active]="isAirlinesActive">
+          <a class="nav-link" routerLink="/airlines" >Airlines</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Rent-A-Car</a>
+        <li class="nav-item active" (click)="changeAcitve('Rac')" [class.active]="isRacActive">
+          <a class="nav-link" href="#" #rac>Rent-A-Car</a>
         </li>
-        <li *ngIf="userRole == 'Regular'" class="nav-item" >
-          <a class="nav-link" href="#">Friends</a>
+        <li *ngIf="userRole == 'Regular'" class="nav-item" #friends (click)="changeAcitve('Friends')" [class.active]="isFriendsActive">
+          <a class="nav-link" routerLink="/friends">Friends</a>
         </li>
-        <li *ngIf="userRole == 'Regular'" class="nav-item">
+        <li *ngIf="userRole == 'Regular'" class="nav-item" #invitations (click)="changeAcitve('Invitations')" [class.active]="isInvitationsActive">
           <a class="nav-link" href="#">Invitations</a>
         </li>
       </ul>
@@ -28,7 +29,7 @@
         </a>
       </div>
       <div *ngIf="userRole != 'Unregistred'" ngbDropdown class="nav-item dropdown">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profile
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -38,3 +39,4 @@
       </div>
     </div>
   </nav>
+</div>

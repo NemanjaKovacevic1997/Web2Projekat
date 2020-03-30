@@ -1,0 +1,20 @@
+table {
+    padding: 40px;
+}
+
+tbody > tr {
+    height: 70px;
+}
+
+th {
+    color: white;
+    text-align: center;
+} 
+
+td {
+    text-align: center;
+    vertical-align: middle;
+    text-size-adjust: inherit;
+}
+
+.top-buffer { margin-top:20px; }

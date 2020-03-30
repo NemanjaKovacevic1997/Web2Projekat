@@ -1,0 +1,74 @@
+
+<form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" placeholder="From">
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" placeholder="To">
+      </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div class="input-group">
+              <input class="form-control" placeholder="Depart"
+                     name="dp" ngbDatepicker #d1="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
+              </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            
+            <div class="input-group">
+              <input class="form-control" placeholder="Return"
+                     name="dp" ngbDatepicker #d2="ngbDatepicker">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+              </div>
+            </div>
+            </div>
+       
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <select id="inputState" class="form-control">
+              <option hidden>Trip type</option>
+              <option></option>
+              <option>One-way</option>
+              <option>Round-trip</option>
+              <option>Multy-city</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+    
+        <div class="form-group col-md-6">
+            <select id="inputState" class="form-control">
+              <option hidden>People</option>
+              <option></option>
+              <option>1 adult</option>
+              <option>2 adults</option>
+              <option>3 adults</option>
+            </select>
+        </div>
+    
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <select id="inputState" class="form-control">
+              <option hidden>Class</option>
+              <option></option>
+              <option>Economy</option>
+              <option>Business</option>
+              <option>First</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <button type="submit" class="btn btn-primary form-control">Search</button>
+        </div>
+    </div>
+  </form>

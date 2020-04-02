@@ -29,11 +29,11 @@
         </a>
       </div>
       <div *ngIf="userRole != 'Unregistred'" ngbDropdown class="nav-item dropdown">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Profile
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">My Profile</a>
+          <a class="dropdown-item" routerLink="/profile/show" >My Profile</a>
           <a class="dropdown-item" href="#">Log out</a>
         </div>
       </div>

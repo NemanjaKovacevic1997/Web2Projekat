@@ -1,5 +1,6 @@
 table {
-    padding: 40px;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 tbody > tr {
@@ -18,3 +19,7 @@ td {
 }
 
 .top-buffer { margin-top:20px; }
+
+form {
+    margin-left: 38%;
+}

@@ -8,7 +8,6 @@ import { NgModel } from '@angular/forms';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  @ViewChildren('history, airlines, rac, friends, invitations') elements : QueryList<ElementRef>;
   userRole : string;
   isMyHistoryActive: boolean;
   isAirlinesActive: boolean;

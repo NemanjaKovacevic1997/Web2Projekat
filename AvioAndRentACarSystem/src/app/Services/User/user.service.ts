@@ -8,8 +8,8 @@ export class UserService {
   loggedUserType : string;
   userTypes = ['Unregistred', 'Regular', 'AdminAvio', 'AdminRAC', 'AdminSys'];
 
-  constructor() 
+  constructor()
   { 
-    this.loggedUserType = 'Unregistred';
+    this.loggedUserType = 'Regular';
   }
 }

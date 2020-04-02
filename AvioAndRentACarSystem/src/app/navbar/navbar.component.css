@@ -1,3 +1,12 @@
 a.dropdown-toggle {
     color: white;
 }
+
+a.button {
+    color: white;
+}
+
+/* Modify the backgorund color */ 
+.navbar-custom { 
+    background-color: black;
+} 

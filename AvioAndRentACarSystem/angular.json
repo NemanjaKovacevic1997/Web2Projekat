@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "AvioAndRentACarSystem"
+  "defaultProject": "AvioAndRentACarSystem",
+  "cli": {
+    "analytics": "98204533-c6e4-40da-b591-7f1b87b10447"
+  }
 }

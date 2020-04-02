@@ -15,6 +15,9 @@ import { FriendsComponent } from './friends/friends.component';
 import { RouterModule } from '@angular/router';
 import { ProfileShowComponent } from './profile-show/profile-show.component';
 import { FlightComponent } from './flight/flight.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { FlightComponent } from './flight/flight.component';
     AirlinesSearchComponent,
     FriendsComponent,
     ProfileShowComponent,
-    FlightComponent
+    FlightComponent,
+    SignUpComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -35,8 +40,11 @@ import { FlightComponent } from './flight/flight.component';
     MatGridListModule,
     RouterModule.forRoot([
       { path: 'friends', component: FriendsComponent},
-      { path: 'airlines', component: AirlinesSearchComponent},
-      { path: 'profile/show', component: ProfileShowComponent}
+      { path: 'profile/show', component: ProfileShowComponent},
+      { path: 'airlines', component : AirlinesSearchComponent},
+      { path: 'sign-in', component: SignInComponent},
+      { path: 'sign-up', component: SignUpComponent},
+      { path: 'home', component: HomeComponent }
     ])
   ],
   providers: [

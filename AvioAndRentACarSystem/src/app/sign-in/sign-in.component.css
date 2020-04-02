@@ -1,0 +1,44 @@
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.btn {
+    width: 340px;
+}
+
+.form-control {
+    width: 340px;
+    margin: auto;
+}
+
+.bouton-image:before {
+    content: "";
+    width: 24px;
+    height: 24px; 
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: text-top;
+    background-color: transparent;
+    background-position : center center;
+    background-repeat:no-repeat;
+    background-size: contain;
+}
+
+.monBouton:before{
+     background-image : url(https://iconsplace.com/wp-content/uploads/_icons/ffffff/256/png/facebook-icon-18-256.png);
+}
+
+.badge{
+    font-size: medium;
+}

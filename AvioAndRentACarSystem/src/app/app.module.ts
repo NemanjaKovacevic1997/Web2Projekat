@@ -13,6 +13,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { AirlinesSearchComponent } from './airlines-search/airlines-search.component';
 import { FriendsComponent } from './friends/friends.component';
 import { RouterModule } from '@angular/router';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { RouterModule } from '@angular/router';
     AirlinesComponent,
     SearchComponent,
     AirlinesSearchComponent,
-    FriendsComponent
+    FriendsComponent,
+    SignUpComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,10 @@ import { RouterModule } from '@angular/router';
     MatGridListModule,
     RouterModule.forRoot([
       { path: 'friends', component: FriendsComponent},
-      { path: 'airlines', component : AirlinesSearchComponent}
+      { path: 'airlines', component : AirlinesSearchComponent},
+      { path: 'sign-in', component: SignInComponent},
+      { path: 'sign-up', component: SignUpComponent},
+      { path: 'home', component: HomeComponent }
     ])
   ],
   providers: [

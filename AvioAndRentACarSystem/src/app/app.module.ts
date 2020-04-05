@@ -19,6 +19,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { FlightsFilterComponent } from './flights-filter/flights-filter.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,8 @@ import { FlightsFilterComponent } from './flights-filter/flights-filter.componen
     NgbDropdownModule,
     NgbDatepickerModule,
     MatGridListModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },

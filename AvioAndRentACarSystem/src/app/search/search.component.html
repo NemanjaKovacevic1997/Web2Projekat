@@ -1,74 +1,73 @@
+<form [formGroup]="form">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <input type="text" class="form-control" placeholder="From" formControlName="from" [class.alert]="from.invalid && from.touched" [class.alert-danger]="from.invalid && from.touched">
+    </div>
+    <div class="form-group col-md-6">
+      <input type="text" class="form-control" placeholder="To" formControlName="to" [class.alert]="to.invalid && to.touched" [class.alert-danger]="to.invalid && to.touched">
+    </div>
+  </div>
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <div class="input-group">
+            <input class="form-control" placeholder="Depart"
+                   name="dp" ngbDatepicker #d1="ngbDatepicker" [minDate]="minPickerDate"  formControlName="date1" [class.alert]="date1.invalid && date1.touched" [class.alert-danger]="date1.invalid && date1.touched">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
+            </div>
+          </div>
+      </div>
+      <div class="form-group col-md-6">
+          
+          <div class="input-group">
+            <input class="form-control" placeholder="Return"
+                   name="dp" ngbDatepicker #d2="ngbDatepicker" [minDate]="minPickerDate" formControlName="date2" [class.alert]="date2.invalid && date2.touched" [class.alert-danger]="date2.invalid && date2.touched">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+            </div>
+          </div>
+          </div>
+     
+  </div>
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <select id="inputState" class="form-control">
+            <option hidden>Trip type</option>
+            <option></option>
+            <option>One-way</option>
+            <option>Round-trip</option>
+            <option>Multy-city</option>
+          </select>
+      </div>
+  </div>
+  <div class="form-row">
+  
+      <div class="form-group col-md-6">
+          <select id="inputState" class="form-control">
+            <option hidden>People</option>
+            <option></option>
+            <option>1 adult</option>
+            <option>2 adults</option>
+            <option>3 adults</option>
+          </select>
+      </div>
+  
+  </div>
+  <div class="form-row">
+      <div class="form-group col-md-6">
+          <select id="inputState" class="form-control">
+            <option hidden>Class</option>
+            <option></option>
+            <option>Economy</option>
+            <option>Business</option>
+            <option>First</option>
+          </select>
+      </div>
+  </div>
 
-<form>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <input type="text" class="form-control" placeholder="From">
+  <div class="form-row">
+      <div class="form-group col-md-4">
+          <button type="submit" class="btn btn-primary form-control" (click)="onSubmit()">Search</button>
       </div>
-      <div class="form-group col-md-6">
-        <input type="text" class="form-control" placeholder="To">
-      </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <div class="input-group">
-              <input class="form-control" placeholder="Depart"
-                     name="dp" ngbDatepicker #d1="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
-              </div>
-            </div>
-        </div>
-        <div class="form-group col-md-6">
-            
-            <div class="input-group">
-              <input class="form-control" placeholder="Return"
-                     name="dp" ngbDatepicker #d2="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
-              </div>
-            </div>
-            </div>
-       
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <select id="inputState" class="form-control">
-              <option hidden>Trip type</option>
-              <option></option>
-              <option>One-way</option>
-              <option>Round-trip</option>
-              <option>Multy-city</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-row">
-    
-        <div class="form-group col-md-6">
-            <select id="inputState" class="form-control">
-              <option hidden>People</option>
-              <option></option>
-              <option>1 adult</option>
-              <option>2 adults</option>
-              <option>3 adults</option>
-            </select>
-        </div>
-    
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <select id="inputState" class="form-control">
-              <option hidden>Class</option>
-              <option></option>
-              <option>Economy</option>
-              <option>Business</option>
-              <option>First</option>
-            </select>
-        </div>
-    </div>
-    
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <button type="submit" class="btn btn-primary form-control" routerLink="/flights">Search</button>
-        </div>
-    </div>
-  </form>
+  </div>
+</form>

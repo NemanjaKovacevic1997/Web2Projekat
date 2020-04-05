@@ -9,19 +9,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li *ngIf="userRole == 'Regular'" class="nav-item" #history (click)="changeAcitve('MyHistory')" [class.active]="isMyHistoryActive">
-          <a class="nav-link" href="#">My History</a>
+          <a class="nav-link" href="#"><i class="fa fa-list-alt"></i> My History</a>
         </li>
         <li class="nav-item" #airlines  (click)="changeAcitve('Airlines')" [class.active]="isAirlinesActive"> 
           <a class="nav-link" routerLink="/airlines" ><i class="fa fa-plane"></i>Airlines</a>
         </li>
-        <li class="nav-item active" (click)="changeAcitve('Rac')" [class.active]="isRacActive">
+        <li class="nav-item" (click)="changeAcitve('Rac')" [class.active]="isRacActive">
           <a class="nav-link" href="#" #rac><i class="fa fa-car"></i>Rent-A-Car</a>
         </li>
         <li *ngIf="userRole == 'Regular'" class="nav-item" #friends (click)="changeAcitve('Friends')" [class.active]="isFriendsActive">
-          <a class="nav-link" routerLink="/friends">Friends</a>
+          <a class="nav-link" routerLink="/friends"><i class="fa fa-users"></i> Friends</a>
         </li>
         <li *ngIf="userRole == 'Regular'" class="nav-item" #invitations (click)="changeAcitve('Invitations')" [class.active]="isInvitationsActive">
-          <a class="nav-link" href="#">Invitations</a>
+          <a class="nav-link" href="#"><i class="fa fa-id-card"></i> Invitations</a>
         </li>
       </ul>
       <div *ngIf="userRole == 'Unregistred'" ngbButton class="nav-item button">
@@ -32,7 +32,7 @@
       </div>
       <div *ngIf="userRole != 'Unregistred'" ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Profile
+          <i class="fa fa-user"></i> Profile
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" routerLink="/profile/show" >My Profile</a>

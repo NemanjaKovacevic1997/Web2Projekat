@@ -18,6 +18,7 @@ import { FlightComponent } from './flight/flight.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
+import { FlightsFilterComponent } from './flights-filter/flights-filter.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HomeComponent } from './home/home.component';
     ProfileShowComponent,
     FlightComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    FlightsFilterComponent
   ],
   imports: [
     BrowserModule,
@@ -39,12 +41,14 @@ import { HomeComponent } from './home/home.component';
     NgbDatepickerModule,
     MatGridListModule,
     RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
       { path: 'friends', component: FriendsComponent},
       { path: 'profile/show', component: ProfileShowComponent},
       { path: 'airlines', component : AirlinesSearchComponent},
       { path: 'sign-in', component: SignInComponent},
       { path: 'sign-up', component: SignUpComponent},
-      { path: 'home', component: HomeComponent }
+      { path: 'flights', component: FlightsFilterComponent}
     ])
   ],
   providers: [

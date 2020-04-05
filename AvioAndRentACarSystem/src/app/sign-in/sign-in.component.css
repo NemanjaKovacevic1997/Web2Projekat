@@ -42,3 +42,36 @@
 .badge{
     font-size: medium;
 }
+
+.myBody{
+    background-image: url("/assets/images/background10.jpg");
+    background-repeat: 'no-repeat';
+    background-position: top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+.h3{
+    color: white;
+}
+
+.checkbox{
+    color: white;
+}
+
+.label{
+    color: white;
+}
+
+.p{
+    color: white;
+}
+

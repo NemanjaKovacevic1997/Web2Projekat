@@ -10,6 +10,6 @@ export class UserService {
 
   constructor()
   { 
-    this.loggedUserType = 'Regular';
+    this.loggedUserType = 'Unregistred';
   }
 }

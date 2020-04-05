@@ -1,11 +1,9 @@
 .myBody{
-    background-image: url("/assets/images/background9.jpg");
+    background-image: url("/assets/images/background11.jpg");
     background-repeat: 'no-repeat';
     background-position: top;
-    height: 700px;
-    width: auto;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: 1350px 770px;
+    background-size: cover; 
 }

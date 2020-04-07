@@ -24,7 +24,13 @@ import { FilterFlightsComponent } from './filter-flights/filter-flights.componen
 import { NgSelectModule } from '@ng-select/ng-select';
 import { Ng5SliderModule } from 'ng5-slider';
 import { FlightsComponent } from './flights/flights.component';
-import { FrendsListComponent } from './frends-list/frends-list.component'
+import { FrendsListComponent } from './frends-list/frends-list.component';
+import { FirstNameModalComponent } from './ProfileModals/first-name-modal/first-name-modal.component';
+import { LastNameModalComponent } from './ProfileModals/last-name-modal/last-name-modal.component';
+import { EmailModalComponent } from './ProfileModals/email-modal/email-modal.component';
+import { CityModalComponent } from './ProfileModals/city-modal/city-modal.component';
+import { MobileNumberModalComponent } from './ProfileModals/mobile-number-modal/mobile-number-modal.component';
+import { PasswordModalComponent } from './ProfileModals/password-modal/password-modal.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +47,13 @@ import { FrendsListComponent } from './frends-list/frends-list.component'
     FlightsFilterComponent,
     FilterFlightsComponent,
     FlightsComponent,
-    FrendsListComponent
+    FrendsListComponent,
+    FirstNameModalComponent,
+    LastNameModalComponent,
+    EmailModalComponent,
+    CityModalComponent,
+    MobileNumberModalComponent,
+    PasswordModalComponent
   ],
   imports: [
     BrowserModule,

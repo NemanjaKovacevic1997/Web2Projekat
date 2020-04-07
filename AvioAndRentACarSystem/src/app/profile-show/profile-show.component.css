@@ -22,3 +22,13 @@ th {
     color: white;
     font-size: x-large;
 }
+
+.password {
+    margin-top: 30px;
+    color: white;
+}
+
+a.disabled {
+    pointer-events: all;
+    cursor: pointer;
+  }

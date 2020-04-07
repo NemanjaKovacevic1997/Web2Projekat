@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/Services/User/user.service';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { SearchComponent } from './search/search.component';
@@ -20,6 +20,11 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { FlightsFilterComponent } from './flights-filter/flights-filter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterFlightsComponent } from './filter-flights/filter-flights.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { Ng5SliderModule } from 'ng5-slider';
+import { FlightsComponent } from './flights/flights.component';
+import { FrendsListComponent } from './frends-list/frends-list.component'
 
 @NgModule({
   declarations: [
@@ -33,7 +38,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FlightComponent,
     SignUpComponent,
     HomeComponent,
-    FlightsFilterComponent
+    FlightsFilterComponent,
+    FilterFlightsComponent,
+    FlightsComponent,
+    FrendsListComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +51,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
+    NgSelectModule,
+    Ng5SliderModule,
+    NgbModalModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },

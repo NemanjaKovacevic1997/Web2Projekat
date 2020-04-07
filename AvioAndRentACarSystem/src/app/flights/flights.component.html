@@ -1,0 +1,18 @@
+<table class="table table-borderless table-hover">
+    <tbody>
+        <tr class="component-style table-row-component"
+            *ngFor="let flight of flights" 
+            flight 
+            [startTimeHours] = "flight.startTimeHours"
+            [startTimeMinutes] = "flight.startTimeMinutes"
+            [landTimeHours] = "flight.landTimeHours"
+            [landTimeMinutes] = "flight.landTimeMinutes"   
+            [startDest] = "flight.startDest"
+            [landDest] = "flight.landDest"
+            [cost] = "flight.cost"
+            [airline] = "flight.airline"
+            [stops] = "flight.stops">
+        </tr>
+    </tbody>
+  </table>
+

@@ -1,0 +1,40 @@
+<form>
+    <div class="form-row top-buffer justify-content-center">
+      <div class="form-group col-md-6">
+        <ng-select  name="input1"
+                    [items]="cities2"
+                    bindLabel="name"
+                    bindValue="id"
+                    [multiple]="true"
+                    placeholder="Select cities"
+                    [(ngModel)]="selectedCityIds">
+        </ng-select>
+      </div>
+    </div>
+    <div class="form-row top-buffer justify-content-center">
+      <div class="custom-control custom-switch custom-control-inline">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+        <label class="custom-control-label" for="customSwitch1">Direct</label>
+      </div>
+      <div class="custom-control custom-switch custom-control-inline">
+        <input type="checkbox" class="custom-control-input" id="customSwitch2">
+        <label class="custom-control-label" for="customSwitch2">1</label>
+      </div>
+      <div class="custom-control custom-switch custom-control-inline">
+        <input type="checkbox" class="custom-control-input"  id="customSwitch3">
+        <label class="custom-control-label" for="customSwitch3">2+</label>
+      </div>
+    </div>
+    <div class="form-row top-buffer">
+      <ng5-slider [(value)]="minValue1" [(highValue)]="maxValue1" [options]="options1"></ng5-slider>
+    </div>
+    <div class="form-row top-buffer">
+      <ng5-slider [(value)]="minValue2" [(highValue)]="maxValue2" [options]="options2"></ng5-slider>
+    </div>
+    <div class="form-row top-buffer justify-content-center">
+        <div class="form-group col-md-4 ">
+            <button type="submit" class="btn btn-info form-control">Filter</button>
+        </div>
+    </div>
+  </form>
+

@@ -1,19 +1,13 @@
 
-<table class="table table-dark">
-    <tbody>
-      
-      <div *ngFor="let flight of flights">
-        <flight [startTimeHours] = "flight.startTimeHours"
-                [startTimeMinutes] = "flight.startTimeMinutes"
-                [landTimeHours] = "flight.landTimeHours"
-                [landTimeMinutes] = "flight.landTimeMinutes"   
-                [startDest] = "flight.startDest"
-                [landDest] = "flight.landDest"
-                [cost] = "flight.cost"
-                [airline] = "flight.airline"
-                [stops] = "flight.stops">
-        </flight>
+<body class="myBody text-center" >
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-6 col-lg-4">
+          <filter-flights></filter-flights>
+        </div>
+      <div class="col-sm-9 col-md-6 col-lg-8">
+          <flights></flights>
       </div>
-      
-    </tbody>
-  </table>
+    </div>
+  </div>
+</body>

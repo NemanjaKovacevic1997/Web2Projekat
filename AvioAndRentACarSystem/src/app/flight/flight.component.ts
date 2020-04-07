@@ -2,7 +2,7 @@ import { Component, OnInit, Input} from '@angular/core';
 import { Time } from '@angular/common';
 
 @Component({
-  selector: 'flight',
+  selector: '[flight]',
   templateUrl: './flight.component.html',
   styleUrls: ['./flight.component.css']
 })

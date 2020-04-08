@@ -18,6 +18,8 @@ import { FlightComponent } from './flight/flight.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
+import { RentACarComponent } from './rent-a-car/rent-a-car.component';
+import { RentACarSearchComponent } from './rent-a-car-search/rent-a-car-search.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { HomeComponent } from './home/home.component';
     ProfileShowComponent,
     FlightComponent,
     SignUpComponent,
-    HomeComponent
+    HomeComponent,
+    RentACarComponent,
+    RentACarSearchComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/Services/User/user.service';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { SearchComponent } from './search/search.component';
@@ -20,6 +20,19 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
 import { RentACarComponent } from './rent-a-car/rent-a-car.component';
 import { RentACarSearchComponent } from './rent-a-car-search/rent-a-car-search.component';
+import { FlightsFilterComponent } from './flights-filter/flights-filter.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterFlightsComponent } from './filter-flights/filter-flights.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { Ng5SliderModule } from 'ng5-slider';
+import { FlightsComponent } from './flights/flights.component';
+import { FrendsListComponent } from './frends-list/frends-list.component';
+import { FirstNameModalComponent } from './ProfileModals/first-name-modal/first-name-modal.component';
+import { LastNameModalComponent } from './ProfileModals/last-name-modal/last-name-modal.component';
+import { EmailModalComponent } from './ProfileModals/email-modal/email-modal.component';
+import { CityModalComponent } from './ProfileModals/city-modal/city-modal.component';
+import { MobileNumberModalComponent } from './ProfileModals/mobile-number-modal/mobile-number-modal.component';
+import { PasswordModalComponent } from './ProfileModals/password-modal/password-modal.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +47,17 @@ import { RentACarSearchComponent } from './rent-a-car-search/rent-a-car-search.c
     SignUpComponent,
     HomeComponent,
     RentACarComponent,
-    RentACarSearchComponent
+    RentACarSearchComponent,
+    FlightsFilterComponent,
+    FilterFlightsComponent,
+    FlightsComponent,
+    FrendsListComponent,
+    FirstNameModalComponent,
+    LastNameModalComponent,
+    EmailModalComponent,
+    CityModalComponent,
+    MobileNumberModalComponent,
+    PasswordModalComponent
   ],
   imports: [
     BrowserModule,
@@ -42,13 +65,20 @@ import { RentACarSearchComponent } from './rent-a-car-search/rent-a-car-search.c
     NgbDropdownModule,
     NgbDatepickerModule,
     MatGridListModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule,
+    Ng5SliderModule,
+    NgbModalModule,
     RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
       { path: 'friends', component: FriendsComponent},
       { path: 'profile/show', component: ProfileShowComponent},
       { path: 'airlines', component : AirlinesSearchComponent},
       { path: 'sign-in', component: SignInComponent},
       { path: 'sign-up', component: SignUpComponent},
-      { path: 'home', component: HomeComponent }
+      { path: 'flights', component: FlightsFilterComponent}
     ])
   ],
   providers: [

@@ -1,25 +1,17 @@
-table {
-    margin-left: 15%;
-    margin-right: 15%;
-}
 
-tbody > tr {
-    height: 70px;
-}
-
-th {
-    color: white;
-    text-align: center;
-} 
-
-td {
-    text-align: center;
-    vertical-align: middle;
-    text-size-adjust: inherit;
-}
-
-.top-buffer { margin-top:20px; }
+.top-buffer { margin-top:50px; }
 
 form {
     margin-left: 38%;
+}
+
+.myBody{
+    background-image: url("/assets/images/background19.jpg");
+    background-repeat: 'no-repeat';
+    background-position: top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+    overflow: auto;
 }

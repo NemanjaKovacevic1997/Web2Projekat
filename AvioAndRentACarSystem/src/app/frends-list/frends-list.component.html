@@ -1,0 +1,20 @@
+<table class="table table-borderless table-hover">
+    <thead class="thead-light">
+    <tr class="bg-primary">
+        <th class="table-active">First name</th>
+        <th>Last name</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let friend of friends">
+            <td>{{friend.firstName}}</td>
+            <td>{{friend.lastName}}</td>
+            <td>
+                <button *ngIf="friend.isFriend" type="button" class="btn btn-info">Delete</button>
+                <button *ngIf="!friend.isFriend && !friend.isInvitation" type="button" class="btn btn-info">Invitation sent...</button>
+                <button *ngIf="!friend.isFriend && friend.isInvitation" type="button" class="btn btn-info">Send invitation</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

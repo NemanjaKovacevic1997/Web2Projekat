@@ -1,6 +1,11 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<ul class="list-inline">
-    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">FB</a></li>
-    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">G+</a></li>
-    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">T</a></li>
- </ul>
+
+  <td><i class="fa fa-plane"></i></td>
+  <td>{{startTimeHours}} : {{startTimeMinutes}} - {{landTimeHours}} : {{landTimeMinutes}}</td>
+  <td>{{startDest}} - {{landDest}}</td>
+  <td>{{stops}} stop</td>
+  <td>{{flightLengthHours}}h {{flightLenghtMinutes}} min</td>
+  <td>{{airline}}</td>
+  <td>{{cost | currency: 'AUD'}}</td>
+

@@ -18,6 +18,8 @@ import { FlightComponent } from './flight/flight.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { HomeComponent } from './home/home.component';
+import { RentACarComponent } from './rent-a-car/rent-a-car.component';
+import { RentACarSearchComponent } from './rent-a-car-search/rent-a-car-search.component';
 import { FlightsFilterComponent } from './flights-filter/flights-filter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterFlightsComponent } from './filter-flights/filter-flights.component';
@@ -60,6 +62,8 @@ import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight
     FlightComponent,
     SignUpComponent,
     HomeComponent,
+    RentACarComponent,
+    RentACarSearchComponent,
     FlightsFilterComponent,
     FilterFlightsComponent,
     FlightsComponent,

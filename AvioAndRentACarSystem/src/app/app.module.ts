@@ -8,7 +8,7 @@ import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/Services/User/user.service';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { SearchComponent } from './search/search.component';
-import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule , NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AirlinesSearchComponent } from './airlines-search/airlines-search.component';
 import { FriendsComponent } from './friends/friends.component';
@@ -31,6 +31,22 @@ import { EmailModalComponent } from './ProfileModals/email-modal/email-modal.com
 import { CityModalComponent } from './ProfileModals/city-modal/city-modal.component';
 import { MobileNumberModalComponent } from './ProfileModals/mobile-number-modal/mobile-number-modal.component';
 import { PasswordModalComponent } from './ProfileModals/password-modal/password-modal.component';
+import { SeatsMapComponent } from './seats-map/seats-map.component';
+import { SeatsComponent } from './seats/seats.component';
+import { InviteComponent } from './invite/invite.component';
+import { PassengersComponent } from './passengers/passengers.component';
+import { PassengerComponent } from './passenger/passenger.component';
+import { BackNextComponent } from './back-next/back-next.component';
+import { AirlineProfileComponent } from './AdministratorAirline/airline-profile/airline-profile.component';
+import { AirlineFlightsComponent } from './AdministratorAirline/airline-flights/airline-flights.component';
+import { FilghtDetailsComponent } from './AdministratorAirline/filght-details/filght-details.component';
+import { ReportComponent } from './AdministratorAirline/report/report.component';
+import { MapComponent } from './map/map.component';
+import { QuickResevationComponent } from './AdministratorAirline/quick-resevation/quick-resevation.component';
+import { FlightAddComponent } from './AdministratorAirline/flight-add/flight-add.component';
+import { FlightsAdminComponent } from './AdministratorAirline/flights-admin/flights-admin.component';
+import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight-admin.component';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +69,22 @@ import { PasswordModalComponent } from './ProfileModals/password-modal/password-
     EmailModalComponent,
     CityModalComponent,
     MobileNumberModalComponent,
-    PasswordModalComponent
+    PasswordModalComponent,
+    SeatsMapComponent,
+    SeatsComponent,
+    InviteComponent,
+    PassengersComponent,
+    PassengerComponent,
+    BackNextComponent,
+    AirlineProfileComponent,
+    AirlineFlightsComponent,
+    FilghtDetailsComponent,
+    ReportComponent,
+    MapComponent,
+    QuickResevationComponent,
+    FlightAddComponent,
+    FlightsAdminComponent,
+    FlightAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +97,7 @@ import { PasswordModalComponent } from './ProfileModals/password-modal/password-
     NgSelectModule,
     Ng5SliderModule,
     NgbModalModule,
+    NgbTimepickerModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
@@ -74,7 +106,11 @@ import { PasswordModalComponent } from './ProfileModals/password-modal/password-
       { path: 'airlines', component : AirlinesSearchComponent},
       { path: 'sign-in', component: SignInComponent},
       { path: 'sign-up', component: SignUpComponent},
-      { path: 'flights', component: FlightsFilterComponent}
+      { path: 'flights', component: FlightsFilterComponent},
+      { path: 'seats', component: SeatsComponent},
+      { path: 'invite', component: InviteComponent},
+      { path: 'airlineProfile', component: AirlineProfileComponent},
+      { path: 'admin/airline-flights', component: AirlineFlightsComponent}
     ])
   ],
   providers: [

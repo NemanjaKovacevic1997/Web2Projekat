@@ -1,5 +1,5 @@
 .myBody{
-    background-image: url("/assets/images/background21.jpg");
+    background-image: url("/assets/images/background14.jpg");
     background-repeat: 'no-repeat';
     background-position: top;
     -webkit-background-size: cover;
@@ -9,8 +9,13 @@
     overflow: auto;
 }
 
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
 table {
-    margin-top: 140px;
+    margin-top: 30px;
 }
 
 td {
@@ -32,3 +37,8 @@ a.disabled {
     pointer-events: all;
     cursor: pointer;
   }
+
+.myImage{
+    width: 150px;
+    height: 150px;
+}

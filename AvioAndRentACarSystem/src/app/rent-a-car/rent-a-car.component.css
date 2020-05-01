@@ -1,0 +1,17 @@
+table {
+    margin-top: 40px;
+}
+
+tbody > tr {
+    height: 70px;
+}
+
+th {
+    text-align: center;
+} 
+
+td {
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}

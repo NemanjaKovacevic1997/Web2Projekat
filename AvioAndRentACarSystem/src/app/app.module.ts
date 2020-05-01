@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbTimepickerModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/Services/User/user.service';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { SearchComponent } from './search/search.component';
@@ -33,6 +33,17 @@ import { EmailModalComponent } from './ProfileModals/email-modal/email-modal.com
 import { CityModalComponent } from './ProfileModals/city-modal/city-modal.component';
 import { MobileNumberModalComponent } from './ProfileModals/mobile-number-modal/mobile-number-modal.component';
 import { PasswordModalComponent } from './ProfileModals/password-modal/password-modal.component';
+import { SearchRacComponent } from './search-rac/search-rac.component';
+import { TimepickerComponent } from './timepicker/timepicker.component';
+import { IgxTimePickerModule } from "igniteui-angular";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RentACarProfileComponent } from './AdministratorRAC/rent-a-car-profile/rent-a-car-profile.component';
+import { RentACarReportComponent } from './AdministratorRAC/rent-a-car-report/rent-a-car-report.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TimepickerBasicComponent } from './timepicker-basic/timepicker-basic.component';
+import { RentACarSelectedComponent } from './rent-a-car-selected/rent-a-car-selected.component';
+import { ImageLightboxComponent } from './image-lightbox/image-lightbox.component';
+//import { LightBoxModule, CarouselModule, ModalModule, WavesModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -57,9 +68,17 @@ import { PasswordModalComponent } from './ProfileModals/password-modal/password-
     EmailModalComponent,
     CityModalComponent,
     MobileNumberModalComponent,
-    PasswordModalComponent
+    PasswordModalComponent,
+    SearchRacComponent,
+    TimepickerComponent,
+    RentACarProfileComponent,
+    RentACarReportComponent,
+    TimepickerBasicComponent,
+    RentACarSelectedComponent,
+    ImageLightboxComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     NgbDropdownModule,
@@ -70,6 +89,8 @@ import { PasswordModalComponent } from './ProfileModals/password-modal/password-
     NgSelectModule,
     Ng5SliderModule,
     NgbModalModule,
+    NgbTimepickerModule,
+    IgxTimePickerModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
@@ -78,7 +99,9 @@ import { PasswordModalComponent } from './ProfileModals/password-modal/password-
       { path: 'airlines', component : AirlinesSearchComponent},
       { path: 'sign-in', component: SignInComponent},
       { path: 'sign-up', component: SignUpComponent},
-      { path: 'flights', component: FlightsFilterComponent}
+      { path: 'flights', component: FlightsFilterComponent},
+      { path: 'rent-a-car-search', component: RentACarSearchComponent},
+      { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent}
     ])
   ],
   providers: [

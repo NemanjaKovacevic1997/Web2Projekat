@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="column" *ngFor="let image of images; let i = index">
+        <div class="container">
+            <img src="{{image.url}}" class="img" >
+            <div class="middle">
+                <div class="text">Mark: {{image.mark}}<br>
+                                  Car type: {{image.type}}<br>
+                                  Number of seats: {{image.seats}}<br>
+                                  Rating: {{image.rating}}<br>
+                                  Total price: {{image.price}}€
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <button class="btn btn-primary" style="width: 100px;">Rent</button>
+                    </div>
+                    <div class="column">
+                        <button class="btn btn-primary" style="width: 100px;" (click)="openModal();currentSlide(i+1)">View</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="imgModal" class="slide-modal">
+    <span class="close cursor" (click)="closeModal()">&times;</span>
+    <div class="slide-modal-content">
+        <div class="img-slides" *ngFor="let image of images; let i = index">
+            <img class="myModalImage" src="{{image.url}}">
+        </div>
+        <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+        <a class="next" (click)="plusSlides(1)">&#10095;</a>
+        <div class="image-row">
+            <div class="image-column" *ngFor="let image of images; let i = index">
+                <img class="images" (click)="currentSlide(i+1)" src="{{image.url}}">
+            </div>
+        </div>
+    </div>
+</div>

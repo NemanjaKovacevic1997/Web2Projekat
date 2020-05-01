@@ -14,7 +14,7 @@ export class ImageService {
       url2: "",//slika iznutra
       url3: "",//slika sa strane
       mark: "Mercedes",
-      type: "Micro",
+      type: "Hatchback",
       seats: 5,
       rating: 9.00,
       price: 80
@@ -74,7 +74,7 @@ export class ImageService {
       url2: "",//slika iznutra
       url3: "",//slika sa strane
       mark: "Renault",
-      type: "Micro",
+      type: "Hatchback",
       seats: 5,
       rating: 7.00,
       price: 60
@@ -98,7 +98,7 @@ export class ImageService {
       url2: "",//slika iznutra
       url3: "",//slika sa strane
       mark: "Mercedes",
-      type: "Micro",
+      type: "Hatchback",
       seats: 5,
       rating: 6.00,
       price: 50

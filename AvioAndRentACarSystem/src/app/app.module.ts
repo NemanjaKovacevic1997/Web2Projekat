@@ -35,7 +35,6 @@ import { MobileNumberModalComponent } from './ProfileModals/mobile-number-modal/
 import { PasswordModalComponent } from './ProfileModals/password-modal/password-modal.component';
 import { SearchRacComponent } from './search-rac/search-rac.component';
 import { TimepickerComponent } from './timepicker/timepicker.component';
-import { IgxTimePickerModule } from "igniteui-angular";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RentACarProfileComponent } from './AdministratorRAC/rent-a-car-profile/rent-a-car-profile.component';
 import { RentACarReportComponent } from './AdministratorRAC/rent-a-car-report/rent-a-car-report.component';
@@ -121,7 +120,6 @@ import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight
     Ng5SliderModule,
     NgbModalModule,
     NgbTimepickerModule,
-    IgxTimePickerModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },

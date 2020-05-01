@@ -1,13 +1,12 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { UserService } from '../Services/User/user.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { UserService } from 'src/app/Services/User/user.service';
 
 @Component({
-  selector: '[flight]',
-  templateUrl: './flight.component.html',
-  styleUrls: ['./flight.component.css']
+  selector: '[flight-admin]',
+  templateUrl: './flight-admin.component.html',
+  styleUrls: ['./flight-admin.component.css']
 })
-export class FlightComponent implements OnInit {
-
+export class FlightAdminComponent implements OnInit {
   @Input('startTimeHours') startTimeHours : Number;
   @Input('startTimeMinutes') startTimeMinutes : Number;
   @Input('landTimeHours') landTimeHours : Number;

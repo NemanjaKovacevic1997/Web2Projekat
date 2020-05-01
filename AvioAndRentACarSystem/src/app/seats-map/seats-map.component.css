@@ -1,0 +1,9 @@
+  .visible {
+    visibility: visible;
+  }
+
+  .invisiblee {
+    border: none;
+    background: transparent;
+    font-size:0;
+  }

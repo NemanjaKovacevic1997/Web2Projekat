@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NgbDropdownModule, NgbTimepickerModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/Services/User/user.service';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { SearchComponent } from './search/search.component';
-import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule , NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AirlinesSearchComponent } from './airlines-search/airlines-search.component';
 import { FriendsComponent } from './friends/friends.component';
@@ -44,6 +44,22 @@ import { TimepickerBasicComponent } from './timepicker-basic/timepicker-basic.co
 import { RentACarSelectedComponent } from './rent-a-car-selected/rent-a-car-selected.component';
 import { ImageLightboxComponent } from './image-lightbox/image-lightbox.component';
 //import { LightBoxModule, CarouselModule, ModalModule, WavesModule } from 'angular-bootstrap-md';
+import { SeatsMapComponent } from './seats-map/seats-map.component';
+import { SeatsComponent } from './seats/seats.component';
+import { InviteComponent } from './invite/invite.component';
+import { PassengersComponent } from './passengers/passengers.component';
+import { PassengerComponent } from './passenger/passenger.component';
+import { BackNextComponent } from './back-next/back-next.component';
+import { AirlineProfileComponent } from './AdministratorAirline/airline-profile/airline-profile.component';
+import { AirlineFlightsComponent } from './AdministratorAirline/airline-flights/airline-flights.component';
+import { FilghtDetailsComponent } from './AdministratorAirline/filght-details/filght-details.component';
+import { ReportComponent } from './AdministratorAirline/report/report.component';
+import { MapComponent } from './map/map.component';
+import { QuickResevationComponent } from './AdministratorAirline/quick-resevation/quick-resevation.component';
+import { FlightAddComponent } from './AdministratorAirline/flight-add/flight-add.component';
+import { FlightsAdminComponent } from './AdministratorAirline/flights-admin/flights-admin.component';
+import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight-admin.component';
+
 
 @NgModule({
   declarations: [
@@ -75,7 +91,22 @@ import { ImageLightboxComponent } from './image-lightbox/image-lightbox.componen
     RentACarReportComponent,
     TimepickerBasicComponent,
     RentACarSelectedComponent,
-    ImageLightboxComponent
+    ImageLightboxComponent,
+    SeatsMapComponent,
+    SeatsComponent,
+    InviteComponent,
+    PassengersComponent,
+    PassengerComponent,
+    BackNextComponent,
+    AirlineProfileComponent,
+    AirlineFlightsComponent,
+    FilghtDetailsComponent,
+    ReportComponent,
+    MapComponent,
+    QuickResevationComponent,
+    FlightAddComponent,
+    FlightsAdminComponent,
+    FlightAdminComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -101,7 +132,11 @@ import { ImageLightboxComponent } from './image-lightbox/image-lightbox.componen
       { path: 'sign-up', component: SignUpComponent},
       { path: 'flights', component: FlightsFilterComponent},
       { path: 'rent-a-car-search', component: RentACarSearchComponent},
-      { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent}
+      { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent},
+      { path: 'seats', component: SeatsComponent},
+      { path: 'invite', component: InviteComponent},
+      { path: 'airlineProfile', component: AirlineProfileComponent},
+      { path: 'admin/airline-flights', component: AirlineFlightsComponent}
     ])
   ],
   providers: [

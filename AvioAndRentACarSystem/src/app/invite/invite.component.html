@@ -1,0 +1,58 @@
+<body class="myBody">
+    <div class="container-fluid">
+        <div class="row top-buffer">
+            <form>
+                <div class="form-row">
+                    <div class="col col-md-8">
+                        <input type="text" class="form-control"  placeholder="Search...">
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-info">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="row top-buffer">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <table class="table table-borderless table-hover">
+                    <thead class="thead-light">
+                    <tr class="bg-primary">
+                        <th class="table-active">First name</th>
+                        <th>Last name</th>
+                        <th>Invite</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let friend of friends">
+                            <td>{{friend.firstName}}</td>
+                            <td>{{friend.lastName}}</td>
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="{{'customSwitch' + friend.firstName}}">
+                                    <label class="custom-control-label" for="{{'customSwitch' + friend.firstName}}"></label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-3">
+                <button type="submit" class="btn btn-info">Invite</button>
+            </div>
+        </div>
+       
+        <div class="row top-buffer">
+            <div class="col-3"></div>
+            <div class="col-6">
+            </div>
+            <div class="col-3">
+                <back-next [nextRouting]="'/passengers'" [backRouting]="'/flights'"></back-next>
+            </div>
+        </div>
+        
+    <div class="container-fluid">
+    </div>
+<body>
+

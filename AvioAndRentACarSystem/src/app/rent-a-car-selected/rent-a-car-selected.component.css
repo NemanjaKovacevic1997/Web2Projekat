@@ -17,3 +17,8 @@
   width: 0px;  /* Remove scrollbar space */
   background: transparent;  /* Optional: just make scrollbar invisible */
 }
+
+.myImage{
+  width: 200px;
+  height: 120px;
+}

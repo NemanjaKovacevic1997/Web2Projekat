@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Options, LabelType, Ng5SliderModule } from 'ng5-slider';
 
 @Component({
   selector: 'search-rac',
@@ -27,6 +29,23 @@ export class SearchRacComponent implements OnInit {
     ])
   })
 
+  minValue1: number = 100;
+  maxValue1: number = 400;
+  options1: Options = {
+    floor: 0,
+    ceil: 500,
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '<b style="color:white">Min price:</b> ' + value + '€';//EU
+        case LabelType.High:
+          return '<b style="color:white">Max price:</b> ' + value + '€';
+        default:
+          return value + '€';
+      }
+    }
+  };
+
   public minPickerDate;
   public minPickerTime1;
   public minPickerTime2;
@@ -51,7 +70,10 @@ export class SearchRacComponent implements OnInit {
     return this.form.get('time2');
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, config: NgbTimepickerConfig) {
+    config.meridian = true;
+    config.minuteStep = 15;
+   }
 
   onSubmit() {
     if (this.form.valid)

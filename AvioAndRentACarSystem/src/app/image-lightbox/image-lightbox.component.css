@@ -45,7 +45,7 @@ DA SE POJAVLJUJE OPIS NA SLIKAMA KAD SE PREDJE MISOM PREKO NJIH
 }
 
 .container:hover .img {
-  opacity: 0.3;
+  opacity: 0.45;
 }
 
 .container:hover .middle {

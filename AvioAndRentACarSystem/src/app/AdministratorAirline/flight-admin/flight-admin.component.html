@@ -7,8 +7,8 @@
   <td>{{stops}} stop</td>
   <td>{{flightLengthHours}}h {{flightLenghtMinutes}} min</td>
   <td>{{airline}}</td>
-  <td>{{cost | currency: 'AUD'}}</td>
+  <td>{{cost | currency:'EUR':'symbol'}}</td>
   <td>
-    <button type="button" class="btn btn-primary">Delete</button>
+    <button type="button" class="btn btn-primary" routerLink="/admin/flight-details">Modify</button>
   </td>
 

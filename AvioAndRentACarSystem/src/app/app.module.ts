@@ -8,7 +8,7 @@ import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/Services/User/user.service';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { SearchComponent } from './search/search.component';
-import { NgbDatepickerModule , NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule , NgbTimepickerModule , NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AirlinesSearchComponent } from './airlines-search/airlines-search.component';
 import { FriendsComponent } from './friends/friends.component';
@@ -48,6 +48,9 @@ import { QuickResevationComponent } from './AdministratorAirline/quick-resevatio
 import { FlightAddComponent } from './AdministratorAirline/flight-add/flight-add.component';
 import { FlightsAdminComponent } from './AdministratorAirline/flights-admin/flights-admin.component';
 import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight-admin.component';
+import { ChartCardsComponent } from './AdministratorAirline/chart-cards/chart-cards.component';
+import { ChartsModule } from 'ng2-charts';
+import { ChartEarningsComponent } from './AdministratorAirline/chart-earnings/chart-earnings.component';
 
 
 @NgModule({
@@ -88,7 +91,9 @@ import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight
     QuickResevationComponent,
     FlightAddComponent,
     FlightsAdminComponent,
-    FlightAdminComponent
+    FlightAdminComponent,
+    ChartCardsComponent,
+    ChartEarningsComponent
   ],
   imports: [
     BrowserModule,
@@ -102,6 +107,8 @@ import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight
     Ng5SliderModule,
     NgbModalModule,
     NgbTimepickerModule,
+    ChartsModule,
+    NgbRatingModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
@@ -113,8 +120,10 @@ import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight
       { path: 'flights', component: FlightsFilterComponent},
       { path: 'seats', component: SeatsComponent},
       { path: 'invite', component: InviteComponent},
-      { path: 'airlineProfile', component: AirlineProfileComponent},
-      { path: 'admin/airline-flights', component: AirlineFlightsComponent}
+      { path: 'admin/airlineProfile', component: AirlineProfileComponent},
+      { path: 'admin/airline-flights', component: AirlineFlightsComponent},
+      { path: 'admin/flight-details', component: FilghtDetailsComponent},
+      { path: 'admin/report', component: ReportComponent}
     ])
   ],
   providers: [

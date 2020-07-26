@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
 export class UserService {
   private loggedUser : any; //za sad , posle User
   loggedUserType : string;
-  userTypes = ['Unregistred', 'Regular', 'AdminAvio', 'AdminRAC', 'AdminSys'];
+  userTypes = ['Unregistred', 'Regular', 'AdminAir', 'AdminRAC', 'AdminSys'];
 
   constructor(){ 
-    this.loggedUserType = 'Regular';
+    this.loggedUserType = 'AdminAir';
   }
 }

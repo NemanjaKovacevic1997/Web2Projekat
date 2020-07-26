@@ -14,38 +14,34 @@ export class NavbarComponent implements OnInit {
   isRacActive: boolean;
   isFriendsActive: boolean;
   isInvitationsActive: boolean;
+  isAirlinesProfileActive :boolean;
+  isFlightsActive: boolean;
+  isReportActive : boolean;
 
   constructor(private userService : UserService) { }
   
   ngOnInit(): void {
     this.userRole = this.userService.loggedUserType;
-    
   }
 
   changeAcitve(type:string) {
     this.resetAll();
     if(type == 'MyHistory')
-    {
       this.isMyHistoryActive = true;
-    }
     else if(type == 'Airlines')
-    {
       this.isAirlinesActive = true;
-    }
     else if(type == 'Rac')
-    {
       this.isRacActive = true;
-    }
     else if(type == 'Friends')
-    {
       this.isFriendsActive = true;
-    }
     else if(type == 'Invitations')
-    {
       this.isInvitationsActive = true;
-    }
-    
-    
+    else if(type == 'AirlinesProfile')
+      this.isAirlinesProfileActive = true;
+    else if(type == 'Flights')
+      this.isFlightsActive = true;
+    else if(type == 'Report')
+      this.isReportActive = true;
   }
 
   private resetAll() : void {
@@ -54,5 +50,8 @@ export class NavbarComponent implements OnInit {
     this.isRacActive = false;
     this.isFriendsActive = false;
     this.isInvitationsActive = false;
+    this.isReportActive = false;
+    this.isAirlinesProfileActive = false;
+    this.isFlightsActive = false;
   }
 }

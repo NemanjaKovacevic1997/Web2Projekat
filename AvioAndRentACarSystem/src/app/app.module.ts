@@ -33,6 +33,16 @@ import { EmailModalComponent } from './ProfileModals/email-modal/email-modal.com
 import { CityModalComponent } from './ProfileModals/city-modal/city-modal.component';
 import { MobileNumberModalComponent } from './ProfileModals/mobile-number-modal/mobile-number-modal.component';
 import { PasswordModalComponent } from './ProfileModals/password-modal/password-modal.component';
+import { SearchRacComponent } from './search-rac/search-rac.component';
+import { TimepickerComponent } from './timepicker/timepicker.component';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RentACarProfileComponent } from './AdministratorRAC/rent-a-car-profile/rent-a-car-profile.component';
+import { RentACarReportComponent } from './AdministratorRAC/rent-a-car-report/rent-a-car-report.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TimepickerBasicComponent } from './timepicker-basic/timepicker-basic.component';
+import { RentACarSelectedComponent } from './rent-a-car-selected/rent-a-car-selected.component';
+import { ImageLightboxComponent } from './image-lightbox/image-lightbox.component';
+//import { LightBoxModule, CarouselModule, ModalModule, WavesModule } from 'angular-bootstrap-md';
 import { SeatsMapComponent } from './seats-map/seats-map.component';
 import { SeatsComponent } from './seats/seats.component';
 import { InviteComponent } from './invite/invite.component';
@@ -77,6 +87,13 @@ import { ChartEarningsComponent } from './AdministratorAirline/chart-earnings/ch
     CityModalComponent,
     MobileNumberModalComponent,
     PasswordModalComponent,
+    SearchRacComponent,
+    TimepickerComponent,
+    RentACarProfileComponent,
+    RentACarReportComponent,
+    TimepickerBasicComponent,
+    RentACarSelectedComponent,
+    ImageLightboxComponent,
     SeatsMapComponent,
     SeatsComponent,
     InviteComponent,
@@ -96,6 +113,7 @@ import { ChartEarningsComponent } from './AdministratorAirline/chart-earnings/ch
     ChartEarningsComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     NgbDropdownModule,
@@ -118,6 +136,8 @@ import { ChartEarningsComponent } from './AdministratorAirline/chart-earnings/ch
       { path: 'sign-in', component: SignInComponent},
       { path: 'sign-up', component: SignUpComponent},
       { path: 'flights', component: FlightsFilterComponent},
+      { path: 'rent-a-car-search', component: RentACarSearchComponent},
+      { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent},
       { path: 'seats', component: SeatsComponent},
       { path: 'invite', component: InviteComponent},
       { path: 'admin/airlineProfile', component: AirlineProfileComponent},

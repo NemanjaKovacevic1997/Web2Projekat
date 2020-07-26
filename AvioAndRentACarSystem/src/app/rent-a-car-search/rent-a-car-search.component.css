@@ -1,0 +1,10 @@
+.myBody{
+    background-image: url("/assets/images/background31.jpg");
+    background-repeat: 'no-repeat';
+    background-position: top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+    overflow: auto;
+}

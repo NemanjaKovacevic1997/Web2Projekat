@@ -2,7 +2,7 @@
   "version": 2,
   "dgSpecHash": "/T3bV/m+7YTmYNro7Zm9KUzuO+h07q2bbJSeMdUFO5Ym+K7XJK8O33KA2Y/ih4UFtJxnSow51VYZnC3853LmhQ==",
   "success": true,
-  "projectFilePath": "D:\\8. semestar\\Web2_Projekat\\Backend\\TravellifeChaser\\TravellifeChaser.csproj",
+  "projectFilePath": "C:\\Users\\Lana\\Desktop\\Nemanja\\Web2_Projekat\\Backend\\TravellifeChaser\\TravellifeChaser.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Korisnik\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.0.0\\microsoft.aspnetcore.authentication.jwtbearer.3.0.0.nupkg.sha512",
     "C:\\Users\\Korisnik\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

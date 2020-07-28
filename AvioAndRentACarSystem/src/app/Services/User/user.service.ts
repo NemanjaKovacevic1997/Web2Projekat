@@ -9,6 +9,6 @@ export class UserService {
   userTypes = ['Unregistred', 'Regular', 'AdminAir', 'AdminRAC', 'AdminSys'];
 
   constructor(){ 
-    this.loggedUserType = 'Regular';
+    this.loggedUserType = 'AdminAir';
   }
 }

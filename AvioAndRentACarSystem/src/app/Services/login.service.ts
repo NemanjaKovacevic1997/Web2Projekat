@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient, HttpParams} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
@@ -12,16 +12,24 @@ import 'rxjs/add/observable/throw';
 export class LoginService {
   user = null;
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
-  login(email:string, password:string) {
-    this.http.get(environment.serverUrl + 'Login')
-             .catch(this.handleError)
-             .subscribe(response => { 
-                let responseJson = response.json();
-                this.user = responseJson.user;
-                localStorage.setItem('token', responseJson.token);
-             });
+  login(username:string, password:string) {
+    
+
+             let params : HttpParams = new HttpParams();
+             params.set('username', username);
+             params.set('password', password);
+
+             return this.http.get(environment.serverUrl + 'Login', { params: params })
+                             .catch(this.handleError)
+                             .subscribe(response => {
+                              this.user = response.user;
+                              localStorage.setItem('token', response.token);
+                             })
+                             
+                                                          
+             //localStorage.setItem('access_token', res.access_token);
     
   }
 

@@ -24,8 +24,8 @@ export class LoginService {
              return this.http.get(environment.serverUrl + 'Login', { params: params })
                              .catch(this.handleError)
                              .subscribe(response => {
-                              this.user = response.user;
-                              localStorage.setItem('token', response.token);
+                              //this.user = response.user;
+                              //localStorage.setItem('token', response.token);
                              })
                              
                                                           

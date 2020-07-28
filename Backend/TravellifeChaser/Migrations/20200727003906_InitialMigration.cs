@@ -67,6 +67,7 @@ namespace TravellifeChaser.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
+                    Username = table.Column<string>(nullable: true),
                     AddressId = table.Column<int>(nullable: false),
                     MobileNumber = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
@@ -419,12 +420,12 @@ namespace TravellifeChaser.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "AddressId", "Email", "FirstName", "LastName", "MobileNumber", "Password", "Role" },
+                columns: new[] { "Id", "AddressId", "Email", "FirstName", "LastName", "MobileNumber", "Password", "Role", "Username" },
                 values: new object[,]
                 {
-                    { 1, 1, "kovacevicnemanja1997@gmail.com", "Nemanja", "Kovacevic", "+381604520858", "kovac123", 0 },
-                    { 2, 2, "radovan.trudic@gmail.com", "Radovan", "Trudic", "+381650000000", "rasa123", 0 },
-                    { 3, 3, "marko.markovic@gmail.com", "Marko", "Markovic", "+381651111111", "marko123", 0 }
+                    { 1, 1, "kovacevicnemanja1997@gmail.com", "Nemanja", "Kovacevic", "+381604520858", "kovac123", 0, "kovac123" },
+                    { 2, 2, "radovan.trudic@gmail.com", "Radovan", "Trudic", "+381650000000", "rasa123", 0, "rasaBrt" },
+                    { 3, 3, "marko.markovic@gmail.com", "Marko", "Markovic", "+381651111111", "marko123", 0, "markooo" }
                 });
 
             migrationBuilder.InsertData(

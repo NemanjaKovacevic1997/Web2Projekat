@@ -131,5 +131,12 @@ D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\ru
 D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\Newtonsoft.Json.Bson.dll
+D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Logging.dll
+D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.dll
+D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\Microsoft.IdentityModel.Tokens.dll
+D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\System.IdentityModel.Tokens.Jwt.dll
 D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.csproj.CoreCompileInputs.cache
 D:\8. semestar\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.MvcApplicationPartsAssemblyInfo.cache

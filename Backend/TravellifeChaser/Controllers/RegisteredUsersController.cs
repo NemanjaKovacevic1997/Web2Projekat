@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,7 @@ namespace TravellifeChaser.Controllers
 
         // GET: api/RegisteredUsers
         [HttpGet]
+        [Authorize]
         public ActionResult<IEnumerable<User>> GetRegisteredUsers()
         {
             return repository.GetAllAsUser();
@@ -35,6 +37,7 @@ namespace TravellifeChaser.Controllers
 
         // GET: api/RegisteredUsers/5
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult<User> GetRegisteredUser(int id)
         {
             var registeredUser = repository.GetAsUser(id);

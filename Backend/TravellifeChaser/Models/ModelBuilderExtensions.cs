@@ -20,13 +20,13 @@ namespace TravellifeChaser.Models
             Address addr8 = new Address() { Id = 8, City = "London", Country = "England", Latitude = 51.4700, Longitude = 0.4543 };
             Address addr9 = new Address() { Id = 9, City = "Paris", Country = "France", Latitude = 49.0097, Longitude = 2.5479 };
 
-            User u1 = new User() { Id = 1, FirstName = "Nemanja", LastName = "Kovacevic", Email = "kovacevicnemanja1997@gmail.com", Password = "kovac123", MobileNumber = "+381604520858", AddressId = addr1.Id, Role = UserRole.Registered };
+            User u1 = new User() { Id = 1, FirstName = "Nemanja", LastName = "Kovacevic", Username = "kovac123", Email = "kovacevicnemanja1997@gmail.com", Password = "kovac123", MobileNumber = "+381604520858", AddressId = addr1.Id, Role = UserRole.Registered };
             RegisteredUser ru1 = new RegisteredUser() { Id = u1.Id };
 
-            User u2 = new User() { Id = 2, FirstName = "Radovan", LastName = "Trudic", Email = "radovan.trudic@gmail.com", Password = "rasa123", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.Registered };
+            User u2 = new User() { Id = 2, FirstName = "Radovan", LastName = "Trudic", Username = "rasaBrt", Email = "radovan.trudic@gmail.com", Password = "rasa123", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.Registered };
             RegisteredUser ru2 = new RegisteredUser() { Id = u2.Id };
 
-            User u3 = new User() { Id = 3, FirstName = "Marko", LastName = "Markovic", Email = "marko.markovic@gmail.com", Password = "marko123", MobileNumber = "+381651111111", AddressId = addr3.Id, Role = UserRole.Registered };
+            User u3 = new User() { Id = 3, FirstName = "Marko", LastName = "Markovic", Username = "markooo", Email = "marko.markovic@gmail.com", Password = "marko123", MobileNumber = "+381651111111", AddressId = addr3.Id, Role = UserRole.Registered };
             AdminAirlinesUser ru3 = new AdminAirlinesUser() { Id = u3.Id };
 
             FriendshipRequest fr1 = new FriendshipRequest() { Id = 1, FromId = 1, ToId = 2 };

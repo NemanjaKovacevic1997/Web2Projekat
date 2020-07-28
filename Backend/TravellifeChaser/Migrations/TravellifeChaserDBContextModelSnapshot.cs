@@ -366,7 +366,7 @@ namespace TravellifeChaser.Migrations
                     b.ToTable("FlightsAirports");
                 });
 
-            modelBuilder.Entity("TravellifeChaser.Models.Frendship", b =>
+            modelBuilder.Entity("TravellifeChaser.Models.Friendship", b =>
                 {
                     b.Property<int>("User1Id")
                         .HasColumnType("int");
@@ -381,7 +381,7 @@ namespace TravellifeChaser.Migrations
                     b.ToTable("Frendships");
                 });
 
-            modelBuilder.Entity("TravellifeChaser.Models.FrendshipRequest", b =>
+            modelBuilder.Entity("TravellifeChaser.Models.FriendshipRequest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -582,6 +582,9 @@ namespace TravellifeChaser.Migrations
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
@@ -598,7 +601,8 @@ namespace TravellifeChaser.Migrations
                             LastName = "Kovacevic",
                             MobileNumber = "+381604520858",
                             Password = "kovac123",
-                            Role = 0
+                            Role = 0,
+                            Username = "kovac123"
                         },
                         new
                         {
@@ -609,7 +613,8 @@ namespace TravellifeChaser.Migrations
                             LastName = "Trudic",
                             MobileNumber = "+381650000000",
                             Password = "rasa123",
-                            Role = 0
+                            Role = 0,
+                            Username = "rasaBrt"
                         },
                         new
                         {
@@ -620,7 +625,8 @@ namespace TravellifeChaser.Migrations
                             LastName = "Markovic",
                             MobileNumber = "+381651111111",
                             Password = "marko123",
-                            Role = 0
+                            Role = 0,
+                            Username = "markooo"
                         });
                 });
 
@@ -712,7 +718,7 @@ namespace TravellifeChaser.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TravellifeChaser.Models.Frendship", b =>
+            modelBuilder.Entity("TravellifeChaser.Models.Friendship", b =>
                 {
                     b.HasOne("TravellifeChaser.Models.RegisteredUser", "User1")
                         .WithMany("FriendsFrom")
@@ -727,7 +733,7 @@ namespace TravellifeChaser.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TravellifeChaser.Models.FrendshipRequest", b =>
+            modelBuilder.Entity("TravellifeChaser.Models.FriendshipRequest", b =>
                 {
                     b.HasOne("TravellifeChaser.Models.RegisteredUser", "From")
                         .WithMany("FrendshipRequestsSent")

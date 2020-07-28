@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -61,6 +61,7 @@ import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight
 import { ChartCardsComponent } from './AdministratorAirline/chart-cards/chart-cards.component';
 import { ChartsModule } from 'ng2-charts';
 import { ChartEarningsComponent } from './AdministratorAirline/chart-earnings/chart-earnings.component';
+import { LoginService } from './Services/login.service';
 
 
 @NgModule({
@@ -127,6 +128,7 @@ import { ChartEarningsComponent } from './AdministratorAirline/chart-earnings/ch
     NgbTimepickerModule,
     ChartsModule,
     NgbRatingModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
@@ -135,6 +137,7 @@ import { ChartEarningsComponent } from './AdministratorAirline/chart-earnings/ch
       { path: 'airlines', component : AirlinesSearchComponent},
       { path: 'sign-in', component: SignInComponent},
       { path: 'sign-up', component: SignUpComponent},
+      
       { path: 'flights', component: FlightsFilterComponent},
       { path: 'rent-a-car-search', component: RentACarSearchComponent},
       { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent},
@@ -147,7 +150,8 @@ import { ChartEarningsComponent } from './AdministratorAirline/chart-earnings/ch
     ])
   ],
   providers: [
-    UserService
+    UserService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

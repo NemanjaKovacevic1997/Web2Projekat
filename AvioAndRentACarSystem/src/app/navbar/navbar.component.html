@@ -14,10 +14,7 @@
         <li *ngIf="userRole == 'Regular' || userRole == 'Unregistred'" class="nav-item" #airlines  (click)="changeAcitve('Airlines')" [class.active]="isAirlinesActive"> 
           <a class="nav-link" routerLink="/airlines" ><i class="fa fa-plane"></i>Airlines</a>
         </li>
-        <li *ngIf="userRole == 'Regular' || userRole == 'Unregistred'" class="nav-item" (click)="changeAcitve('Rac')" [class.active]="isRacActive">
-          <a class="nav-link" href="#" #rac><i class="fa fa-car"></i>Rent-A-Car</a>
-        </li>
-        <li class="nav-item" #rac (click)="changeAcitve('Rac')" [class.active]="isRacActive">
+        <li *ngIf="userRole == 'Regular' || userRole == 'Unregistred'" class="nav-item" #rac (click)="changeAcitve('Rac')" [class.active]="isRacActive">
           <a class="nav-link" routerLink="/rent-a-car-search" ><i class="fa fa-car"></i>Rent-A-Car</a>
         </li>
         <li *ngIf="userRole == 'Regular'" class="nav-item" #friends (click)="changeAcitve('Friends')" [class.active]="isFriendsActive">

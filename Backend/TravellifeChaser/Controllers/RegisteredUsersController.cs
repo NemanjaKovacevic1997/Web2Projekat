@@ -29,7 +29,6 @@ namespace TravellifeChaser.Controllers
 
         // GET: api/RegisteredUsers
         [HttpGet]
-        [Authorize]
         public ActionResult<IEnumerable<User>> GetRegisteredUsers()
         {
             return repository.GetAllAsUser();
@@ -81,6 +80,7 @@ namespace TravellifeChaser.Controllers
         [HttpPost]
         public ActionResult<User> PostRegisteredUser(User user)
         {
+            user.Role = UserRole.Registered;
             RegisteredUser newUser = new RegisteredUser() { User = user };
             try
             {

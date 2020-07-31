@@ -61,7 +61,8 @@ import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight
 import { ChartCardsComponent } from './AdministratorAirline/chart-cards/chart-cards.component';
 import { ChartsModule } from 'ng2-charts';
 import { ChartEarningsComponent } from './AdministratorAirline/chart-earnings/chart-earnings.component';
-import { LoginService } from './Services/login.service';
+import { LoginService } from './Services/Login/login.service';
+import { HttpInterceptProviders } from './http-interceptors';
 
 
 @NgModule({
@@ -150,8 +151,8 @@ import { LoginService } from './Services/login.service';
     ])
   ],
   providers: [
-    UserService,
-    LoginService
+    LoginService,
+    HttpInterceptProviders
   ],
   bootstrap: [AppComponent]
 })

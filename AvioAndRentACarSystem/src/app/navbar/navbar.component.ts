@@ -1,27 +1,40 @@
 import { Component,ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { UserService } from '../Services/User/user.service';
 import { NgModel } from '@angular/forms';
+import { LoginService } from '../Services/Login/login.service';
+import { UserRole } from '../AirlineModel/userRole';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
-  userRole : string;
+
+  get UserRole() { return UserRole; }
+  public loginService: LoginService;
+
   isMyHistoryActive: boolean;
   isAirlinesActive: boolean;
   isRacActive: boolean;
   isFriendsActive: boolean;
   isInvitationsActive: boolean;
-  isAirlinesProfileActive :boolean;
+  isAirlinesProfileActive: boolean;
   isFlightsActive: boolean;
   isReportActive : boolean;
 
-  constructor(private userService : UserService) { }
+  constructor(loginService: LoginService, private router: Router) { 
+    this.loginService = loginService;
+  }
   
   ngOnInit(): void {
-    this.userRole = this.userService.loggedUserType;
+  }
+
+  logoutClick() {
+    this.loginService.logout();
   }
 
   changeAcitve(type:string) {

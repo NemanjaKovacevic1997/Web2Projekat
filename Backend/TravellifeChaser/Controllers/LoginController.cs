@@ -10,7 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
 using TravellifeChaser.Helpers;
+using TravellifeChaser.Helpers.DTOs;
 using TravellifeChaser.Models;
 
 namespace TravellifeChaser.Controllers
@@ -28,9 +30,12 @@ namespace TravellifeChaser.Controllers
             this.userRepository = userRepository;
         }
 
-        [HttpGet]
-        public IActionResult Login(string username, string password)
+        [HttpPost]
+        public IActionResult Login([FromBody]JObject data)
         {
+            string username = data.GetValue("username").ToString();
+            string password = data.GetValue("password").ToString();
+
             var user = AuthenticateUser(username, password);
 
             if (user == null)

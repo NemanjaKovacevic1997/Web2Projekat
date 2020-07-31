@@ -28,7 +28,7 @@ namespace TravellifeChaser
         }
 
         public IConfiguration Configuration { get; }
-
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -47,15 +47,18 @@ namespace TravellifeChaser
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(RegisteredUserRepository));
+            services.AddScoped(typeof(FriendshipRequestRepository));
+            services.AddScoped(typeof(AirlineRepository));
 
-            services.AddCors(options => 
+            /*services.AddCors(options => 
             {
-                options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin()
+                options.AddPolicy(name: MyAllowSpecificOrigins, builder => builder.AllowAnyOrigin()
                                                                   .AllowAnyMethod()
-                                                                  .AllowAnyHeader()
-                                                                  .AllowCredentials()
-                                                                  .Build());
-            });
+                                                                  .AllowAnyHeader());
+            });*/
+            services.AddMvc();
+
+            services.AddCors();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -71,8 +74,6 @@ namespace TravellifeChaser
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
-
-            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -90,6 +91,13 @@ namespace TravellifeChaser
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            //app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(builder =>
+                builder.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString())
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                );
 
             app.UseEndpoints(endpoints =>
             {

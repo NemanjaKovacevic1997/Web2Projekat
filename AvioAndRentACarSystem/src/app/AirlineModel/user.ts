@@ -1,10 +1,13 @@
-export class Profile{
+import { UserRole } from './userRole';
+
+export class User{
     firstName : string;
     lastName : string;
     email : string;
     city : string;
     mobileNumber : string;
     password : string;
+    userRole: UserRole
 
     constructor(firstName : string, lastName : string, email : string, city : string, mobileNumber : string, password : string){
         this.firstName = firstName;

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Profile } from './profile';
+import { User } from '../AirlineModel/user';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FirstNameModalComponent } from '../ProfileModals/first-name-modal/first-name-modal.component';
 import { LastNameModalComponent } from '../ProfileModals/last-name-modal/last-name-modal.component';
@@ -15,7 +15,7 @@ import { PasswordModalComponent } from '../ProfileModals/password-modal/password
 })
 export class ProfileShowComponent implements OnInit {
 
-  myProfile : Profile = new Profile('Nemanja', 'Kovacevic', 'kovacevicnemanja1997@gmail.com', 'Gajdobra', '0604520858', 'kovac123');
+  myProfile : User = new User('Nemanja', 'Kovacevic', 'kovacevicnemanja1997@gmail.com', 'Gajdobra', '0604520858', 'kovac123');
 
   constructor(private modalService: NgbModal) { 
   }

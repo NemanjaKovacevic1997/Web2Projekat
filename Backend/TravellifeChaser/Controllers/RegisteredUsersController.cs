@@ -47,6 +47,7 @@ namespace TravellifeChaser.Controllers
             return registeredUser;
         }
 
+
         // PUT: api/RegisteredUsers/5
         [HttpPut("{id}")]
         public IActionResult PutRegisteredUser(int id, User user)
@@ -58,9 +59,16 @@ namespace TravellifeChaser.Controllers
 
             if (registeredUser == null)
                 return NotFound();
-            
-            //ovde izmeni
-           
+
+   
+            registeredUser.User.FirstName = user.FirstName;
+            registeredUser.User.LastName = user.LastName;
+            registeredUser.User.Username = user.Username;
+            registeredUser.User.Email = user.Email;
+            registeredUser.User.MobileNumber = user.MobileNumber;
+            registeredUser.User.Address.City = user.Address.City;
+            registeredUser.User.Address.Country = user.Address.Country;
+
             try
             {
                 repository.Update(registeredUser);
@@ -82,6 +90,7 @@ namespace TravellifeChaser.Controllers
         {
             user.Role = UserRole.Registered;
             RegisteredUser newUser = new RegisteredUser() { User = user };
+
             try
             {
                 repository.Add(newUser);

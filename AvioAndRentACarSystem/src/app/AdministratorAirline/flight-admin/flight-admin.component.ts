@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UserService } from 'src/app/Services/User/user.service';
+import { LoginService } from 'src/app/Services/Login/login.service';
+import { UserRole } from 'src/app/AirlineModel/userRole';
 
 @Component({
   selector: '[flight-admin]',
@@ -18,15 +19,13 @@ export class FlightAdminComponent implements OnInit {
   @Input('cost') cost : Number;
   flightLenghtMinutes : Number;
   flightLengthHours : Number;
-  userRole : string;
+  get UserRole() { return UserRole; }
 
-
-  constructor(private userService : UserService) { }
+  constructor(public loginService : LoginService) { }
 
   ngOnInit(): void {
     this.flightLengthHours = 1;
     this.flightLenghtMinutes = 1;
-    this.userRole = this.userService.loggedUserType;
   }
 
 }

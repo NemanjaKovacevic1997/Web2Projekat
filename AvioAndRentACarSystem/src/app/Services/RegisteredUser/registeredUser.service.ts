@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { DataService } from '../Data/data.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -6,8 +6,8 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends DataService {
+export class RegisteredUserService extends DataService{
   constructor(http: HttpClient){ 
-    super(environment.serverUrl + 'Users', http)
+    super(environment.serverUrl + 'RegisteredUsers', http)
   }
 }

@@ -8,7 +8,7 @@
   <td>{{flightLengthHours}}h {{flightLenghtMinutes}} min</td>
   <td>{{airline}}</td>
   <td>{{cost | currency: 'AUD'}}</td>
-  <td *ngIf="userRole == 'AdminAvio'">
+  <td *ngIf="this.loginService.userRole == UserRole.AdminAirlines">
     <button type="button" class="btn btn-primary">Modify</button>
   </td>
 

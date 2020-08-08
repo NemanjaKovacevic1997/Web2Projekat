@@ -1,5 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { UserService } from '../Services/User/user.service';
+import { LoginService } from '../Services/Login/login.service';
+import { UserRole } from '../AirlineModel/userRole';
 
 @Component({
   selector: '[flight]',
@@ -19,15 +20,13 @@ export class FlightComponent implements OnInit {
   @Input('cost') cost : Number;
   flightLenghtMinutes : Number;
   flightLengthHours : Number;
-  userRole : string;
-
-
-  constructor(private userService : UserService) { }
+  get UserRole() { return UserRole; }
+  
+  constructor(public loginService: LoginService) { }
 
   ngOnInit(): void {
     this.flightLengthHours = 1;
     this.flightLenghtMinutes = 1;
-    this.userRole = this.userService.loggedUserType;
   }
 
 }

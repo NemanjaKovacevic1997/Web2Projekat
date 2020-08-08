@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from 'src/app/Services/User/user.service';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { SearchComponent } from './search/search.component';
 import { NgbDatepickerModule , NgbTimepickerModule , NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
@@ -63,6 +62,10 @@ import { ChartsModule } from 'ng2-charts';
 import { ChartEarningsComponent } from './AdministratorAirline/chart-earnings/chart-earnings.component';
 import { LoginService } from './Services/Login/login.service';
 import { HttpInterceptProviders } from './http-interceptors';
+import { UsernameModalComponent } from './ProfileModals/username-modal/username-modal.component';
+import { RegisteredUserService } from './Services/RegisteredUser/registeredUser.service';
+import { DataService } from './Services/Data/data.service';
+import { UserService } from './Services/User/user.service';
 
 
 @NgModule({
@@ -112,7 +115,8 @@ import { HttpInterceptProviders } from './http-interceptors';
     FlightsAdminComponent,
     FlightAdminComponent,
     ChartCardsComponent,
-    ChartEarningsComponent
+    ChartEarningsComponent,
+    UsernameModalComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -131,19 +135,28 @@ import { HttpInterceptProviders } from './http-interceptors';
     NgbRatingModule,
     HttpClientModule,
     RouterModule.forRoot([
+
+      //for ALL users
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
-      { path: 'friends', component: FriendsComponent},
-      { path: 'profile/show', component: ProfileShowComponent},
-      { path: 'airlines', component : AirlinesSearchComponent},
+      { path: 'airlines', component: AirlinesSearchComponent },
+      { path: ':airline/flights', component: FlightsFilterComponent },
+
+      //for UNREGISTERED users
       { path: 'sign-in', component: SignInComponent},
       { path: 'sign-up', component: SignUpComponent},
+
+      //for REGISTERED users
+      { path: ':username/friends', component: FriendsComponent},
+      { path: ':username', component: ProfileShowComponent},
       
-      { path: 'flights', component: FlightsFilterComponent},
+      //for now, change later (possible section change)
       { path: 'rent-a-car-search', component: RentACarSearchComponent},
       { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent},
       { path: 'seats', component: SeatsComponent},
       { path: 'invite', component: InviteComponent},
+
+      //for ADMIN AIRLINES (add username prefix later)
       { path: 'admin/airlineProfile', component: AirlineProfileComponent},
       { path: 'admin/airline-flights', component: AirlineFlightsComponent},
       { path: 'admin/flight-details', component: FilghtDetailsComponent},
@@ -152,6 +165,9 @@ import { HttpInterceptProviders } from './http-interceptors';
   ],
   providers: [
     LoginService,
+    RegisteredUserService,
+    UserService,
+    DataService,
     HttpInterceptProviders
   ],
   bootstrap: [AppComponent]

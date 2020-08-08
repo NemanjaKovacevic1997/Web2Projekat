@@ -11,10 +11,10 @@ import { User } from 'src/app/AirlineModel/user';
   providedIn: 'root'
 })
 export class LoginService {
-  user = null;
+  user: User = null;
   userRole: UserRole = UserRole.Unregistered;
   
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(username:string, password:string) {
     let headers = new HttpHeaders();

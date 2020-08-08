@@ -28,8 +28,7 @@ namespace TravellifeChaser
         }
 
         public IConfiguration Configuration { get; }
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddJsonOptions(options => {
@@ -47,15 +46,10 @@ namespace TravellifeChaser
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(RegisteredUserRepository));
+            services.AddScoped(typeof(UserRepository));
             services.AddScoped(typeof(FriendshipRequestRepository));
             services.AddScoped(typeof(AirlineRepository));
 
-            /*services.AddCors(options => 
-            {
-                options.AddPolicy(name: MyAllowSpecificOrigins, builder => builder.AllowAnyOrigin()
-                                                                  .AllowAnyMethod()
-                                                                  .AllowAnyHeader());
-            });*/
             services.AddMvc();
 
             services.AddCors();
@@ -92,7 +86,6 @@ namespace TravellifeChaser
 
             app.UseAuthorization();
 
-            //app.UseCors(MyAllowSpecificOrigins);
             app.UseCors(builder =>
                 builder.WithOrigins(Configuration["ApplicationSettings:Client_URL"].ToString())
                 .AllowAnyHeader()

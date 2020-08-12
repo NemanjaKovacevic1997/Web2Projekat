@@ -66,6 +66,11 @@ import { UsernameModalComponent } from './ProfileModals/username-modal/username-
 import { RegisteredUserService } from './Services/RegisteredUser/registeredUser.service';
 import { DataService } from './Services/Data/data.service';
 import { UserService } from './Services/User/user.service';
+import { FriendshipRequestService } from './Services/FriendshipRequest/friendship-request.service';
+import { FriendshipService } from './Services/Friendship/friendship.service';
+import { AirlineService } from './Services/Airline/airline.service';
+import { AirlineComponent } from './airline/airline.component';
+import { FlightService } from './Services/Flights/flight.service';
 
 
 @NgModule({
@@ -116,7 +121,8 @@ import { UserService } from './Services/User/user.service';
     FlightAdminComponent,
     ChartCardsComponent,
     ChartEarningsComponent,
-    UsernameModalComponent
+    UsernameModalComponent,
+    AirlineComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -140,7 +146,9 @@ import { UserService } from './Services/User/user.service';
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'airlines', component: AirlinesSearchComponent },
-      { path: ':airline/flights', component: FlightsFilterComponent },
+      { path: ':airlineId/flights', component: FlightsFilterComponent },
+      { path: 'rent-a-car-search', component: RentACarSearchComponent},
+      { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent},
 
       //for UNREGISTERED users
       { path: 'sign-in', component: SignInComponent},
@@ -151,8 +159,6 @@ import { UserService } from './Services/User/user.service';
       { path: ':username', component: ProfileShowComponent},
       
       //for now, change later (possible section change)
-      { path: 'rent-a-car-search', component: RentACarSearchComponent},
-      { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent},
       { path: 'seats', component: SeatsComponent},
       { path: 'invite', component: InviteComponent},
 
@@ -168,6 +174,10 @@ import { UserService } from './Services/User/user.service';
     RegisteredUserService,
     UserService,
     DataService,
+    FriendshipRequestService,
+    FriendshipService,
+    AirlineService,
+    FlightService,
     HttpInterceptProviders
   ],
   bootstrap: [AppComponent]

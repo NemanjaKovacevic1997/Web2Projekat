@@ -36,20 +36,20 @@ export class SearchComponent implements OnInit {
   get date1() {
     return this.form.get('date1');
   }
-
+  
   get date2() {
     return this.form.get('date2');
   }
 
 
-  onSubmit(){
+  searchClick(){
     if(this.form.valid)
-      this.router.navigate(['/flights']);
+      this.router.navigate(['all', 'flights']);
     else
       alert("Bad input.");
   }
 
-  constructor(private router : Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.minPickerDate = {

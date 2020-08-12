@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravellifeChaser.Data;
 using TravellifeChaser.Helpers;
+using TravellifeChaser.Helpers.DTOs;
+using TravellifeChaser.Helpers.Enums;
 using TravellifeChaser.Helpers.Repositories;
 using TravellifeChaser.Models;
 
@@ -21,10 +24,12 @@ namespace TravellifeChaser.Controllers
     {
         private RegisteredUserRepository repository;
         private IRepository<FriendshipRequest> friendshipRequestRepository;
-        public RegisteredUsersController(RegisteredUserRepository repository, IRepository<FriendshipRequest> friendshipRequestRepository)
+        private IRepository<Friendship> friendshipRepository;
+        public RegisteredUsersController(RegisteredUserRepository repository, IRepository<FriendshipRequest> friendshipRequestRepository, IRepository<Friendship> friendshipRepository)
         {
             this.repository = repository;
             this.friendshipRequestRepository = friendshipRequestRepository;
+            this.friendshipRepository = friendshipRepository;
         }
 
         // GET: api/RegisteredUsers
@@ -118,17 +123,35 @@ namespace TravellifeChaser.Controllers
             return registeredUser;
         }
 
-        [HttpGet("FriendshipRequests/{id}")]
-        public ActionResult<IEnumerable<FriendshipRequest>> GetRegisteredUserFrendshipRequests(int id)
+
+        [HttpGet("GetUsersWithSenderStatus/{id}")]
+        public ActionResult<IEnumerable<UserCurrentFriendshipStatusDTO>> GetUsersWithSenderStatus(int id)
         {
-            var registeredUser = repository.Get(id);
+            var registeredUser = repository.GetAsUser(id);
 
             if (registeredUser == null)
                 return NotFound();
 
-            return friendshipRequestRepository.GetByCondition(fr => fr.ToId == id).ToList();
-        }
+            var allUsers = repository.GetAllAsUser();
+            List<UserCurrentFriendshipStatusDTO> usersWithStatus = new List<UserCurrentFriendshipStatusDTO>();
 
+            foreach (var user in allUsers)
+            {
+                if (user.Id == id)
+                    continue;
+
+                if (friendshipRepository.Any(x => (x.User1Id == id && x.User2Id == user.Id) || (x.User1Id == user.Id && x.User2Id == id)))
+                    usersWithStatus.Add(new UserCurrentFriendshipStatusDTO() { User = user, CurrentFriendshipStatus = UserCurrentFriendshipStatus.Friend });
+                else if (friendshipRequestRepository.Any(x => x.FromId == id && x.ToId == user.Id))
+                    usersWithStatus.Add(new UserCurrentFriendshipStatusDTO() { User = user, CurrentFriendshipStatus = UserCurrentFriendshipStatus.FriendshipRequestSent });
+                else if (friendshipRequestRepository.Any(x => x.FromId == user.Id && x.ToId == id))
+                    usersWithStatus.Add(new UserCurrentFriendshipStatusDTO() { User = user, CurrentFriendshipStatus = UserCurrentFriendshipStatus.FriendshipRequestRecieved });
+                else
+                    usersWithStatus.Add(new UserCurrentFriendshipStatusDTO() { User = user, CurrentFriendshipStatus = UserCurrentFriendshipStatus.NotFriend });
+            }
+
+            return usersWithStatus;
+        }
         private bool RegisteredUserExists(int id)
         {
             return repository.Any(e => e.Id == id);

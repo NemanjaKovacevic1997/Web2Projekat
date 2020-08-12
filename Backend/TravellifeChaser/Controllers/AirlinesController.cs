@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravellifeChaser.Data;
+using TravellifeChaser.Helpers.Repositories;
 using TravellifeChaser.Models;
 
 namespace TravellifeChaser.Controllers
@@ -14,30 +15,28 @@ namespace TravellifeChaser.Controllers
     [ApiController]
     public class AirlinesController : ControllerBase
     {
-        private readonly TravellifeChaserDBContext _context;
+        private AirlineRepository repository; 
 
-        public AirlinesController(TravellifeChaserDBContext context)
+        public AirlinesController(AirlineRepository repository)
         {
-            _context = context;
+            this.repository = repository;
         }
 
         // GET: api/Airlines
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Airline>>> GetAirlines()
+        public ActionResult<IEnumerable<Airline>> GetAirlines()
         {
-            return await _context.Airlines.ToListAsync();
+            return repository.GetAll().ToList();
         }
 
         // GET: api/Airlines/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Airline>> GetAirline(int id)
+        public ActionResult<Airline> GetAirline(int id)
         {
-            var airline = await _context.Airlines.FindAsync(id);
+            var airline = repository.Get(id);
 
             if (airline == null)
-            {
                 return NotFound();
-            }
 
             return airline;
         }
@@ -46,18 +45,15 @@ namespace TravellifeChaser.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAirline(int id, Airline airline)
+        public IActionResult PutAirline(int id, Airline airline)
         {
             if (id != airline.Id)
-            {
                 return BadRequest();
-            }
 
-            _context.Entry(airline).State = EntityState.Modified;
-
+            //izmeniii
             try
             {
-                await _context.SaveChangesAsync();
+                repository.Update(airline);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,33 +74,29 @@ namespace TravellifeChaser.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<Airline>> PostAirline(Airline airline)
+        public ActionResult<Airline> PostAirline(Airline airline)
         {
-            _context.Airlines.Add(airline);
-            await _context.SaveChangesAsync();
+            repository.Add(airline);
 
             return CreatedAtAction("GetAirline", new { id = airline.Id }, airline);
         }
 
         // DELETE: api/Airlines/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Airline>> DeleteAirline(int id)
+        public ActionResult<Airline> DeleteAirline(int id)
         {
-            var airline = await _context.Airlines.FindAsync(id);
+            var airline = repository.Get(id);
             if (airline == null)
-            {
                 return NotFound();
-            }
 
-            _context.Airlines.Remove(airline);
-            await _context.SaveChangesAsync();
+            repository.Remove(id);
 
             return airline;
         }
 
         private bool AirlineExists(int id)
         {
-            return _context.Airlines.Any(e => e.Id == id);
+            return repository.Any(e => e.Id == id);
         }
     }
 }

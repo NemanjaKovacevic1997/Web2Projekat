@@ -6,15 +6,21 @@ import { catchError, map, tap, shareReplay} from 'rxjs/operators';
 import { UserRole } from 'src/app/AirlineModel/userRole';
 import { Router } from '@angular/router';
 import { User } from 'src/app/AirlineModel/user';
+import { Address } from 'src/app/AirlineModel/address';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  user: User = null;
-  userRole: UserRole = UserRole.Unregistered;
+  user: User;
+  userRole: UserRole;
   
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    let address = new Address(1, 'Novi Sad', 'Serbia');
+    this.user = new User('Nemanja', 'Kovacevic', 'kovacevicnemanja1997@gmail.com', address, '+9349145824812', 'kovac123', UserRole.Registered, 'kovac123');
+    this.user.id = 1;
+    this.userRole = UserRole.Registered;
+  }
 
   login(username:string, password:string) {
     let headers = new HttpHeaders();

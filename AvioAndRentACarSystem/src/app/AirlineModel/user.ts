@@ -1,6 +1,5 @@
 import { UserRole } from './userRole';
-import { Address } from '../AdministratorAirline/airline-profile/airline';
-import { NumberValueAccessor } from '@angular/forms';
+import { Address } from './address';
 
 export class User{
     id: number;

@@ -69,6 +69,9 @@ namespace TravellifeChaser.Controllers
         [HttpPost]
         public ActionResult<FriendshipRequest> PostFrendshipRequest(FriendshipRequest frendshipRequest)
         {
+            if (repository.Any(x => x.FromId == frendshipRequest.FromId && x.ToId == frendshipRequest.ToId))
+                return Conflict();
+
             try
             {
                 repository.Add(frendshipRequest);
@@ -80,6 +83,7 @@ namespace TravellifeChaser.Controllers
                 else
                     throw;
             }
+
             return repository.Get(frendshipRequest.Id);
         }
 
@@ -95,28 +99,40 @@ namespace TravellifeChaser.Controllers
             return frendshipRequest;
         }
 
-        [HttpGet("accept/{id}")]
-        public IActionResult AcceptFrendshipRequest(int id)
+
+        [HttpDelete("{fromId}/{toId}")]
+        public ActionResult<FriendshipRequest> DeleteFrendshipRequestByIds(int fromId, int toId)
         {
-            var frendshipRequest = repository.Get(id);
+            var frendshipRequest = repository.GetByCondition(x => x.FromId == fromId && x.ToId == toId).FirstOrDefault();
+            if (frendshipRequest == null)
+                return NotFound();
+
+            repository.Remove(frendshipRequest.Id);
+            return frendshipRequest;
+        }
+
+        [HttpGet("accept/{fromId}/{toId}")]
+        public IActionResult AcceptFrendshipRequest(int fromId, int toId)
+        {
+            var frendshipRequest = repository.GetByCondition(x => x.FromId == fromId && x.ToId == toId).FirstOrDefault();
             if (frendshipRequest == null)
                 return NotFound();
 
             Friendship newFrendship = new Friendship() { User1Id = frendshipRequest.FromId, User2Id = frendshipRequest.ToId };
             frendshipRepository.Add(newFrendship);
-            repository.Remove(frendshipRequest);
+            repository.Remove(frendshipRequest.Id);
 
             return Ok();
         }
 
-        [HttpGet("refuse/{id}")]
-        public IActionResult RefuseFrendshipRequest(int id)
+        [HttpGet("refuse/{fromId}/{toId}")]
+        public IActionResult RefuseFrendshipRequest(int fromId, int toId)
         {
-            var frendshipRequest = repository.Get(id);
+            var frendshipRequest = repository.GetByCondition(x => x.FromId == fromId && x.ToId == toId).FirstOrDefault();
             if (frendshipRequest == null)
                 return NotFound();
 
-            repository.Remove(frendshipRequest);
+            repository.Remove(frendshipRequest.Id);
             return Ok();
         }
 

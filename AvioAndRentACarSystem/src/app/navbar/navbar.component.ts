@@ -1,9 +1,6 @@
-import { Component,ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { Component, OnInit} from '@angular/core';
 import { LoginService } from '../Services/Login/login.service';
 import { UserRole } from '../AirlineModel/userRole';
-import { FormsModule } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +13,7 @@ export class NavbarComponent implements OnInit {
   get UserRole() { return UserRole; }
   public loginService: LoginService;
 
-  constructor(loginService: LoginService, private router: Router) { 
+  constructor(loginService: LoginService) { 
     this.loginService = loginService;
   }
   

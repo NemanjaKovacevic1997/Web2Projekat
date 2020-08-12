@@ -49,6 +49,7 @@ namespace TravellifeChaser
             services.AddScoped(typeof(UserRepository));
             services.AddScoped(typeof(FriendshipRequestRepository));
             services.AddScoped(typeof(AirlineRepository));
+            services.AddScoped(typeof(FlightRepository));
 
             services.AddMvc();
 

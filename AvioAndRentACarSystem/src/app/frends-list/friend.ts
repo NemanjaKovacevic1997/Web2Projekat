@@ -1,19 +1,18 @@
 import { OnInit } from '@angular/core';
+import { UserCurrentFriendshipStatus } from '../AirlineModel/userCurrentFriendshipStatus';
 
 export class Friend  {
-    firstName : string;
-    lastName : string;
-    isFriend : boolean;
-    isInvitation : boolean;
+    id: number;
+    firstName: string;
+    lastName: string;
+    userCurrentFriendshipStatus: UserCurrentFriendshipStatus;
+    
 
-    constructor(firstName : string, lastName : string, isFriend : boolean, isInvitation : boolean){
+    constructor(firstName: string, lastName: string, userCurrentFriendshipStatus: UserCurrentFriendshipStatus, id? : number){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.isFriend = isFriend;
-        if(this.isFriend)
-           this.isInvitation = false;
-        else 
-           this.isInvitation = isInvitation;
+        this.userCurrentFriendshipStatus = userCurrentFriendshipStatus;
+        this.id = id;
     }
 
 }

@@ -387,7 +387,11 @@ namespace TravellifeChaser.Migrations
                     { 6, "Istanbul", "Turkey", 41.008200000000002, 28.978400000000001 },
                     { 7, "Doha", "Qatar", 25.278300000000002, 51.552 },
                     { 8, "London", "England", 51.469999999999999, 0.45429999999999998 },
-                    { 9, "Paris", "France", 49.009700000000002, 2.5478999999999998 }
+                    { 9, "Paris", "France", 49.009700000000002, 2.5478999999999998 },
+                    { 10, "Sremska Mitrovica", "Serbia", null, null },
+                    { 11, "Smederevo", "Serbia", null, null },
+                    { 12, "Krusevac", "Serbia", null, null },
+                    { 13, "Subotica", "Serbia", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -425,7 +429,10 @@ namespace TravellifeChaser.Migrations
                 {
                     { 1, 1, "kovacevicnemanja1997@gmail.com", "Nemanja", "Kovacevic", "+381604520858", "kovac123", 0, "kovac123" },
                     { 2, 2, "radovan.trudic@gmail.com", "Radovan", "Trudic", "+381650000000", "rasa123", 0, "rasaBrt" },
-                    { 3, 3, "marko.markovic@gmail.com", "Marko", "Markovic", "+381651111111", "marko123", 0, "markooo" }
+                    { 3, 3, "marko.markovic@gmail.com", "Marko", "Markovic", "+381651111111", "marko123", 0, "markooo" },
+                    { 4, 10, "zekan1997@gmail.com", "Milovan", "Zec", "+381604520858", "zekan123", 0, "zekann2" },
+                    { 5, 11, "kovacevicnemanja1997@gmail.com", "Petar", "Akumovski", "+381604520858", "pekii123", 0, "pekii123" },
+                    { 6, 12, "kovacevicnemanja1997@gmail.com", "Mitar", "Miric", "+381604520858", "mitric123", 0, "mitriccc" }
                 });
 
             migrationBuilder.InsertData(
@@ -457,13 +464,29 @@ namespace TravellifeChaser.Migrations
                 {
                     1,
                     2,
-                    3
+                    3,
+                    4,
+                    5,
+                    6
                 });
 
             migrationBuilder.InsertData(
                 table: "FrendshipRequests",
                 columns: new[] { "Id", "FromId", "ToId" },
-                values: new object[] { 1, 1, 2 });
+                values: new object[,]
+                {
+                    { 1, 1, 2 },
+                    { 2, 3, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Frendships",
+                columns: new[] { "User1Id", "User2Id" },
+                values: new object[,]
+                {
+                    { 1, 4 },
+                    { 1, 6 }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AdminAirlinesUsers_AirlineId",

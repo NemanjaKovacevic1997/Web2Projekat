@@ -108,6 +108,30 @@ namespace TravellifeChaser.Migrations
                             Country = "France",
                             Latitude = 49.009700000000002,
                             Longitude = 2.5478999999999998
+                        },
+                        new
+                        {
+                            Id = 10,
+                            City = "Sremska Mitrovica",
+                            Country = "Serbia"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            City = "Smederevo",
+                            Country = "Serbia"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            City = "Krusevac",
+                            Country = "Serbia"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            City = "Subotica",
+                            Country = "Serbia"
                         });
                 });
 
@@ -379,6 +403,18 @@ namespace TravellifeChaser.Migrations
                     b.HasIndex("User2Id");
 
                     b.ToTable("Frendships");
+
+                    b.HasData(
+                        new
+                        {
+                            User1Id = 1,
+                            User2Id = 4
+                        },
+                        new
+                        {
+                            User1Id = 1,
+                            User2Id = 6
+                        });
                 });
 
             modelBuilder.Entity("TravellifeChaser.Models.FriendshipRequest", b =>
@@ -408,6 +444,12 @@ namespace TravellifeChaser.Migrations
                             Id = 1,
                             FromId = 1,
                             ToId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FromId = 3,
+                            ToId = 1
                         });
                 });
 
@@ -499,6 +541,18 @@ namespace TravellifeChaser.Migrations
                         new
                         {
                             Id = 3
+                        },
+                        new
+                        {
+                            Id = 4
+                        },
+                        new
+                        {
+                            Id = 5
+                        },
+                        new
+                        {
+                            Id = 6
                         });
                 });
 
@@ -627,6 +681,42 @@ namespace TravellifeChaser.Migrations
                             Password = "marko123",
                             Role = 0,
                             Username = "markooo"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddressId = 10,
+                            Email = "zekan1997@gmail.com",
+                            FirstName = "Milovan",
+                            LastName = "Zec",
+                            MobileNumber = "+381604520858",
+                            Password = "zekan123",
+                            Role = 0,
+                            Username = "zekann2"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AddressId = 11,
+                            Email = "kovacevicnemanja1997@gmail.com",
+                            FirstName = "Petar",
+                            LastName = "Akumovski",
+                            MobileNumber = "+381604520858",
+                            Password = "pekii123",
+                            Role = 0,
+                            Username = "pekii123"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AddressId = 12,
+                            Email = "kovacevicnemanja1997@gmail.com",
+                            FirstName = "Mitar",
+                            LastName = "Miric",
+                            MobileNumber = "+381604520858",
+                            Password = "mitric123",
+                            Role = 0,
+                            Username = "mitriccc"
                         });
                 });
 

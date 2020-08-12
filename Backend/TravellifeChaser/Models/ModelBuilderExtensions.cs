@@ -19,6 +19,10 @@ namespace TravellifeChaser.Models
             Address addr7 = new Address() { Id = 7, City = "Doha", Country = "Qatar", Latitude = 25.2783, Longitude = 51.5520 };
             Address addr8 = new Address() { Id = 8, City = "London", Country = "England", Latitude = 51.4700, Longitude = 0.4543 };
             Address addr9 = new Address() { Id = 9, City = "Paris", Country = "France", Latitude = 49.0097, Longitude = 2.5479 };
+            Address addr10 = new Address() { Id = 10, City = "Sremska Mitrovica", Country = "Serbia" };
+            Address addr11 = new Address() { Id = 11, City = "Smederevo", Country = "Serbia" };
+            Address addr12 = new Address() { Id = 12, City = "Krusevac", Country = "Serbia" };
+            Address addr13 = new Address() { Id = 13, City = "Subotica", Country = "Serbia" };
 
             User u1 = new User() { Id = 1, FirstName = "Nemanja", LastName = "Kovacevic", Username = "kovac123", Email = "kovacevicnemanja1997@gmail.com", Password = "kovac123", MobileNumber = "+381604520858", AddressId = addr1.Id, Role = UserRole.Registered };
             RegisteredUser ru1 = new RegisteredUser() { Id = u1.Id };
@@ -29,7 +33,19 @@ namespace TravellifeChaser.Models
             User u3 = new User() { Id = 3, FirstName = "Marko", LastName = "Markovic", Username = "markooo", Email = "marko.markovic@gmail.com", Password = "marko123", MobileNumber = "+381651111111", AddressId = addr3.Id, Role = UserRole.Registered };
             AdminAirlinesUser ru3 = new AdminAirlinesUser() { Id = u3.Id };
 
+            User u4 = new User() { Id = 4, FirstName = "Milovan", LastName = "Zec", Username = "zekann2", Email = "zekan1997@gmail.com", Password = "zekan123", MobileNumber = "+381604520858", AddressId = addr10.Id, Role = UserRole.Registered };
+            RegisteredUser ru4 = new RegisteredUser() { Id = u4.Id };
+
+            User u5 = new User() { Id = 5, FirstName = "Petar", LastName = "Akumovski", Username = "pekii123", Email = "kovacevicnemanja1997@gmail.com", Password = "pekii123", MobileNumber = "+381604520858", AddressId = addr11.Id, Role = UserRole.Registered };
+            RegisteredUser ru5 = new RegisteredUser() { Id = u5.Id };
+
+            User u6 = new User() { Id = 6, FirstName = "Mitar", LastName = "Miric", Username = "mitriccc", Email = "kovacevicnemanja1997@gmail.com", Password = "mitric123", MobileNumber = "+381604520858", AddressId = addr12.Id, Role = UserRole.Registered };
+            RegisteredUser ru6 = new RegisteredUser() { Id = u6.Id };
+
             FriendshipRequest fr1 = new FriendshipRequest() { Id = 1, FromId = 1, ToId = 2 };
+            FriendshipRequest fr2 = new FriendshipRequest() { Id = 2, FromId = 3, ToId = 1 };
+            Friendship friendship1 = new Friendship() { User1Id = 1, User2Id = 4 };
+            Friendship friendship2 = new Friendship() { User1Id = 1, User2Id = 6 };
 
             Pricelist pl1 = new Pricelist() { Id = 1, HandLuggageOverMaxDimensions = 3, LuggageOver10kg = 5, LuggageOver20kg = 10 };
             Pricelist pl2 = new Pricelist() { Id = 2, HandLuggageOverMaxDimensions = 4, LuggageOver10kg = 6, LuggageOver20kg = 12 };
@@ -101,10 +117,11 @@ namespace TravellifeChaser.Models
                 Length = 400,
             };
 
-            modelBuilder.Entity<Address>().HasData(addr1, addr2, addr3, addr4, addr5, addr6, addr7, addr8, addr9);
-            modelBuilder.Entity<User>().HasData(u1, u2, u3);
-            modelBuilder.Entity<RegisteredUser>().HasData(ru1, ru2, ru3);
-            modelBuilder.Entity<FriendshipRequest>().HasData(fr1);
+            modelBuilder.Entity<Address>().HasData(addr1, addr2, addr3, addr4, addr5, addr6, addr7, addr8, addr9, addr10, addr11, addr12, addr13);
+            modelBuilder.Entity<User>().HasData(u1, u2, u3, u4, u5, u6);
+            modelBuilder.Entity<RegisteredUser>().HasData(ru1, ru2, ru3, ru4, ru5, ru6);
+            modelBuilder.Entity<FriendshipRequest>().HasData(fr1, fr2);
+            modelBuilder.Entity<Friendship>().HasData(friendship1, friendship2);
             modelBuilder.Entity<Pricelist>().HasData(pl1, pl2);
             modelBuilder.Entity<Airline>().HasData(airline1, airline2);
             modelBuilder.Entity<Airport>().HasData(airport1, airport2, airport3);

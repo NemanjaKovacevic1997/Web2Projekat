@@ -4,10 +4,12 @@ import { Address } from './address';
 
 export class Airline
 {
+    id: number;
     name: string;
     address: Address;
     promotionalDescription: string;
     priceList: PriceList;
+    averageRating: number;
     businessDestinations: Array<Airport>
 
     constructor(name: string, address: Address, promotionalDescription: string, priceList: PriceList)

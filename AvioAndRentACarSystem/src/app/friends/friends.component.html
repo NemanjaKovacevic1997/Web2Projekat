@@ -3,20 +3,29 @@
         <div class="row top-buffer">
             <form>
                 <div class="form-row">
-                        <div class="col col-md-8">
-                            <input type="text" class="form-control"  placeholder="Search...">
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-info">Search</button>
+                    <div class="col col-md-12">
+                        <input type="text" class="form-control" placeholder="Search..." #search (input)="searchInputChange(search.value)">
                     </div>
                 </div>
             </form>
         </div>
 
         <div class="row top-buffer">
-            <div class="col-3"></div>
+            <div class="col-3">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary" [class.active]="all">
+                      <input (click)="allClick()" type="radio" name="options" id="option1" autocomplete="off" checked> All people
+                    </label>
+                    <label class="btn btn-secondary" [class.active]="friendsOnly">
+                      <input (click)="friendsOnlyClick()" type="radio" name="options" id="option2" autocomplete="off"> Friends only
+                    </label>
+                    <label class="btn btn-secondary" [class.active]="friendshipEventsOnly">
+                      <input (click)="friendshipEventsOnlyClick()" type="radio" name="options" id="option3" autocomplete="off"> Friendship events only
+                    </label>
+                </div>
+            </div>
             <div class="col-6">
-                <frends-list></frends-list>
+                <frends-list [all]="all" [friendsOnly]="friendsOnly" [friendshipEventsOnly]="friendshipEventsOnly" [searchInput]="searchInput"></frends-list>
             </div>
             <div class="col-3"></div>
             

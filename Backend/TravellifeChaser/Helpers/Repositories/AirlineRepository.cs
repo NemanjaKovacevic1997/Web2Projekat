@@ -22,6 +22,7 @@ namespace TravellifeChaser.Helpers.Repositories
                                    .Include(x => x.Flights).ThenInclude(x => x.From)
                                    .Include(x => x.Flights).ThenInclude(x => x.To)
                                    .Include(x => x.Pricelist)
+                                   .Include(x => x.BuisinessDestinations).ThenInclude(x => x.Airport).ThenInclude(x => x.Address)
                                    .Where(x => x.Id == (int)keyValues.First())
                                    .FirstOrDefault();
         }   

@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Options, LabelType } from 'ng5-slider';
+import { AirlineService } from '../Services/Airline/airline.service';
+import { Airline } from '../AirlineModel/airline';
+import { FilterData } from '../AirlineModel/HelperModel/filterData';
 
 @Component({
   selector: 'filter-flights',
@@ -7,15 +10,19 @@ import { Options, LabelType } from 'ng5-slider';
   styleUrls: ['./filter-flights.component.css']
 })
 export class FilterFlightsComponent implements OnInit {
-  cities2 = [
-    {id: 1, name: 'Vilnius'},
-    {id: 2, name: 'Kaunas'},
-    {id: 3, name: 'Pavilnys', disabled: true},
-    {id: 4, name: 'Pabradė'},
-    {id: 5, name: 'Klaipėda'}
-  ];
 
-  selectedCityIds: string[];
+  @Output() change = new EventEmitter<FilterData>();
+  
+  airlines: Array<{id: number, name: string}> = [
+    {id: 1, name: 'Turkish Airlines'},
+    {id: 2, name: 'Qatar Airways'}
+  ];
+  
+  selectedAirlinesIds: string[];
+
+  
+
+  //selectedCityIds: string[];
 
   minValue1: number = 100;
   maxValue1: number = 400;
@@ -51,8 +58,56 @@ export class FilterFlightsComponent implements OnInit {
     }
   };
   
-  constructor() { }
+  constructor(private airlineService: AirlineService) {
+   }
 
   ngOnInit(): void {
+    this.directCheckbox = false;
+    this.oneCheckbox = false;
+    this.twoPlusCheckbox = false;
+
+    /*this.airlines = [];
+    this.airlineService.airlines.forEach(function(value) {
+      this.airlines.push({id: value.id, name: value.name});
+    });*/
+  }
+
+  directCheckbox: boolean;
+  oneCheckbox: boolean;
+  twoPlusCheckbox: boolean;
+
+  filterClick() {
+    let filterData: FilterData = new FilterData();
+    filterData.selectedAirlinesIds = this.selectedAirlinesIds;
+    filterData.minPrice = this.minValue1;
+    filterData.maxPrice = this.maxValue1;
+    filterData.minLength = this.minValue2;
+    filterData.maxLength = this.maxValue2;
+    filterData.directCheckbox = this.directCheckbox;
+    filterData.oneCheckbox = this.oneCheckbox;
+    filterData.twoPlusCheckbox = this.twoPlusCheckbox;
+
+    this.change.emit(filterData);
+  }
+
+  directCheckboxChange(value) {
+    if(value == 'on')
+      this.directCheckbox = true;
+    else
+      this.directCheckbox = false;
+  }
+
+  oneCheckboxChange(value) {
+    if(value == 'on')
+      this.oneCheckbox = true;
+    else
+      this.oneCheckbox = false;
+  }
+
+  twoPlusCheckboxChange(value) {
+    if(value == 'on')
+      this.twoPlusCheckbox = true;
+    else
+      this.twoPlusCheckbox = false;
   }
 }

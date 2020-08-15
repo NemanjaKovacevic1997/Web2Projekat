@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TravellifeChaser.Models.AirlinesSystem.Enums;
 
 namespace TravellifeChaser.Models
 {
@@ -14,5 +15,6 @@ namespace TravellifeChaser.Models
 
         //public Ticket Ticket { get; set; }
         public SeatStatus Status { get; set; }
+        public AirplaneClass Class { get; set; }
     }
 }

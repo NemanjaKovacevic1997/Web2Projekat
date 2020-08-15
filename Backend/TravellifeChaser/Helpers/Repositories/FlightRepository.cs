@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using TravellifeChaser.Data;
@@ -29,11 +30,21 @@ namespace TravellifeChaser.Helpers.Repositories
 
         public override IEnumerable<Flight> GetAll()
         {
-            return context.Flights.Include(x => x.From)
-                                   .Include(x => x.To)
+            return context.Flights.Include(x => x.From).ThenInclude(x => x.Address)
+                                   .Include(x => x.To).ThenInclude(x => x.Address)
                                    .Include(x => x.Airline)
-                                   .Include(x => x.StopsLocations).ThenInclude(x => x.Airport)
+                                   .Include(x => x.StopsLocations).ThenInclude(x => x.Airport).ThenInclude(x => x.Address)
                                    .ToList();
+        }
+
+        public override IEnumerable<Flight> GetByCondition(Expression<Func<Flight, bool>> expression)
+        {
+            return context.Flights.Include(x => x.From).ThenInclude(x => x.Address)
+                                        .Include(x => x.To).ThenInclude(x => x.Address)
+                                        .Include(x => x.Airline)
+                                        .Include(x => x.StopsLocations).ThenInclude(x => x.Airport).ThenInclude(x => x.Address)
+                                        .Where(expression)
+                                        .ToList();
         }
 
     }

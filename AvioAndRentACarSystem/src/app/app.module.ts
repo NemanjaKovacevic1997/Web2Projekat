@@ -146,6 +146,7 @@ import { FlightService } from './Services/Flights/flight.service';
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
       { path: 'airlines', component: AirlinesSearchComponent },
+      { path: 'airline/:id', component: AirlineComponent },
       { path: ':airlineId/flights', component: FlightsFilterComponent },
       { path: 'rent-a-car-search', component: RentACarSearchComponent},
       { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent},

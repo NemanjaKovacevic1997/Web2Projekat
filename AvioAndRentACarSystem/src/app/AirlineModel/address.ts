@@ -3,15 +3,15 @@ export class Address
     id: number;
     city: string;
     country: string;
-    x: number;
-    y: number;
+    longitude: number;
+    latitude: number;
 
-    constructor(id: number, city: string, country: string, x?: number, y?: number)
+    constructor(id: number, city: string, country: string, longitude?: number, latitude?: number)
     {
         this.id = id;
         this.city = city;
         this.country = country;
-        this.x = x;
-        this.y = y; 
+        this.longitude = longitude;
+        this.latitude = latitude; 
     }
 }

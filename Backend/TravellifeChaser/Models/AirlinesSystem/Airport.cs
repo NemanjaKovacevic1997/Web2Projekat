@@ -16,7 +16,8 @@ namespace TravellifeChaser.Models
         public ICollection<AirlineAirport> Airlines { get; set; } = new List<AirlineAirport>();
         public ICollection<FlightAirport> Flights { get; set; } = new List<FlightAirport>();
 
-        public Flight FlightFrom { get; set; }
-        public Flight FlightTo { get; set; }
+    
+        public ICollection<Flight> FlightsFrom { get; set; } = new List<Flight>();
+        public ICollection<Flight> FlightsTo { get; set; } = new List<Flight>();
     }
 }

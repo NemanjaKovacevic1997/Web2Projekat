@@ -221,13 +221,13 @@ namespace TravellifeChaser.Data
                 x.Property(x => x.Id).ValueGeneratedOnAdd();
 
                 x.HasOne(x => x.From)
-                .WithOne(x => x.FlightFrom)
-                .HasForeignKey<Flight>(x => x.FromId)
+                .WithMany(x => x.FlightsFrom)
+                .HasForeignKey(x => x.FromId)
                 .OnDelete(DeleteBehavior.Restrict);
 
                 x.HasOne(x => x.To)
-                .WithOne(x => x.FlightTo)
-                .HasForeignKey<Flight>(x => x.ToId)
+                .WithMany(x => x.FlightsTo)
+                .HasForeignKey(x => x.ToId)
                 .OnDelete(DeleteBehavior.Restrict);
             });
 

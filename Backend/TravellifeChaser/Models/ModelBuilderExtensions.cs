@@ -77,8 +77,8 @@ namespace TravellifeChaser.Models
 
             Flight f1 = new Flight() { 
                 Id = 1,
-                FromId = airport1.Id,
-                ToId = airport2.Id,
+                FromId = 1,
+                ToId = 2,
                 Cost = 300,
                 AirlineId = airline1.Id,
                 AverageRating = 4.67,
@@ -91,8 +91,8 @@ namespace TravellifeChaser.Models
             Flight f2 = new Flight()
             {
                 Id = 2,
-                FromId = airport1.Id,
-                ToId = airport3.Id,
+                FromId = 1,
+                ToId = 3,
                 Cost = 250,
                 AirlineId = airline2.Id,
                 AverageRating = 3.67,
@@ -106,8 +106,8 @@ namespace TravellifeChaser.Models
             Flight f3 = new Flight()
             {
                 Id = 3,
-                FromId = airport2.Id,
-                ToId = airport3.Id,
+                FromId = 2,
+                ToId = 3,
                 Cost = 100,
                 AirlineId = airline1.Id,
                 AverageRating = 4.30,

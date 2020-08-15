@@ -12,10 +12,10 @@ namespace TravellifeChaser.Models
     {
         public int Id { get; set; }
 
-        public int? FromId { get; set; }
+        public int FromId { get; set; }
         public Airport From { get; set; }
 
-        public int? ToId { get; set; }
+        public int ToId { get; set; }
         public Airport To { get; set; }
 
         public DateTime TakeoffTime { get; set; }

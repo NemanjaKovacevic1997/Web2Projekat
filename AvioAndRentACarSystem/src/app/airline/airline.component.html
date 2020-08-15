@@ -9,18 +9,18 @@
             <tbody>
               <tr>
                 <th>Company name:</th>
-                <td colspan="2">{{airline.name}}</td>
+                <td colspan="2">{{ airline.name }}</td>
               </tr>
               <tr>
                 <th>Address: </th>
-                <td>{{airline.address.city + ", " + airline.address.country}}</td>
+                <td>{{ airline.address.city }}, {{ airline.address.country }}</td>
                 <td>
-                  <map [longitude]='airline.address.coordinates.y' [latitude]='airline.address.coordinates.x'></map>
+                  <map [longitude]='airline.address.longitude' [latitude]='airline.address.latitude'></map>
                 </td>
               </tr>
               <tr>
                 <th>Promotional description:</th>
-                <td colspan="2">{{airline.promotionalDescription}}</td>
+                <td colspan="2">{{ airline.promotionalDescription }}</td>
               </tr>
               <tr>
                 <th>Business destinations:</th>
@@ -28,7 +28,7 @@
                   <div class="table-wrapper-scroll-y my-custom-scrollbar">
                     <table class="table">
                       <tr *ngFor="let airport of airline.businessDestinations">
-                        <td>{{airport.name + ' in ' + airport.address.city + ', ' + airport.address.country }}</td>
+                        <td>{{ airport.name }} in {{ airport.address.city }}, {{ airport.address.country }}</td>
                       </tr>
                     </table>
                   </div>
@@ -42,15 +42,15 @@
                   <table class="table">
                     <tr>
                       <td> Laggage > 10kg : </td>
-                      <td> {{'+' + airline.priceList.extraCharge10 + '%'}}</td>
+                      <td> + {{ airline.pricelist.luggageOver10kg }}%</td>
                     </tr>
                     <tr>
                       <td> Laggage > 20kg : </td>
-                      <td> {{'+' + airline.priceList.extraCharge20 + '%'}}</td>
+                      <td> + {{ airline.pricelist.luggageOver20kg }}%</td>
                     </tr>
                     <tr>
-                      <td> Hand laggage > {{airline.priceList.handLaggageXYZDimensions.X + ' X ' + airline.priceList.handLaggageXYZDimensions.Y + ' X ' + airline.priceList.handLaggageXYZDimensions.Z}} dim</td>
-                      <td> {{'+' + airline.priceList.extraChargeHandLaggage + '%'}}</td>
+                      <td> Hand laggage over maximum dimensions dim : </td>
+                      <td> + {{ airline.pricelist.handLuggageOverMaxDimensions }}%</td>
                     </tr>
                   </table>
                 </td>
@@ -59,7 +59,7 @@
           </table>
         </div>
         <div class="col-3">
-          <button type="button" class="btn btn-info" [routerLink]="[airline.id, 'flights']">Flights</button>
+          <button type="button" class="btn btn-info" [routerLink]="['/' + airline.id, 'flights']">Flights</button>
         </div>
       </div>    
     </div>

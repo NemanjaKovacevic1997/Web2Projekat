@@ -1,16 +1,15 @@
 export class PriceList
 {
-    extraCharge10: number;
-    extraCharge20: number;
-    extraChargeHandLaggage: number;
-    handLaggageXYZDimensions: XYZ;
+    id: number;
+    luggageOver10kg: number;
+    luggageOver20kg: number;
+    handLuggageOverMaxDimensions: number;
 
-    constructor(extraCharge10: number, extraCharge20: number, extraChargeHandLaggage: number, handLaggageXYZDimensions: XYZ)
+    constructor(luggageOver10kg: number, luggageOver20kg: number, handLuggageOverMaxDimensions: number)
     {
-        this.extraCharge10 = extraCharge10;
-        this.extraCharge20 = extraCharge20;
-        this.extraChargeHandLaggage = extraChargeHandLaggage;
-        this.handLaggageXYZDimensions = handLaggageXYZDimensions;
+        this.luggageOver10kg = luggageOver10kg;
+        this.luggageOver20kg = luggageOver20kg;
+        this.handLuggageOverMaxDimensions = handLuggageOverMaxDimensions;
     }
 }
 

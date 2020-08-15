@@ -16,10 +16,12 @@ export class AirlinesComponent implements OnInit {
   ngOnInit(): void {
     this.airlineService.getAll().subscribe(res => {
       this.airlines = res as Airline[];
+      //this.airlineService.airlines = [];
+      //this.airlineService.airlines = res as Airline[];
     })
   }
 
   airlineClick(id: number) {
-    this.router.navigate([id, 'flights']);
+    this.router.navigate(['/airline', id]);
   }
 }

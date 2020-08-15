@@ -9,65 +9,60 @@
   </div>
   <div class="form-row">
       <div class="form-group col-md-6">
-          <div class="input-group">
-            <input class="form-control" placeholder="Depart"
-                   name="dp" ngbDatepicker #d1="ngbDatepicker" [minDate]="minPickerDate"  formControlName="date1" [class.alert]="date1.invalid && date1.touched" [class.alert-danger]="date1.invalid && date1.touched">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
-            </div>
+        <div class="input-group">
+          <input class="form-control" placeholder="Depart"
+                  name="dp" ngbDatepicker #d1="ngbDatepicker" [minDate]="minPickerDate"  formControlName="date1" [class.alert]="date1.invalid && date1.touched" [class.alert-danger]="date1.invalid && date1.touched">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
           </div>
+        </div>
       </div>
       <div class="form-group col-md-6">
-          
-          <div class="input-group">
-            <input class="form-control" placeholder="Return"
-                   name="dp" ngbDatepicker #d2="ngbDatepicker" [minDate]="minPickerDate" formControlName="date2" [class.alert]="date2.invalid && date2.touched" [class.alert-danger]="date2.invalid && date2.touched">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
-            </div>
+        <div class="input-group">
+          <input class="form-control" placeholder="Return"
+                  name="dp" ngbDatepicker #d2="ngbDatepicker" [minDate]="minPickerDate" formControlName="date2" [class.alert]="date2.invalid && date2.touched" [class.alert-danger]="date2.invalid && date2.touched">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
           </div>
-          </div>
-     
-  </div>
-  <div class="form-row">
-      <div class="form-group col-md-6">
-          <select id="inputState" class="form-control">
-            <option hidden>Trip type</option>
-            <option></option>
-            <option>One-way</option>
-            <option>Round-trip</option>
-            <option>Multy-city</option>
-          </select>
+        </div>
       </div>
   </div>
   <div class="form-row">
-  
-      <div class="form-group col-md-6">
-          <select id="inputState" class="form-control">
-            <option hidden>People</option>
-            <option></option>
-            <option>1 adult</option>
-            <option>2 adults</option>
-            <option>3 adults</option>
-          </select>
-      </div>
-  
+    <div class="form-group col-md-6 justify-content-center">
+      <select id="inputState" class="form-control" formControlName="tripType">
+        <option value="None" hidden>Trip type</option>
+        <option value="None"></option>
+        <option value="OneWay">One-way</option>
+        <option value="RoundTrip">Round-trip</option>
+        <option value="MultyCity">Multy-city</option>
+      </select>
+    </div>
   </div>
-  <div class="form-row">
-      <div class="form-group col-md-6">
-          <select id="inputState" class="form-control">
-            <option hidden>Class</option>
-            <option></option>
-            <option>Economy</option>
-            <option>Business</option>
-            <option>First</option>
-          </select>
-      </div>
-  </div>
-
   <div class="form-row justify-content-center">
-      <div class="form-group col-md-4">
-          <button type="button" class="btn btn-primary form-control" (click)="searchClick()">Search</button>
+      <div class="col">
+        <button (click)="minus()" class="btn btn-info">-</button>
       </div>
+      <div class="col">
+        <input [(ngModel)]="peopleNum" type="number" class="form-control" formControlName="people" name="people"/>
+      </div>
+      <div class="col">
+        <button (click)="plus()" class="btn btn-info">+</button>
+      </div>
+  </div>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-6">
+      <select id="inputState" class="form-control" formControlName="class">
+        <option value="None" hidden>Class</option>
+        <option value="None"></option>
+        <option value="Economy">Economy</option>
+        <option value="Business">Business</option>
+        <option value="First">First</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row justify-content-center">
+    <div class="form-group col-md-4">
+        <button type="button" class="btn btn-primary form-control" (click)="searchClick()">Search</button>
+    </div>
   </div>
 </form>

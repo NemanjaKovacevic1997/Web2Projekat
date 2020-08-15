@@ -184,8 +184,8 @@ namespace TravellifeChaser.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FromId = table.Column<int>(nullable: true),
-                    ToId = table.Column<int>(nullable: true),
+                    FromId = table.Column<int>(nullable: false),
+                    ToId = table.Column<int>(nullable: false),
                     TakeoffTime = table.Column<DateTime>(nullable: false),
                     LandingTime = table.Column<DateTime>(nullable: false),
                     Duration = table.Column<double>(nullable: false),
@@ -331,7 +331,8 @@ namespace TravellifeChaser.Migrations
                 {
                     Id = table.Column<int>(nullable: false),
                     FlightId = table.Column<int>(nullable: false),
-                    Status = table.Column<int>(nullable: false)
+                    Status = table.Column<int>(nullable: false),
+                    Class = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -452,9 +453,9 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AirlineId", "AverageRating", "Cost", "Duration", "FromId", "LandingTime", "Length", "TakeoffTime", "ToId" },
                 values: new object[,]
                 {
-                    { 1, 1, 4.6699999999999999, 300.0, 330.0, null, new DateTime(2020, 6, 2, 20, 30, 0, 0, DateTimeKind.Unspecified), 2506, new DateTime(2020, 6, 2, 15, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 1, 1, 4.6699999999999999, 300.0, 330.0, 1, new DateTime(2020, 6, 2, 20, 30, 0, 0, DateTimeKind.Unspecified), 2506, new DateTime(2020, 6, 2, 15, 0, 0, 0, DateTimeKind.Unspecified), 2 },
                     { 3, 1, 4.2999999999999998, 100.0, 465.0, 2, new DateTime(2020, 6, 6, 4, 0, 0, 0, DateTimeKind.Unspecified), 400, new DateTime(2020, 6, 5, 20, 15, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 2, 2, 3.6699999999999999, 250.0, 30.0, 1, new DateTime(2020, 6, 3, 3, 30, 0, 0, DateTimeKind.Unspecified), 1003, new DateTime(2020, 6, 3, 3, 0, 0, 0, DateTimeKind.Unspecified), null }
+                    { 2, 2, 3.6699999999999999, 250.0, 30.0, 1, new DateTime(2020, 6, 3, 3, 30, 0, 0, DateTimeKind.Unspecified), 1003, new DateTime(2020, 6, 3, 3, 0, 0, 0, DateTimeKind.Unspecified), 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -523,16 +524,12 @@ namespace TravellifeChaser.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Flights_FromId",
                 table: "Flights",
-                column: "FromId",
-                unique: true,
-                filter: "[FromId] IS NOT NULL");
+                column: "FromId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Flights_ToId",
                 table: "Flights",
-                column: "ToId",
-                unique: true,
-                filter: "[ToId] IS NOT NULL");
+                column: "ToId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FlightsAirports_AirportId",

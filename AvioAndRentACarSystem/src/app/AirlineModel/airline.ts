@@ -8,7 +8,7 @@ export class Airline
     name: string;
     address: Address;
     promotionalDescription: string;
-    priceList: PriceList;
+    pricelist: PriceList;
     averageRating: number;
     businessDestinations: Array<Airport>
 
@@ -17,7 +17,7 @@ export class Airline
         this.name = name;
         this.address = address;
         this.promotionalDescription = promotionalDescription;
-        this.priceList = priceList;
+        this.pricelist = priceList;
         this.businessDestinations = new Array<Airport>();
     }
 }

@@ -304,7 +304,7 @@ namespace TravellifeChaser.Migrations
                     b.Property<double>("Duration")
                         .HasColumnType("float");
 
-                    b.Property<int?>("FromId")
+                    b.Property<int>("FromId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("LandingTime")
@@ -316,20 +316,16 @@ namespace TravellifeChaser.Migrations
                     b.Property<DateTime>("TakeoffTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("ToId")
+                    b.Property<int>("ToId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AirlineId");
 
-                    b.HasIndex("FromId")
-                        .IsUnique()
-                        .HasFilter("[FromId] IS NOT NULL");
+                    b.HasIndex("FromId");
 
-                    b.HasIndex("ToId")
-                        .IsUnique()
-                        .HasFilter("[ToId] IS NOT NULL");
+                    b.HasIndex("ToId");
 
                     b.ToTable("Flights");
 
@@ -564,6 +560,9 @@ namespace TravellifeChaser.Migrations
                     b.Property<int>("FlightId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Class")
+                        .HasColumnType("int");
+
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -783,14 +782,16 @@ namespace TravellifeChaser.Migrations
                         .IsRequired();
 
                     b.HasOne("TravellifeChaser.Models.Airport", "From")
-                        .WithOne("FlightFrom")
-                        .HasForeignKey("TravellifeChaser.Models.Flight", "FromId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithMany("FlightsFrom")
+                        .HasForeignKey("FromId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("TravellifeChaser.Models.Airport", "To")
-                        .WithOne("FlightTo")
-                        .HasForeignKey("TravellifeChaser.Models.Flight", "ToId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithMany("FlightsTo")
+                        .HasForeignKey("ToId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TravellifeChaser.Models.FlightAirport", b =>

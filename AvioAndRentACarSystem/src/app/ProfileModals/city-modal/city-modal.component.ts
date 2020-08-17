@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Address } from 'src/app/AirlineModel/address';
 
 @Component({
   selector: 'app-city-modal',
@@ -8,7 +9,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CityModalComponent implements OnInit {
 
-  @Input() public city;
+  @Input() public address;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -19,8 +20,8 @@ export class CityModalComponent implements OnInit {
   }
 
   passBack() {
-    this.passEntry.emit(this.city);
-    this.activeModal.close(this.city);
+    this.passEntry.emit(this.address);
+    this.activeModal.close(this.address);
   }
 
 }

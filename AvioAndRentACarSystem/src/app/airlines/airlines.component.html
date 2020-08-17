@@ -1,27 +1,17 @@
 
     <table class="table table-borderless table-hover">
         <thead class="thead-light">
-        <tr class="bg-primary">
-            <th>Name</th>
-            <th>Address</th>
-            <th>Rating</th>
-        </tr>
+            <tr class="bg-primary">
+                <th>Name</th>
+                <th>Address</th>
+                <th>Rating</th>
+            </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Turkish Airlines</td>
-            <td>Istanbul, Turkey</td>
-            <td>4.56 </td>
-        </tr>
-        <tr>
-            <td>Serbian Airlines</td>
-            <td>Belgrade, Serbia</td>
-            <td>3.78</td>
-        </tr>
-        <tr>
-            <td>British Airlines</td>
-            <td>London, England</td>
-            <td>3.90 </td>
-        </tr>
+            <tr *ngFor="let airline of airlines" (click)="airlineClick(airline.id)">
+                <td>{{ airline.name }}</td>
+                <td>{{ airline.address.city + ", " + airline.address.country }}</td>
+                <td>{{ airline.averageRating }}</td>
+            </tr>
         </tbody>
     </table>

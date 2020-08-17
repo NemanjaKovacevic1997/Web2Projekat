@@ -1,5 +1,8 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { UserService } from '../Services/User/user.service';
+import { LoginService } from '../Services/Login/login.service';
+import { UserRole } from '../AirlineModel/userRole';
+import { Airport } from '../AirlineModel/airport';
+import { Airline } from '../AirlineModel/airline';
 
 @Component({
   selector: '[flight]',
@@ -8,26 +11,23 @@ import { UserService } from '../Services/User/user.service';
 })
 export class FlightComponent implements OnInit {
 
-  @Input('startTimeHours') startTimeHours : Number;
-  @Input('startTimeMinutes') startTimeMinutes : Number;
-  @Input('landTimeHours') landTimeHours : Number;
-  @Input('landTimeMinutes') landTimeMinutes : Number;
-  @Input('startDest') startDest : string;
-  @Input('landDest') landDest : string;
-  @Input('stops') stops : Number;
-  @Input('airline') airline : string;
-  @Input('cost') cost : Number;
-  flightLenghtMinutes : Number;
-  flightLengthHours : Number;
-  userRole : string;
+  @Input() from: Airport;
+  @Input() to: Airport;
+  @Input() takeoffTime: string;
+  @Input() landingTime: string;
+  @Input() duration: number;
+  @Input() length: number;
+  @Input() cost: number;
+  @Input() averageRating: number;
+  @Input() airline: Airline;
+  @Input() stopsLocations: Array<any>;
+
+  get UserRole() { return UserRole; }
 
 
-  constructor(private userService : UserService) { }
+  constructor(public loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.flightLengthHours = 1;
-    this.flightLenghtMinutes = 1;
-    this.userRole = this.userService.loggedUserType;
   }
 
 }

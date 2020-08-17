@@ -14,13 +14,17 @@
               <th>Last name</th>
               <td>{{myProfile.lastName}}</td>
             </tr>
+            <tr (click)="openUsernameModal()">
+              <th>Username</th>
+              <td>{{myProfile.username}}</td>
+            </tr>
             <tr (click)="openEmailModal()">
               <th>Email</th>
               <td>{{myProfile.email}}</td>
             </tr>
             <tr (click)="openCityModal()">
-              <th>City</th>
-              <td>{{myProfile.city}}</td>
+              <th>Address</th>
+              <td>{{myProfile.address.city + ', ' + myProfile.address.country}}</td>
             </tr>
             <tr (click)="openMobileNumberModal()">
               <th>Mobile number</th>
@@ -30,7 +34,11 @@
         </table>
 
         <div class="row password justify-content-center">
-            <a (click)="openPasswordModal()" class="disabled">Do you want to change password ?</a>
+          <a (click)="openPasswordModal()" class="disabled">Do you want to change password ?</a>
+        </div>
+
+        <div class="row password justify-content-center">
+          <button type="button" (click)="saveChanges()" class="btn btn-info">Save changes</button>
         </div>
 
       </div>

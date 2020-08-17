@@ -1,8 +1,8 @@
 <table class="table table-borderless table-hover">
     <thead class="thead-light">
-    <tr class="bg-primary">
-        <th class="table-active">First name</th>
-        <th>Last name</th>
+    <tr>
+        <th [class.table-info]="isActiveFirstName" (click)="sortByFirstName()">First name</th>
+        <th [class.table-info]="isActiveLastName" (click)="sortByLastName()">Last name</th>
         <th></th>
     </tr>
     </thead>
@@ -11,9 +11,21 @@
             <td>{{friend.firstName}}</td>
             <td>{{friend.lastName}}</td>
             <td>
-                <button *ngIf="friend.isFriend" type="button" class="btn btn-info">Delete</button>
-                <button *ngIf="!friend.isFriend && !friend.isInvitation" type="button" class="btn btn-info">Invitation sent...</button>
-                <button *ngIf="!friend.isFriend && friend.isInvitation" type="button" class="btn btn-info">Send invitation</button>
+                <button *ngIf="friend.userCurrentFriendshipStatus == UserCurrentFriendshipStatus.Friend" type="button" class="btn btn-info" 
+                (click)="removeFromFriendsClick(friend.id)">
+                    Remove from friends
+                </button>
+                <label *ngIf="friend.userCurrentFriendshipStatus == UserCurrentFriendshipStatus.FriendshipRequestSent">
+                    Waiting for response...
+                </label>
+                <button *ngIf="friend.userCurrentFriendshipStatus == UserCurrentFriendshipStatus.NotFriend" type="button" class="btn btn-info"
+                (click)="sendRequestClick(friend.id)">
+                    Send friendship request
+                </button>
+                <div *ngIf="friend.userCurrentFriendshipStatus == UserCurrentFriendshipStatus.FriendshipRequestRecieved">
+                    <button type="button" class="btn btn-info" (click)="acceptRequestClick(friend.id)">Accept</button>
+                    <button type="button" class="btn btn-info" (click)="refuseRequestClick(friend.id)">Refuse</button>
+                </div>
             </td>
         </tr>
     </tbody>

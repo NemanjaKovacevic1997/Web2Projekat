@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Profile } from './profile';
+import { Component, OnInit} from '@angular/core';
+import { User } from '../AirlineModel/user';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FirstNameModalComponent } from '../ProfileModals/first-name-modal/first-name-modal.component';
 import { LastNameModalComponent } from '../ProfileModals/last-name-modal/last-name-modal.component';
@@ -7,6 +7,9 @@ import { EmailModalComponent } from '../ProfileModals/email-modal/email-modal.co
 import { CityModalComponent } from '../ProfileModals/city-modal/city-modal.component';
 import { MobileNumberModalComponent } from '../ProfileModals/mobile-number-modal/mobile-number-modal.component';
 import { PasswordModalComponent } from '../ProfileModals/password-modal/password-modal.component';
+import { UsernameModalComponent } from '../ProfileModals/username-modal/username-modal.component';
+import { LoginService } from '../Services/Login/login.service';
+import { UserService } from '../Services/User/user.service';
 
 @Component({
   selector: 'profile-show',
@@ -15,12 +18,16 @@ import { PasswordModalComponent } from '../ProfileModals/password-modal/password
 })
 export class ProfileShowComponent implements OnInit {
 
-  myProfile : Profile = new Profile('Nemanja', 'Kovacevic', 'kovacevicnemanja1997@gmail.com', 'Gajdobra', '0604520858', 'kovac123');
+  myProfile: User;
 
-  constructor(private modalService: NgbModal) { 
-  }
+  constructor(private modalService: NgbModal, private userService: UserService, private loginService: LoginService) { }
 
   ngOnInit(): void {
+    let id = this.loginService.user.id;
+    this.userService.get(id).subscribe((res: any) => {
+                                        this.myProfile = res;
+                                      },
+    );
   }
 
   openFirstNameModal() {
@@ -64,10 +71,14 @@ export class ProfileShowComponent implements OnInit {
 
   openCityModal(){
     const modalRef = this.modalService.open(CityModalComponent);
-    modalRef.componentInstance.city = this.myProfile.city;
+    modalRef.componentInstance.address = { 'city': this.myProfile.address.city, 'country': this.myProfile.address.country };
+    //modalRef.componentInstance.address.city = this.myProfile.address.city;
+    //modalRef.componentInstance.address.country = this.myProfile.address.country;
+
     modalRef.result.then((result) => {
       if (result) {
-        this.myProfile.city = result;
+        this.myProfile.address.city = result.city;
+        this.myProfile.address.country = result.country;
         console.log(result);
       }
     }, (reason) => {
@@ -88,16 +99,15 @@ export class ProfileShowComponent implements OnInit {
     });
   }
 
-  passwords = {
-    password : this.myProfile.password,
-    newPassword : "",
-    newPasswordRepeat : ""
-  }
-
   openPasswordModal(){
     const modalRef = this.modalService.open(PasswordModalComponent);
 
-    modalRef.componentInstance.passwords = this.passwords;
+    modalRef.componentInstance.passwords = {
+      password : "",
+      newPassword : "",
+      newPasswordRepeat : ""
+    };
+
     modalRef.result.then((result) => {
       if (result) {
         console.log(result);
@@ -105,5 +115,26 @@ export class ProfileShowComponent implements OnInit {
     }, (reason) => {
       console.log(reason);
     });
+  }
+
+  openUsernameModal(){
+    const modalRef = this.modalService.open(UsernameModalComponent);
+
+    modalRef.componentInstance.username = this.myProfile.username;
+    modalRef.result.then((result) => {
+      if (result) {
+        this.myProfile.username = result;
+        console.log(result);
+      }
+    }, (reason) => {
+      console.log(reason);
+    });
+  }
+
+  saveChanges() {
+    if (confirm('Are you sure you want to save this changes?')) {
+      let id = this.loginService.user.id;
+      this.userService.update(id, this.myProfile).subscribe();
+    }
   }
 }

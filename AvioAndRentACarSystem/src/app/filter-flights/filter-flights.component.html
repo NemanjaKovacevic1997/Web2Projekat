@@ -2,26 +2,26 @@
     <div class="form-row top-buffer justify-content-center">
       <div class="form-group col-md-6">
         <ng-select  name="input1"
-                    [items]="cities2"
+                    [items]="airlines"
                     bindLabel="name"
                     bindValue="id"
                     [multiple]="true"
-                    placeholder="Select cities"
-                    [(ngModel)]="selectedCityIds">
+                    placeholder="Select airlines"
+                    [(ngModel)]="selectedAirlinesIds">
         </ng-select>
       </div>
     </div>
     <div class="form-row top-buffer justify-content-center">
       <div class="custom-control custom-switch custom-control-inline">
-        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1" #directCheckbox (change)="directCheckboxChange(directCheckbox.value)">
         <label class="custom-control-label" for="customSwitch1">Direct</label>
       </div>
       <div class="custom-control custom-switch custom-control-inline">
-        <input type="checkbox" class="custom-control-input" id="customSwitch2">
+        <input type="checkbox" class="custom-control-input" id="customSwitch2" #oneCheckbox (change)="oneCheckboxChange(oneCheckbox.value)">
         <label class="custom-control-label" for="customSwitch2">1</label>
       </div>
       <div class="custom-control custom-switch custom-control-inline">
-        <input type="checkbox" class="custom-control-input"  id="customSwitch3">
+        <input type="checkbox" class="custom-control-input"  id="customSwitch3" #twoPlusCheckbox (change)="twoPlusCheckboxChange(twoPlusCheckbox.value)">
         <label class="custom-control-label" for="customSwitch3">2+</label>
       </div>
     </div>
@@ -33,7 +33,7 @@
     </div>
     <div class="form-row top-buffer justify-content-center">
         <div class="form-group col-md-4 ">
-            <button type="submit" class="btn btn-info form-control">Filter</button>
+            <button type="button" class="btn btn-info form-control" (click)="filterClick()">Filter</button>
         </div>
     </div>
   </form>

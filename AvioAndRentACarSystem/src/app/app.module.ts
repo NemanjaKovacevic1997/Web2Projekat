@@ -1,14 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { UserService } from 'src/app/Services/User/user.service';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { SearchComponent } from './search/search.component';
-import { NgbDatepickerModule , NgbTimepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule , NgbTimepickerModule , NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AirlinesSearchComponent } from './airlines-search/airlines-search.component';
 import { FriendsComponent } from './friends/friends.component';
@@ -58,6 +57,20 @@ import { QuickResevationComponent } from './AdministratorAirline/quick-resevatio
 import { FlightAddComponent } from './AdministratorAirline/flight-add/flight-add.component';
 import { FlightsAdminComponent } from './AdministratorAirline/flights-admin/flights-admin.component';
 import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight-admin.component';
+import { ChartCardsComponent } from './AdministratorAirline/chart-cards/chart-cards.component';
+import { ChartsModule } from 'ng2-charts';
+import { ChartEarningsComponent } from './AdministratorAirline/chart-earnings/chart-earnings.component';
+import { LoginService } from './Services/Login/login.service';
+import { HttpInterceptProviders } from './http-interceptors';
+import { UsernameModalComponent } from './ProfileModals/username-modal/username-modal.component';
+import { RegisteredUserService } from './Services/RegisteredUser/registeredUser.service';
+import { DataService } from './Services/Data/data.service';
+import { UserService } from './Services/User/user.service';
+import { FriendshipRequestService } from './Services/FriendshipRequest/friendship-request.service';
+import { FriendshipService } from './Services/Friendship/friendship.service';
+import { AirlineService } from './Services/Airline/airline.service';
+import { AirlineComponent } from './airline/airline.component';
+import { FlightService } from './Services/Flights/flight.service';
 
 
 @NgModule({
@@ -105,7 +118,11 @@ import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight
     QuickResevationComponent,
     FlightAddComponent,
     FlightsAdminComponent,
-    FlightAdminComponent
+    FlightAdminComponent,
+    ChartCardsComponent,
+    ChartEarningsComponent,
+    UsernameModalComponent,
+    AirlineComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -120,26 +137,49 @@ import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight
     Ng5SliderModule,
     NgbModalModule,
     NgbTimepickerModule,
+    ChartsModule,
+    NgbRatingModule,
+    HttpClientModule,
     RouterModule.forRoot([
+
+      //for ALL users
       { path: '', component: HomeComponent },
       { path: 'home', component: HomeComponent },
-      { path: 'friends', component: FriendsComponent},
-      { path: 'profile/show', component: ProfileShowComponent},
-      { path: 'airlines', component : AirlinesSearchComponent},
-      { path: 'sign-in', component: SignInComponent},
-      { path: 'sign-up', component: SignUpComponent},
-      { path: 'flights', component: FlightsFilterComponent},
+      { path: 'airlines', component: AirlinesSearchComponent },
+      { path: 'airline/:id', component: AirlineComponent },
+      { path: ':airlineId/flights', component: FlightsFilterComponent },
       { path: 'rent-a-car-search', component: RentACarSearchComponent},
       { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent},
+
+      //for UNREGISTERED users
+      { path: 'sign-in', component: SignInComponent},
+      { path: 'sign-up', component: SignUpComponent},
+
+      //for REGISTERED users
+      { path: ':username/friends', component: FriendsComponent},
+      { path: ':username', component: ProfileShowComponent},
+      
+      //for now, change later (possible section change)
       { path: 'seats', component: SeatsComponent},
       { path: 'invite', component: InviteComponent},
-      { path: 'airlineProfile', component: AirlineProfileComponent},
+
+      //for ADMIN AIRLINES (add username prefix later)
+      { path: 'admin/airlineProfile', component: AirlineProfileComponent},
       { path: 'admin/airline-flights', component: AirlineFlightsComponent},
-      { path: 'rent-a-car-profile', component: RentACarProfileComponent}
+      { path: 'admin/flight-details', component: FilghtDetailsComponent},
+      { path: 'admin/report', component: ReportComponent}
     ])
   ],
   providers: [
-    UserService
+    LoginService,
+    RegisteredUserService,
+    UserService,
+    DataService,
+    FriendshipRequestService,
+    FriendshipService,
+    AirlineService,
+    FlightService,
+    HttpInterceptProviders
   ],
   bootstrap: [AppComponent]
 })

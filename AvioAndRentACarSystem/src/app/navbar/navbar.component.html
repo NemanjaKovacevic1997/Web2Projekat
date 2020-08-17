@@ -8,35 +8,53 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li *ngIf="userRole == 'Regular'" class="nav-item" #history (click)="changeAcitve('MyHistory')" [class.active]="isMyHistoryActive">
-          <a class="nav-link" href="#"><i class="fa fa-list-alt"></i> My History</a>
+        <li *ngIf="this.loginService.userRole == UserRole.Registered"
+            routerLinkActive="active current" class="nav-item">
+          <a class="nav-link" routerLink="/"><i class="fa fa-list-alt"></i> My History</a>
         </li>
-        <li class="nav-item" #airlines  (click)="changeAcitve('Airlines')" [class.active]="isAirlinesActive"> 
-          <a class="nav-link" routerLink="/airlines" ><i class="fa fa-plane"></i>Airlines</a>
+        <li *ngIf="this.loginService.userRole == UserRole.Registered || this.loginService.userRole == UserRole.Unregistered"
+            routerLinkActive="active current" class="nav-item">
+          <a class="nav-link" routerLink="/airlines"><i class="fa fa-plane"></i>Airlines</a>
         </li>
-        <li class="nav-item" #rac (click)="changeAcitve('Rac')" [class.active]="isRacActive">
-          <a class="nav-link" routerLink="/rent-a-car-search" ><i class="fa fa-car"></i>Rent-A-Car</a>
+        <li *ngIf="this.loginService.userRole == UserRole.Registered || this.loginService.userRole == UserRole.Unregistered" 
+            routerLinkActive="active current" class="nav-item">
+          <a class="nav-link" routerLink="/rent-a-car-search"><i class="fa fa-car"></i>Rent-A-Car</a>
         </li>
-        <li *ngIf="userRole == 'Regular'" class="nav-item" #friends (click)="changeAcitve('Friends')" [class.active]="isFriendsActive">
-          <a class="nav-link" routerLink="/friends"><i class="fa fa-users"></i> Friends</a>
+        <li *ngIf="this.loginService.userRole == UserRole.Registered" 
+            routerLinkActive="active current" class="nav-item">
+          <a class="nav-link" [routerLink]="[this.loginService.user.username, 'friends']"><i class="fa fa-users"></i> Friends</a>
         </li>
-        <li *ngIf="userRole == 'Regular'" class="nav-item" #invitations (click)="changeAcitve('Invitations')" [class.active]="isInvitationsActive">
-          <a class="nav-link" href="#"><i class="fa fa-id-card"></i> Invitations</a>
+        <li *ngIf="this.loginService.userRole == UserRole.Registered" 
+            routerLinkActive="active current" class="nav-item">
+          <a class="nav-link" routerLink="/"><i class="fa fa-id-card"></i> Invitations</a>
+        </li>
+        <li *ngIf="this.loginService.userRole == UserRole.AdminAirlines"
+            routerLinkActive="active current"  class="nav-item">
+          <a class="nav-link" routerLink="/admin/airlineProfile"><i class="fa fa-id-card"></i> Airlines profile</a>
+        </li>
+        <li *ngIf="this.loginService.userRole == UserRole.AdminAirlines" 
+            routerLinkActive="active current" class="nav-item">
+          <a class="nav-link" routerLink="/admin/airline-flights"><i class="fa fa-plane"></i> Filghts </a>
+        </li>
+        <li *ngIf="this.loginService.userRole == UserRole.AdminAirlines"
+            routerLinkActive="active current" class="nav-item">
+          <a class="nav-link" routerLink="/admin/report"><i class="fa fa-list-alt"></i> Report </a>
         </li>
       </ul>
-      <div *ngIf="userRole == 'Unregistred'" ngbButton class="nav-item button">
+      <div *ngIf="this.loginService.userRole == UserRole.Unregistered"
+           routerLinkActive="active current" ngbButton class="nav-item button">
         <a ngbButton class="nav-link button" role="button" data-toggle="dropdown" aria-expanded="false" routerLink="/sign-in">
           <i class="fa fa-user"></i>
           Sign In
         </a>
       </div>
-      <div *ngIf="userRole != 'Unregistred'" ngbDropdown class="nav-item dropdown">
+      <div *ngIf="this.loginService.userRole != UserRole.Unregistered" ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-user"></i> Profile
+          <i class="fa fa-user"></i> {{ this.loginService.user.firstName + " " + this.loginService.user.lastName }}
         </a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/profile/show" >My Profile</a>
-          <a class="dropdown-item" href="#">Log out</a>
+          <a class="dropdown-item" [routerLink]="[this.loginService.user.username]">My Profile</a>
+          <a class="dropdown-item" (click)="logoutClick()">Log out</a>
         </div>
       </div>
     </div>

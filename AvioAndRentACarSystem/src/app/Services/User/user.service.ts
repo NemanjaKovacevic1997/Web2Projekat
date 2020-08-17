@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
+import { DataService } from '../Data/data.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-  private loggedUser : any; //za sad , posle User
-  loggedUserType : string;
-  userTypes = ['Unregistred', 'Regular', 'AdminAvio', 'AdminRAC', 'AdminSys'];
-
-  constructor(){ 
-    this.loggedUserType = 'Regular';
+export class UserService extends DataService {
+  constructor(http: HttpClient){ 
+    super(environment.serverUrl + 'Users', http)
   }
 }

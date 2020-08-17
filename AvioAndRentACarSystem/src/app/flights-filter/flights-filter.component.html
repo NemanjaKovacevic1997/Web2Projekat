@@ -2,10 +2,10 @@
   <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3 col-md-6 col-lg-4">
-          <filter-flights></filter-flights>
+          <filter-flights (change)="fetchFilterData($event)"></filter-flights>
         </div>
       <div class="col-sm-9 col-md-6 col-lg-8">
-          <flights></flights>
+          <flights [flights]="flights"></flights>
       </div>
     </div>
   </div>

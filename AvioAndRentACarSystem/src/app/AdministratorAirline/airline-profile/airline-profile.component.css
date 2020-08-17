@@ -1,9 +1,20 @@
+.myBody{
+  background-image: url("/assets/images/background10.jpg");
+  background-repeat: 'no-repeat';
+  background-position: top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+  overflow: auto;
+}
 
 .my-custom-scrollbar {
 position: relative;
 height: 250px;
 overflow: auto;
 }
+
 .table-wrapper-scroll-y {
 display: block;
 }
@@ -11,9 +22,13 @@ display: block;
 th {
   text-align: center;
   vertical-align: middle;
+  color: white;
+  font-size: large;
 } 
 
 td {
   text-align: center;
   vertical-align: middle;
+  color:white;
+  font-size: large;
 }

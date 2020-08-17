@@ -1,0 +1,34 @@
+.margins {
+    margin-top: 40px;
+}
+
+label {
+    font-size: xx-large;
+    color:white;
+}
+
+.ngb-rating {
+    font-size: 35px;
+    color: yellow;
+}
+
+.myBody{
+    background-image: url("/assets/images/background21.jpg");
+    background-repeat: 'no-repeat';
+    background-position: top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+    overflow: auto;
+  }
+
+  .earnings {
+      color:yellow;
+  }
+
+  button {
+      background-color: yellow;
+      color : black;
+      font-weight: bold;
+  }

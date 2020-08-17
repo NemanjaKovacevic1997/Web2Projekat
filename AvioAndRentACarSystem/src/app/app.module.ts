@@ -134,7 +134,8 @@ import { FlightAdminComponent } from './AdministratorAirline/flight-admin/flight
       { path: 'seats', component: SeatsComponent},
       { path: 'invite', component: InviteComponent},
       { path: 'airlineProfile', component: AirlineProfileComponent},
-      { path: 'admin/airline-flights', component: AirlineFlightsComponent}
+      { path: 'admin/airline-flights', component: AirlineFlightsComponent},
+      { path: 'rent-a-car-profile', component: RentACarProfileComponent}
     ])
   ],
   providers: [

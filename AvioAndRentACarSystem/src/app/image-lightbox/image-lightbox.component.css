@@ -82,7 +82,7 @@ MODAL ZA PRIKAZ SLIKA
   width: 25%;
 }
 .myModalImage {
-  width: 100%;
+  width: 100%; 
 }
 .slide-modal {
   display: none;
@@ -95,6 +95,7 @@ MODAL ZA PRIKAZ SLIKA
   height: 100%;
   overflow: auto;
   background-color: #000000;
+  z-index: 9999;
 }
 .slide-modal-content {
   position: relative;

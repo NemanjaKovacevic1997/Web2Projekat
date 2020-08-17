@@ -1,1 +1,126 @@
-<p>rent-a-car-profile works!</p>
+<body class="myBody text-center">
+    <div class="container-fluid">
+      <div class="row top-buffer">
+        <div class="col-3"></div>
+        <div class="col-6">
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th>Company name:</th>
+                <td colspan="1">{{airline.name}}</td>
+                <td colspan="1">
+                    <img class="myImage" src="/assets/images/rentacar-beograd.png">
+                </td>
+              </tr>
+              <tr>
+                <th>Address: </th>
+                <td>{{airline.address.city + ", " + airline.address.country}}</td>
+                <td>
+                  <map [longitude]='airline.address.coordinates.y' [latitude]='airline.address.coordinates.x'></map>
+                </td>
+              </tr>
+              <tr>
+                <th>Promotional description:</th>
+                <td colspan="2">{{airline.promotionalDescription}}</td>
+              </tr>
+              <tr>
+                <th>Business destinations:</th>
+                <td>
+                  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table">
+                      <tr *ngFor="let airport of airline.businessDestinations">
+                        <td>{{airport.name + ' in ' + airport.address.city + ', ' + airport.address.country }}</td>
+                        <td><button type="button" class="btn btn-primary">Delete</button></td>
+                      </tr>
+                    </table>
+                  </div>
+                </td>
+                <td>
+                  <form>
+                    <div class="form-group">
+                      <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="City">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Country">
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="number" class="form-control" placeholder="Latitude">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input type="number" class="form-control" placeholder="Longitude">
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                  </form>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Pricelist:
+                </th>
+                <td colspan="2">
+                  <table class="table">
+                    <tr>
+                      <td> Laggage > 10kg : </td>
+                      <td> {{'+' + airline.priceList.extraCharge10 + '%'}}</td>
+                      <td> <button type="submit" class="btn btn-primary">Change</button></td>
+                    </tr>
+                    <tr>
+                      <td> Laggage > 20kg : </td>
+                      <td> {{'+' + airline.priceList.extraCharge20 + '%'}}</td>
+                      <td> <button type="submit" class="btn btn-primary">Change</button></td>
+                    </tr>
+                    <tr>
+                      <td> Hand laggage > {{airline.priceList.handLaggageXYZDimensions.X + ' X ' + airline.priceList.handLaggageXYZDimensions.Y + ' X ' + airline.priceList.handLaggageXYZDimensions.Z}} dim</td>
+                      <td> {{'+' + airline.priceList.extraChargeHandLaggage + '%'}}</td>
+                      <td> <button type="submit" class="btn btn-primary">Change</button></td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <th>Car list:</th>
+                <td>
+                  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                    <table class="table">
+                      <tr *ngFor="let airport of airline.businessDestinations">
+                        <td>{{airport.name + ' in ' + airport.address.city + ', ' + airport.address.country }}</td>
+                        <td><button type="button" class="btn btn-primary">Delete</button></td>
+                      </tr>
+                    </table>
+                  </div>
+                </td>
+                <td>
+                  <form>
+                    <div class="form-group">
+                      <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Name">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="City">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Country">
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <input type="number" class="form-control" placeholder="Latitude">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <input type="number" class="form-control" placeholder="Longitude">
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-3"></div>
+      </div>    
+    </div>
+  </body>

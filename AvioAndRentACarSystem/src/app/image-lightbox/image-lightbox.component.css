@@ -160,6 +160,7 @@ MODAL ZA PRIKAZ SLIKA
 }
 .images {
   opacity: 0.7;
+  width: 300px;
 }
 .active,
 .images:hover {
@@ -170,4 +171,9 @@ MODAL ZA PRIKAZ SLIKA
 }
 .hover-shadow:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
 }

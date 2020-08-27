@@ -71,7 +71,10 @@ import { FriendshipService } from './Services/Friendship/friendship.service';
 import { AirlineService } from './Services/Airline/airline.service';
 import { AirlineComponent } from './airline/airline.component';
 import { FlightService } from './Services/Flights/flight.service';
-
+import {MatTabsModule} from '@angular/material/tabs';
+import { AddressModalComponent } from './ModalsRAC/address-modal/address-modal.component';
+import { BranchesModalComponent } from './ModalsRAC/branches-modal/branches-modal.component';
+import { PriceListModalComponent } from './ModalsRAC/price-list-modal/price-list-modal.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +125,10 @@ import { FlightService } from './Services/Flights/flight.service';
     ChartCardsComponent,
     ChartEarningsComponent,
     UsernameModalComponent,
-    AirlineComponent
+    AirlineComponent,
+    AddressModalComponent,
+    BranchesModalComponent,
+    PriceListModalComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -140,6 +146,7 @@ import { FlightService } from './Services/Flights/flight.service';
     ChartsModule,
     NgbRatingModule,
     HttpClientModule,
+    MatTabsModule,
     RouterModule.forRoot([
 
       //for ALL users

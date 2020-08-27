@@ -7,97 +7,230 @@
     <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
 </head>
 
-<form [formGroup]="form" class="rounded-lg">
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="From" formControlName="from"
-                [class.alert]="from.invalid && from.touched" [class.alert-danger]="from.invalid && from.touched">
-        </div>
-        <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="To" formControlName="to"
-                [class.alert]="to.invalid && to.touched" [class.alert-danger]="to.invalid && to.touched">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
+<mat-tab-group>
+    <mat-tab label="Filters">  
+        <form [formGroup]="form" class="rounded-lg">
             <div class="form-row">
-                <div class="input-group">
-                    <input class="form-control myInput">              
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="From" formControlName="from"
+                        [class.alert]="from.invalid && from.touched" [class.alert-danger]="from.invalid && from.touched">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="To" formControlName="to"
+                        [class.alert]="to.invalid && to.touched" [class.alert-danger]="to.invalid && to.touched">
                 </div>
             </div>
             <div class="form-row">
-                <div class="input-group">
-                    <input class="form-control" placeholder="Depart" name="dp" ngbDatepicker #d1="ngbDatepicker"
-                        [minDate]="minPickerDate" formControlName="date1" [class.alert]="date1.invalid && date1.touched"
-                        [class.alert-danger]="date1.invalid && date1.touched">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
+                <div class="form-group col-md-6">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input class="form-control myInput">              
+                        </div>
                     </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input class="form-control" placeholder="Depart" name="dp" ngbDatepicker #d1="ngbDatepicker"
+                                [minDate]="minPickerDate" formControlName="date1" [class.alert]="date1.invalid && date1.touched"
+                                [class.alert-danger]="date1.invalid && date1.touched">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
+                            </div>
+                        </div>
+                    </div>      
                 </div>
-            </div>      
-        </div>
-        <div class="form-group col-md-6"> 
-            <ngb-timepicker id="tp1" [ngModelOptions]="{standalone: true}" [(ngModel)]="minPickerTime1"></ngb-timepicker>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <div class="form-row">
-                <div class="input-group">
-                    <input class="form-control myInput">              
+                <div class="form-group col-md-6"> 
+                    <ngb-timepicker id="tp1" [ngModelOptions]="{standalone: true}" [(ngModel)]="minPickerTime1"></ngb-timepicker>
                 </div>
             </div>
             <div class="form-row">
-                <div class="input-group" >
-                    <input class="form-control" placeholder="Return" name="dp" ngbDatepicker #d2="ngbDatepicker"
-                        [minDate]="minPickerDate" formControlName="date2" [class.alert]="date2.invalid && date2.touched"
-                        [class.alert-danger]="date2.invalid && date2.touched">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+                <div class="form-group col-md-6">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input class="form-control myInput">              
+                        </div>
                     </div>
+                    <div class="form-row">
+                        <div class="input-group" >
+                            <input class="form-control" placeholder="Return" name="dp" ngbDatepicker #d2="ngbDatepicker"
+                                [minDate]="minPickerDate" formControlName="date2" [class.alert]="date2.invalid && date2.touched"
+                                [class.alert-danger]="date2.invalid && date2.touched">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+                            </div>
+                        </div>
+                    </div>      
                 </div>
-            </div>      
-        </div>
-        <div class="form-group col-md-6"> 
-            <ngb-timepicker id="tp2" [ngModelOptions]="{standalone: true}" [(ngModel)]="minPickerTime2" ></ngb-timepicker>
-        </div>
-    </div>   
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <select id="inputState" class="form-control">
-                <option hidden>Car type</option>
-                <option>Micro</option>
-                <option>Hatchback</option>
-                <option>Sedan</option>
-                <option>CUV</option>
-                <option>SUV</option>
-                <option>Pickup</option>
-                <option>VAN</option>
-                <option>Coupe</option>
-                <option>Cabriolet</option>
-            </select>
-        </div>
-        <div class="form-group col-md-6">
-            <select id="inputState" class="form-control">
-                <option hidden>Pasengers</option>
-                <option>1 pasenger</option>
-                <option>2 pasengers</option>
-                <option>3 pasengers</option>
-                <option>4 pasengers</option>
-                <option>5 pasengers</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-row top-buffer custom-slider">
-        <input class="myInput">
-        <ng5-slider [(value)]="minValue1" [(highValue)]="maxValue1" [options]="options1"></ng5-slider>   
-    </div>
-   
-    <div class="form-row justify-content-center">
-        
-        <div class="form-group col-md-4">
-            <input class="myInput">
-            <button type="submit" class="btn btn-primary form-control" (click)="onSubmit()">Search</button>
-        </div>
-    </div>   
-</form>
+                <div class="form-group col-md-6"> 
+                    <ngb-timepicker id="tp2" [ngModelOptions]="{standalone: true}" [(ngModel)]="minPickerTime2" ></ngb-timepicker>
+                </div>
+            </div>   
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <select id="inputState" class="form-control">
+                        <option hidden>Car type</option>
+                        <option>Micro</option>
+                        <option>Hatchback</option>
+                        <option>Sedan</option>
+                        <option>CUV</option>
+                        <option>SUV</option>
+                        <option>Pickup</option>
+                        <option>VAN</option>
+                        <option>Coupe</option>
+                        <option>Cabriolet</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <select id="inputState" class="form-control">
+                        <option hidden>Pasengers</option>
+                        <option>1 pasenger</option>
+                        <option>2 pasengers</option>
+                        <option>3 pasengers</option>
+                        <option>4 pasengers</option>
+                        <option>5 pasengers</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row top-buffer custom-slider">
+                <input class="myInput">
+                <ng5-slider [(value)]="minValue1" [(highValue)]="maxValue1" [options]="options1"></ng5-slider>   
+            </div>
+           
+            <div class="form-row justify-content-center">
+                
+                <div class="form-group col-md-4">
+                    <input class="myInput">
+                    <button type="submit" class="btn btn-primary form-control" (click)="onSubmit()">Search</button>
+                </div>
+            </div>   
+        </form>
+    </mat-tab>
+    <mat-tab label="Informations"> 
+        <form [formGroup]="form" class="rounded-lg">
+            <div class="container-fluid">
+                <div class="row top-buffer">
+                  <div class="col-3"></div>
+                  <div class="col-6">
+                    <table class="table table-hover">
+                      <tbody>
+                        <tr >
+                            <th>Address</th>
+                            <td>{{myAddress}}</td>
+                          </tr>
+                        <tr >
+                          <th>Branches:</th>
+                          <td>AAA</td>
+                        </tr>
+                        <tr >
+                          <th>Price list of services:</th>
+                          <td>AAAA</td>
+                        </tr>
+                        <tr >
+                          <th>Rating:</th>
+                          <td>AAA</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="col-3"></div>
+                </div>    
+              </div>
+        </form>
+    </mat-tab>
+    <mat-tab label="Graphs">
+        <form [formGroup]="form" class="rounded-lg">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="From" formControlName="from"
+                        [class.alert]="from.invalid && from.touched" [class.alert-danger]="from.invalid && from.touched">
+                </div>
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="To" formControlName="to"
+                        [class.alert]="to.invalid && to.touched" [class.alert-danger]="to.invalid && to.touched">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input class="form-control myInput">              
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input class="form-control" placeholder="Depart" name="dp" ngbDatepicker #d1="ngbDatepicker"
+                                [minDate]="minPickerDate" formControlName="date1" [class.alert]="date1.invalid && date1.touched"
+                                [class.alert-danger]="date1.invalid && date1.touched">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
+                            </div>
+                        </div>
+                    </div>      
+                </div>
+                <div class="form-group col-md-6"> 
+                    <ngb-timepicker id="tp1" [ngModelOptions]="{standalone: true}" [(ngModel)]="minPickerTime1"></ngb-timepicker>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input class="form-control myInput">              
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group" >
+                            <input class="form-control" placeholder="Return" name="dp" ngbDatepicker #d2="ngbDatepicker"
+                                [minDate]="minPickerDate" formControlName="date2" [class.alert]="date2.invalid && date2.touched"
+                                [class.alert-danger]="date2.invalid && date2.touched">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+                            </div>
+                        </div>
+                    </div>      
+                </div>
+                <div class="form-group col-md-6"> 
+                    <ngb-timepicker id="tp2" [ngModelOptions]="{standalone: true}" [(ngModel)]="minPickerTime2" ></ngb-timepicker>
+                </div>
+            </div>   
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <select id="inputState" class="form-control">
+                        <option hidden>Car type</option>
+                        <option>Micro</option>
+                        <option>Hatchback</option>
+                        <option>Sedan</option>
+                        <option>CUV</option>
+                        <option>SUV</option>
+                        <option>Pickup</option>
+                        <option>VAN</option>
+                        <option>Coupe</option>
+                        <option>Cabriolet</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <select id="inputState" class="form-control">
+                        <option hidden>Pasengers</option>
+                        <option>1 pasenger</option>
+                        <option>2 pasengers</option>
+                        <option>3 pasengers</option>
+                        <option>4 pasengers</option>
+                        <option>5 pasengers</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row top-buffer custom-slider">
+                <input class="myInput">
+                <ng5-slider [(value)]="minValue1" [(highValue)]="maxValue1" [options]="options1"></ng5-slider>   
+            </div>
+           
+            <div class="form-row justify-content-center">
+                
+                <div class="form-group col-md-4">
+                    <input class="myInput">
+                    <button type="submit" class="btn btn-primary form-control" (click)="onSubmit()">Search</button>
+                </div>
+            </div>   
+        </form>
+    </mat-tab>
+  </mat-tab-group>
+

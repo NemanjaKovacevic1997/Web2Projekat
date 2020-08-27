@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTimepickerConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Options, LabelType, Ng5SliderModule } from 'ng5-slider';
+import {MatTabsModule} from '@angular/material/tabs';
+import { Address } from '../AirlineModel/address';
+import { AddressModalComponent } from '../ModalsRAC/address-modal/address-modal.component';
 
 @Component({
   selector: 'search-rac',
@@ -70,7 +73,7 @@ export class SearchRacComponent implements OnInit {
     return this.form.get('time2');
   }
 
-  constructor(private router: Router, config: NgbTimepickerConfig) {
+  constructor(private router: Router, config: NgbTimepickerConfig, private modalService: NgbModal) {
     config.meridian = true;
     config.minuteStep = 15;
    }
@@ -99,4 +102,20 @@ export class SearchRacComponent implements OnInit {
       minutes: new Date().getMinutes()
     }
   } 
+  
+  myAddress: string = "Sime Milosevica 23";
+ 
+  openAddressModal(){
+    const modalRef = this.modalService.open(AddressModalComponent);
+    modalRef.componentInstance.myAddress = this.myAddress;
+    modalRef.result.then((result) => {
+      if (result) {
+        this.myAddress = result;
+        console.log(result);
+      }
+    }, (reason) => {
+      console.log(reason);
+    });
+
+    }
 }

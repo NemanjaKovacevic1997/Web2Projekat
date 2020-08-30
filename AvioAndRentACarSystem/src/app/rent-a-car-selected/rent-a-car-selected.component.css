@@ -11,6 +11,8 @@
 
 .myHeader{
     color: white;
+    font-size: 50px;
+    margin-top: 30px;
 }
 
 ::-webkit-scrollbar {
@@ -21,4 +23,14 @@
 .myImage{
   width: 200px;
   height: 120px;
+}
+
+label {
+  color: white;
+  font-family: 'Brush Script MT';
+  font-size: 55px;
+  align-content: top;
+  margin-top: 0px;
+  height: 10px;
+  line-height: 25px;
 }

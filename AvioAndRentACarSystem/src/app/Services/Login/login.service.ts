@@ -16,10 +16,10 @@ export class LoginService {
   userRole: UserRole;
   
   constructor(private http: HttpClient, private router: Router) {
-    let address = new Address(1, 'Novi Sad', 'Serbia');
-    this.user = new User('Nemanja', 'Kovacevic', 'kovacevicnemanja1997@gmail.com', address, '+9349145824812', 'kovac123', UserRole.Registered, 'kovac123');
-    this.user.id = 1;
-    this.userRole = UserRole.Registered;
+    //let address = new Address(1, 'Novi Sad', 'Serbia');
+    //this.user = new User('Nemanja', 'Kovacevic', 'kovacevicnemanja1997@gmail.com', address, '+9349145824812', 'kovac123', UserRole.Registered, 'kovac123');
+    //this.user.id = 1;
+    this.userRole = UserRole.Unregistered;
   }
 
   login(username:string, password:string) {

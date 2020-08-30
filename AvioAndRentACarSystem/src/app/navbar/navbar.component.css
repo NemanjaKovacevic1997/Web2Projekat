@@ -1,12 +1,15 @@
 a.dropdown-toggle {
     color: white;
+    cursor: hand;
 }
 
 a.button {
     color: white;
+    cursor: hand;
 }
 
 /* Modify the backgorund color */ 
 .navbar-custom { 
     background-color: black;
+    cursor: hand;
 } 

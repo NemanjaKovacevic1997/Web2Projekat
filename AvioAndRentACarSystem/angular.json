@@ -24,10 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/minireset.css/minireset.css",
-              "src/custom-theme.scss",
-              "src/styles.css",
-              "node_modules/igniteui-angular/styles/igniteui-angular.css"
+              "src/styles.css"
             ],
             "scripts": []
           },
@@ -91,8 +88,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
-              "node_modules/igniteui-angular/styles/igniteui-angular.css"
+              "src/styles.css"
             ],
             "scripts": []
           }
@@ -127,6 +123,6 @@
   },
   "defaultProject": "AvioAndRentACarSystem",
   "cli": {
-    "analytics": "98204533-c6e4-40da-b591-7f1b87b10447"
+    "analytics": "7e7e0964-e6af-47ba-8df5-7a020b90f317"
   }
 }

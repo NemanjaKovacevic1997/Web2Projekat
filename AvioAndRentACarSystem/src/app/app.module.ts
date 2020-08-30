@@ -78,6 +78,10 @@ import { AddressModalComponent } from './AdministratorAirline/AirlineProfileModa
 import { PricelistModalComponent } from './AdministratorAirline/AirlineProfileModals/pricelist-modal/pricelist-modal.component';
 import { FastTicketsComponent } from './fast-tickets/fast-tickets.component';
 
+import {MatTabsModule} from '@angular/material/tabs';
+import { AddressModalComponent } from './ModalsRAC/address-modal/address-modal.component';
+import { BranchesModalComponent } from './ModalsRAC/branches-modal/branches-modal.component';
+import { PriceListModalComponent } from './ModalsRAC/price-list-modal/price-list-modal.component';
 
 @NgModule({
   declarations: [
@@ -135,6 +139,9 @@ import { FastTicketsComponent } from './fast-tickets/fast-tickets.component';
     AddressModalComponent,
     PricelistModalComponent,
     FastTicketsComponent
+    AddressModalComponent,
+    BranchesModalComponent,
+    PriceListModalComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -152,6 +159,7 @@ import { FastTicketsComponent } from './fast-tickets/fast-tickets.component';
     ChartsModule,
     NgbRatingModule,
     HttpClientModule,
+    MatTabsModule,
     RouterModule.forRoot([
 
       //for ALL users

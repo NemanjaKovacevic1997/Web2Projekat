@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravellifeChaser.Data;
+using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork;
 using TravellifeChaser.Helpers.Repositories;
 using TravellifeChaser.Models;
 
@@ -15,25 +16,24 @@ namespace TravellifeChaser.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private UserRepository repository;
-
-        public UsersController(UserRepository repository)
+        private readonly IUnitOfWork _unitOfWork;
+        public UsersController(IUnitOfWork unitOfWork)
         {
-            this.repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/Users
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetUsers()
         {
-            return repository.GetAll().ToList();
+            return _unitOfWork.UserRepository.GetAll().ToList();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public ActionResult<User> GetUser(int id)
         {
-            var user = repository.Get(id);
+            var user = _unitOfWork.UserRepository.Get(id);
 
             if (user == null)
                 return NotFound();
@@ -51,7 +51,7 @@ namespace TravellifeChaser.Controllers
             if (id != user.Id)
                 return BadRequest();
 
-            var userr = repository.Get(id);
+            var userr = _unitOfWork.UserRepository.Get(id);
 
             if (userr == null)
                 return NotFound();
@@ -67,7 +67,8 @@ namespace TravellifeChaser.Controllers
 
             try
             {
-                repository.Update(userr);
+                _unitOfWork.UserRepository.Update(userr);
+                _unitOfWork.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -90,7 +91,8 @@ namespace TravellifeChaser.Controllers
 
             try
             {
-                repository.Add(user);
+                _unitOfWork.UserRepository.Add(user);
+                _unitOfWork.Save();
             }
             catch (DbUpdateException)
             {
@@ -100,24 +102,25 @@ namespace TravellifeChaser.Controllers
                     throw;
             }
 
-            return repository.Get(user.Id);
+            return _unitOfWork.UserRepository.Get(user.Id);
         }
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<User>> DeleteUser(int id)
+        public ActionResult<User> DeleteUser(int id)
         {
-            var user = repository.Get(id);
+            var user = _unitOfWork.UserRepository.Get(id);
             if (user == null)
                 return NotFound();
 
-            repository.Remove(user);
+            _unitOfWork.UserRepository.Remove(user);
+            _unitOfWork.Save();
             return user;
         }
 
         private bool UserExists(int id)
         {
-            return repository.Any(e => e.Id == id);
+            return _unitOfWork.UserRepository.Any(e => e.Id == id);
         }
     }
 }

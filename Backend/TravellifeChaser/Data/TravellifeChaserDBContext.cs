@@ -19,7 +19,7 @@ namespace TravellifeChaser.Data
         public DbSet<User> Users { get; set; }
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<AdminAirlinesUser> AdminAirlinesUsers { get; set; }
-        public DbSet<Address> Addresses{ get; set; }
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<Airline> Airlines { get; set; }
         public DbSet<Airport> Airports { get; set; }
         public DbSet<Flight> Flights { get; set; }
@@ -81,6 +81,11 @@ namespace TravellifeChaser.Data
             {
                 x.HasKey(x => x.Id);
                 x.Property(x => x.Id).ValueGeneratedOnAdd();
+
+                x.HasOne(x => x.Seat)
+                .WithOne(x => x.Ticket)
+                .HasForeignKey<Ticket>(x => new { x.Row, x.Column, x.FlightId })
+                .OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<Invitation>(x =>
@@ -157,7 +162,7 @@ namespace TravellifeChaser.Data
 
 
             modelBuilder.Entity<Seat>()
-                        .HasKey(s => new { s.Id, s.FlightId });   //week entity seat
+                        .HasKey(s => new { s.Row, s.Column, s.FlightId });   //week entity seat
 
             modelBuilder.Entity<AirlineAirport>(x => 
             {
@@ -178,18 +183,8 @@ namespace TravellifeChaser.Data
 
                 x.HasOne(x => x.Airport)
                 .WithMany(x => x.Airlines);
-                //.OnDelete(DeleteBehavior.Restrict);
 
             });
-
-            /*modelBuilder.Entity<Airline>()
-                        .HasMany(x => x.BuisinessDestinations)
-                        .WithOne(x => x.Airline)
-                        .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Airport>()
-                        .HasMany(x => x.Airlines)
-                        .WithOne(x => x.Airport)
-                        .OnDelete(DeleteBehavior.Restrict);*/
 
             modelBuilder.Entity<FlightAirport>(x =>
             {
@@ -204,16 +199,6 @@ namespace TravellifeChaser.Data
 
                 x.HasKey(sc => new { sc.FlightId, sc.AirportId });
             });
-
-
-            /*modelBuilder.Entity<Flight>()
-                        .HasMany(x => x.StopsLocations)
-                        .WithOne(x => x.Flight)
-                        .OnDelete(DeleteBehavior.Restrict);
-            modelBuilder.Entity<Airport>()
-                        .HasMany(x => x.Flights)
-                        .WithOne(x => x.Airport)
-                        .OnDelete(DeleteBehavior.Restrict);*/
 
             modelBuilder.Entity<Flight>(x =>
             {
@@ -230,7 +215,6 @@ namespace TravellifeChaser.Data
                 .HasForeignKey(x => x.ToId)
                 .OnDelete(DeleteBehavior.Restrict);
             });
-
 
 
             modelBuilder.Seed();

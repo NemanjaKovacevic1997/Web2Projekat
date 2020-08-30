@@ -10,7 +10,7 @@
       <ul class="navbar-nav mr-auto">
         <li *ngIf="this.loginService.userRole == UserRole.Registered"
             routerLinkActive="active current" class="nav-item">
-          <a class="nav-link" routerLink="/"><i class="fa fa-list-alt"></i> My History</a>
+          <a class="nav-link" [routerLink]="[this.loginService.user.username, 'history']"><i class="fa fa-list-alt"></i> My History</a>
         </li>
         <li *ngIf="this.loginService.userRole == UserRole.Registered || this.loginService.userRole == UserRole.Unregistered"
             routerLinkActive="active current" class="nav-item">
@@ -26,19 +26,19 @@
         </li>
         <li *ngIf="this.loginService.userRole == UserRole.Registered" 
             routerLinkActive="active current" class="nav-item">
-          <a class="nav-link" routerLink="/"><i class="fa fa-id-card"></i> Invitations</a>
+          <a class="nav-link" [routerLink]="[this.loginService.user.username, 'invitations']"><i class="fa fa-id-card"></i> Invitations</a>
         </li>
         <li *ngIf="this.loginService.userRole == UserRole.AdminAirlines"
             routerLinkActive="active current"  class="nav-item">
-          <a class="nav-link" routerLink="/admin/airlineProfile"><i class="fa fa-id-card"></i> Airlines profile</a>
+          <a class="nav-link" routerLink="/adminAirlines/airlineProfile"><i class="fa fa-id-card"></i> Airlines profile</a>
         </li>
         <li *ngIf="this.loginService.userRole == UserRole.AdminAirlines" 
             routerLinkActive="active current" class="nav-item">
-          <a class="nav-link" routerLink="/admin/airline-flights"><i class="fa fa-plane"></i> Filghts </a>
+          <a class="nav-link" routerLink="/adminAirlines/airline-flights"><i class="fa fa-plane"></i> Filghts </a>
         </li>
         <li *ngIf="this.loginService.userRole == UserRole.AdminAirlines"
             routerLinkActive="active current" class="nav-item">
-          <a class="nav-link" routerLink="/admin/report"><i class="fa fa-list-alt"></i> Report </a>
+          <a class="nav-link" routerLink="/adminAirlines/report"><i class="fa fa-list-alt"></i> Report </a>
         </li>
       </ul>
       <div *ngIf="this.loginService.userRole == UserRole.Unregistered"

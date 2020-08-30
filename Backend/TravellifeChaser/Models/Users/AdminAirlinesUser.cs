@@ -10,7 +10,7 @@ namespace TravellifeChaser.Models
         public int Id { get; set; }
         public User User { get; set; }
 
-        public int AirlineId { get; set; }
+        public int? AirlineId { get; set; }
         public Airline Airline { get; set; }
     }
 }

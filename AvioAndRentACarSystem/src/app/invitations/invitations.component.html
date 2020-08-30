@@ -1,0 +1,71 @@
+<body class="myBody text-center">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <table class="table table-bordered table-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col" align="center">Invitations</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let invitation of invitations; let i = index;">
+                        <td scope="row">
+                            <div>
+                                <table class="table table-bordered table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th colspan="2">Invitation {{ i + 1 }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>From</th>
+                                            <td>{{ invitation.from }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>To</th>
+                                            <td>{{ invitation.to }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Depart</th>
+                                            <td> {{ invitation.departHours + 'h ' + invitation.departMinutes + 'min  ' + invitation.departDay + '.' + invitation.departMonth + '.' + invitation.departYear }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Seat</th>
+                                            <td>{{ invitation.seatRow + '' + invitation.seatColumn + ', ' + invitation.seatClass + ' class' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Inviter</th>
+                                            <td>{{ invitation.inviterFirstName + ' ' + invitation.inviterLastName + ' ( ' + invitation.inviterUsername + ' )' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th></th>
+                                            <td>
+                                                <form>
+                                                    <div class="form-row">
+                                                        <div class="col">
+                                                            <button type="button" (click)="accept(invitation.ticketId)" class="btn btn-info">Accept</button>
+                                                        </div>
+                                                        <div class="col">
+                                                            <button type="button" (click)="refuse(invitation.ticketId)" class="btn btn-info">Refuse</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-3" ></div>
+      </div>
+    </div>
+  </body>
+

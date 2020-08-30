@@ -6,8 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.IdentityModel.Tokens;
+using TravellifeChaser.Helpers;
 using TravellifeChaser.Helpers.DTOs;
 using TravellifeChaser.Helpers.Enums;
+using TravellifeChaser.Helpers.Generators;
+using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork;
 using TravellifeChaser.Helpers.Repositories;
 using TravellifeChaser.Models;
 using TravellifeChaser.Models.AirlinesSystem.Enums;
@@ -18,26 +21,25 @@ namespace TravellifeChaser.Controllers
     [ApiController]
     public class FlightsController : ControllerBase
     {
-        private FlightRepository repository;
-        private AirlineRepository airlineRepository;
-        public FlightsController(FlightRepository repository, AirlineRepository airlineRepository)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public FlightsController(IUnitOfWork unitOfWork)
         {
-            this.repository = repository;
-            this.airlineRepository = airlineRepository;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/Flights
         [HttpGet]
         public ActionResult<IEnumerable<Flight>> GetFlights()
         {
-            return this.repository.GetAll().ToList();
+            return _unitOfWork.FlightRepository.GetAll().ToList();
         }
 
         // GET: api/Flights/5
         [HttpGet("{id}")]
         public ActionResult<Flight> GetFlight(int id)
         {
-            var flight = this.repository.Get(id);
+            var flight = _unitOfWork.FlightRepository.Get(id);
 
             if (flight == null)
                 return NotFound();
@@ -56,7 +58,8 @@ namespace TravellifeChaser.Controllers
 
             try
             {
-                this.repository.Update(flight);
+                _unitOfWork.FlightRepository.Update(flight);
+                _unitOfWork.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -77,33 +80,52 @@ namespace TravellifeChaser.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public ActionResult<Flight> PostFlight(Flight flight)
+        public ActionResult<Flight> PostFlight(FlightDTO flight)
         {
-            this.repository.Add(flight);
+            Flight f = new Flight();
+            f.Id = 0;
+            f.FromId = flight.FromId;
+            f.ToId = flight.ToId;
+            f.TakeoffTime = new DateTime(flight.TakeoffYear, flight.TakeoffMonth, flight.TakeoffDay, flight.TakeoffHours, flight.TakeoffMinutes, 0);
+            f.LandingTime = new DateTime(flight.LandingYear, flight.LandingMonth, flight.LandingDay, flight.LandingHours, flight.LandingMinutes, 0);
+            f.Duration = f.LandingTime.Subtract(f.TakeoffTime).TotalMinutes;
+            f.Length = flight.Length;
+            f.Cost = flight.Cost;
+            f.AirlineId = flight.AirlineId;
+            f.AverageRating = 0;
 
-            return CreatedAtAction("GetFlight", new { id = flight.Id }, flight);
+            _unitOfWork.FlightRepository.Add(f);
+
+            List<Seat> seats = SeatGenerator.GenerateSeatsForFlight(f.Id, 20, 9, 3, 8);
+            foreach (var seat in seats)
+                _unitOfWork.SeatRepository.Add(seat);
+
+            _unitOfWork.Save();
+
+            return CreatedAtAction("GetFlight", new { id = f.Id }, f);
         }
 
         // DELETE: api/Flights/5
         [HttpDelete("{id}")]
         public ActionResult<Flight> DeleteFlight(int id)
         {
-            var flight = this.repository.Get(id);
+            var flight = _unitOfWork.FlightRepository.Get(id);
 
             if (flight == null)
                 return NotFound();
 
-            this.repository.Remove(flight);
+            _unitOfWork.FlightRepository.Remove(flight);
+            _unitOfWork.Save();
             return flight;
         }
 
         [HttpGet("airlineFlights/{id}")]
         public ActionResult<IEnumerable<Flight>> GetAirlineFlights(int id)
         {
-            if (!this.airlineRepository.Any(x => x.Id == id))
+            if (!_unitOfWork.AirlineRepository.Any(x => x.Id == id))
                 NotFound();
             
-            return this.repository.GetByCondition(x => x.AirlineId == id).ToList();
+            return _unitOfWork.FlightRepository.GetByCondition(x => x.AirlineId == id).ToList();
         }
 
         //search
@@ -117,27 +139,48 @@ namespace TravellifeChaser.Controllers
             DateTime date1 = new DateTime(searchData.Date1Year, searchData.Date1Month, searchData.Date1Day);
             DateTime date2 = new DateTime(searchData.Date2Year, searchData.Date2Month, searchData.Date2Day);
 
-            var flights = this.repository.GetAll().ToList();
+            var flights = _unitOfWork.FlightRepository.GetAll().ToList();
 
             foreach (var flight in flights.ToList())
             {
                 if (!string.IsNullOrEmpty(searchData.From))
                 {
-                    if (!flight.From.Address.City.ToLower().Contains(searchData.From.ToLower()))
+                    /*if (!flight.From.Address.City.ToLower().Contains(searchData.From.ToLower()))
                     {
                         flights.Remove(flight);
                         continue;
-                    } 
-                }
-
-                if (!string.IsNullOrEmpty(searchData.To))
-                {
-                    if (!flight.To.Address.City.ToLower().Contains(searchData.To.ToLower()))
+                    } */
+                    if(!int.TryParse(searchData.From, out int airlineId))
+                    {
+                        flights.Remove(flight);
+                        continue;
+                    }
+                    if (flight.From.Id != airlineId)
                     {
                         flights.Remove(flight);
                         continue;
                     }
                 }
+
+                if (!string.IsNullOrEmpty(searchData.To))
+                {
+                    /*if (!flight.To.Address.City.ToLower().Contains(searchData.To.ToLower()))
+                    {
+                        flights.Remove(flight);
+                        continue;
+                    }*/
+                    if (!int.TryParse(searchData.To, out int airlineId))
+                    {
+                        flights.Remove(flight);
+                        continue;
+                    }
+                    if (flight.To.Id != airlineId)
+                    {
+                        flights.Remove(flight);
+                        continue;
+                    }
+                }
+
 
                 if (date1 != null)
                 {
@@ -215,7 +258,8 @@ namespace TravellifeChaser.Controllers
         private int CountFreeSeatsOfFlight(Flight flight)
         {
             int freeSeats = 0;
-            foreach (var seat in flight.Seats)
+            var seats = _unitOfWork.SeatRepository.GetByCondition(x => x.FlightId == flight.Id);
+            foreach (var seat in seats)
             {
                 if (seat.Status == SeatStatus.Free)
                     freeSeats++;
@@ -226,7 +270,8 @@ namespace TravellifeChaser.Controllers
 
         private bool AirplaneClassSeatExists(Flight flight, AirplaneClass airplaneClass)
         {
-            foreach (var seat in flight.Seats)
+            var seats = _unitOfWork.SeatRepository.GetByCondition(x => x.FlightId == flight.Id);
+            foreach (var seat in seats)
             {
                 if (seat.Class == airplaneClass && seat.Status == SeatStatus.Free)
                     return true;
@@ -237,7 +282,7 @@ namespace TravellifeChaser.Controllers
 
         private bool FlightExists(int id)
         {
-            return this.repository.Any(e => e.Id == id);
+            return _unitOfWork.FlightRepository.Any(e => e.Id == id);
         }
     }
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Seat } from './seat';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Seat } from '../AirlineModel/seat';
 
 @Component({
   selector: 'seats-map',
@@ -8,39 +8,84 @@ import { Seat } from './seat';
 })
 export class SeatsMapComponent implements OnInit {
   
-  @Input('rows') rows : number;
-  @Input('columns') columns : number;
-  @Input('bookedSeats') bookedSeats : Array<Seat>;
-  myBooking : Array<Seat>;
+  @Input('rows') rows: number;
+  @Input('columns') columns: number;
+  @Input('bookedSeats') bookedSeats: Array<Seat>;
+  @Input('removedSeats') removedSeats: Array<Seat>;
+  @Input('firstClassEndRow') firstClassEndRow: number;
+  @Input('buisinessClassEndRow') buisinessClassEndRow: number;
+  @Input('maximumSeatsToBook') maximumSeatsToBook: number;
+
+  myBooking: Array<Seat>;
+  @Output() change = new EventEmitter<Array<Seat>>();
+
+  private bookCounter: number;
+  private firstClassColor = "btn-dark";
+  private buisinessClassColor = "btn-secondary";
+  private economyClassColor = "btn-info";
+  private selectedColor = "btn-success";
+  private imposibbleToSelect = "btn-danger";
 
   constructor() { }
 
   ngOnInit(): void {
-    this.rows = 20;
-    this.columns = 9;
     this.myBooking = new Array<Seat>();
+    this.bookCounter = 0;
   }
 
   clickedSeat(row, column){
-  
     if(this.sholudBeReseved(row, column))
       return;
 
     let id = this.makeId(row, column);
     let btn = document.getElementById(id);
 
-    if(btn.classList.contains("btn-warning") == true){
-      btn.classList.remove("btn-warning");
-      btn.classList.add("btn-success");
-      let newSeat = new Seat(row, column);
-      this.myBooking.push(newSeat);
-    }
-    else{
-      btn.classList.remove("btn-success");
-      btn.classList.add("btn-warning");
-      this.removeSeatFromBooked(row, column);
-    }
+    if(btn.classList.contains(this.firstClassColor) == true){
+      if(this.bookCounter >= this.maximumSeatsToBook){
+        alert("All planed seats are taken");
+        return;
+      }
 
+      btn.classList.remove(this.firstClassColor);
+      btn.classList.add(this.selectedColor);
+      let newSeat = new Seat(row, column, "First");
+      this.myBooking.push(newSeat);
+      this.bookCounter = this.bookCounter + 1;
+      this.change.emit(this.myBooking);
+    }
+    else if(btn.classList.contains(this.buisinessClassColor) == true){
+      if(this.bookCounter >= this.maximumSeatsToBook){
+        alert("All planed seats are taken");
+        return;
+      }
+
+      btn.classList.remove(this.buisinessClassColor);
+      btn.classList.add(this.selectedColor);
+      let newSeat = new Seat(row, column, "Business");
+      this.myBooking.push(newSeat);
+      this.bookCounter = this.bookCounter + 1;
+      this.change.emit(this.myBooking);
+    }
+    else if(btn.classList.contains(this.economyClassColor) == true){
+      if(this.bookCounter >= this.maximumSeatsToBook){
+        alert("All planed seats are taken");
+        return;
+      }
+
+      btn.classList.remove(this.economyClassColor);
+      btn.classList.add(this.selectedColor);
+      let newSeat = new Seat(row, column, "Economy");
+      this.myBooking.push(newSeat);
+      this.bookCounter = this.bookCounter + 1;
+      this.change.emit(this.myBooking);
+    }
+    else if(btn.classList.contains(this.selectedColor) == true) {
+      btn.classList.remove(this.selectedColor);
+      btn.classList.add(this.getInitialColor(row));
+      this.removeSeatFromBooked(row, column);
+      this.bookCounter = this.bookCounter - 1;
+      this.change.emit(this.myBooking);
+    }
     
     /*let id = this.makeId(row, column);
     let btn = document.getElementById(id);
@@ -82,11 +127,20 @@ export class SeatsMapComponent implements OnInit {
     let index : number = 0;
     for(let seat of this.myBooking){
       if(seat.row == row && seat.column == column){
-        this.myBooking.splice(index,1);
+        this.myBooking.splice(index, 1);
         break;
       }
       index = index + 1;
     }
+  }
+
+  private getInitialColor(row) {
+    if(row <= this.firstClassEndRow)
+      return this.firstClassColor;
+    if(row <= this.buisinessClassEndRow)
+      return this.buisinessClassColor;
+    
+    return this.economyClassColor;
   }
 
 }

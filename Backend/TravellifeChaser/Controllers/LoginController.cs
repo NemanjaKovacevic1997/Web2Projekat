@@ -13,6 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using TravellifeChaser.Helpers;
 using TravellifeChaser.Helpers.DTOs;
+using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork;
 using TravellifeChaser.Models;
 
 namespace TravellifeChaser.Controllers
@@ -22,12 +23,12 @@ namespace TravellifeChaser.Controllers
     public class LoginController : ControllerBase
     {
         private IConfiguration _config;
-        private IRepository<User> userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public LoginController(IConfiguration config, IRepository<User> userRepository)
+        public LoginController(IConfiguration config, IUnitOfWork unitOfWork)
         {
             _config = config;
-            this.userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpPost]
@@ -48,7 +49,7 @@ namespace TravellifeChaser.Controllers
 
         private User AuthenticateUser(string username, string password)
         {
-            return this.userRepository.GetByCondition(x => x.Username == username && x.Password == password).FirstOrDefault();
+            return _unitOfWork.UserRepository.GetByCondition(x => x.Username == username && x.Password == password).FirstOrDefault();
         }
 
         private string GenerateJSONWebToken(User user)

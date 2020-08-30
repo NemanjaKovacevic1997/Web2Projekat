@@ -1,1 +1,56 @@
-<p>passengers works!</p>
+<body class="myBody text-center">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2" ></div>
+            <div class="col-sm-8" >
+                <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th scope="col" style="color:white">#</th>
+                        <th scope="col" style="color:white">Passengers</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let userInfo of usersInformation; let i = index">
+                        <td scope="row" style="color:white">{{ (i + 1) }}</td>
+                        <td scope="row">
+                          <form>
+                            <div class="row">
+                              <div class="col">
+                                <input type="text" class="form-control" placeholder="First name" [(ngModel)]="userInfo.firstName" [name]="userInfo.id + userInfo.firstName">
+                              </div>
+                              <div class="col">
+                                <input type="text" class="form-control" placeholder="Last name" [(ngModel)]="userInfo.lastName" [name]="userInfo.id + userInfo.lastName">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                                <input type="text" class="form-control" placeholder="Passport number" [(ngModel)]="userInfo.passportNumber" [name]="userInfo.id + userInfo.passportNumber">
+                              </div>
+                              <div class="col">
+                                <select class="form-control" [(ngModel)]="userInfo.seat" [name]="userInfo.id + userInfo.seat">
+                                  <option *ngFor="let seat of seats" [value]="getSeatConcatenated(seat)">{{ getSeatConcatenated(seat)  + ", " + seat.class }}</option>
+                                </select>
+                              </div>
+                            </div>
+                          </form>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="col-sm-2" >
+              <form class="backNextTopMargin">
+                    <div class="form-row">
+                        <div class="col">
+                          <button type="button" class="btn btn-info" (click)="back()">Back</button>
+                        </div>
+                        <div class="col">
+                          <button type="button" class="btn btn-info" (click)="finish()">Finish</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+      </div>
+    </div>
+  </body>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravellifeChaser.Data;
 using TravellifeChaser.Helpers;
+using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork;
 using TravellifeChaser.Models;
 
 namespace TravellifeChaser.Controllers
@@ -15,25 +16,26 @@ namespace TravellifeChaser.Controllers
     [ApiController]
     public class FriendshipsController : ControllerBase
     {
-        private IRepository<Friendship> repository;
-        public FriendshipsController(IRepository<Friendship> repository)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public FriendshipsController(IUnitOfWork unitOfWork)
         {
-            this.repository = repository;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/Friendships
         [HttpGet]
         public ActionResult<IEnumerable<Friendship>> GetFrendships()
         {
-            return repository.GetAll().ToList();
+            return _unitOfWork.FriendshipRepository.GetAll().ToList();
         }
 
         // GET: api/Friendships/5/2
         [HttpGet("{user1Id}/{user2Id}")]
         public ActionResult<Friendship> GetFriendship(int user1Id, int user2Id)
         {
-            var friendship1 = repository.Get(new object[] { user1Id, user2Id });
-            var friendship2 = repository.Get(new object[] { user2Id, user1Id });
+            var friendship1 = _unitOfWork.FriendshipRepository.Get(new object[] { user1Id, user2Id });
+            var friendship2 = _unitOfWork.FriendshipRepository.Get(new object[] { user2Id, user1Id });
 
             if(friendship1 == null && friendship2 == null)
                 return NotFound();
@@ -50,16 +52,18 @@ namespace TravellifeChaser.Controllers
         {
             var key1 = new object[] { user1Id, user2Id };
             var key2 = new object[] { user2Id, user1Id };
-            var friendship1 = repository.Get(key1);
-            var friendship2 = repository.Get(key2);
+            var friendship1 = _unitOfWork.FriendshipRepository.Get(key1);
+            var friendship2 = _unitOfWork.FriendshipRepository.Get(key2);
 
             if (friendship1 == null && friendship2 == null)
                 return NotFound();
 
             if (friendship1 != null)
-                repository.Remove(key1);
+                _unitOfWork.FriendshipRepository.Remove(key1);
             else
-                repository.Remove(key2);
+                _unitOfWork.FriendshipRepository.Remove(key2);
+
+            _unitOfWork.Save();
 
             return Ok();
         }

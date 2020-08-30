@@ -16,9 +16,15 @@ td {
 
 .top-buffer { margin-top:50px; }
 
+
 form {
     margin-left: 38%;
 }
+
+.backNextTopMargin {
+    margin-top:400px;
+}
+
 
 .myBody{
     background-image: url("/assets/images/background19.jpg");

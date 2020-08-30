@@ -273,8 +273,6 @@ C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\n
 C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.csprojAssemblyReference.cache
 C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.AssemblyInfoInputs.cache
 C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.AssemblyInfo.cs
-C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.csproj.CoreCompileInputs.cache
-C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.RazorTargetAssemblyInfo.cache
 C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.csproj.CopyComplete
 C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\staticwebassets\TravellifeChaser.StaticWebAssets.Manifest.cache
@@ -282,3 +280,11 @@ C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\n
 C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.dll
 C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.pdb
 C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.genruntimeconfig.cache
+C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\MailKit.dll
+C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\MimeKit.dll
+C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\NETCore.MailKit.dll
+C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\bin\Debug\netcoreapp3.0\BouncyCastle.Crypto.dll
+C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.csproj.CoreCompileInputs.cache
+C:\Users\Lana\Desktop\Nemanja\Web2_Projekat\Backend\TravellifeChaser\obj\Debug\netcoreapp3.0\TravellifeChaser.MvcApplicationPartsAssemblyInfo.cache

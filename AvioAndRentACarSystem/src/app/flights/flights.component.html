@@ -1,6 +1,7 @@
-<table class="table table-borderless table-hover">
+<table class="table table-hover">
     <tbody>
         <tr class="component-style table-row-component"
+            (click)="flightClick(flight.id, flight.cost)"
             *ngFor="let flight of flights" 
             flight 
             [from] = "flight.from"

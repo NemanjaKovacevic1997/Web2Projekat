@@ -17,4 +17,12 @@ export class AirlineService extends DataService{
       this.airlines = res as Airline[];
     })
   }
+
+  getAdminAirlinesAirline(adminAirlineId: number) {
+    return this.httpClient.get(environment.serverUrl + 'Airlines/adminAirlinesId/' + adminAirlineId);
+  }
+
+  getAirlineReport(airlineId: number) {
+    return this.httpClient.get(environment.serverUrl + 'Airlines/' + airlineId + '/report');
+  }
 }

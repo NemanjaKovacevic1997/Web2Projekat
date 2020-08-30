@@ -1,1 +1,97 @@
-<seats-map [rows]="economyRows" [columns]="economyColumns" [bookedSeats]="economyBookedSeats"></seats-map>
+<body class="myBody">
+  <div class="container-fluid">
+  <div class="row">
+      <div class="col">
+      </div>
+      <div class="col-8">
+        <div class="row topMargin">
+          <div class="col-8">
+            <seats-map
+            [rows]="seatsPerFlightProperties.rows" 
+            [columns]="seatsPerFlightProperties.columns" 
+            [bookedSeats]="seatsPerFlightProperties.bookedSeats"
+            [removedSeats]="seatsPerFlightProperties.removedSeats"
+            [firstClassEndRow]="seatsPerFlightProperties.firstClassEndRow"
+            [buisinessClassEndRow]="seatsPerFlightProperties.buisinessClassEndRow"
+            [maximumSeatsToBook]="people"
+            (change)="recieveSeatChanges($event)">
+            </seats-map>
+          </div>
+          <div class="col-4">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" style="color: white">Color</th>
+                  <th scope="col" style="color: white">Meaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th style="color: blue">Light blue</th>
+                  <td style="color: white">Economy class</td>
+                </tr>
+                <tr>
+                  <th style="color: gray">Gray</th>
+                  <td style="color: white">Buisiness class</td>
+                </tr>
+                <tr>
+                  <th style="color: black">Black</th>
+                  <td style="color: white">First class</td>
+                </tr>
+                <tr>
+                  <th style="color: red">Red</th>
+                  <td style="color: white">Taken</td>
+                </tr>
+                <tr>
+                  <th style="color: Green">Green</th>
+                  <td style="color: white">Selected</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table class="table" style="margin-top: 35px">
+              <thead>
+                <tr>
+                  <th scope="col" style="color: white">Class</th>
+                  <th scope="col" style="color: white">Increase %</th>
+                  <th scope="col" style="color: white">Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th style="color: white">Economy</th>
+                  <td style="color: white">0 %</td>
+                  <td style="color: white">{{ economyCost }}</td>
+                </tr>
+                <tr>
+                  <th style="color: white">Business</th>
+                  <td style="color: white">{{ businessIncrease + '%'}}</td>
+                  <td style="color: white">{{ businessCost }}</td>
+                </tr>
+                <tr>
+                  <th style="color: white">First</th>
+                  <td style="color: white">{{ firstIncrease + '%'}}</td>
+                  <td style="color: white">{{ firstCost }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+      </div>
+      <div class="col">
+          <form>
+            <div class="form-row backNextTopMargin">
+                <div class="col">
+                  <button type="button" class="btn btn-info" (click)="back()">Back</button>
+                </div>
+                <div class="col">
+                  <button type="button" class="btn btn-info" (click)="next()">Next</button>
+                </div>
+            </div>
+        </form>
+      </div>
+  </div>
+</div>
+</body>
+
+

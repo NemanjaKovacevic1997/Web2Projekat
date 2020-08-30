@@ -13,6 +13,7 @@ using TravellifeChaser.Data;
 using TravellifeChaser.Helpers;
 using TravellifeChaser.Helpers.DTOs;
 using TravellifeChaser.Helpers.Enums;
+using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork;
 using TravellifeChaser.Helpers.Repositories;
 using TravellifeChaser.Models;
 
@@ -22,21 +23,17 @@ namespace TravellifeChaser.Controllers
     [ApiController]
     public class RegisteredUsersController : ControllerBase
     {
-        private RegisteredUserRepository repository;
-        private IRepository<FriendshipRequest> friendshipRequestRepository;
-        private IRepository<Friendship> friendshipRepository;
-        public RegisteredUsersController(RegisteredUserRepository repository, IRepository<FriendshipRequest> friendshipRequestRepository, IRepository<Friendship> friendshipRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public RegisteredUsersController(IUnitOfWork unitOfWork)
         {
-            this.repository = repository;
-            this.friendshipRequestRepository = friendshipRequestRepository;
-            this.friendshipRepository = friendshipRepository;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/RegisteredUsers
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetRegisteredUsers()
         {
-            return repository.GetAllAsUser();
+            return _unitOfWork.RegisteredUserRepository.GetAllAsUser();
         }
 
         // GET: api/RegisteredUsers/5
@@ -44,7 +41,7 @@ namespace TravellifeChaser.Controllers
         [Authorize]
         public ActionResult<User> GetRegisteredUser(int id)
         {
-            var registeredUser = repository.GetAsUser(id);
+            var registeredUser = _unitOfWork.RegisteredUserRepository.GetAsUser(id);
             
             if (registeredUser == null)
                 return NotFound();
@@ -60,7 +57,7 @@ namespace TravellifeChaser.Controllers
             if (id != user.Id)
                 return BadRequest();
 
-            var registeredUser = repository.Get(id);
+            var registeredUser = _unitOfWork.RegisteredUserRepository.Get(id);
 
             if (registeredUser == null)
                 return NotFound();
@@ -76,7 +73,8 @@ namespace TravellifeChaser.Controllers
 
             try
             {
-                repository.Update(registeredUser);
+                _unitOfWork.RegisteredUserRepository.Update(registeredUser);
+                _unitOfWork.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -98,7 +96,8 @@ namespace TravellifeChaser.Controllers
 
             try
             {
-                repository.Add(newUser);
+                _unitOfWork.RegisteredUserRepository.Add(newUser);
+                _unitOfWork.Save();
             } 
             catch (DbUpdateException)
             {
@@ -108,18 +107,19 @@ namespace TravellifeChaser.Controllers
                     throw;
             }
 
-            return repository.GetAsUser(user.Id);
+            return _unitOfWork.RegisteredUserRepository.GetAsUser(user.Id);
         }
 
         // DELETE: api/RegisteredUsers/5
         [HttpDelete("{id}")]
         public ActionResult<RegisteredUser> DeleteRegisteredUser(int id)
         {
-            var registeredUser = repository.Get(id);
+            var registeredUser = _unitOfWork.RegisteredUserRepository.Get(id);
             if (registeredUser == null)
                 return NotFound();
 
-            repository.Remove(registeredUser);
+            _unitOfWork.RegisteredUserRepository.Remove(registeredUser.Id);
+            _unitOfWork.Save();
             return registeredUser;
         }
 
@@ -127,12 +127,12 @@ namespace TravellifeChaser.Controllers
         [HttpGet("GetUsersWithSenderStatus/{id}")]
         public ActionResult<IEnumerable<UserCurrentFriendshipStatusDTO>> GetUsersWithSenderStatus(int id)
         {
-            var registeredUser = repository.GetAsUser(id);
+            var registeredUser = _unitOfWork.RegisteredUserRepository.GetAsUser(id);
 
             if (registeredUser == null)
                 return NotFound();
 
-            var allUsers = repository.GetAllAsUser();
+            var allUsers = _unitOfWork.RegisteredUserRepository.GetAllAsUser();
             List<UserCurrentFriendshipStatusDTO> usersWithStatus = new List<UserCurrentFriendshipStatusDTO>();
 
             foreach (var user in allUsers)
@@ -140,11 +140,11 @@ namespace TravellifeChaser.Controllers
                 if (user.Id == id)
                     continue;
 
-                if (friendshipRepository.Any(x => (x.User1Id == id && x.User2Id == user.Id) || (x.User1Id == user.Id && x.User2Id == id)))
+                if (_unitOfWork.FriendshipRepository.Any(x => (x.User1Id == id && x.User2Id == user.Id) || (x.User1Id == user.Id && x.User2Id == id)))
                     usersWithStatus.Add(new UserCurrentFriendshipStatusDTO() { User = user, CurrentFriendshipStatus = UserCurrentFriendshipStatus.Friend });
-                else if (friendshipRequestRepository.Any(x => x.FromId == id && x.ToId == user.Id))
+                else if (_unitOfWork.FriendshipRequestRepository.Any(x => x.FromId == id && x.ToId == user.Id))
                     usersWithStatus.Add(new UserCurrentFriendshipStatusDTO() { User = user, CurrentFriendshipStatus = UserCurrentFriendshipStatus.FriendshipRequestSent });
-                else if (friendshipRequestRepository.Any(x => x.FromId == user.Id && x.ToId == id))
+                else if (_unitOfWork.FriendshipRequestRepository.Any(x => x.FromId == user.Id && x.ToId == id))
                     usersWithStatus.Add(new UserCurrentFriendshipStatusDTO() { User = user, CurrentFriendshipStatus = UserCurrentFriendshipStatus.FriendshipRequestRecieved });
                 else
                     usersWithStatus.Add(new UserCurrentFriendshipStatusDTO() { User = user, CurrentFriendshipStatus = UserCurrentFriendshipStatus.NotFriend });
@@ -152,9 +152,46 @@ namespace TravellifeChaser.Controllers
 
             return usersWithStatus;
         }
+
+        [HttpGet("friends/{id}")]
+        public ActionResult<IEnumerable<User>> GetFriends(int id)
+        {
+            if (!_unitOfWork.RegisteredUserRepository.Any(x => x.Id == id))
+                return NotFound();
+
+            var friendships = _unitOfWork.FriendshipRepository.GetByCondition(x => x.User1Id == id || x.User2Id == id);
+            List<User> friends = new List<User>(); 
+            foreach (var friendship in friendships)
+            {
+                User user = null;
+                if (friendship.User1Id == id)
+                    user = _unitOfWork.RegisteredUserRepository.GetAsUser(friendship.User2Id);
+                else if(friendship.User2Id == id)
+                    user = _unitOfWork.RegisteredUserRepository.GetAsUser(friendship.User1Id);
+
+                if(user != null)
+                    friends.Add(user);
+            }
+
+            return friends;
+        }
+
+        
+        [HttpPost("usersBasedOnIds")]
+        public ActionResult<IEnumerable<UserWithoutCredentialsDTO>> GetUsersBasedOnIds(List<int> usersIds)
+        {
+            List<UserWithoutCredentialsDTO> users = new List<UserWithoutCredentialsDTO>();
+            foreach (var id in usersIds)
+            {
+                var user = _unitOfWork.RegisteredUserRepository.GetAsUser(id);
+                users.Add(new UserWithoutCredentialsDTO(user));
+            }
+
+            return users;
+        }
         private bool RegisteredUserExists(int id)
         {
-            return repository.Any(e => e.Id == id);
+            return _unitOfWork.RegisteredUserRepository.Any(e => e.Id == id);
         }
     }
 }

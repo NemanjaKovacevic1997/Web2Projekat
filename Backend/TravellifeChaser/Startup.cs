@@ -16,6 +16,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using TravellifeChaser.Data;
 using TravellifeChaser.Helpers;
+using TravellifeChaser.Helpers.Email;
+using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.GenericAndConcreteRepositories.Repositories.RepositoriesInterfaces;
+using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork;
 using TravellifeChaser.Helpers.Repositories;
 
 namespace TravellifeChaser
@@ -44,12 +47,24 @@ namespace TravellifeChaser
                options.UseSqlServer(Configuration.GetConnectionString("DevConnection"))
             );
 
+ 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped(typeof(RegisteredUserRepository));
+            /*services.AddScoped(typeof(RegisteredUserRepository));
             services.AddScoped(typeof(UserRepository));
             services.AddScoped(typeof(FriendshipRequestRepository));
             services.AddScoped(typeof(AirlineRepository));
-            services.AddScoped(typeof(FlightRepository));
+            services.AddScoped(typeof(FlightRepository));*/
+
+            services.AddScoped<IRegisteredUserRepository, RegisteredUserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IFriendshipRequestRepository, FriendshipRequestRepository>();
+            services.AddScoped<IAirlineRepository, AirlineRepository>();
+            services.AddScoped<IFlightRepository, FlightRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
+            
+            services.AddSingleton<IMailer, Mailer>();
 
             services.AddMvc();
 

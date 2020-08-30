@@ -1,0 +1,68 @@
+<body class="myBody text-center">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <table class="table table-bordered table-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col" align="center">Fast tickets</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let fastTicket of fastTickets; let i = index;">
+                        <td scope="row">
+                            <div>
+                                <table class="table table-bordered table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th colspan="2">Fast ticket {{ i + 1 }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>From</th>
+                                            <td>{{ fastTicket.from }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>To</th>
+                                            <td>{{ fastTicket.to }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Depart</th>
+                                            <td> {{ fastTicket.departHours + 'h ' + fastTicket.departMinutes + 'min  ' + fastTicket.departDay + '.' + fastTicket.departMonth + '.' + fastTicket.departYear }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Seat</th>
+                                            <td>{{ fastTicket.seatRow + '' + fastTicket.seatColumn + ', ' + fastTicket.seatClass + ' class' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Cost</th>
+                                            <td>{{ fastTicket.returnYear }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th></th>
+                                            <td>
+                                                <form>
+                                                    <div class="form-row">
+                                                        <div class="col">
+                                                            <button type="button" (click)="reserve(fastTicket.ticketId)" class="btn btn-info">Reserve</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-3" ></div>
+      </div>
+    </div>
+  </body>
+

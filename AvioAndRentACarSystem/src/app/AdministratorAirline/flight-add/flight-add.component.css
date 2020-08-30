@@ -14,7 +14,11 @@
     }
 
     .margin-between-elem {
-        margin-top: 15px;
+        margin-top: 12px;
+    }
+
+    .margin-between-elem2 {
+      margin-top: 5px;
     }
 
     th {

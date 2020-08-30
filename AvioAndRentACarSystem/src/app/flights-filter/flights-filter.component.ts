@@ -32,25 +32,33 @@ export class FlightsFilterComponent implements OnInit {
                       if(ret == "all") {
                         this.flightService.search(this.reservationService.searchData).subscribe(ret => {
                           this.flights = ret as Array<Flight>;
+                          this.flightsAll = ret as Array<Flight>;
                         })
                       }
                       else {
                         let airlineId = +ret;
                         this.flightService.getAirlinesFlights(airlineId).subscribe(ret => {
                           this.flights = ret as Array<Flight>; 
+                          this.flightsAll = ret as Array<Flight>;
                         })
                       }
                     })
   }
 
   fetchFilterData(filterData: FilterData) {
-    let flightsAllCloned: Array<Flight> = cloneDeep(this.flightsAll);
+    let flightsAllCloned: Array<Flight> = [];
+    for(let flight of this.flightsAll) {
+      flightsAllCloned.push(flight);
+    }
+    
     var i = flightsAllCloned.length;
     while (i--) {
       let flight = flightsAllCloned[i];
-      if(!this.IsFlightAirlineContainedInSelected(filterData.selectedAirlinesIds, flight.airlineId)) {
-        flightsAllCloned.splice(i, 1);
-        continue;
+      if(filterData.selectedAirlinesIds != undefined){
+        if(!this.IsFlightAirlineContainedInSelected(filterData.selectedAirlinesIds, flight.airlineId)) {
+          flightsAllCloned.splice(i, 1);
+          continue;
+        }
       }
       
       if(filterData.minPrice > flight.cost || filterData.maxPrice < flight.cost){
@@ -64,6 +72,9 @@ export class FlightsFilterComponent implements OnInit {
         continue;
       }
       
+      if(!filterData.directCheckbox && !filterData.oneCheckbox && !filterData.twoPlusCheckbox)
+        continue;
+
       if(!filterData.directCheckbox) {
         if(flight.stopsLocations.length == 0){
           flightsAllCloned.splice(i, 1);
@@ -90,12 +101,13 @@ export class FlightsFilterComponent implements OnInit {
   }
 
   private IsFlightAirlineContainedInSelected(selectedAirlinesIds: string[], flightsAirlineId: number) : boolean { 
-    selectedAirlinesIds.forEach(function (value) {
-      if(+value == flightsAirlineId){
+    if(selectedAirlinesIds.length == 0)
+      return true;
+    for (let i = 0; i < selectedAirlinesIds.length; i++) {
+      let id: number = +selectedAirlinesIds[i];
+      if(id == flightsAirlineId){
         return true;
       }
-    });
-
-    return false;
+    }
   }
 }

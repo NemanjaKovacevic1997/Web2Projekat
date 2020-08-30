@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Flight } from 'src/app/flight/flightClass';
+import { Component, OnInit, Input } from '@angular/core';
+import { Flight } from 'src/app/AirlineModel/flight';
 
 @Component({
   selector: 'flights-admin',
@@ -7,16 +7,22 @@ import { Flight } from 'src/app/flight/flightClass';
   styleUrls: ['./flights-admin.component.css']
 })
 export class FlightsAdminComponent implements OnInit {
-  f1 : Flight = new Flight(3, 15, 6, 24, 'Belgrade', 'Budapest', 1, 'JAT', 100);
-  f2 : Flight = new Flight(4, 15, 7, 24, 'Nis', 'Budapest', 2, 'TA', 200);
-  f3 : Flight = new Flight(2, 15, 5, 24, 'Zagreb', 'Sarajevo', 1, 'AT', 400);
-
-  flights = [];
+  @Input() flights: Array<Flight>;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.flights = [this.f1, this.f2, this.f3];
+    for (let i = 0; i < this.flights.length; i++) {
+      this.flights[i].takeoffTime = this.convertDate(this.flights[i].takeoffTime);
+      this.flights[i].landingTime = this.convertDate(this.flights[i].landingTime);
+    }
+  }
+
+  private convertDate(date: string): string {
+    let byT: string[] = date.split("T");
+    let fullDate: string[] = byT[0].split('-');
+    let fullTime: string[] = byT[1].split(':');
+    return fullDate[2] + "." + fullDate[1] + "." + fullDate[0] + "  " + fullTime[0] + ":" + fullTime[1];
   }
 
 }

@@ -1,6 +1,7 @@
 import { PriceList } from './priceList';
 import { Airport } from './airport';
 import { Address } from './address';
+import { AirlineAirport } from './airlineAirport';
 
 export class Airline
 {
@@ -10,7 +11,7 @@ export class Airline
     promotionalDescription: string;
     pricelist: PriceList;
     averageRating: number;
-    businessDestinations: Array<Airport>
+    businessDestinations: Array<AirlineAirport>;
 
     constructor(name: string, address: Address, promotionalDescription: string, priceList: PriceList)
     {
@@ -18,6 +19,6 @@ export class Airline
         this.address = address;
         this.promotionalDescription = promotionalDescription;
         this.pricelist = priceList;
-        this.businessDestinations = new Array<Airport>();
+        this.businessDestinations = new Array<AirlineAirport>();
     }
 }

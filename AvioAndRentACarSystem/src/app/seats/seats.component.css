@@ -1,0 +1,19 @@
+
+.myBody{
+    background-image: url("/assets/images/background19.jpg");
+    background-repeat: 'no-repeat';
+    background-position: top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+    overflow: auto;
+}
+
+.backNextTopMargin {
+    margin-top: 530px;
+}
+
+.topMargin {
+    margin-top: 15px;
+}

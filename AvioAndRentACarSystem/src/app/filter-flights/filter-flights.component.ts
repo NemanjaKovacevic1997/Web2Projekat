@@ -17,7 +17,7 @@ export class FilterFlightsComponent implements OnInit {
     {id: 1, name: 'Turkish Airlines'},
     {id: 2, name: 'Qatar Airways'}
   ];
-  
+  ;
   selectedAirlinesIds: string[];
 
   
@@ -59,17 +59,12 @@ export class FilterFlightsComponent implements OnInit {
   };
   
   constructor(private airlineService: AirlineService) {
-   }
+  }
 
   ngOnInit(): void {
     this.directCheckbox = false;
     this.oneCheckbox = false;
     this.twoPlusCheckbox = false;
-
-    /*this.airlines = [];
-    this.airlineService.airlines.forEach(function(value) {
-      this.airlines.push({id: value.id, name: value.name});
-    });*/
   }
 
   directCheckbox: boolean;
@@ -90,24 +85,18 @@ export class FilterFlightsComponent implements OnInit {
     this.change.emit(filterData);
   }
 
-  directCheckboxChange(value) {
-    if(value == 'on')
-      this.directCheckbox = true;
-    else
-      this.directCheckbox = false;
+  directCheckboxChange(event, value: boolean) {
+    event.stopPropagation();
+    this.directCheckbox = value;
   }
 
-  oneCheckboxChange(value) {
-    if(value == 'on')
-      this.oneCheckbox = true;
-    else
-      this.oneCheckbox = false;
+  oneCheckboxChange(event, value: boolean) {
+    event.stopPropagation();
+    this.oneCheckbox = value;
   }
 
-  twoPlusCheckboxChange(value) {
-    if(value == 'on')
-      this.twoPlusCheckbox = true;
-    else
-      this.twoPlusCheckbox = false;
+  twoPlusCheckboxChange(event, value: boolean) {
+    event.stopPropagation();
+    this.twoPlusCheckbox = value;
   }
 }

@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
-  <td><i class="fa fa-plane"></i></td>
-  <td>{{startTimeHours}} : {{startTimeMinutes}} - {{landTimeHours}} : {{landTimeMinutes}}</td>
-  <td>{{startDest}} - {{landDest}}</td>
-  <td>{{stops}} stop</td>
-  <td>{{flightLengthHours}}h {{flightLenghtMinutes}} min</td>
-  <td>{{airline}}</td>
-  <td>{{cost | currency:'EUR':'symbol'}}</td>
-  <td>
-    <button type="button" class="btn btn-primary" routerLink="/admin/flight-details">Modify</button>
-  </td>
+<td><i class="fa fa-plane"></i></td>
+<td>{{takeoffTime}} - {{landingTime}}</td>
+<td>{{from.address.city + ", " + from.address.country}} - {{to.address.city + ", " + to.address.country}}</td>
+<td>{{stopsLocations.length}} stop/s</td>
+<td>{{duration}} min</td>
+<td>{{airline.name}}</td>
+<td>{{cost | currency:'EUR':'symbol'}}</td>
+<td *ngIf="this.loginService.userRole == UserRole.AdminAirlines">
+  <button type="button" class="btn btn-primary">Modify</button>
+</td>
 

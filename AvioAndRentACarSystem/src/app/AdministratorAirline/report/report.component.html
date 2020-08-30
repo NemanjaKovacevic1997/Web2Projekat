@@ -10,19 +10,20 @@
             <form class="margins">
                 <div class="form-row">
                     <div class="col">
-                        <button class="btn btn-info">Daily</button>
+                        <button class="btn btn-info" (click)="dailyButtonClick()">Daily</button>
                     </div>
                     <div class="col">
-                        <button class="btn btn-info">Weekly</button>
+                        <button class="btn btn-info" (click)="weeklyButtonClick()">Weekly</button>
                     </div>
                     <div class="col">
-                        <button class="btn btn-info">Monthly</button>
+                        <button class="btn btn-info" (click)="monthlyButtonClick()">Monthly</button>
                     </div>
                 </div>
             </form>
-            <chart-cards [tickets]='tickets' class="margins"></chart-cards>
-            <chart-earnings [earnings]='earnings' class="margins"></chart-earnings>
-
+            <div *ngIf="this.isLoaded">
+                <chart-cards [tickets]='tickets' class="margins"></chart-cards>
+                <chart-earnings [earnings]='earnings' class="margins"></chart-earnings>
+            </div>
             <label class="margins">Full {{ interval }} earnings : </label>
             <label class="earnings">{{ fullEarnings | currency:'EUR':'symbol'}}</label>
         </div>

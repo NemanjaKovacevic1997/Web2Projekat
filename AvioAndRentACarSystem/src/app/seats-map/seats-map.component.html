@@ -1,19 +1,14 @@
 <table>
     <tr *ngFor='let in of counter(rows); let i = index'>
         <td *ngFor='let in of counter(columns); let j = index'>
-            <button [id]="makeId(i,j)" (click)="clickedSeat(i,j)" type="button" class="btn" [class.btn-secondary]="sholudBeReseved(i, j) == true" [class.btn-warning]="sholudBeReseved(i, j) == false" >{{ j }}</button>
+            <button [id]="makeId(i,j)" (click)="clickedSeat(i,j)" type="button" class="btn" 
+            [class.btn-danger]="sholudBeReseved(i, j) == true" 
+            [class.btn-dark]="sholudBeReseved(i, j) == false && i <= firstClassEndRow" 
+            [class.btn-secondary]="sholudBeReseved(i, j) == false && i > firstClassEndRow && i <= buisinessClassEndRow" 
+            [class.btn-info]="sholudBeReseved(i, j) == false && i > buisinessClassEndRow" >{{ j }}</button>
         </td>
         <td>
-            <div>{{i}}</div>
-        </td>
-        <td *ngIf="i == 4">
-            ---First class
-        </td>
-        <td *ngIf="i == 8">
-            ---Buisness class
-        </td>
-        <td *ngIf="i == 12">
-            ---EconomyClass
+            <div class="rowNumber" style="color:white">{{i}}</div>
         </td>
     </tr>
 </table>

@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+        <div class="form-group">
+          <label for="TextInput1">> 10kg</label>
+          <input type="text" class="form-control" id="TextInput1" placeholder="> 10kg" [(ngModel)]="pricelist.luggageOver10kg" [name]="pricelist.luggageOver10kg">
+        </div>
+        <div class="form-group">
+            <label for="TextInput2">> 20kg</label>
+          <input type="text" class="form-control" id="TextInput2" placeholder="> 20kg" [(ngModel)]="pricelist.luggageOver20kg" [name]="pricelist.luggageOver20kg">
+        </div>
+        <div class="form-group">
+            <label for="TextInput3">> max dimensions</label>
+            <input type="text" class="form-control" id="TextInput3" placeholder="> max dimensions" [(ngModel)]="pricelist.handLuggageOverMaxDimensions" [name]="pricelist.handLuggageOverMaxDimensions">
+          </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="passBack()" type="submit" class="btn btn-outline-dark">Change</button>
+  </div>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravellifeChaser.Data;
 using TravellifeChaser.Helpers;
+using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork;
 using TravellifeChaser.Helpers.Repositories;
 using TravellifeChaser.Models;
 
@@ -16,26 +17,23 @@ namespace TravellifeChaser.Controllers
     [ApiController]
     public class FrendshipRequestsController : ControllerBase
     {
-        private FriendshipRequestRepository repository;
-        private IRepository<Friendship> frendshipRepository;
-        public FrendshipRequestsController(FriendshipRequestRepository repository, IRepository<Friendship> frendshipRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public FrendshipRequestsController(IUnitOfWork unitOfWork)
         {
-            this.repository = repository;
-            this.frendshipRepository = frendshipRepository;
+            _unitOfWork = unitOfWork;
         }
-
         // GET: api/FrendshipRequests
         [HttpGet]
         public ActionResult<IEnumerable<FriendshipRequest>> GetFrendshipRequests()
         {
-            return repository.GetAll().ToList();
+            return _unitOfWork.FriendshipRequestRepository.GetAll().ToList();
         }
 
         // GET: api/FrendshipRequests/5
         [HttpGet("{id}")]
         public ActionResult<FriendshipRequest> GetFrendshipRequest(int id)
         {
-            var frendshipRequest = repository.Get(id);
+            var frendshipRequest = _unitOfWork.FriendshipRequestRepository.Get(id);
 
             if (frendshipRequest == null)
                 return NotFound();
@@ -52,7 +50,8 @@ namespace TravellifeChaser.Controllers
 
             try
             {
-                repository.Update(frendshipRequest);
+                _unitOfWork.FriendshipRequestRepository.Update(frendshipRequest);
+                _unitOfWork.Save();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -69,12 +68,13 @@ namespace TravellifeChaser.Controllers
         [HttpPost]
         public ActionResult<FriendshipRequest> PostFrendshipRequest(FriendshipRequest frendshipRequest)
         {
-            if (repository.Any(x => x.FromId == frendshipRequest.FromId && x.ToId == frendshipRequest.ToId))
+            if (_unitOfWork.FriendshipRequestRepository.Any(x => x.FromId == frendshipRequest.FromId && x.ToId == frendshipRequest.ToId))
                 return Conflict();
 
             try
             {
-                repository.Add(frendshipRequest);
+                _unitOfWork.FriendshipRequestRepository.Add(frendshipRequest);
+                _unitOfWork.Save();
             }
             catch (DbUpdateException)
             {
@@ -84,18 +84,19 @@ namespace TravellifeChaser.Controllers
                     throw;
             }
 
-            return repository.Get(frendshipRequest.Id);
+            return _unitOfWork.FriendshipRequestRepository.Get(frendshipRequest.Id);
         }
 
         // DELETE: api/FrendshipRequests/5
         [HttpDelete("{id}")]
         public ActionResult<FriendshipRequest> DeleteFrendshipRequest(int id)
         {
-            var frendshipRequest = repository.Get(id);
+            var frendshipRequest = _unitOfWork.FriendshipRequestRepository.Get(id);
             if (frendshipRequest == null)
                 return NotFound();
 
-            repository.Remove(frendshipRequest);
+            _unitOfWork.FriendshipRequestRepository.Remove(frendshipRequest);
+            _unitOfWork.Save();
             return frendshipRequest;
         }
 
@@ -103,24 +104,26 @@ namespace TravellifeChaser.Controllers
         [HttpDelete("{fromId}/{toId}")]
         public ActionResult<FriendshipRequest> DeleteFrendshipRequestByIds(int fromId, int toId)
         {
-            var frendshipRequest = repository.GetByCondition(x => x.FromId == fromId && x.ToId == toId).FirstOrDefault();
+            var frendshipRequest = _unitOfWork.FriendshipRequestRepository.GetByCondition(x => x.FromId == fromId && x.ToId == toId).FirstOrDefault();
             if (frendshipRequest == null)
                 return NotFound();
 
-            repository.Remove(frendshipRequest.Id);
+            _unitOfWork.FriendshipRequestRepository.Remove(frendshipRequest.Id);
+            _unitOfWork.Save();
             return frendshipRequest;
         }
 
         [HttpGet("accept/{fromId}/{toId}")]
         public IActionResult AcceptFrendshipRequest(int fromId, int toId)
         {
-            var frendshipRequest = repository.GetByCondition(x => x.FromId == fromId && x.ToId == toId).FirstOrDefault();
+            var frendshipRequest = _unitOfWork.FriendshipRequestRepository.GetByCondition(x => x.FromId == fromId && x.ToId == toId).FirstOrDefault();
             if (frendshipRequest == null)
                 return NotFound();
 
             Friendship newFrendship = new Friendship() { User1Id = frendshipRequest.FromId, User2Id = frendshipRequest.ToId };
-            frendshipRepository.Add(newFrendship);
-            repository.Remove(frendshipRequest.Id);
+            _unitOfWork.FriendshipRepository.Add(newFrendship);
+            _unitOfWork.FriendshipRequestRepository.Remove(frendshipRequest.Id);
+            _unitOfWork.Save();
 
             return Ok();
         }
@@ -128,17 +131,18 @@ namespace TravellifeChaser.Controllers
         [HttpGet("refuse/{fromId}/{toId}")]
         public IActionResult RefuseFrendshipRequest(int fromId, int toId)
         {
-            var frendshipRequest = repository.GetByCondition(x => x.FromId == fromId && x.ToId == toId).FirstOrDefault();
+            var frendshipRequest = _unitOfWork.FriendshipRequestRepository.GetByCondition(x => x.FromId == fromId && x.ToId == toId).FirstOrDefault();
             if (frendshipRequest == null)
                 return NotFound();
 
-            repository.Remove(frendshipRequest.Id);
+            _unitOfWork.FriendshipRequestRepository.Remove(frendshipRequest.Id);
+            _unitOfWork.Save();
             return Ok();
         }
 
         private bool FrendshipRequestExists(int id)
         {
-            return repository.Any(e => e.Id == id);
+            return _unitOfWork.FriendshipRequestRepository.Any(e => e.Id == id);
         }
     }
 }

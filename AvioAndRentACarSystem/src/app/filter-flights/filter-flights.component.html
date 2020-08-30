@@ -13,15 +13,15 @@
     </div>
     <div class="form-row top-buffer justify-content-center">
       <div class="custom-control custom-switch custom-control-inline">
-        <input type="checkbox" class="custom-control-input" id="customSwitch1" #directCheckbox (change)="directCheckboxChange(directCheckbox.value)">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1" #directCheckbox (change)="directCheckboxChange($event, directCheckbox.checked)">
         <label class="custom-control-label" for="customSwitch1">Direct</label>
       </div>
       <div class="custom-control custom-switch custom-control-inline">
-        <input type="checkbox" class="custom-control-input" id="customSwitch2" #oneCheckbox (change)="oneCheckboxChange(oneCheckbox.value)">
+        <input type="checkbox" class="custom-control-input" id="customSwitch2" #oneCheckbox (change)="oneCheckboxChange($event, oneCheckbox.checked)">
         <label class="custom-control-label" for="customSwitch2">1</label>
       </div>
       <div class="custom-control custom-switch custom-control-inline">
-        <input type="checkbox" class="custom-control-input"  id="customSwitch3" #twoPlusCheckbox (change)="twoPlusCheckboxChange(twoPlusCheckbox.value)">
+        <input type="checkbox" class="custom-control-input"  id="customSwitch3" #twoPlusCheckbox (change)="twoPlusCheckboxChange($event, twoPlusCheckbox.checked)">
         <label class="custom-control-label" for="customSwitch3">2+</label>
       </div>
     </div>

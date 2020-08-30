@@ -28,6 +28,7 @@ export class FlightComponent implements OnInit {
   constructor(public loginService: LoginService) { }
 
   ngOnInit(): void {
+    
   }
 
 }

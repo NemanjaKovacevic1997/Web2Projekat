@@ -46,7 +46,6 @@ import { SeatsMapComponent } from './seats-map/seats-map.component';
 import { SeatsComponent } from './seats/seats.component';
 import { InviteComponent } from './invite/invite.component';
 import { PassengersComponent } from './passengers/passengers.component';
-import { PassengerComponent } from './passenger/passenger.component';
 import { BackNextComponent } from './back-next/back-next.component';
 import { AirlineProfileComponent } from './AdministratorAirline/airline-profile/airline-profile.component';
 import { AirlineFlightsComponent } from './AdministratorAirline/airline-flights/airline-flights.component';
@@ -71,6 +70,13 @@ import { FriendshipService } from './Services/Friendship/friendship.service';
 import { AirlineService } from './Services/Airline/airline.service';
 import { AirlineComponent } from './airline/airline.component';
 import { FlightService } from './Services/Flights/flight.service';
+import { InvitationsComponent } from './invitations/invitations.component';
+import { HistoryComponent } from './history/history.component';
+import { NameModalComponent } from './AdministratorAirline/AirlineProfileModals/name-modal/name-modal.component';
+import { PromotionalDescriptionModalComponent } from './AdministratorAirline/AirlineProfileModals/promotional-description-modal/promotional-description-modal.component';
+import { AddressModalComponent } from './AdministratorAirline/AirlineProfileModals/address-modal/address-modal.component';
+import { PricelistModalComponent } from './AdministratorAirline/AirlineProfileModals/pricelist-modal/pricelist-modal.component';
+import { FastTicketsComponent } from './fast-tickets/fast-tickets.component';
 
 
 @NgModule({
@@ -108,7 +114,6 @@ import { FlightService } from './Services/Flights/flight.service';
     SeatsComponent,
     InviteComponent,
     PassengersComponent,
-    PassengerComponent,
     BackNextComponent,
     AirlineProfileComponent,
     AirlineFlightsComponent,
@@ -122,7 +127,14 @@ import { FlightService } from './Services/Flights/flight.service';
     ChartCardsComponent,
     ChartEarningsComponent,
     UsernameModalComponent,
-    AirlineComponent
+    AirlineComponent,
+    InvitationsComponent,
+    HistoryComponent,
+    NameModalComponent,
+    PromotionalDescriptionModalComponent,
+    AddressModalComponent,
+    PricelistModalComponent,
+    FastTicketsComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -148,6 +160,7 @@ import { FlightService } from './Services/Flights/flight.service';
       { path: 'airlines', component: AirlinesSearchComponent },
       { path: 'airline/:id', component: AirlineComponent },
       { path: ':airlineId/flights', component: FlightsFilterComponent },
+      { path: ':flightId/seats', component: SeatsComponent},
       { path: 'rent-a-car-search', component: RentACarSearchComponent},
       { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent},
 
@@ -156,18 +169,20 @@ import { FlightService } from './Services/Flights/flight.service';
       { path: 'sign-up', component: SignUpComponent},
 
       //for REGISTERED users
+      { path: 'passengers', component: PassengersComponent},
+      { path: 'invite', component: InviteComponent},
+      { path: 'invitations', component: InvitationsComponent},
+      { path: ':airlineId/fastTickets', component: FastTicketsComponent},
+      { path: ':username/history', component: HistoryComponent},
+      { path: ':username/invitations', component: InvitationsComponent},
       { path: ':username/friends', component: FriendsComponent},
       { path: ':username', component: ProfileShowComponent},
       
-      //for now, change later (possible section change)
-      { path: 'seats', component: SeatsComponent},
-      { path: 'invite', component: InviteComponent},
-
       //for ADMIN AIRLINES (add username prefix later)
-      { path: 'admin/airlineProfile', component: AirlineProfileComponent},
-      { path: 'admin/airline-flights', component: AirlineFlightsComponent},
-      { path: 'admin/flight-details', component: FilghtDetailsComponent},
-      { path: 'admin/report', component: ReportComponent}
+      { path: 'adminAirlines/airlineProfile', component: AirlineProfileComponent},
+      { path: 'adminAirlines/airline-flights', component: AirlineFlightsComponent},
+      { path: 'adminAirlines/flight-details', component: FilghtDetailsComponent},
+      { path: 'adminAirlines/report', component: ReportComponent}
     ])
   ],
   providers: [

@@ -1,0 +1,63 @@
+<body class="myBody text-center">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" align="center">History</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let history of historys; let i = index;">
+                        <td scope="row">
+                            <div>
+                                <table class="table table-bordered table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th colspan="2">{{ i + 1 }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>From</th>
+                                            <td>{{ history.from }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>To</th>
+                                            <td>{{ history.to }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Depart</th>
+                                            <td> {{ history.departHours + 'h ' + history.departMinutes + 'min  ' + history.departDay + '.' + history.departMonth + '.' + history.departYear }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Seat</th>
+                                            <td>{{ history.seatRow + '' + history.seatColumn + ', ' + history.seatClass + ' class'}}</td>
+                                        </tr>
+                                        <tr *ngIf="isAfter3HoursBeforeFlight(history.departDay, history.departMonth, history.departYear, history.departHours, history.departMinutes)">
+                                            <th></th>
+                                            <td>
+                                                <form>
+                                                    <div class="form-row">
+                                                        <div class="col">
+                                                            <button type="button" (click)="drop(history.ticketId)" class="btn btn-info">Drop</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-3" ></div>
+      </div>
+    </div>
+  </body>

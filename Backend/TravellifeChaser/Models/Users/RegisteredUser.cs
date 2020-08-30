@@ -10,6 +10,7 @@ namespace TravellifeChaser.Models
         public int Id { get; set; }
         public User User { get; set; }
 
+        public int BounusPoints { get; set; }
         public ICollection<FriendshipRequest> FrendshipRequestsSent { get; set; }  // N : 1 User - FrendshipRequest
         public ICollection<FriendshipRequest> FrendshipRequestsRecieved { get; set; } // N : 1 User - FrendshipRequest
 

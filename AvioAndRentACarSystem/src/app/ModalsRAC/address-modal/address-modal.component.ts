@@ -9,7 +9,7 @@ import { Address } from 'src/app/AirlineModel/address';
 })
 export class AddressModalComponent implements OnInit {
 
-  @Input() public address;
+  @Input() public address: any;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   constructor(

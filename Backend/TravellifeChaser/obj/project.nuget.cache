@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "asfgy6biswBWZ0Vp7CsBmy2Vhu+GzXouwIvjPTpuy/MMaCaVKbCvfGDqLCcuI/mRx4m7YiQBGo33dfjCqKteMQ==",
+  "dgSpecHash": "35wiIcO1uea11y8KGHG5zJvbGVxUTiL4yoXdjUhr8LdYOwH9Wg+PqtyQkHh0GlHV6PIywByfDFQPv2G5DesrJQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lana\\Desktop\\Nemanja\\Web2_Projekat\\Backend\\TravellifeChaser\\TravellifeChaser.csproj",
+  "projectFilePath": "C:\\Users\\Lana\\Desktop\\Projekat-kopija\\Backend\\TravellifeChaser\\TravellifeChaser.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lana\\.nuget\\packages\\mailkit\\2.6.0\\mailkit.2.6.0.nupkg.sha512",
     "C:\\Users\\Lana\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.0.0\\microsoft.aspnetcore.authentication.jwtbearer.3.0.0.nupkg.sha512",

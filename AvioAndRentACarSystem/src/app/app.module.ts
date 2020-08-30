@@ -79,7 +79,6 @@ import { PricelistModalComponent } from './AdministratorAirline/AirlineProfileMo
 import { FastTicketsComponent } from './fast-tickets/fast-tickets.component';
 
 import {MatTabsModule} from '@angular/material/tabs';
-import { AddressModalComponent } from './ModalsRAC/address-modal/address-modal.component';
 import { BranchesModalComponent } from './ModalsRAC/branches-modal/branches-modal.component';
 import { PriceListModalComponent } from './ModalsRAC/price-list-modal/price-list-modal.component';
 
@@ -138,7 +137,7 @@ import { PriceListModalComponent } from './ModalsRAC/price-list-modal/price-list
     PromotionalDescriptionModalComponent,
     AddressModalComponent,
     PricelistModalComponent,
-    FastTicketsComponent
+    FastTicketsComponent,
     AddressModalComponent,
     BranchesModalComponent,
     PriceListModalComponent

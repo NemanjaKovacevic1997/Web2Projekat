@@ -180,6 +180,30 @@ namespace TravellifeChaser.Migrations
                             Country = "Russia",
                             Latitude = 55.972777780000001,
                             Longitude = 37.414722220000002
+                        },
+                        new
+                        {
+                            Id = 20,
+                            City = "Harmondsworth",
+                            Country = "England",
+                            Latitude = 51.486499999999999,
+                            Longitude = -0.47960000000000003
+                        },
+                        new
+                        {
+                            Id = 21,
+                            City = "Abu Dhabi",
+                            Country = "UAE",
+                            Latitude = 24.466667000000001,
+                            Longitude = 54.366669000000002
+                        },
+                        new
+                        {
+                            Id = 22,
+                            City = "Dubai",
+                            Country = "UAE",
+                            Latitude = 25.276986999999998,
+                            Longitude = 55.296249000000003
                         });
                 });
 
@@ -261,6 +285,42 @@ namespace TravellifeChaser.Migrations
                             Name = "Qatar Airways",
                             PricelistId = 2,
                             PromotionalDescription = "Going Places Together"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddressId = 22,
+                            AverageRating = 9.1199999999999992,
+                            Name = "Emirates",
+                            PricelistId = 3,
+                            PromotionalDescription = "Enjoy flight"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddressId = 21,
+                            AverageRating = 8.7300000000000004,
+                            Name = "Etihad Airways",
+                            PricelistId = 4,
+                            PromotionalDescription = "With you"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AddressId = 20,
+                            AverageRating = 9.1199999999999992,
+                            Name = "British Airways",
+                            PricelistId = 5,
+                            PromotionalDescription = "With you"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            AddressId = 4,
+                            AverageRating = 8.0399999999999991,
+                            Name = "Air Serbia",
+                            PricelistId = 6,
+                            PromotionalDescription = "Fly with us"
                         });
                 });
 
@@ -473,11 +533,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 300.0,
-                            Duration = 330.0,
+                            Duration = 270.0,
                             FromId = 1,
-                            LandingTime = new DateTime(2020, 6, 2, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 7, 17, 30, 0, 0, DateTimeKind.Unspecified),
                             Length = 2506,
-                            TakeoffTime = new DateTime(2020, 6, 2, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 7, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             ToId = 2
                         },
                         new
@@ -486,11 +546,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 2,
                             AverageRating = 0.0,
                             Cost = 250.0,
-                            Duration = 30.0,
+                            Duration = 100.0,
                             FromId = 1,
-                            LandingTime = new DateTime(2020, 6, 3, 3, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 7, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 1003,
-                            TakeoffTime = new DateTime(2020, 6, 3, 3, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 7, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 3
                         },
                         new
@@ -499,11 +559,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 100.0,
-                            Duration = 465.0,
+                            Duration = 165.0,
                             FromId = 2,
-                            LandingTime = new DateTime(2020, 6, 6, 4, 0, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 8, 15, 0, 0, 0, DateTimeKind.Unspecified),
                             Length = 400,
-                            TakeoffTime = new DateTime(2020, 6, 5, 20, 15, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 8, 12, 15, 0, 0, DateTimeKind.Unspecified),
                             ToId = 3
                         },
                         new
@@ -512,11 +572,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 200.0,
-                            Duration = 210.0,
+                            Duration = 330.0,
                             FromId = 4,
-                            LandingTime = new DateTime(2020, 8, 25, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 8, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             Length = 500,
-                            TakeoffTime = new DateTime(2020, 8, 25, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 8, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             ToId = 5
                         },
                         new
@@ -525,11 +585,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 300.0,
-                            Duration = 330.0,
+                            Duration = 270.0,
                             FromId = 5,
-                            LandingTime = new DateTime(2020, 8, 26, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 9, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             Length = 250,
-                            TakeoffTime = new DateTime(2020, 8, 26, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 9, 15, 0, 0, 0, DateTimeKind.Unspecified),
                             ToId = 4
                         },
                         new
@@ -538,11 +598,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 300.0,
-                            Duration = 330.0,
+                            Duration = 90.0,
                             FromId = 7,
-                            LandingTime = new DateTime(2020, 8, 26, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 10, 19, 30, 0, 0, DateTimeKind.Unspecified),
                             Length = 567,
-                            TakeoffTime = new DateTime(2020, 8, 26, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 10, 18, 0, 0, 0, DateTimeKind.Unspecified),
                             ToId = 9
                         },
                         new
@@ -551,11 +611,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 300.0,
-                            Duration = 330.0,
+                            Duration = 90.0,
                             FromId = 3,
-                            LandingTime = new DateTime(2020, 8, 27, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 11, 8, 30, 0, 0, DateTimeKind.Unspecified),
                             Length = 567,
-                            TakeoffTime = new DateTime(2020, 8, 27, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 11, 7, 0, 0, 0, DateTimeKind.Unspecified),
                             ToId = 7
                         },
                         new
@@ -564,11 +624,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 301.0,
-                            Duration = 330.0,
+                            Duration = 90.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2020, 8, 31, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Length = 567,
-                            TakeoffTime = new DateTime(2020, 8, 31, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -577,11 +637,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 2,
                             AverageRating = 0.0,
                             Cost = 250.0,
-                            Duration = 330.0,
+                            Duration = 90.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2020, 8, 31, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Length = 300,
-                            TakeoffTime = new DateTime(2020, 8, 31, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -590,11 +650,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 450.0,
-                            Duration = 330.0,
+                            Duration = 90.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2020, 8, 31, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Length = 600,
-                            TakeoffTime = new DateTime(2020, 8, 31, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -603,11 +663,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 2,
                             AverageRating = 0.0,
                             Cost = 100.0,
-                            Duration = 330.0,
+                            Duration = 90.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2020, 8, 31, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified),
                             Length = 1000,
-                            TakeoffTime = new DateTime(2020, 8, 31, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -616,11 +676,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 305.0,
-                            Duration = 330.0,
+                            Duration = 140.0,
                             FromId = 5,
-                            LandingTime = new DateTime(2020, 6, 27, 20, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2020, 9, 12, 11, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 555,
-                            TakeoffTime = new DateTime(2020, 6, 27, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2020, 9, 12, 9, 0, 0, 0, DateTimeKind.Unspecified),
                             ToId = 9
                         });
                 });
@@ -764,6 +824,34 @@ namespace TravellifeChaser.Migrations
                         new
                         {
                             Id = 2,
+                            HandLuggageOverMaxDimensions = 4.0,
+                            LuggageOver10kg = 6.0,
+                            LuggageOver20kg = 12.0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            HandLuggageOverMaxDimensions = 4.0,
+                            LuggageOver10kg = 6.0,
+                            LuggageOver20kg = 12.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            HandLuggageOverMaxDimensions = 4.0,
+                            LuggageOver10kg = 6.0,
+                            LuggageOver20kg = 12.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            HandLuggageOverMaxDimensions = 4.0,
+                            LuggageOver10kg = 6.0,
+                            LuggageOver20kg = 12.0
+                        },
+                        new
+                        {
+                            Id = 6,
                             HandLuggageOverMaxDimensions = 4.0,
                             LuggageOver10kg = 6.0,
                             LuggageOver20kg = 12.0

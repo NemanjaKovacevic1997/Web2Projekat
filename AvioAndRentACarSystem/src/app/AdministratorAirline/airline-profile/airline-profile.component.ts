@@ -23,6 +23,8 @@ declare var require: any;
 export class AirlineProfileComponent implements OnInit {
   airline: Airline;
   currentAirport: Airport;
+  businessDestinations: Array<AirlineAirport>;
+  isLoaded: boolean = false;
 
   constructor(private modalService: NgbModal,
     private airlineService: AirlineService,
@@ -33,6 +35,13 @@ export class AirlineProfileComponent implements OnInit {
     this.currentAirport = new Airport('', new Address(undefined, '', ''));
     this.airlineService.getAdminAirlinesAirline(this.loginService.user.id).subscribe(ret => {
       this.airline = ret as Airline;
+    
+      this.airlineService.getBusinessDestinations(this.airline.id).subscribe(ret => {
+        this.businessDestinations = ret as Array<AirlineAirport>;
+        console.log(this.businessDestinations);
+      });
+
+      this.isLoaded = true;
     });
   }
 
@@ -42,19 +51,27 @@ export class AirlineProfileComponent implements OnInit {
       return;
     }
 
-    if(this.airline.businessDestinations == undefined)
-      this.airline.businessDestinations = [];
+    if(this.businessDestinations == undefined)
+      this.businessDestinations = [];
     let aa = new AirlineAirport();
     let airport = new Airport(this.currentAirport.name,
        new Address(undefined, this.currentAirport.address.city, this.currentAirport.address.country))
     aa.airport = airport;
-    this.airline.businessDestinations.push(aa);
+    this.businessDestinations.push(aa);
 
     this.currentAirport.name = '';
     this.currentAirport.address.city = '';
     this.currentAirport.address.country = '';
   }
 
+
+  saveChanges() {
+    if(confirm("Are you shure you want to save changes?"))
+      this.airlineService.update(this.airline.id, this.airline).subscribe(() => {
+        this.ngOnInit();
+        alert("Update success!");
+      });
+  }
 
   openNameModal() {
     const modalRef = this.modalService.open(NameModalComponent);

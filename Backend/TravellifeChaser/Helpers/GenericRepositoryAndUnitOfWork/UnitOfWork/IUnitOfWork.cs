@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.GenericAndConcreteRepositories.Repositories;
 using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.GenericAndConcreteRepositories.Repositories.RepositoriesInterfaces;
 
 namespace TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork
@@ -18,6 +19,8 @@ namespace TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork
         ITicketRepository TicketRepository { get; }
         IAdminAirlineRepository AdminAirlineRepository { get; }
         IAirportRepository AirportRepository { get; }
+        IAirlineAirportRepository AirlineAirportRepository { get; }
+
         int Save();
     }
 }

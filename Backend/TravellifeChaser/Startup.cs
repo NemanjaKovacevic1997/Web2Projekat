@@ -48,18 +48,18 @@ namespace TravellifeChaser
             );
 
  
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             /*services.AddScoped(typeof(RegisteredUserRepository));
             services.AddScoped(typeof(UserRepository));
             services.AddScoped(typeof(FriendshipRequestRepository));
             services.AddScoped(typeof(AirlineRepository));
             services.AddScoped(typeof(FlightRepository));*/
 
-            services.AddScoped<IRegisteredUserRepository, RegisteredUserRepository>();
+            /*services.AddScoped<IRegisteredUserRepository, RegisteredUserRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IFriendshipRequestRepository, FriendshipRequestRepository>();
             services.AddScoped<IAirlineRepository, AirlineRepository>();
-            services.AddScoped<IFlightRepository, FlightRepository>();
+            services.AddScoped<IFlightRepository, FlightRepository>();*/
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));

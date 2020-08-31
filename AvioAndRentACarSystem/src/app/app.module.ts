@@ -81,6 +81,11 @@ import { FastTicketsComponent } from './fast-tickets/fast-tickets.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { BranchesModalComponent } from './ModalsRAC/branches-modal/branches-modal.component';
 import { PriceListModalComponent } from './ModalsRAC/price-list-modal/price-list-modal.component';
+import { AdminAirlineAuthGuardService } from './Services/AuthGuards/adminAirline/admin-airline-auth-guard.service';
+import { RegisteredUserAuthGuardService } from './Services/AuthGuards/registeredUser/registered-user-auth-guard.service';
+import { UnregisteredUserAuthGuardService } from './Services/AuthGuards/unregisteredUser/unregistered-user-auth-guard.service';
+import { UnregisteredOrRegisteredUserAuthGuardServiceService } from './Services/AuthGuards/unregisteredOrRegistered/unregistered-or-registered-user-auth-guard-service.service';
+import { NotUnregisteredUserAuthGuardService } from './Services/AuthGuards/notUnregistered/not-unregistered-user-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -161,35 +166,37 @@ import { PriceListModalComponent } from './ModalsRAC/price-list-modal/price-list
     MatTabsModule,
     RouterModule.forRoot([
 
-      //for ALL users
-      { path: '', component: HomeComponent },
-      { path: 'home', component: HomeComponent },
-      { path: 'airlines', component: AirlinesSearchComponent },
-      { path: 'airline/:id', component: AirlineComponent },
-      { path: ':airlineId/flights', component: FlightsFilterComponent },
-      { path: ':flightId/seats', component: SeatsComponent},
-      { path: 'rent-a-car-search', component: RentACarSearchComponent},
-      { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent},
+      //for UNREGISTERED and REGISTERED users
+      { path: '', component: HomeComponent},
+      { path: 'home', component: HomeComponent},
+      { path: 'airlines', component: AirlinesSearchComponent, canActivate: [UnregisteredOrRegisteredUserAuthGuardServiceService]},
+      { path: 'airline/:id', component: AirlineComponent, canActivate: [UnregisteredOrRegisteredUserAuthGuardServiceService]},
+      { path: ':airlineId/flights', component: FlightsFilterComponent, canActivate: [UnregisteredOrRegisteredUserAuthGuardServiceService] },
+      { path: ':flightId/seats', component: SeatsComponent, canActivate: [UnregisteredOrRegisteredUserAuthGuardServiceService]},
+      { path: 'rent-a-car-search', component: RentACarSearchComponent, canActivate: [UnregisteredOrRegisteredUserAuthGuardServiceService]},
+      { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent, canActivate: [UnregisteredOrRegisteredUserAuthGuardServiceService]},
 
       //for UNREGISTERED users
-      { path: 'sign-in', component: SignInComponent},
-      { path: 'sign-up', component: SignUpComponent},
+      { path: 'sign-in', component: SignInComponent, canActivate: [UnregisteredUserAuthGuardService]},
+      { path: 'sign-up', component: SignUpComponent, canActivate: [UnregisteredUserAuthGuardService]},
 
       //for REGISTERED users
-      { path: 'passengers', component: PassengersComponent},
-      { path: 'invite', component: InviteComponent},
-      { path: 'invitations', component: InvitationsComponent},
-      { path: ':airlineId/fastTickets', component: FastTicketsComponent},
-      { path: ':username/history', component: HistoryComponent},
-      { path: ':username/invitations', component: InvitationsComponent},
-      { path: ':username/friends', component: FriendsComponent},
-      { path: ':username', component: ProfileShowComponent},
+      { path: 'passengers', component: PassengersComponent, canActivate: [RegisteredUserAuthGuardService]},
+      { path: 'invite', component: InviteComponent, canActivate: [RegisteredUserAuthGuardService]},
+      { path: 'invitations', component: InvitationsComponent, canActivate: [RegisteredUserAuthGuardService]},
+      { path: ':airlineId/fastTickets', component: FastTicketsComponent, canActivate: [RegisteredUserAuthGuardService]},
+      { path: ':username/history', component: HistoryComponent, canActivate: [RegisteredUserAuthGuardService]},
+      { path: ':username/invitations', component: InvitationsComponent, canActivate: [RegisteredUserAuthGuardService]},
+      { path: ':username/friends', component: FriendsComponent, canActivate: [RegisteredUserAuthGuardService]},
+      
       
       //for ADMIN AIRLINES (add username prefix later)
-      { path: 'adminAirlines/airlineProfile', component: AirlineProfileComponent},
-      { path: 'adminAirlines/airline-flights', component: AirlineFlightsComponent},
-      { path: 'adminAirlines/flight-details', component: FilghtDetailsComponent},
-      { path: 'adminAirlines/report', component: ReportComponent}
+      { path: 'adminAirlines/airlineProfile', component: AirlineProfileComponent, canActivate: [AdminAirlineAuthGuardService]},
+      { path: 'adminAirlines/airline-flights', component: AirlineFlightsComponent, canActivate: [AdminAirlineAuthGuardService]},
+      { path: 'adminAirlines/flight-details', component: FilghtDetailsComponent, canActivate: [AdminAirlineAuthGuardService]},
+      { path: 'adminAirlines/report', component: ReportComponent, canActivate: [AdminAirlineAuthGuardService]},
+
+      { path: ':username', component: ProfileShowComponent, canActivate: [NotUnregisteredUserAuthGuardService]}
     ])
   ],
   providers: [
@@ -201,7 +208,12 @@ import { PriceListModalComponent } from './ModalsRAC/price-list-modal/price-list
     FriendshipService,
     AirlineService,
     FlightService,
-    HttpInterceptProviders
+    HttpInterceptProviders,
+    AdminAirlineAuthGuardService,
+    RegisteredUserAuthGuardService,
+    UnregisteredUserAuthGuardService,
+    UnregisteredOrRegisteredUserAuthGuardServiceService,
+    NotUnregisteredUserAuthGuardService
   ],
   bootstrap: [AppComponent]
 })

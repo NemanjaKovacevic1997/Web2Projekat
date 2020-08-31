@@ -16,9 +16,50 @@ export class AirlinesComponent implements OnInit {
   ngOnInit(): void {
     this.airlineService.getAll().subscribe(res => {
       this.airlines = res as Airline[];
-      //this.airlineService.airlines = [];
-      //this.airlineService.airlines = res as Airline[];
     })
+  }
+
+  sortByName() {
+    this.airlines.sort(this.compareName);
+  }
+
+  sortByAddress() {
+    this.airlines.sort(this.compareAddress);
+  }
+
+  sortByRating() {
+    this.airlines.sort(this.compareRating);
+  }
+
+  private compareName( a: Airline, b: Airline ) {
+    if ( a.name < b.name ){
+      return -1;
+    }
+    if ( a.name > b.name ){
+      return 1;
+    }
+    return 0;
+  }
+
+
+  private compareAddress( a: Airline, b: Airline ) {
+    if ( a.address.city < b.address.city ){
+      return -1;
+    }
+    if ( a.address.city > b.address.city ){
+      return 1;
+    }
+    return 0;
+  }
+  
+  private compareRating( a: Airline, b: Airline ) {
+    if ( a.averageRating > b.averageRating ){
+      return -1;
+    }
+    if ( a.averageRating < b.averageRating ){
+      return 1;
+    }
+    return 0;
   }
 
   airlineClick(id: number) {

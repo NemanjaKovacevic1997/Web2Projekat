@@ -3,7 +3,7 @@
       <div class="row top-buffer">
         <div class="col-3"></div>
         <div class="col-6">
-          <table class="table table-hover">
+          <table *ngIf="isLoaded" class="table table-hover">
             <tbody>
               <tr (click)="openNameModal()">
                 <th>Company name:</th>
@@ -25,9 +25,11 @@
                 <td>
                   <div class="table-wrapper-scroll-y my-custom-scrollbar">
                     <table class="table">
-                      <tr *ngFor="let airlineAirport of airline.businessDestinations">
-                        <td>{{airlineAirport.airport.name + ' in ' + airlineAirport.airport.address.city + ', ' + airlineAirport.airport.address.country }}</td>
-                      </tr>
+                      <tbody>
+                        <tr *ngFor="let airlineAirport of businessDestinations">
+                          <td>{{airlineAirport.airport.name + ' in ' + airlineAirport.airport.address.city + ', ' + airlineAirport.airport.address.country }}</td>
+                        </tr>
+                      </tbody>
                     </table>
                   </div>
                 </td>
@@ -66,6 +68,9 @@
                     </tr>
                   </table>
                 </td>
+              </tr>
+              <tr>
+                <td colspan="2"> <button type="button" class="btn btn-info" (click)="saveChanges()">Save changes</button></td>
               </tr>
             </tbody>
           </table>

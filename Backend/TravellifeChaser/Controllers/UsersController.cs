@@ -64,6 +64,7 @@ namespace TravellifeChaser.Controllers
             userr.MobileNumber = user.MobileNumber;
             userr.Address.City = user.Address.City;
             userr.Address.Country = user.Address.Country;
+            userr.Password = user.Password;
 
             try
             {

@@ -31,24 +31,27 @@ namespace TravellifeChaser.Models
             Address addr17 = new Address() { Id = 17, City = "Brussel", Country = "Belgium", Latitude = 50.90138889, Longitude = 4.48444444 };
             Address addr18 = new Address() { Id = 18, City = "Amsterdam", Country = "Netherland", Latitude = 52.30805556, Longitude = 4.76416667 };
             Address addr19 = new Address() { Id = 19, City = "Moscow", Country = "Russia", Latitude = 55.97277778, Longitude = 37.41472222 };
-
-
-            User u1 = new User() { Id = 1, FirstName = "Nemanja", LastName = "Kovacevic", Username = "kovac123", Email = "kovacevicnemanja1997@gmail.com", Password = "kovac123", MobileNumber = "+381604520858", AddressId = addr1.Id, Role = UserRole.Registered };
+         
+            Address addr20 = new Address() { Id = 20, City = "Harmondsworth", Country = "England", Latitude = 51.4865, Longitude = -0.4796 };
+            Address addr21 = new Address() { Id = 21, City = "Abu Dhabi", Country = "UAE", Latitude = 24.466667, Longitude = 54.366669 };
+            Address addr22 = new Address() { Id = 22, City = "Dubai", Country = "UAE", Latitude = 25.276987, Longitude = 55.296249 };
+            
+            User u1 = new User() { Id = 1, FirstName = "Nemanja", LastName = "Kovacevic", Username = "nemanja123", Email = "kovacevicnemanja1997@gmail.com", Password = "nemanja123", MobileNumber = "+381604520858", AddressId = addr1.Id, Role = UserRole.Registered };
             RegisteredUser ru1 = new RegisteredUser() { Id = u1.Id, BounusPoints = 0 };
 
-            User u2 = new User() { Id = 2, FirstName = "Radovan", LastName = "Trudic", Username = "rasaBrt", Email = "radovantrudic@gmail.com", Password = "rasa123", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.Registered };
+            User u2 = new User() { Id = 2, FirstName = "Radovan", LastName = "Trudic", Username = "radovan123", Email = "kovacevicnemanja1997@gmail.com", Password = "radovan123", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.Registered };
             RegisteredUser ru2 = new RegisteredUser() { Id = u2.Id, BounusPoints = 0 };
 
-            User u3 = new User() { Id = 3, FirstName = "Lana", LastName = "Kovacevic", Username = "LanaBanana", Email = "kovaceviclana2501@gmail.com", Password = "pekii123", MobileNumber = "+381604520858", AddressId = addr11.Id, Role = UserRole.Registered };
+            User u3 = new User() { Id = 3, FirstName = "Lana", LastName = "Kovacevic", Username = "lana123", Email = "kovacevicnemanja1997@gmail.com", Password = "lana123", MobileNumber = "+381604520858", AddressId = addr11.Id, Role = UserRole.Registered };
             RegisteredUser ru3 = new RegisteredUser() { Id = u3.Id };
 
-            User u4 = new User() { Id = 4, FirstName = "Milovan", LastName = "Zec", Username = "zekann2", Email = "zekan1997@gmail.com", Password = "zekan123", MobileNumber = "+381604520858", AddressId = addr10.Id, Role = UserRole.Registered };
+            User u4 = new User() { Id = 4, FirstName = "Milovan", LastName = "Zec", Username = "milovan123", Email = "kovacevicnemanja1997@gmail.com", Password = "milovan123", MobileNumber = "+381604520858", AddressId = addr10.Id, Role = UserRole.Registered };
             RegisteredUser ru4 = new RegisteredUser() { Id = u4.Id, BounusPoints = 0 };
 
-            User u5 = new User() { Id = 5, FirstName = "Lana", LastName = "Kovacevic", Username = "LanaBanana", Email = "kovaceviclana2501@gmail.com", Password = "pekii123", MobileNumber = "+381604520858", AddressId = addr11.Id, Role = UserRole.Registered };
+            User u5 = new User() { Id = 5, FirstName = "Milica", LastName = "Krivokapic", Username = "milica123", Email = "kovacevicnemanja1997@gmail.com", Password = "milica123", MobileNumber = "+381604520858", AddressId = addr11.Id, Role = UserRole.Registered };
             RegisteredUser ru5 = new RegisteredUser() { Id = u5.Id, BounusPoints = 0 };
 
-            User u6 = new User() { Id = 6, FirstName = "Mitar", LastName = "Miric", Username = "mitriccc", Email = "kovacevicnemanja1997@gmail.com", Password = "mitric123", MobileNumber = "+381604520858", AddressId = addr12.Id, Role = UserRole.Registered };
+            User u6 = new User() { Id = 6, FirstName = "Mitar", LastName = "Miric", Username = "mitar123", Email = "kovacevicnemanja1997@gmail.com", Password = "mitar123", MobileNumber = "+381604520858", AddressId = addr12.Id, Role = UserRole.Registered };
             RegisteredUser ru6 = new RegisteredUser() { Id = u6.Id, BounusPoints = 0 };
 
 
@@ -59,9 +62,17 @@ namespace TravellifeChaser.Models
 
             Pricelist pl1 = new Pricelist() { Id = 1, HandLuggageOverMaxDimensions = 3, LuggageOver10kg = 5, LuggageOver20kg = 10 };
             Pricelist pl2 = new Pricelist() { Id = 2, HandLuggageOverMaxDimensions = 4, LuggageOver10kg = 6, LuggageOver20kg = 12 };
+            Pricelist pl3 = new Pricelist() { Id = 3, HandLuggageOverMaxDimensions = 4, LuggageOver10kg = 6, LuggageOver20kg = 12 };
+            Pricelist pl4 = new Pricelist() { Id = 4, HandLuggageOverMaxDimensions = 4, LuggageOver10kg = 6, LuggageOver20kg = 12 };
+            Pricelist pl5 = new Pricelist() { Id = 5, HandLuggageOverMaxDimensions = 4, LuggageOver10kg = 6, LuggageOver20kg = 12 };
+            Pricelist pl6 = new Pricelist() { Id = 6, HandLuggageOverMaxDimensions = 4, LuggageOver10kg = 6, LuggageOver20kg = 12 };
 
             Airline airline1 = new Airline() { Id = 1, Name = "Turkish Airlines", AddressId = addr6.Id, AverageRating = 9.12, PricelistId = pl1.Id, PromotionalDescription = "Widen Your World", };
             Airline airline2 = new Airline() { Id = 2, Name = "Qatar Airways", AddressId = addr7.Id, AverageRating = 8.73, PricelistId = pl2.Id, PromotionalDescription = "Going Places Together" };
+            Airline airline3 = new Airline() { Id = 3, Name = "Emirates", AddressId = addr22.Id, AverageRating = 9.12, PricelistId = pl3.Id, PromotionalDescription = "Enjoy flight", };  //dubai
+            Airline airline4 = new Airline() { Id = 4, Name = "Etihad Airways", AddressId = addr21.Id, AverageRating = 8.73, PricelistId = pl4.Id, PromotionalDescription = "With you" }; //abu dabi
+            Airline airline5 = new Airline() { Id = 5, Name = "British Airways", AddressId = addr20.Id, AverageRating = 9.12, PricelistId = pl5.Id, PromotionalDescription = "With you", }; //Harmondsworth
+            Airline airline6 = new Airline() { Id = 6, Name = "Air Serbia", AddressId = addr4.Id, AverageRating = 8.04, PricelistId = pl6.Id, PromotionalDescription = "Fly with us" }; //Belgrade
 
             User u7 = new User() { Id = 7, FirstName = "Marija", LastName = "Miric", Username = "marijaaa", Email = "marijamiric@gmail.com", Password = "marijaaaa", MobileNumber = "+381604520858", AddressId = addr15.Id, Role = UserRole.AdminAirlines };
             AdminAirlinesUser ru7 = new AdminAirlinesUser() { Id = u7.Id, AirlineId = 1 };
@@ -79,6 +90,8 @@ namespace TravellifeChaser.Models
             Airport airport8 = new Airport() { Id = 8, AddressId = addr19.Id, Name = "Sheremetyevo" };
             Airport airport9 = new Airport() { Id = 9, AddressId = addr18.Id, Name = "Schiphol" };
 
+          
+
             AirlineAirport aa1 = new AirlineAirport() { AirlineId = 1, AirportId = 1 };
             AirlineAirport aa2 = new AirlineAirport() { AirlineId = 1, AirportId = 2 };
             AirlineAirport aa3 = new AirlineAirport() { AirlineId = 1, AirportId = 3 };
@@ -93,44 +106,44 @@ namespace TravellifeChaser.Models
             AirlineAirport aa12 = new AirlineAirport() { AirlineId = 2, AirportId = 8 };
             AirlineAirport aa13 = new AirlineAirport() { AirlineId = 2, AirportId = 9 };
 
-            var TakeoffTime1 = new DateTime(2020, 6, 2, 15, 0, 0);
-            var LandingTime1 = new DateTime(2020, 6, 2, 20, 30, 0);
+            var TakeoffTime1 = new DateTime(2020, 9, 7, 13, 0, 0);
+            var LandingTime1 = new DateTime(2020, 9, 7, 17, 30, 0);
             var Duration1 = LandingTime1.Subtract(TakeoffTime1).TotalMinutes;
 
-            var TakeoffTime2 = new DateTime(2020, 6, 3, 3, 0, 0);
-            var LandingTime2 = new DateTime(2020, 6, 3, 3, 30, 0);
+            var TakeoffTime2 = new DateTime(2020, 9, 7, 7, 40, 0);
+            var LandingTime2 = new DateTime(2020, 9, 7, 9, 20, 0);
             var Duration2 = LandingTime2.Subtract(TakeoffTime2).TotalMinutes;
 
-            var TakeoffTime3 = new DateTime(2020, 6, 5, 20, 15, 0);
-            var LandingTime3 = new DateTime(2020, 6, 6, 4, 0, 0);
+            var TakeoffTime3 = new DateTime(2020, 9, 8, 12, 15, 0);
+            var LandingTime3 = new DateTime(2020, 9, 8, 15, 0, 0);
             var Duration3 = LandingTime3.Subtract(TakeoffTime3).TotalMinutes;
 
-            var TakeoffTime4 = new DateTime(2020, 8, 25, 17, 0, 0);
-            var LandingTime4 = new DateTime(2020, 8, 25, 20, 30, 0);
+            var TakeoffTime4 = new DateTime(2020, 9, 8, 14, 0, 0);
+            var LandingTime4 = new DateTime(2020, 9, 8, 19, 30, 0);
             var Duration4 = LandingTime4.Subtract(TakeoffTime4).TotalMinutes;
 
-            var TakeoffTime5 = new DateTime(2020, 8, 26, 15, 0, 0);
-            var LandingTime5 = new DateTime(2020, 8, 26, 20, 30, 0);
+            var TakeoffTime5 = new DateTime(2020, 9, 9, 15, 0, 0);
+            var LandingTime5 = new DateTime(2020, 9, 9, 19, 30, 0);
             var Duration5 = LandingTime5.Subtract(TakeoffTime5).TotalMinutes;
 
-            var TakeoffTime6 = new DateTime(2020, 8, 26, 15, 0, 0);
-            var LandingTime6 = new DateTime(2020, 8, 26, 20, 30, 0);
+            var TakeoffTime6 = new DateTime(2020, 9, 10, 18, 0, 0);
+            var LandingTime6 = new DateTime(2020, 9, 10, 19, 30, 0);
             var Duration6 = LandingTime6.Subtract(TakeoffTime6).TotalMinutes;
 
-            var TakeoffTime7 = new DateTime(2020, 8, 27, 15, 0, 0);
-            var LandingTime7 = new DateTime(2020, 8, 27, 20, 30, 0);
+            var TakeoffTime7 = new DateTime(2020, 9, 11, 7, 0, 0);
+            var LandingTime7 = new DateTime(2020, 9, 11, 8, 30, 0);
             var Duration7 = LandingTime7.Subtract(TakeoffTime7).TotalMinutes;
 
-            var TakeoffTime8 = new DateTime(2020, 8, 31, 15, 0, 0);
-            var LandingTime8 = new DateTime(2020, 8, 31, 20, 30, 0);
+            var TakeoffTime8 = new DateTime(2020, 9, 11, 9, 0, 0);
+            var LandingTime8 = new DateTime(2020, 9, 11, 10, 30, 0);
             var Duration8 = LandingTime8.Subtract(TakeoffTime8).TotalMinutes;
 
-            var TakeoffTime9 = new DateTime(2020, 6, 27, 15, 0, 0);
-            var LandingTime9 = new DateTime(2020, 6, 27, 20, 30, 0);
+            var TakeoffTime9 = new DateTime(2020, 9, 12, 9, 0, 0);
+            var LandingTime9 = new DateTime(2020, 9, 12, 11, 20, 0);
             var Duration9 = LandingTime9.Subtract(TakeoffTime9).TotalMinutes;
 
-            var TakeoffTime10 = new DateTime(2020, 6, 28, 15, 0, 0);
-            var LandingTime10 = new DateTime(2020, 6, 28, 20, 30, 0);
+            var TakeoffTime10 = new DateTime(2020, 9, 12, 14, 0, 0);
+            var LandingTime10 = new DateTime(2020, 9, 12, 20, 30, 0);
             var Duration10 = LandingTime10.Subtract(TakeoffTime10).TotalMinutes;
 
             int rows = 20;
@@ -596,14 +609,15 @@ namespace TravellifeChaser.Models
             }
 
             modelBuilder.Entity<Address>().HasData(addr1, addr2, addr3, addr4, addr5, addr6, addr7, addr8, addr9, addr10,
-                                                   addr11, addr12, addr13, addr14, addr15, addr16, addr17, addr18, addr19);
+                                                   addr11, addr12, addr13, addr14, addr15, addr16, addr17, addr18, addr19,
+                                                   addr20, addr21, addr22);
             modelBuilder.Entity<User>().HasData(u1, u2, u3, u4, u5, u6, u7, u8);
             modelBuilder.Entity<RegisteredUser>().HasData(ru1, ru2, ru3, ru4, ru5, ru6);
             modelBuilder.Entity<AdminAirlinesUser>().HasData(ru7, ru8);
             modelBuilder.Entity<FriendshipRequest>().HasData(fr1, fr2);
             modelBuilder.Entity<Friendship>().HasData(friendship1, friendship2);
-            modelBuilder.Entity<Pricelist>().HasData(pl1, pl2);
-            modelBuilder.Entity<Airline>().HasData(airline1, airline2);
+            modelBuilder.Entity<Pricelist>().HasData(pl1, pl2, pl3, pl4, pl5, pl6);
+            modelBuilder.Entity<Airline>().HasData(airline1, airline2, airline3, airline4, airline5, airline6);
             modelBuilder.Entity<Airport>().HasData(airport1, airport2, airport3, airport4, airport5, airport6, airport7, airport8, airport9);
             modelBuilder.Entity<AirlineAirport>().HasData(aa1, aa2, aa3, aa4, aa5, aa6, aa7, aa8, aa9, aa10, aa11, aa12, aa13);
             modelBuilder.Entity<Flight>().HasData(f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12);

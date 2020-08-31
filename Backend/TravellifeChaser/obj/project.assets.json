@@ -9311,11 +9311,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lana\\Desktop\\Projekat-kopija\\Backend\\TravellifeChaser\\TravellifeChaser.csproj",
+      "projectUniqueName": "C:\\Users\\Lana\\Desktop\\Nemanja\\Web2_Projekat\\Backend\\TravellifeChaser\\TravellifeChaser.csproj",
       "projectName": "TravellifeChaser",
-      "projectPath": "C:\\Users\\Lana\\Desktop\\Projekat-kopija\\Backend\\TravellifeChaser\\TravellifeChaser.csproj",
+      "projectPath": "C:\\Users\\Lana\\Desktop\\Nemanja\\Web2_Projekat\\Backend\\TravellifeChaser\\TravellifeChaser.csproj",
       "packagesPath": "C:\\Users\\Lana\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lana\\Desktop\\Projekat-kopija\\Backend\\TravellifeChaser\\obj\\",
+      "outputPath": "C:\\Users\\Lana\\Desktop\\Nemanja\\Web2_Projekat\\Backend\\TravellifeChaser\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lana\\AppData\\Roaming\\NuGet\\NuGet.Config",

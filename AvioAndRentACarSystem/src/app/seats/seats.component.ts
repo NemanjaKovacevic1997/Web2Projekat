@@ -30,34 +30,19 @@ export class SeatsComponent implements OnInit {
       private loginService: LoginService) { }
 
   ngOnInit(): void {
-    //this.reservationService.setSelectedFlightCost(400);
     this.economyCost = this.reservationService.selectedFlightCost;
     this.businessIncrease = 10;
     this.firstIncrease = 25;
     this.businessCost = this.economyCost + this.economyCost * (this.businessIncrease / 100);
     this.firstCost = this.economyCost + this.economyCost * (this.firstIncrease / 100);
 
-    /*this.seatsPerFlightProperties = new SeatsPerFlightProperties();
-    this.seatsPerFlightProperties.rows = 20;
-    this.seatsPerFlightProperties.columns = 9;
-    this.seatsPerFlightProperties.buisinessClassEndRow = 9;
-    this.seatsPerFlightProperties.firstClassEndRow = 3;
-    this.seatsPerFlightProperties.bookedSeats = new Array<Seat>();
-    let s1 = new Seat(1,2, "First");
-    let s2 = new Seat(2,4, "First");
-    this.seatsPerFlightProperties.bookedSeats.push(s1, s2);
-    this.seatsPerFlightProperties.removedSeats = new Array<Seat>();
-    this.reservationService.setSelectedFlightId(1);*/
-
     this.people = this.reservationService.searchData.people;
 
-    //this.people = 3;
     this.activeRoute.paramMap
                     .subscribe(params => {
                       let id = +params.get('flightId');
                       this.reservationService.setSelectedFlightId(id);
 
-                      //get seats of that flight
                       this.seatService.get(id).subscribe(ret => {
                         let spfp = ret as SeatsPerFlightProperties;
                         this.seatsPerFlightProperties = new SeatsPerFlightProperties();
@@ -89,10 +74,10 @@ export class SeatsComponent implements OnInit {
     this.router.navigate(['/invite']);
   }
 
-  back() {
-    if(confirm("Are you sure you want to go back. All reservation data will be lost.")){
-      this.router.navigate(['/airlines']);
+  cancel() {
+    if(confirm("Are you sure you want to go cancel. All reservation data will be lost.")){
       this.reservationService.resetReservationData();
+      this.router.navigate(['/airlines']);
     }
   }
 }

@@ -95,6 +95,15 @@ namespace TravellifeChaser.Controllers
             f.AverageRating = 0;
 
             _unitOfWork.FlightRepository.Add(f);
+            _unitOfWork.Save();
+
+            foreach (var airportId in flight.StopsLocationsIds)
+            {
+                FlightAirport fa = new FlightAirport();
+                fa.AirportId = airportId;
+                fa.FlightId = f.Id;
+                f.StopsLocations.Add(fa);
+            }
 
             List<Seat> seats = SeatGenerator.GenerateSeatsForFlight(f.Id, 20, 9, 3, 8);
             foreach (var seat in seats)

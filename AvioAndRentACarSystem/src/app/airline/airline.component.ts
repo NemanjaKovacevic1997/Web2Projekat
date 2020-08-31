@@ -6,6 +6,7 @@ import { XYZ } from '../AdministratorAirline/airline-profile/airline';
 import { Airport } from '../AirlineModel/airport';
 import { AirlineService } from '../Services/Airline/airline.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AirlineAirport } from '../AirlineModel/airlineAirport';
 
 @Component({
   selector: 'app-airline',
@@ -15,6 +16,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AirlineComponent implements OnInit {
   airline: Airline;
   airlineId: number;
+  businessDestinations: Array<AirlineAirport>;
+  isLoaded: boolean = false;
+
   constructor(private airlineService: AirlineService,
      private activeRoute: ActivatedRoute,
      private router: Router) { }
@@ -25,8 +29,16 @@ export class AirlineComponent implements OnInit {
       this.airlineId = +params.get('id');
       this.airlineService.get(this.airlineId).subscribe(ret => {
         this.airline = ret as Airline;
-      })
-    })
+
+        this.airlineService.getBusinessDestinations(this.airline.id).subscribe(ret => {
+          this.businessDestinations = ret as Array<AirlineAirport>;
+          console.log(this.businessDestinations);
+        });
+       
+        this.isLoaded = true;
+        console.log(this.airline);
+      });
+    });
   }
 
   fastTicketsClick() {

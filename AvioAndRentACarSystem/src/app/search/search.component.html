@@ -1,12 +1,14 @@
 <form [formGroup]="form">
   <div class="form-row">
-    <div class="form-group col-md-6">   
-      <select class="form-control" placeholder="From" formControlName="from" [class.alert]="from.invalid && from.touched" [class.alert-danger]="from.invalid && from.touched">
+    <div class="form-group col-md-6">
+      <label for="from" style="color:white">From</label>
+      <select class="form-control" placeholder="From" id="from" formControlName="from" [class.alert]="from.invalid && from.touched" [class.alert-danger]="from.invalid && from.touched">
         <option *ngFor="let airport of airports" [value]="airport.id">{{ airport.address.city }}</option>
       </select>
     </div>
     <div class="form-group col-md-6">
-      <select class="form-control" placeholder="To" formControlName="to" [class.alert]="to.invalid && to.touched" [class.alert-danger]="to.invalid && to.touched">
+      <label for="to" style="color:white">To</label>
+      <select class="form-control" placeholder="To" id="to" formControlName="to" [class.alert]="to.invalid && to.touched" [class.alert-danger]="to.invalid && to.touched">
         <option *ngFor="let airport of airports" [value]="airport.id">{{ airport.address.city }}</option>
       </select>
     </div>
@@ -37,7 +39,6 @@
         <option value="None" hidden>Trip type</option>
         <option value="None"></option>
         <option value="OneWay">One-way</option>
-        <option value="RoundTrip">Round-trip</option>
         <option value="MultyCity">Multy-city</option>
       </select>
     </div>
@@ -52,17 +53,15 @@
     </div>
   </div>
   <div class="form-row justify-content-center">
-    
       <div class="form-group col">
-        <button (click)="minus()" class="btn btn-info">-</button>
+        <button (click)="minus()" class="btn btn-info" style="margin-right: 1px;">-</button>
       </div>
       <div class="form-group col">
         <input [(ngModel)]="peopleNum" type="number" class="form-control" formControlName="people" name="people" min="1" max="5" readonly='readonly'/>
       </div>
       <div class="form-group col">
-        <button (click)="plus()" class="btn btn-info">+</button>
+        <button (click)="plus()" class="btn btn-info" style="margin-left: 1px;">+</button>
       </div>
-
   </div>
   <div class="form-row justify-content-center">
     <div class="form-group col-md-6">

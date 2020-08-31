@@ -52,10 +52,24 @@ namespace TravellifeChaser.Controllers
             if (id != airline.Id)
                 return BadRequest();
 
-            //izmeniii
+            var airlinee = _unitOfWork.AirlineRepository.Get(id);
+
+            if (airlinee == null)
+                return NotFound();
+
+            airlinee.Name = airline.Name;
+            airlinee.PromotionalDescription = airline.PromotionalDescription;
+            airlinee.Address.City = airline.Address.City;
+            airlinee.Address.Country = airline.Address.Country;
+            airlinee.Address.Longitude = airline.Address.Longitude;
+            airlinee.Address.Latitude = airline.Address.Latitude;
+            airlinee.Pricelist.LuggageOver10kg = airline.Pricelist.LuggageOver10kg;
+            airlinee.Pricelist.LuggageOver20kg = airline.Pricelist.LuggageOver20kg;
+            airlinee.Pricelist.HandLuggageOverMaxDimensions = airline.Pricelist.HandLuggageOverMaxDimensions;
+            _unitOfWork.AirlineRepository.Update(airlinee);
+
             try
             {
-                _unitOfWork.AirlineRepository.Update(airline);
                 _unitOfWork.Save();
             }
             catch (DbUpdateConcurrencyException)
@@ -154,6 +168,16 @@ namespace TravellifeChaser.Controllers
             }           
 
             return airlineReport;
+        }
+
+        [HttpGet("{id}/businessDestinations")]
+        public ActionResult<IEnumerable<AirlineAirport>> GetBusinessDestinations(int id)
+        {
+            if(!_unitOfWork.AirlineRepository.Any(x => x.Id == id))
+                return NotFound();
+
+            
+            return _unitOfWork.AirlineAirportRepository.GetByCondition(x => x.AirlineId == id).ToList();
         }
 
         private Tuple<int, double> GetNumberOfSoldTicketsAndEarninngsOnDay(List<Ticket> tickets, DateTime date)

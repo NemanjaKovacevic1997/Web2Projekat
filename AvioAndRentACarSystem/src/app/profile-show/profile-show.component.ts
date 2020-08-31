@@ -71,7 +71,7 @@ export class ProfileShowComponent implements OnInit {
 
   openCityModal(){
     const modalRef = this.modalService.open(CityModalComponent);
-    modalRef.componentInstance.address = { 'city': this.myProfile.address.city, 'country': this.myProfile.address.country };
+    modalRef.componentInstance.address = {'city': this.myProfile.address.city, 'country': this.myProfile.address.country };
     //modalRef.componentInstance.address.city = this.myProfile.address.city;
     //modalRef.componentInstance.address.country = this.myProfile.address.country;
 
@@ -111,6 +111,13 @@ export class ProfileShowComponent implements OnInit {
     modalRef.result.then((result) => {
       if (result) {
         console.log(result);
+        let passwords: { password: string, newPassword: string, newPasswordRepeat: string } = result;
+        if(passwords.password.trim() != this.myProfile.password.trim() || passwords.newPassword.trim() != passwords.newPasswordRepeat.trim()){
+          alert("Eather old password is not equal as provided or repeated password is not correct.");
+          return;
+        }
+
+        this.myProfile.password = passwords.newPassword;
       }
     }, (reason) => {
       console.log(reason);
@@ -134,7 +141,9 @@ export class ProfileShowComponent implements OnInit {
   saveChanges() {
     if (confirm('Are you sure you want to save this changes?')) {
       let id = this.loginService.user.id;
-      this.userService.update(id, this.myProfile).subscribe();
+      this.userService.update(id, this.myProfile).subscribe(() => {
+        alert("Changes are saved successfuly.");
+      });
     }
   }
 }

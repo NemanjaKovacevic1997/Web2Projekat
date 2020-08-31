@@ -87,8 +87,10 @@ export class InviteComponent implements OnInit {
     this.router.navigate(['/passengers']);
   }
 
-  back() {
-      let id = this.reservationService.selectedFlightId;
-      this.router.navigate(['/' + id, 'seats']);
+  cancel() {
+    if(confirm("Are you sure you want to go cancel. All reservation data will be lost.")){
+      this.reservationService.resetReservationData();
+      this.router.navigate(['/airlines']);
+    }
   }
 }

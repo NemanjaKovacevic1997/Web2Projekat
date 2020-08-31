@@ -25,4 +25,8 @@ export class AirlineService extends DataService{
   getAirlineReport(airlineId: number) {
     return this.httpClient.get(environment.serverUrl + 'Airlines/' + airlineId + '/report');
   }
+
+  getBusinessDestinations(airlineId: number) {
+    return this.httpClient.get(environment.serverUrl + 'Airlines/' + airlineId + '/businessDestinations');
+  }
 }

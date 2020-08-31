@@ -39,6 +39,7 @@ namespace TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork
 
         private IAirportRepository airportRepository;
 
+        private IAirlineAirportRepository airlineAirportRepository;
         public IAirlineRepository AirlineRepository
         {
             get
@@ -139,7 +140,15 @@ namespace TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork
             }
         }
 
-
+        public IAirlineAirportRepository AirlineAirportRepository
+        {
+            get
+            {
+                if (this.airlineAirportRepository == null)
+                    this.airlineAirportRepository = new AirlineAirportRepository(_context);
+                return airlineAirportRepository;
+            }
+        }
 
         private bool disposed = false;
         protected virtual void Dispose(bool disposing)

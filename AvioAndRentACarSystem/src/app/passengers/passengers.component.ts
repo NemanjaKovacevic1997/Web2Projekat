@@ -31,14 +31,6 @@ export class PassengersComponent implements OnInit {
   ngOnInit(): void {
     this.usersInformation = [];
     this.seats = this.reservationService.bookedSeats;
-    /*this.seats = [];
-    let s1 = new Seat(9, 5, 'Economy');
-    let s2 = new Seat(5, 3, 'Buisiness');
-    let s3 = new Seat(1, 2, 'First');
-    this.seats.push(s1,s2,s3);
-
-    console.log(this.seats);*/
-
     
     let ids: Array<number> = [];
     ids.push(this.loginService.user.id);
@@ -48,18 +40,6 @@ export class PassengersComponent implements OnInit {
 
     this.registeredUserService.getUsersByIds(ids).subscribe(res => {
       this.knownPassengers = res as Array<UserWithoutCredentials>;
-
-      /*this.knownPassengers = [];
-      let u1 = new UserWithoutCredentials();
-      u1.id = 1;
-      u1.firstName = "Pera";
-      u1.lastName = "Peric";
-      let u2 = new UserWithoutCredentials();
-      u2.id = 3;
-      u2.firstName = "Marko";
-      u2.lastName = "Markovic";
-      
-      this.knownPassengers.push(u1, u2);*/
 
       for (let i = 0; i < this.seats.length; i++) {
         if(i < this.knownPassengers.length) {
@@ -178,9 +158,10 @@ export class PassengersComponent implements OnInit {
     return true;
   }
 
-
-  
-  back() {  
-      this.router.navigate(['/invite']);
+  cancel() {
+    if(confirm("Are you sure you want to go cancel. All reservation data will be lost.")){
+      this.reservationService.resetReservationData();
+      this.router.navigate(['/airlines']);
+    }
   }
 }

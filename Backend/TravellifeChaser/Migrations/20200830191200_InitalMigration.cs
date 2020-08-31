@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TravellifeChaser.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitalMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -395,15 +395,18 @@ namespace TravellifeChaser.Migrations
                 values: new object[,]
                 {
                     { 1, "Gajdobra", "Serbia", null, null },
+                    { 22, "Dubai", "UAE", 25.276986999999998, 55.296249000000003 },
+                    { 21, "Abu Dhabi", "UAE", 24.466667000000001, 54.366669000000002 },
+                    { 20, "Harmondsworth", "England", 51.486499999999999, -0.47960000000000003 },
                     { 19, "Moscow", "Russia", 55.972777780000001, 37.414722220000002 },
                     { 18, "Amsterdam", "Netherland", 52.30805556, 4.7641666699999998 },
                     { 17, "Brussel", "Belgium", 50.90138889, 4.4844444399999999 },
                     { 16, "Madrid", "Spain", 49.009700000000002, 2.5478999999999998 },
                     { 15, "Lisbon", "Portugal", 38.77416667, 38.77416667 },
-                    { 14, "Munich", "Deuschland", 48.35388889, 11.78611111 },
                     { 13, "Subotica", "Serbia", null, null },
                     { 12, "Krusevac", "Serbia", null, null },
-                    { 11, "Smederevo", "Serbia", null, null },
+                    { 14, "Munich", "Deuschland", 48.35388889, 11.78611111 },
+                    { 10, "Sremska Mitrovica", "Serbia", null, null },
                     { 9, "Paris", "France", 49.009700000000002, 2.5478999999999998 },
                     { 8, "London", "England", 51.469999999999999, 0.45429999999999998 },
                     { 7, "Doha", "Qatar", 25.278300000000002, 51.552 },
@@ -412,7 +415,7 @@ namespace TravellifeChaser.Migrations
                     { 4, "Belgrade", "Serbia", 44.820500000000003, 20.291699999999999 },
                     { 3, "Novi Sad", "Serbia", null, null },
                     { 2, "Pecinci", "Serbia", null, null },
-                    { 10, "Sremska Mitrovica", "Serbia", null, null }
+                    { 11, "Smederevo", "Serbia", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -420,8 +423,12 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "HandLuggageOverMaxDimensions", "LuggageOver10kg", "LuggageOver20kg" },
                 values: new object[,]
                 {
+                    { 5, 4.0, 6.0, 12.0 },
                     { 1, 3.0, 5.0, 10.0 },
-                    { 2, 4.0, 6.0, 12.0 }
+                    { 2, 4.0, 6.0, 12.0 },
+                    { 3, 4.0, 6.0, 12.0 },
+                    { 4, 4.0, 6.0, 12.0 },
+                    { 6, 4.0, 6.0, 12.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -429,8 +436,12 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AddressId", "AverageRating", "Name", "PricelistId", "PromotionalDescription" },
                 values: new object[,]
                 {
+                    { 6, 4, 8.0399999999999991, "Air Serbia", 6, "Fly with us" },
+                    { 4, 21, 8.7300000000000004, "Etihad Airways", 4, "With you" },
+                    { 3, 22, 9.1199999999999992, "Emirates", 3, "Enjoy flight" },
                     { 2, 7, 8.7300000000000004, "Qatar Airways", 2, "Going Places Together" },
-                    { 1, 6, 9.1199999999999992, "Turkish Airlines", 1, "Widen Your World" }
+                    { 1, 6, 9.1199999999999992, "Turkish Airlines", 1, "Widen Your World" },
+                    { 5, 20, 9.1199999999999992, "British Airways", 5, "With you" }
                 });
 
             migrationBuilder.InsertData(
@@ -439,14 +450,14 @@ namespace TravellifeChaser.Migrations
                 values: new object[,]
                 {
                     { 8, 19, "Sheremetyevo" },
-                    { 1, 4, "Nikola Tesla" },
-                    { 2, 8, "Heathrow" },
-                    { 3, 9, "Charles de Gaulle" },
                     { 9, 18, "Schiphol" },
                     { 7, 17, "Brussel-Nationaal" },
                     { 4, 16, "Adolfo Suárez" },
-                    { 6, 14, "Munich Airport" },
-                    { 5, 15, "Humberto Delgado" }
+                    { 5, 15, "Humberto Delgado" },
+                    { 3, 9, "Charles de Gaulle" },
+                    { 2, 8, "Heathrow" },
+                    { 1, 4, "Nikola Tesla" },
+                    { 6, 14, "Munich Airport" }
                 });
 
             migrationBuilder.InsertData(
@@ -454,13 +465,13 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AddressId", "Email", "FirstName", "LastName", "MobileNumber", "Password", "Role", "Username" },
                 values: new object[,]
                 {
-                    { 7, 15, "marijamiric@gmail.com", "Marija", "Miric", "+381604520858", "marijaaaa", 3, "marijaaa" },
                     { 8, 13, "milicamiric@gmail.com", "Milica", "Miric", "+381604520858", "milicaaaa", 3, "milicaaa" },
+                    { 7, 15, "marijamiric@gmail.com", "Marija", "Miric", "+381604520858", "marijaaaa", 3, "marijaaa" },
+                    { 6, 12, "kovacevicnemanja1997@gmail.com", "Mitar", "Miric", "+381604520858", "mitric123", 0, "mitriccc" },
                     { 5, 11, "kovaceviclana2501@gmail.com", "Lana", "Kovacevic", "+381604520858", "pekii123", 0, "LanaBanana" },
                     { 3, 11, "kovaceviclana2501@gmail.com", "Lana", "Kovacevic", "+381604520858", "pekii123", 0, "LanaBanana" },
                     { 4, 10, "zekan1997@gmail.com", "Milovan", "Zec", "+381604520858", "zekan123", 0, "zekann2" },
                     { 2, 2, "radovantrudic@gmail.com", "Radovan", "Trudic", "+381650000000", "rasa123", 0, "rasaBrt" },
-                    { 6, 12, "kovacevicnemanja1997@gmail.com", "Mitar", "Miric", "+381604520858", "mitric123", 0, "mitriccc" },
                     { 1, 1, "kovacevicnemanja1997@gmail.com", "Nemanja", "Kovacevic", "+381604520858", "kovac123", 0, "kovac123" }
                 });
 
@@ -498,18 +509,18 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AirlineId", "AverageRating", "Cost", "Duration", "FromId", "LandingTime", "Length", "TakeoffTime", "ToId" },
                 values: new object[,]
                 {
-                    { 5, 1, 0.0, 300.0, 330.0, 5, new DateTime(2020, 8, 26, 20, 30, 0, 0, DateTimeKind.Unspecified), 250, new DateTime(2020, 8, 26, 15, 0, 0, 0, DateTimeKind.Unspecified), 4 },
-                    { 2, 2, 0.0, 250.0, 30.0, 1, new DateTime(2020, 6, 3, 3, 30, 0, 0, DateTimeKind.Unspecified), 1003, new DateTime(2020, 6, 3, 3, 0, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 12, 1, 0.0, 305.0, 330.0, 5, new DateTime(2020, 6, 27, 20, 30, 0, 0, DateTimeKind.Unspecified), 555, new DateTime(2020, 6, 27, 15, 0, 0, 0, DateTimeKind.Unspecified), 9 },
-                    { 10, 1, 0.0, 450.0, 330.0, 6, new DateTime(2020, 8, 31, 20, 30, 0, 0, DateTimeKind.Unspecified), 600, new DateTime(2020, 8, 31, 15, 0, 0, 0, DateTimeKind.Unspecified), 8 },
-                    { 11, 2, 0.0, 100.0, 330.0, 6, new DateTime(2020, 8, 31, 20, 30, 0, 0, DateTimeKind.Unspecified), 1000, new DateTime(2020, 8, 31, 15, 0, 0, 0, DateTimeKind.Unspecified), 8 },
-                    { 7, 1, 0.0, 300.0, 330.0, 3, new DateTime(2020, 8, 27, 20, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 8, 27, 15, 0, 0, 0, DateTimeKind.Unspecified), 7 },
-                    { 6, 1, 0.0, 300.0, 330.0, 7, new DateTime(2020, 8, 26, 20, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 8, 26, 15, 0, 0, 0, DateTimeKind.Unspecified), 9 },
-                    { 9, 2, 0.0, 250.0, 330.0, 6, new DateTime(2020, 8, 31, 20, 30, 0, 0, DateTimeKind.Unspecified), 300, new DateTime(2020, 8, 31, 15, 0, 0, 0, DateTimeKind.Unspecified), 8 },
-                    { 4, 1, 0.0, 200.0, 210.0, 4, new DateTime(2020, 8, 25, 20, 30, 0, 0, DateTimeKind.Unspecified), 500, new DateTime(2020, 8, 25, 17, 0, 0, 0, DateTimeKind.Unspecified), 5 },
-                    { 3, 1, 0.0, 100.0, 465.0, 2, new DateTime(2020, 6, 6, 4, 0, 0, 0, DateTimeKind.Unspecified), 400, new DateTime(2020, 6, 5, 20, 15, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 1, 1, 0.0, 300.0, 330.0, 1, new DateTime(2020, 6, 2, 20, 30, 0, 0, DateTimeKind.Unspecified), 2506, new DateTime(2020, 6, 2, 15, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 8, 1, 0.0, 301.0, 330.0, 6, new DateTime(2020, 8, 31, 20, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 8, 31, 15, 0, 0, 0, DateTimeKind.Unspecified), 8 }
+                    { 5, 1, 0.0, 300.0, 270.0, 5, new DateTime(2020, 9, 9, 19, 30, 0, 0, DateTimeKind.Unspecified), 250, new DateTime(2020, 9, 9, 15, 0, 0, 0, DateTimeKind.Unspecified), 4 },
+                    { 2, 2, 0.0, 250.0, 100.0, 1, new DateTime(2020, 9, 7, 9, 20, 0, 0, DateTimeKind.Unspecified), 1003, new DateTime(2020, 9, 7, 7, 40, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 12, 1, 0.0, 305.0, 140.0, 5, new DateTime(2020, 9, 12, 11, 20, 0, 0, DateTimeKind.Unspecified), 555, new DateTime(2020, 9, 12, 9, 0, 0, 0, DateTimeKind.Unspecified), 9 },
+                    { 10, 1, 0.0, 450.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 600, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
+                    { 11, 2, 0.0, 100.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 1000, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
+                    { 7, 1, 0.0, 300.0, 90.0, 3, new DateTime(2020, 9, 11, 8, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 9, 11, 7, 0, 0, 0, DateTimeKind.Unspecified), 7 },
+                    { 6, 1, 0.0, 300.0, 90.0, 7, new DateTime(2020, 9, 10, 19, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 9, 10, 18, 0, 0, 0, DateTimeKind.Unspecified), 9 },
+                    { 9, 2, 0.0, 250.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 300, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
+                    { 4, 1, 0.0, 200.0, 330.0, 4, new DateTime(2020, 9, 8, 19, 30, 0, 0, DateTimeKind.Unspecified), 500, new DateTime(2020, 9, 8, 14, 0, 0, 0, DateTimeKind.Unspecified), 5 },
+                    { 3, 1, 0.0, 100.0, 165.0, 2, new DateTime(2020, 9, 8, 15, 0, 0, 0, DateTimeKind.Unspecified), 400, new DateTime(2020, 9, 8, 12, 15, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 1, 1, 0.0, 300.0, 270.0, 1, new DateTime(2020, 9, 7, 17, 30, 0, 0, DateTimeKind.Unspecified), 2506, new DateTime(2020, 9, 7, 13, 0, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 8, 1, 0.0, 301.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 }
                 });
 
             migrationBuilder.InsertData(

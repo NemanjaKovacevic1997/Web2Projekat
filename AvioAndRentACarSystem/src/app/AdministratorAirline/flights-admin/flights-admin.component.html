@@ -2,6 +2,7 @@
     <tbody>
         <tr class="component-style table-row-component"
             *ngFor="let flight of flights" 
+            (click)="flightClick(flight.id)"
             flight-admin 
             [from] = "flight.from"
             [to] = "flight.to"

@@ -15,7 +15,11 @@ export class FilterFlightsComponent implements OnInit {
   
   airlines: Array<{id: number, name: string}> = [
     {id: 1, name: 'Turkish Airlines'},
-    {id: 2, name: 'Qatar Airways'}
+    {id: 2, name: 'Qatar Airways'},
+    {id: 3, name: 'Emirates'},
+    {id: 4, name: 'Etihad Airways'},
+    {id: 5, name: 'British Airways'},
+    {id: 6, name: 'Air Serbia'}
   ];
   ;
   selectedAirlinesIds: string[];

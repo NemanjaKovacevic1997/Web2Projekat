@@ -86,6 +86,8 @@ import { RegisteredUserAuthGuardService } from './Services/AuthGuards/registered
 import { UnregisteredUserAuthGuardService } from './Services/AuthGuards/unregisteredUser/unregistered-user-auth-guard.service';
 import { UnregisteredOrRegisteredUserAuthGuardServiceService } from './Services/AuthGuards/unregisteredOrRegistered/unregistered-or-registered-user-auth-guard-service.service';
 import { NotUnregisteredUserAuthGuardService } from './Services/AuthGuards/notUnregistered/not-unregistered-user-auth-guard.service';
+import { SeatMapAdminComponent } from './AdministratorAirline/seat-map-admin/seat-map-admin.component';
+import { SeatsModifyAdminComponent } from './AdministratorAirline/seats-modify-admin/seats-modify-admin.component';
 
 @NgModule({
   declarations: [
@@ -145,7 +147,9 @@ import { NotUnregisteredUserAuthGuardService } from './Services/AuthGuards/notUn
     FastTicketsComponent,
     AddressModalComponent,
     BranchesModalComponent,
-    PriceListModalComponent
+    PriceListModalComponent,
+    SeatMapAdminComponent,
+    SeatsModifyAdminComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -195,6 +199,7 @@ import { NotUnregisteredUserAuthGuardService } from './Services/AuthGuards/notUn
       { path: 'adminAirlines/airline-flights', component: AirlineFlightsComponent, canActivate: [AdminAirlineAuthGuardService]},
       { path: 'adminAirlines/flight-details', component: FilghtDetailsComponent, canActivate: [AdminAirlineAuthGuardService]},
       { path: 'adminAirlines/report', component: ReportComponent, canActivate: [AdminAirlineAuthGuardService]},
+      { path: 'adminAirlines/:flightId/remove', component: SeatsModifyAdminComponent, canActivate: [AdminAirlineAuthGuardService]},
 
       { path: ':username', component: ProfileShowComponent, canActivate: [NotUnregisteredUserAuthGuardService]}
     ])

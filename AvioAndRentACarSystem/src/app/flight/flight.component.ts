@@ -24,7 +24,6 @@ export class FlightComponent implements OnInit {
 
   get UserRole() { return UserRole; }
 
-
   constructor(public loginService: LoginService) { }
 
   ngOnInit(): void {

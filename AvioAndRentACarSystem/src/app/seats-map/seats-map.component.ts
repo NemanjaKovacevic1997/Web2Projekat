@@ -34,7 +34,7 @@ export class SeatsMapComponent implements OnInit {
   }
 
   clickedSeat(row, column){
-    if(this.sholudBeReseved(row, column))
+    if(this.isTaken(row, column) || this.isRemoved(row, column))
       return;
 
     let id = this.makeId(row, column);
@@ -86,21 +86,6 @@ export class SeatsMapComponent implements OnInit {
       this.bookCounter = this.bookCounter - 1;
       this.change.emit(this.myBooking);
     }
-    
-    /*let id = this.makeId(row, column);
-    let btn = document.getElementById(id);
-
-    if(btn.classList.contains("visible") == true){
-      btn.classList.remove("visible");
-      btn.classList.add("invisiblee");
-      alert(btn.classList);
-    }
-    else{
-      btn.classList.remove("invisiblee");
-      btn.classList.add("visible");
-      alert(btn.classList);
-    }*/
-
   }
 
 
@@ -112,7 +97,31 @@ export class SeatsMapComponent implements OnInit {
   }
 
   sholudBeReseved(i, j){
-    let ret : boolean = false;
+    let ret: boolean = false;
+    for(let seat of this.bookedSeats){
+      if(seat.row == i && seat.column == j){
+        ret = true;
+        break;
+      }
+    }
+    
+    return ret;
+  }
+
+  isRemoved(i: number, j: number) {
+    let ret: boolean = false;
+    for(let seat of this.removedSeats){
+      if(seat.row == i && seat.column == j){
+        ret = true;
+        break;
+      }
+    }
+    
+    return ret;
+  }
+
+  isTaken(i: number, j: number) {
+    let ret: boolean = false;
     for(let seat of this.bookedSeats){
       if(seat.row == i && seat.column == j){
         ret = true;
@@ -124,7 +133,7 @@ export class SeatsMapComponent implements OnInit {
   }
 
   removeSeatFromBooked(row, column){
-    let index : number = 0;
+    let index: number = 0;
     for(let seat of this.myBooking){
       if(seat.row == row && seat.column == column){
         this.myBooking.splice(index, 1);

@@ -18541,57 +18541,57 @@ namespace TravellifeChaser.Migrations
                             FirstName = "Nemanja",
                             LastName = "Kovacevic",
                             MobileNumber = "+381604520858",
-                            Password = "kovac123",
+                            Password = "nemanja123",
                             Role = 0,
-                            Username = "kovac123"
+                            Username = "nemanja123"
                         },
                         new
                         {
                             Id = 2,
                             AddressId = 2,
-                            Email = "radovantrudic@gmail.com",
+                            Email = "kovacevicnemanja1997@gmail.com",
                             FirstName = "Radovan",
                             LastName = "Trudic",
                             MobileNumber = "+381650000000",
-                            Password = "rasa123",
+                            Password = "radovan123",
                             Role = 0,
-                            Username = "rasaBrt"
+                            Username = "radovan123"
                         },
                         new
                         {
                             Id = 3,
                             AddressId = 11,
-                            Email = "kovaceviclana2501@gmail.com",
+                            Email = "kovacevicnemanja1997@gmail.com",
                             FirstName = "Lana",
                             LastName = "Kovacevic",
                             MobileNumber = "+381604520858",
-                            Password = "pekii123",
+                            Password = "lana123",
                             Role = 0,
-                            Username = "LanaBanana"
+                            Username = "lana123"
                         },
                         new
                         {
                             Id = 4,
                             AddressId = 10,
-                            Email = "zekan1997@gmail.com",
+                            Email = "kovacevicnemanja1997@gmail.com",
                             FirstName = "Milovan",
                             LastName = "Zec",
                             MobileNumber = "+381604520858",
-                            Password = "zekan123",
+                            Password = "milovan123",
                             Role = 0,
-                            Username = "zekann2"
+                            Username = "milovan123"
                         },
                         new
                         {
                             Id = 5,
                             AddressId = 11,
-                            Email = "kovaceviclana2501@gmail.com",
-                            FirstName = "Lana",
-                            LastName = "Kovacevic",
+                            Email = "kovacevicnemanja1997@gmail.com",
+                            FirstName = "Milica",
+                            LastName = "Krivokapic",
                             MobileNumber = "+381604520858",
-                            Password = "pekii123",
+                            Password = "milica123",
                             Role = 0,
-                            Username = "LanaBanana"
+                            Username = "milica123"
                         },
                         new
                         {
@@ -18601,9 +18601,9 @@ namespace TravellifeChaser.Migrations
                             FirstName = "Mitar",
                             LastName = "Miric",
                             MobileNumber = "+381604520858",
-                            Password = "mitric123",
+                            Password = "mitar123",
                             Role = 0,
-                            Username = "mitriccc"
+                            Username = "mitar123"
                         },
                         new
                         {

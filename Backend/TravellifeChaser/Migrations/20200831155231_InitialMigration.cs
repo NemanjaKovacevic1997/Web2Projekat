@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TravellifeChaser.Migrations
 {
-    public partial class InitalMigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -467,12 +467,12 @@ namespace TravellifeChaser.Migrations
                 {
                     { 8, 13, "milicamiric@gmail.com", "Milica", "Miric", "+381604520858", "milicaaaa", 3, "milicaaa" },
                     { 7, 15, "marijamiric@gmail.com", "Marija", "Miric", "+381604520858", "marijaaaa", 3, "marijaaa" },
-                    { 6, 12, "kovacevicnemanja1997@gmail.com", "Mitar", "Miric", "+381604520858", "mitric123", 0, "mitriccc" },
-                    { 5, 11, "kovaceviclana2501@gmail.com", "Lana", "Kovacevic", "+381604520858", "pekii123", 0, "LanaBanana" },
-                    { 3, 11, "kovaceviclana2501@gmail.com", "Lana", "Kovacevic", "+381604520858", "pekii123", 0, "LanaBanana" },
-                    { 4, 10, "zekan1997@gmail.com", "Milovan", "Zec", "+381604520858", "zekan123", 0, "zekann2" },
-                    { 2, 2, "radovantrudic@gmail.com", "Radovan", "Trudic", "+381650000000", "rasa123", 0, "rasaBrt" },
-                    { 1, 1, "kovacevicnemanja1997@gmail.com", "Nemanja", "Kovacevic", "+381604520858", "kovac123", 0, "kovac123" }
+                    { 6, 12, "kovacevicnemanja1997@gmail.com", "Mitar", "Miric", "+381604520858", "mitar123", 0, "mitar123" },
+                    { 5, 11, "kovacevicnemanja1997@gmail.com", "Milica", "Krivokapic", "+381604520858", "milica123", 0, "milica123" },
+                    { 3, 11, "kovacevicnemanja1997@gmail.com", "Lana", "Kovacevic", "+381604520858", "lana123", 0, "lana123" },
+                    { 4, 10, "kovacevicnemanja1997@gmail.com", "Milovan", "Zec", "+381604520858", "milovan123", 0, "milovan123" },
+                    { 2, 2, "kovacevicnemanja1997@gmail.com", "Radovan", "Trudic", "+381650000000", "radovan123", 0, "radovan123" },
+                    { 1, 1, "kovacevicnemanja1997@gmail.com", "Nemanja", "Kovacevic", "+381604520858", "nemanja123", 0, "nemanja123" }
                 });
 
             migrationBuilder.InsertData(

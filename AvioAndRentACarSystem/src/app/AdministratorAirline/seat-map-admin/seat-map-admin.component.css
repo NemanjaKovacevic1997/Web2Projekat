@@ -1,0 +1,14 @@
+  .visible {
+    visibility: visible;
+  }
+
+  .invisiblee {
+    border: none;
+    background: transparent;
+    font-size:0;
+  }
+
+  .rowNumber {
+    color: white;
+    margin-left: 10px;
+  }

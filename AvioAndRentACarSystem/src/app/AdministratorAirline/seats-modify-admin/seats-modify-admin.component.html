@@ -1,0 +1,63 @@
+<body class="myBody">
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-8">
+          <div class="row topMargin">
+            <div class="col-8">
+              <seat-map-admin
+              [rows]="seatsPerFlightProperties.rows" 
+              [columns]="seatsPerFlightProperties.columns" 
+              [bookedSeats]="seatsPerFlightProperties.bookedSeats"
+              [removedSeats]="seatsPerFlightProperties.removedSeats"
+              [firstClassEndRow]="seatsPerFlightProperties.firstClassEndRow"
+              [buisinessClassEndRow]="seatsPerFlightProperties.buisinessClassEndRow"
+              [maximumSeatsToBook]="-1"
+              (change)="recieveSeatChanges($event)">
+              </seat-map-admin>
+            </div>
+            <div class="col-4">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col" style="color: white">Color</th>
+                    <th scope="col" style="color: white">Meaning</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th style="color: blue">Light blue</th>
+                    <td style="color: white">Economy class</td>
+                  </tr>
+                  <tr>
+                    <th style="color: gray">Gray</th>
+                    <td style="color: white">Buisiness class</td>
+                  </tr>
+                  <tr>
+                    <th style="color: black">Black</th>
+                    <td style="color: white">First class</td>
+                  </tr>
+                  <tr>
+                    <th style="color: red">Red</th>
+                    <td style="color: white">Taken</td>
+                  </tr>
+                  <tr>
+                    <th style="color: Green">Green</th>
+                    <td style="color: white">Selected</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+        </div>
+        <div class="col">
+            <form>
+              <div class="form-row backNextTopMargin">
+                <button type="button" class="btn btn-info" (click)="saveChanges()">Save changes</button>
+              </div>
+          </form>
+        </div>
+    </div>
+  </div>
+  </body>

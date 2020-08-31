@@ -4,6 +4,7 @@
             <button [id]="makeId(i,j)" (click)="clickedSeat(i,j)" type="button" class="btn" 
             [class.btn-danger]="isTaken(i, j) == true"
             [class.invisiblee]="isRemoved(i, j) == true"
+            [class.visible]="isRemoved(i, j) == false"
             [class.btn-dark]="isTaken(i, j) == false && isRemoved(i, j) == false && i <= firstClassEndRow" 
             [class.btn-secondary]="isTaken(i, j) == false && isRemoved(i, j) == false && i > firstClassEndRow && i <= buisinessClassEndRow" 
             [class.btn-info]="isTaken(i, j) == false && isRemoved(i, j) == false && i > buisinessClassEndRow" >{{ j }}</button>

@@ -69,5 +69,30 @@ namespace TravellifeChaser.Controllers
             
             return ret;
         }
+
+        [HttpPost("flight/{id}/remove")]
+        public IActionResult RemoveSeats(int id, List<Seat> seats)
+        {
+            var flight = _unitOfWork.FlightRepository.Get(id);
+            if (flight == null)
+                return NotFound();
+
+            foreach (var seat in seats)
+            {
+                var currentSeat = _unitOfWork.SeatRepository.Get(new object[] { seat.Row, seat.Column, id });
+                if (currentSeat == null)
+                    continue;
+
+                if (currentSeat.Status == SeatStatus.Taken)
+                    continue;
+
+                currentSeat.Status = SeatStatus.Removed;
+                _unitOfWork.SeatRepository.Update(currentSeat);
+            }
+            
+            _unitOfWork.Save();
+
+            return Ok();
+        }
     }
 }

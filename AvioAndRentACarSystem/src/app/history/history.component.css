@@ -1,9 +1,11 @@
 .myBody{
     background-image: url("/assets/images/background12.jpg");
-    background-repeat: 'no-repeat';
+    height: auto;
+    background-repeat: repeat-y;
     background-position: top;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+    background-color: black;
     background-size: cover; 
 }

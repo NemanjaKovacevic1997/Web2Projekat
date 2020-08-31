@@ -26,9 +26,6 @@ export class FlightsComponent implements OnInit {
   }
 
   flightClick(id: number, cost: number) {
-    if(this.loginService.userRole != UserRole.Registered)
-      return;
-    
     this.reservationService.setSelectedFlightCost(cost);
     this.reservationService.setSelectedFlightId(id);
     this.router.navigate(['/' + id, 'seats']);

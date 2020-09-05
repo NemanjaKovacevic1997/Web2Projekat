@@ -1,0 +1,45 @@
+form {
+    padding: 40px;
+    background-color: rgb(56, 55, 55, 0.7);   
+}
+
+input [name="dp"] {
+    width : 40px;
+}
+
+.label{
+    color: white;
+    font-size: medium;
+}
+
+.myInput{
+    visibility: hidden;
+}
+
+::ng-deep .custom-slider .ng5-slider .ng5-slider-selection {
+    background: rgb(2, 117, 216) !important;
+}
+
+::ng-deep .custom-slider .ng5-slider .ng5-slider-pointer {
+    background: rgb(2, 117, 216) !important;
+}
+
+mat-tab-group {
+    color: white;
+}
+
+::ng-deep.mat-tab-label, ::ng-deep.mat-tab-label-active{
+    min-width: 0!important;
+    padding: 20px!important;
+    margin: 3px!important;
+    max-width: 150px;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+table {
+ color: white;
+}

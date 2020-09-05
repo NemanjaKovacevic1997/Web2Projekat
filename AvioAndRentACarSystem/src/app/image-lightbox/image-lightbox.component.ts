@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { ImageService } from '../Services/Image/image.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ChangeCarModalComponent } from '../ModalsRAC/change-car-modal/change-car-modal.component';
 
 @Component({
   selector: 'app-image-lightbox',
@@ -11,10 +13,33 @@ export class ImageLightboxComponent implements OnInit {
 
   images = [];
   slideIndex = 0;
-  constructor(private imageService: ImageService) {}
+
+  myModel = "";
+  myMark = "";
+  myYear = "";
+  myType = "";
+  mySeats = "";
+  myDailyPrice = "";
+  myImage = "";  
+
+
+  constructor(private imageService: ImageService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.loadImages();
+  }
+
+  openChangeCarModal(){
+    const modalRef = this.modalService.open(ChangeCarModalComponent);
+    modalRef.componentInstance.myAddress = this.myModel;
+    modalRef.result.then((result) => {
+      if (result) {
+        this.myModel = result;
+        console.log(result);
+      }
+    }, (reason) => {
+      console.log(reason);
+    });
   }
 
   loadImages(): void {

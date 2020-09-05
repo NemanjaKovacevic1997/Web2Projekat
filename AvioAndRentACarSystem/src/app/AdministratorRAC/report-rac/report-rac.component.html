@@ -1,0 +1,22 @@
+<form class="rounded-lg">
+    <div>
+        <div class="form-row">
+            <div class="col">
+                <button class="btn btn-info">Daily</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-info">Weekly</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-info">Monthly</button>
+            </div>
+        </div>
+        <br>
+        <chart-cards [tickets]='tickets' class="margins"></chart-cards>
+        <chart-earnings [earnings]='earnings' class="margins"></chart-earnings>
+        <br>
+        <br>
+        <label class="margins">Full {{ interval }} earnings : </label>
+        <label class="earnings">{{ fullEarnings | currency:'EUR':'symbol'}}</label>
+    </div>
+</form>

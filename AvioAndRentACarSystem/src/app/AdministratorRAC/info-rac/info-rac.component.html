@@ -1,0 +1,22 @@
+<form class="rounded-lg">
+    <table class="table">
+        <tbody>
+            <tr (click)="openAddressModal()">
+                <th>Address:</th>
+                <td>{{myAddress}}</td>
+            </tr>
+            <tr (click)="openBranchesModal()">
+                <th>Branches:</th>
+                <td>{{myBranches}}</td>
+            </tr>
+            <tr (click)="openPriceListModal()">
+                <th>Price List:</th>
+                <td>{{myPriceList}}</td>
+            </tr>
+            <tr >
+                <th>Rating:</th>
+                <td><ngb-rating [(rate)]="myRating" [readonly]="true" class="ngb-rating"></ngb-rating></td>
+            </tr>
+        </tbody>
+    </table>
+</form>

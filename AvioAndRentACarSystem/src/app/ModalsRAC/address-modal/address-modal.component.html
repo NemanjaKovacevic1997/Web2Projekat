@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <h4 class="modal-title" id="modal-basic-title">Address update</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -7,6 +7,7 @@
   <div class="modal-body">
     <form>
         <div class="form-group">
+<<<<<<< Updated upstream
           <label for="TextInput">City :</label>
           <input name="input" type="text" id="TextInput" class="form-control">
         </div>
@@ -14,6 +15,10 @@
         <div class="form-group">
           <label for="TextInput2">Country :</label>
           <input name="input" type="text" id="TextInput2" class="form-control">
+=======
+          <label for="TextInput">Address :</label>
+          <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="address">
+>>>>>>> Stashed changes
         </div>
     </form>
   </div>

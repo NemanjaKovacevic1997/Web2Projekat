@@ -38,7 +38,7 @@ export class ChartCardsComponent implements OnInit {
     this.lineChartColors = [
       {
         borderColor: 'black',
-        backgroundColor: 'rgba(255,255,0,0.28)',
+        backgroundColor: '#5bc0de',
       
       },
     ];

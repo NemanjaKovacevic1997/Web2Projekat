@@ -10,11 +10,11 @@
 <form [formGroup]="form" class="rounded-lg">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="Name of service" formControlName="from"
+            <input type="text" class="form-control" placeholder="From" formControlName="from"
                 [class.alert]="from.invalid && from.touched" [class.alert-danger]="from.invalid && from.touched">
         </div>
         <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="Location" formControlName="to"
+            <input type="text" class="form-control" placeholder="To" formControlName="to"
                 [class.alert]="to.invalid && to.touched" [class.alert-danger]="to.invalid && to.touched">
         </div>
     </div>
@@ -62,7 +62,37 @@
             <ngb-timepicker id="tp2" [ngModelOptions]="{standalone: true}" [(ngModel)]="minPickerTime2" ></ngb-timepicker>
         </div>
     </div>   
- 
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <select id="inputState" class="form-control">
+                <option hidden>Car type</option>
+                <option>Micro</option>
+                <option>Hatchback</option>
+                <option>Sedan</option>
+                <option>CUV</option>
+                <option>SUV</option>
+                <option>Pickup</option>
+                <option>VAN</option>
+                <option>Coupe</option>
+                <option>Cabriolet</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <select id="inputState" class="form-control">
+                <option hidden>Pasengers</option>
+                <option>1 pasenger</option>
+                <option>2 pasengers</option>
+                <option>3 pasengers</option>
+                <option>4 pasengers</option>
+                <option>5 pasengers</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row top-buffer custom-slider">
+        <input class="myInput">
+        <ng5-slider [(value)]="minValue1" [(highValue)]="maxValue1" [options]="options1"></ng5-slider>   
+    </div>
+   
     <div class="form-row justify-content-center">
         
         <div class="form-group col-md-4">
@@ -71,4 +101,3 @@
         </div>
     </div>   
 </form>
-

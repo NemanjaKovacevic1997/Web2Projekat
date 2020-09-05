@@ -81,6 +81,7 @@ import { FastTicketsComponent } from './fast-tickets/fast-tickets.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { BranchesModalComponent } from './ModalsRAC/branches-modal/branches-modal.component';
 import { PriceListModalComponent } from './ModalsRAC/price-list-modal/price-list-modal.component';
+<<<<<<< Updated upstream
 import { AdminAirlineAuthGuardService } from './Services/AuthGuards/adminAirline/admin-airline-auth-guard.service';
 import { RegisteredUserAuthGuardService } from './Services/AuthGuards/registeredUser/registered-user-auth-guard.service';
 import { UnregisteredUserAuthGuardService } from './Services/AuthGuards/unregisteredUser/unregistered-user-auth-guard.service';
@@ -88,6 +89,14 @@ import { UnregisteredOrRegisteredUserAuthGuardServiceService } from './Services/
 import { NotUnregisteredUserAuthGuardService } from './Services/AuthGuards/notUnregistered/not-unregistered-user-auth-guard.service';
 import { SeatMapAdminComponent } from './AdministratorAirline/seat-map-admin/seat-map-admin.component';
 import { SeatsModifyAdminComponent } from './AdministratorAirline/seats-modify-admin/seats-modify-admin.component';
+=======
+import { InfoRacComponent } from './AdministratorRAC/info-rac/info-rac.component';
+import { ReportRacComponent } from './AdministratorRAC/report-rac/report-rac.component';
+import { AddCarRacComponent } from './AdministratorRAC/add-car-rac/add-car-rac.component';
+import { FilterRacComponent } from './filter-rac/filter-rac.component';
+import { MenuRacComponent } from './AdministratorRAC/menu-rac/menu-rac.component';
+import { ChangeCarModalComponent } from './ModalsRAC/change-car-modal/change-car-modal.component';
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -148,8 +157,17 @@ import { SeatsModifyAdminComponent } from './AdministratorAirline/seats-modify-a
     AddressModalComponent,
     BranchesModalComponent,
     PriceListModalComponent,
+<<<<<<< Updated upstream
     SeatMapAdminComponent,
     SeatsModifyAdminComponent
+=======
+    InfoRacComponent,
+    ReportRacComponent,
+    AddCarRacComponent,
+    FilterRacComponent,
+    MenuRacComponent,
+    ChangeCarModalComponent
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserAnimationsModule,

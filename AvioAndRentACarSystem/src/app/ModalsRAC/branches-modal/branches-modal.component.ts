@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-branches-modal',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BranchesModalComponent implements OnInit {
 
-  constructor() { }
+  @Input() public address;
+  @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
-  ngOnInit(): void {
+  constructor(
+    public activeModal: NgbActiveModal
+  ) { }
+
+  ngOnInit() {
   }
 
+  passBack() {
+    this.passEntry.emit(this.address);
+    this.activeModal.close(this.address);
+  }
 }

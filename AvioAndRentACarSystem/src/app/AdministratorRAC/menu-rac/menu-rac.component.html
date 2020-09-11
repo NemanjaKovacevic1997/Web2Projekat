@@ -8,20 +8,17 @@
 </head>
 
 <mat-tab-group>
-    <mat-tab label="Search">  
-        <search-rac></search-rac>
-    </mat-tab>
-    <mat-tab label="Filters">  
-        <app-filter-rac></app-filter-rac>
-    </mat-tab>
     <mat-tab label="Informations"> 
         <app-info-rac></app-info-rac>
     </mat-tab>
-    <mat-tab label="Report">
+    <mat-tab label="Filters" *ngIf="this.loginService.userRole == UserRole.Registered">  
+        <app-filter-rac></app-filter-rac>
+    </mat-tab>
+    <mat-tab label="Report" *ngIf="this.loginService.userRole == UserRole.AdminRAC">
         <app-report-rac></app-report-rac>
     </mat-tab>
-    <mat-tab label="Add">
+    <mat-tab label="Add" *ngIf="this.loginService.userRole == UserRole.AdminRAC">
         <app-add-car-rac></app-add-car-rac>
     </mat-tab>
-  </mat-tab-group>
+</mat-tab-group>
 

@@ -1,3 +1,5 @@
+import { Car } from 'src/app/ModelRAC/car';
+
 export class RentACarService
 {
     name : string;
@@ -33,31 +35,6 @@ export class Address
     }
 }
 
-export class Car
-{
-    id: number;
-    mark: string
-    type: string
-    seats: number
-    rating: number
-    price: number
-    model: string
-    image1: string
-    image2: string
-    image3: string
-    image4: string
-
-    constructor(id : number, mark : string, type : string, seats : number, rating : number, price : number, model : string)
-    {
-        this.id = id;
-        this.mark = mark;
-        this.type = type;
-        this.seats = seats;
-        this.rating = rating;
-        this.price = price;
-        this.model = model;
-    }
-}
 
 export class Coordinates
 {

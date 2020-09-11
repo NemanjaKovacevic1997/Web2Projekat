@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Car update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <button type="button" class="close myButton" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -8,32 +8,82 @@
     <form>
         <div class="form-group">
           <label for="TextInput">Model :</label>
-          <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="model">
+          <input name="input1" type="text" id="TextInput1" class="form-control" [(ngModel)]="model">
         </div>
         <div class="form-group">
             <label for="TextInput">Mark :</label>
-            <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="mark">
+            <select name="input2" id="TextInput2" class="form-control" [(ngModel)]="mark">
+              <option>Alfa Romeo</option>
+              <option>Audi</option>
+              <option>BMW</option>
+              <option>Ford</option>
+              <option>Nissan</option>
+              <option>Mercedes</option>
+              <option>Opel</option>
+              <option>Peugeot</option>
+              <option>Renault</option>
+              <option>Range Rover</option>
+              <option>RAM</option>
+          </select>
         </div>
         <div class="form-group">
             <label for="TextInput">Year :</label>
-            <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="year">
+            <select name="input3" id="TextInput3" class="form-control" [(ngModel)]="year">
+              <option>2020</option>
+              <option>2019</option>
+              <option>2018</option>
+              <option>2017</option>
+              <option>2016</option>
+              <option>2015</option>
+              <option>2014</option>
+              <option>2013</option>
+              <option>2012</option>
+              <option>2011</option>
+              <option>2010</option>
+              <option>2009</option>
+              <option>2008</option>
+              <option>2007</option>
+              <option>2006</option>
+              <option>2005</option>
+              <option>2004</option>
+              <option>2003</option>
+              <option>2002</option>
+              <option>2001</option>
+              <option>2000</option>
+          </select>
         </div>
         <div class="form-group">
             <label for="TextInput">Type :</label>
-            <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="type">
+            <select name="input4" id="TextInput4" class="form-control" [(ngModel)]="type">
+                        <option>Micro</option>
+                        <option>Hatchback</option>
+                        <option>Sedan</option>
+                        <option>CUV</option>
+                        <option>SUV</option>
+                        <option>Pickup</option>
+                        <option>VAN</option>
+                        <option>Coupe</option>
+                        <option>Cabriolet</option>
+          </select>
         </div>
         <div class="form-group">
             <label for="TextInput">Seats :</label>
-            <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="seats">
+            <select name="input5" id="TextInput5" class="form-control" [(ngModel)]="seats">
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+          </select>
         </div>
         <div class="form-group">
             <label for="TextInput">Daily price :</label>
-            <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="dailyPrice">
-        </div>  
-        <div class="form-group">
-            <label for="TextInput">Image :</label>
-            <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="image">
-        </div>  
+            <input name="input6" type="number" id="TextInput6" class="form-control" [(ngModel)]="dailyPrice">
+        </div> 
     </form>
   </div>
   <div class="modal-footer">

@@ -858,6 +858,140 @@ namespace TravellifeChaser.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TravellifeChaser.Models.RACSystem.Car", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("DailyPrice")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Model")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.Property<int>("Seats")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cars");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DailyPrice = 100.0,
+                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car1.jpg",
+                            Mark = "Mercedes",
+                            Model = "AMG 310i",
+                            Rating = 8.5,
+                            Seats = 5,
+                            Type = "Hatchback",
+                            Year = 2020
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DailyPrice = 100.0,
+                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car2.jpg",
+                            Mark = "Mercedes",
+                            Model = "AMG 310i",
+                            Rating = 8.5,
+                            Seats = 5,
+                            Type = "Hatchback",
+                            Year = 2020
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DailyPrice = 100.0,
+                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car3.jpg",
+                            Mark = "Mercedes",
+                            Model = "AMG 310i",
+                            Rating = 8.5,
+                            Seats = 5,
+                            Type = "Hatchback",
+                            Year = 2020
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DailyPrice = 100.0,
+                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car4.jpg",
+                            Mark = "Mercedes",
+                            Model = "AMG 310i",
+                            Rating = 8.5,
+                            Seats = 5,
+                            Type = "Hatchback",
+                            Year = 2020
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DailyPrice = 100.0,
+                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car5.jpg",
+                            Mark = "Mercedes",
+                            Model = "AMG 310i",
+                            Rating = 8.5,
+                            Seats = 5,
+                            Type = "Hatchback",
+                            Year = 2020
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DailyPrice = 100.0,
+                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car6.jpg",
+                            Mark = "Mercedes",
+                            Model = "AMG 310i",
+                            Rating = 8.5,
+                            Seats = 5,
+                            Type = "Hatchback",
+                            Year = 2020
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DailyPrice = 100.0,
+                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car7.jpg",
+                            Mark = "Mercedes",
+                            Model = "AMG 310i",
+                            Rating = 8.5,
+                            Seats = 5,
+                            Type = "Hatchback",
+                            Year = 2020
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DailyPrice = 100.0,
+                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car8.jpg",
+                            Mark = "Mercedes",
+                            Model = "AMG 310i",
+                            Rating = 8.5,
+                            Seats = 5,
+                            Type = "Hatchback",
+                            Year = 2020
+                        });
+                });
+
             modelBuilder.Entity("TravellifeChaser.Models.RegisteredUser", b =>
                 {
                     b.Property<int>("Id")

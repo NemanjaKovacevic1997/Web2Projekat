@@ -8,37 +8,39 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ChangeCarModalComponent implements OnInit {
 
-  @Input() public model;
-  @Input() public mark;
-  @Input() public year;
-  @Input() public type;
-  @Input() public seats;
-  @Input() public dailyPrice;
-  @Input() public image;
+  @Input() public myCar;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
+
+  public model:string;
+  public mark:string;
+  public year:number;
+  public type:string;
+  public seats:number;
+  public dailyPrice:number;
 
   constructor(
     public activeModal: NgbActiveModal
   ) { }
 
   ngOnInit() {
+    this.model = this.myCar.model;
+    this.mark = this.myCar.mark; 
+    this.dailyPrice = this.myCar.dailyPrice;
+    this.year = this.myCar.year;
+    this.seats = this.myCar.seats;
+    this.type = this.myCar.type;
   }
 
   passBack() {
-    this.passEntry.emit(this.model);
-    this.passEntry.emit(this.mark);
-    this.passEntry.emit(this.year);
-    this.passEntry.emit(this.type);
-    this.passEntry.emit(this.seats);
-    this.passEntry.emit(this.dailyPrice);
-    this.passEntry.emit(this.image);
-    this.activeModal.close(this.model);
-    this.activeModal.close(this.mark);
-    this.activeModal.close(this.year);
-    this.activeModal.close(this.type);
-    this.activeModal.close(this.seats);
-    this.activeModal.close(this.dailyPrice);
-    this.activeModal.close(this.image);
+    this.myCar.model = this.model;
+    this.myCar.mark = this.mark;
+    this.myCar.dailyPrice = this.dailyPrice;
+    this.myCar.year = this.year;
+    this.myCar.seats = this.seats;
+    this.myCar.type = this.type;
+
+    this.passEntry.emit(this.myCar);
+    this.activeModal.close(this.myCar);
   }
 
 }

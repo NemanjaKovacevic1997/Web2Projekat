@@ -32,6 +32,10 @@
             routerLinkActive="active current"  class="nav-item">
           <a class="nav-link" routerLink="/adminAirlines/airlineProfile"><i class="fa fa-id-card"></i> Airlines profile</a>
         </li>
+        <li *ngIf="this.loginService.userRole == UserRole.AdminRAC"
+            routerLinkActive="active current"  class="nav-item">
+          <a class="nav-link" routerLink="/adminRAC/rent-a-car-selected"><i class="fa fa-id-card"></i> Rent-a-car profile</a>
+        </li>
         <li *ngIf="this.loginService.userRole == UserRole.AdminAirlines" 
             routerLinkActive="active current" class="nav-item">
           <a class="nav-link" routerLink="/adminAirlines/airline-flights"><i class="fa fa-plane"></i> Filghts </a>

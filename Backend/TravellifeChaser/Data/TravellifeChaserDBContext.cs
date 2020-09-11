@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using TravellifeChaser.Models;
+using TravellifeChaser.Models.RACSystem;
 
 namespace TravellifeChaser.Data
 {
@@ -31,6 +32,7 @@ namespace TravellifeChaser.Data
         public DbSet<AirlineAirport> AirlinesAirports { get; set; }
         public DbSet<FlightAirport> FlightsAirports { get; set; }
         public DbSet<Friendship> Frendships { get; set; }
+        public DbSet<Car> Cars { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -216,6 +218,11 @@ namespace TravellifeChaser.Data
                 .OnDelete(DeleteBehavior.Restrict);
             });
 
+            modelBuilder.Entity<Car>(x =>
+            {
+                x.HasKey(x => x.Id);
+                x.Property(x => x.Id).ValueGeneratedOnAdd();
+            });
 
             modelBuilder.Seed();
         }

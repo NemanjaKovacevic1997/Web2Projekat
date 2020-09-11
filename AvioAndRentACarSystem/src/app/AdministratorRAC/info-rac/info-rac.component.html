@@ -1,7 +1,15 @@
 <form class="rounded-lg">
     <table class="table">
         <tbody>
-            <tr (click)="openAddressModal()">
+            <tr (click)="openNameRacModal()">
+                <th>Name:</th>
+                <td>{{myName}}</td>
+            </tr>
+            <tr (click)="openPromotionalDescriptionRacModal()">
+                <th>Promotional description:</th>
+                <td>{{myPromotionalDescription}}</td>
+            </tr>
+            <tr (click)="openAddressRacModal()">
                 <th>Address:</th>
                 <td>{{myAddress}}</td>
             </tr>
@@ -13,10 +21,25 @@
                 <th>Price List:</th>
                 <td>{{myPriceList}}</td>
             </tr>
-            <tr >
+            <tr *ngIf="this.loginService.userRole == UserRole.AdminRAC">
+                <td colspan="2">
+                    <input type="file" (change)="onSelectFile($event)" >
+                </td>
+            </tr>
+            <tr *ngIf="this.loginService.userRole == UserRole.AdminRAC">
+                <td colspan="2">
+                    <img class="rounded-lg" [src]="myLogo" width="250" height="150">
+                </td>
+            </tr>
+            <tr>
                 <th>Rating:</th>
                 <td><ngb-rating [(rate)]="myRating" [readonly]="true" class="ngb-rating"></ngb-rating></td>
             </tr>
         </tbody>
     </table>
+    <div class="form-row justify-content-center" *ngIf="this.loginService.userRole == UserRole.AdminRAC">             
+        <div class="form-group col-md-4">
+            <button type="submit" class="btn btn-primary form-control" (click)="onSubmit()">Save</button>
+        </div>
+    </div>  
 </form>

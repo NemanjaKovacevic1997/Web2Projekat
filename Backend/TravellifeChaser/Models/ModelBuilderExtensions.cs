@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TravellifeChaser.Helpers.Generators;
+using TravellifeChaser.Models.RACSystem;
 
 namespace TravellifeChaser.Models
 {
@@ -623,6 +624,125 @@ namespace TravellifeChaser.Models
             modelBuilder.Entity<Flight>().HasData(f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12);
             modelBuilder.Entity<Seat>().HasData(seats);
             modelBuilder.Entity<Ticket>().HasData(tickets);
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //MOJI PODACI
+
+            Car c1 = new Car()
+            {
+                Id = 1,
+                DailyPrice = 100,
+                Image = @"../../assets/images/car1.jpg", 
+                Mark = "Mercedes", 
+                Model = "A 250", 
+                Rating = 0, 
+                Seats = 5, 
+                Type = "Hatchback", 
+                Year=2020
+            };
+
+            Car c2 = new Car()
+            {
+                Id = 2,
+                DailyPrice = 100,
+                Image = @"../../assets/images/car2.jpg",
+                Mark = "BMW",
+                Model = "M5",
+                Rating = 0,
+                Seats = 5,
+                Type = "Sedan",
+                Year = 2020
+            };
+
+            Car c3 = new Car()
+            {
+                Id = 3,
+                DailyPrice = 100,
+                Image = @"../../assets/images/car3.jpg",
+                Mark = "Range Rover",
+                Model = "P525",
+                Rating = 0,
+                Seats = 5,
+                Type = "SUV",
+                Year = 2018
+            };
+
+            Car c4 = new Car()
+            {
+                Id = 4,
+                DailyPrice = 100,
+                Image = @"../../assets/images/car4.jpg",
+                Mark = "RAM",
+                Model = "1500",
+                Rating = 0,
+                Seats = 6,
+                Type = "Pickup",
+                Year = 2019
+            };
+
+            Car c5 = new Car()
+            {
+                Id = 5,
+                DailyPrice = 100,
+                Image = @"../../assets/images/car5.jpg",
+                Mark = "Audi",
+                Model = "TT",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2016
+            };
+
+            Car c6 = new Car()
+            {
+                Id = 6,
+                DailyPrice = 100,
+                Image = @"../../assets/images/car6.jpg",
+                Mark = "Renault",
+                Model = "Clio 5",
+                Rating = 0,
+                Seats = 5,
+                Type = "Hatchback",
+                Year = 2017
+            };
+
+            Car c7 = new Car()
+            {
+                Id = 7,
+                DailyPrice = 100,
+                Image = @"../../assets/images/car7.jpg",
+                Mark = "BMW",
+                Model = "X6",
+                Rating = 0,
+                Seats = 5,
+                Type = "SUV",
+                Year = 2019
+            };
+
+            Car c8 = new Car()
+            {
+                Id = 8,
+                DailyPrice = 100,
+                Image = @"../../assets/images/car8.jpg",
+                Mark = "Mercedes",
+                Model = "A 100",
+                Rating = 0,
+                Seats = 5,
+                Type = "Hatchback",
+                Year = 2020
+            };
+
+            List<Car> cars = new List<Car>();
+            cars.Add(c1);
+            cars.Add(c2);
+            cars.Add(c3);
+            cars.Add(c4);
+            cars.Add(c5);
+            cars.Add(c6);
+            cars.Add(c7);
+            cars.Add(c8);
+
+            modelBuilder.Entity<Car>().HasData(cars);
         }
     }
 }

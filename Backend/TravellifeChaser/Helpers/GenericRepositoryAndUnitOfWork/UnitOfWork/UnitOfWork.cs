@@ -40,6 +40,9 @@ namespace TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork
         private IAirportRepository airportRepository;
 
         private IAirlineAirportRepository airlineAirportRepository;
+
+        private ICarRepository carRepository;
+
         public IAirlineRepository AirlineRepository
         {
             get
@@ -147,6 +150,16 @@ namespace TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork
                 if (this.airlineAirportRepository == null)
                     this.airlineAirportRepository = new AirlineAirportRepository(_context);
                 return airlineAirportRepository;
+            }
+        }
+
+        public ICarRepository CarRepository
+        {
+            get
+            {
+                if (this.carRepository == null)
+                    this.carRepository = new CarRepository(_context);
+                return carRepository;
             }
         }
 

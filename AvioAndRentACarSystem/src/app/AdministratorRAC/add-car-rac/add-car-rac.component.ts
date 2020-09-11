@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CarService } from 'src/app/Services/Car/car.service';
+import { Car } from 'src/app/ModelRAC/car';
 
 @Component({
   selector: 'app-add-car-rac',
@@ -9,31 +11,22 @@ import { Router } from '@angular/router';
 })
 export class AddCarRacComponent implements OnInit {
 
-  myUrl: string;
-  myModel: string = "AMG 730 Disel";
-  myDailyPrice: string = "100€";
+  myModel: string;
+  myMark: string;
+  myYear: number;
+  myType: string;
+  mySeats: number;
+  myDailyPrice: number;
+  myImage: string;
+  myRating: number = 0;
 
-  form = new FormGroup({
-    from: new FormControl('', [
-      Validators.required
-    ]),
-    to: new FormControl('', [
-      Validators.required
-    ]),
-    date1: new FormControl('', [
-      Validators.required
-    ]),
-    date2: new FormControl('', [
-      Validators.required
-    ]),
-    time2: new FormControl('', [
-      Validators.required
-    ])
-  })
+  currentId: number = 0;
+  addedCar: Car;
   
-  constructor(private router: Router) { }
+  constructor(private router: Router, private carService: CarService) { }
 
   ngOnInit(): void {
+    
   }
 
   onSelectFile(event) { // called each time file input changes
@@ -43,15 +36,32 @@ export class AddCarRacComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.myUrl = event.target.result.toString();
+        this.myImage = event.target.result.toString();
       }
     }
-}
+  }
 
-onSubmit() {
-  if (this.form.valid)
-    this.router.navigate(['/flights']);
-  else
-    alert("Bad input.");
-}
+  addCar() {
+    if(!this.validationFull()){
+      alert("All fields must be provided.");
+      return;
+    }
+
+    //var car = new Car(this.currentId, this.myMark, this.myType, this.mySeats, this.myRating, this.myDailyPrice, this.myModel);
+    var car = new Car (0, this.myModel, this.myMark, this.myType, this.myYear, this.mySeats, this.myRating, this.myDailyPrice, this.myImage )
+
+    this.carService.add(car).subscribe(() => this.ngOnInit());
+  }
+
+  private validationFull() {
+    if(this.myModel == undefined || this.myModel == null ||
+      this.myMark == undefined || this.myMark == null ||
+      this.myYear == undefined || this.myYear == null ||
+      this.myType == undefined || this.myType == null ||
+      this.mySeats == undefined || this.mySeats == null ||
+      this.myImage == undefined || this.myImage == null ||
+      this.myRating == undefined || this.myRating == null)
+      return false;
+    return true;
+  }
 }

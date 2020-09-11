@@ -2,6 +2,11 @@ import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { ImageService } from '../Services/Image/image.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ChangeCarModalComponent } from '../ModalsRAC/change-car-modal/change-car-modal.component';
+import { CarService } from '../Services/Car/car.service';
+import { Car } from '../ModelRAC/car';
+import { LoginService } from '../Services/Login/login.service';
+import { UserRole } from '../AirlineModel/userRole';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-image-lightbox',
@@ -11,41 +16,72 @@ import { ChangeCarModalComponent } from '../ModalsRAC/change-car-modal/change-ca
 })
 export class ImageLightboxComponent implements OnInit {
 
-  images = [];
   slideIndex = 0;
+  public cars: Array<Car>;
+  myCar: Car;
+  myCarBefore: Car;
+  indexOfMyCar: number;
+  get UserRole() { return UserRole; }
+  public loginService: LoginService;
 
-  myModel = "";
-  myMark = "";
-  myYear = "";
-  myType = "";
-  mySeats = "";
-  myDailyPrice = "";
-  myImage = "";  
-
-
-  constructor(private imageService: ImageService, private modalService: NgbModal) {}
-
-  ngOnInit(): void {
-    this.loadImages();
+  constructor(private imageService: ImageService, private modalService: NgbModal, private carService: CarService, loginService: LoginService, private router: Router) {
+    this.loginService = loginService;
   }
 
-  openChangeCarModal(){
+  ngOnInit(): void {
+    this.updateCarList();
+  }
+
+  removeCar(id){
+    if (confirm('Are you sure you want to remove this car?')) {
+      this.carService.remove(id).subscribe(() => this.ngOnInit());
+    }  
+  }
+
+  updateCarList(){
+    this.carService.getAll().subscribe(ret => {
+      this.cars = ret as Array<Car>;
+    });
+  }
+  
+  saveChanges(id) {
+    if (confirm('Are you sure you want to save changes?')) {
+      this.carService.update(id, this.myCar).subscribe(() => {
+        this.cars[this.indexOfMyCar] = this.myCar;
+        alert("Changes are saved successfuly.")
+      });
+      return;
+    }
+    this.myCar = this.myCarBefore;
+    this.cars[this.indexOfMyCar] = this.myCar;
+  }
+
+  openChangeCarModal(id){
+    this.myCar =  this.cars.find(x => x.id == id);
+    this.myCarBefore = new Car();
+    this.myCarBefore.dailyPrice = this.myCar.dailyPrice;
+    this.myCarBefore.id = this.myCar.id;
+    this.myCarBefore.image = this.myCar.image;
+    this.myCarBefore.mark = this.myCar.mark;
+    this.myCarBefore.model = this.myCar.model;
+    this.myCarBefore.rating = this.myCar.rating;
+    this.myCarBefore.seats = this.myCar.seats;
+    this.myCarBefore.type = this.myCar.type;
+    this.myCarBefore.year = this.myCar.year;
+    this.indexOfMyCar = this.cars.findIndex(x => x.id == id);
     const modalRef = this.modalService.open(ChangeCarModalComponent);
-    modalRef.componentInstance.myAddress = this.myModel;
+    modalRef.componentInstance.myCar = this.myCar;
     modalRef.result.then((result) => {
       if (result) {
-        this.myModel = result;
+        this.myCar = result;
         console.log(result);
+        this.saveChanges(id);
       }
     }, (reason) => {
       console.log(reason);
-    });
+    }); 
   }
 
-  loadImages(): void {
-    this.imageService.fetchImages()
-     .subscribe(images => this.images = images);
-   }
    openModal() {
     document.getElementById('imgModal').style.display = "block";
    }

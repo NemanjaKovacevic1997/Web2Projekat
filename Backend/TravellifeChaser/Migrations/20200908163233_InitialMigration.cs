@@ -24,6 +24,26 @@ namespace TravellifeChaser.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Cars",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Model = table.Column<string>(nullable: true),
+                    Mark = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
+                    Year = table.Column<int>(nullable: false),
+                    Seats = table.Column<int>(nullable: false),
+                    Rating = table.Column<double>(nullable: false),
+                    DailyPrice = table.Column<double>(nullable: false),
+                    Image = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cars", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Pricelists",
                 columns: table => new
                 {
@@ -399,13 +419,13 @@ namespace TravellifeChaser.Migrations
                     { 21, "Abu Dhabi", "UAE", 24.466667000000001, 54.366669000000002 },
                     { 20, "Harmondsworth", "England", 51.486499999999999, -0.47960000000000003 },
                     { 19, "Moscow", "Russia", 55.972777780000001, 37.414722220000002 },
-                    { 18, "Amsterdam", "Netherland", 52.30805556, 4.7641666699999998 },
                     { 17, "Brussel", "Belgium", 50.90138889, 4.4844444399999999 },
                     { 16, "Madrid", "Spain", 49.009700000000002, 2.5478999999999998 },
                     { 15, "Lisbon", "Portugal", 38.77416667, 38.77416667 },
+                    { 14, "Munich", "Deuschland", 48.35388889, 11.78611111 },
                     { 13, "Subotica", "Serbia", null, null },
                     { 12, "Krusevac", "Serbia", null, null },
-                    { 14, "Munich", "Deuschland", 48.35388889, 11.78611111 },
+                    { 18, "Amsterdam", "Netherland", 52.30805556, 4.7641666699999998 },
                     { 10, "Sremska Mitrovica", "Serbia", null, null },
                     { 9, "Paris", "France", 49.009700000000002, 2.5478999999999998 },
                     { 8, "London", "England", 51.469999999999999, 0.45429999999999998 },
@@ -419,16 +439,31 @@ namespace TravellifeChaser.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Cars",
+                columns: new[] { "Id", "DailyPrice", "Image", "Mark", "Model", "Rating", "Seats", "Type", "Year" },
+                values: new object[,]
+                {
+                    { 6, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car6.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
+                    { 5, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car5.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
+                    { 4, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car4.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
+                    { 3, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car3.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
+                    { 2, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car2.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
+                    { 1, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car1.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
+                    { 8, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car8.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
+                    { 7, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car7.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Pricelists",
                 columns: new[] { "Id", "HandLuggageOverMaxDimensions", "LuggageOver10kg", "LuggageOver20kg" },
                 values: new object[,]
                 {
                     { 5, 4.0, 6.0, 12.0 },
-                    { 1, 3.0, 5.0, 10.0 },
-                    { 2, 4.0, 6.0, 12.0 },
-                    { 3, 4.0, 6.0, 12.0 },
                     { 4, 4.0, 6.0, 12.0 },
-                    { 6, 4.0, 6.0, 12.0 }
+                    { 3, 4.0, 6.0, 12.0 },
+                    { 1, 3.0, 5.0, 10.0 },
+                    { 6, 4.0, 6.0, 12.0 },
+                    { 2, 4.0, 6.0, 12.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -2892,6 +2927,9 @@ namespace TravellifeChaser.Migrations
 
             migrationBuilder.DropTable(
                 name: "AirlinesAirports");
+
+            migrationBuilder.DropTable(
+                name: "Cars");
 
             migrationBuilder.DropTable(
                 name: "FlightsAirports");

@@ -1,14 +1,16 @@
-<form [formGroup]="form" class="rounded-lg">
+<form class="rounded-lg">
     <table class="table">
         <tbody>
             <tr>
                 <th>Model:</th>
-                <td>{{myModel}}</td>
+                <td>
+                    <input type="text" id="inputModel" name="inputModel" class="form-control" [(ngModel)]="myModel">
+                </td>
             </tr>
             <tr>
                 <th>Mark:</th>
                 <td>
-                    <select id="inputState" class="form-control">
+                    <select id="inputMark" name="inputMark" class="form-control" [(ngModel)]="myMark">
                         <option hidden>Mark</option>
                         <option>Alfa Romeo</option>
                         <option>Audi</option>
@@ -19,13 +21,44 @@
                         <option>Opel</option>
                         <option>Peugeot</option>
                         <option>Renault</option>
+                        <option>Range Rover</option>
+                        <option>RAM</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Year:</th>
+                <td>
+                    <select id="inputYear" name="inputYear" class="form-control" [(ngModel)]="myYear">
+                        <option hidden>Year</option>
+                        <option>2020</option>
+                        <option>2019</option>
+                        <option>2018</option>
+                        <option>2017</option>
+                        <option>2016</option>
+                        <option>2015</option>
+                        <option>2014</option>
+                        <option>2013</option>
+                        <option>2012</option>
+                        <option>2011</option>
+                        <option>2010</option>
+                        <option>2009</option>
+                        <option>2008</option>
+                        <option>2007</option>
+                        <option>2006</option>
+                        <option>2005</option>
+                        <option>2004</option>
+                        <option>2003</option>
+                        <option>2002</option>
+                        <option>2001</option>
+                        <option>2000</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <th>Type:</th>
                 <td>
-                    <select id="inputState" class="form-control">
+                    <select id="inputType" name="inputType" class="form-control" [(ngModel)]="myType">
                         <option hidden>Car type</option>
                         <option>Micro</option>
                         <option>Hatchback</option>
@@ -42,7 +75,7 @@
             <tr>
                 <th>Seats:</th>
                 <td>
-                    <select id="inputState" class="form-control">
+                    <select id="inputSeats" name="inputSeats" class="form-control" [(ngModel)]="mySeats">
                         <option hidden>Number of seats</option>
                         <option>2</option>
                         <option>3</option>
@@ -58,7 +91,9 @@
             </tr>
             <tr>
                 <th>Daily Price:</th>
-                <td>{{myDailyPrice}}</td>
+                <td>
+                    <input type="number" id="inputDailyPrice" name="inputDailyPrice" class="form-control" [(ngModel)]="myDailyPrice">
+                </td>
             </tr>
             <tr >
                 <td colspan="2">
@@ -67,7 +102,7 @@
             </tr>
             <tr >
                 <td colspan="2">
-                    <img class="rounded-lg" [src]="myUrl" width="300" height="160">
+                    <img class="rounded-lg" [src]="myImage" width="300" height="160">
                 </td>
             </tr>
         </tbody>
@@ -75,7 +110,7 @@
 
     <div class="form-row justify-content-center">             
         <div class="form-group col-md-4">
-            <button type="submit" class="btn btn-primary form-control" (click)="onSubmit()">Add</button>
+            <button type="submit" class="btn btn-primary form-control" (click)="addCar()">Add</button>
         </div>
     </div>  
 </form>

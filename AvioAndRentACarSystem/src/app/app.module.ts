@@ -81,7 +81,6 @@ import { FastTicketsComponent } from './fast-tickets/fast-tickets.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { BranchesModalComponent } from './ModalsRAC/branches-modal/branches-modal.component';
 import { PriceListModalComponent } from './ModalsRAC/price-list-modal/price-list-modal.component';
-<<<<<<< Updated upstream
 import { AdminAirlineAuthGuardService } from './Services/AuthGuards/adminAirline/admin-airline-auth-guard.service';
 import { RegisteredUserAuthGuardService } from './Services/AuthGuards/registeredUser/registered-user-auth-guard.service';
 import { UnregisteredUserAuthGuardService } from './Services/AuthGuards/unregisteredUser/unregistered-user-auth-guard.service';
@@ -89,14 +88,16 @@ import { UnregisteredOrRegisteredUserAuthGuardServiceService } from './Services/
 import { NotUnregisteredUserAuthGuardService } from './Services/AuthGuards/notUnregistered/not-unregistered-user-auth-guard.service';
 import { SeatMapAdminComponent } from './AdministratorAirline/seat-map-admin/seat-map-admin.component';
 import { SeatsModifyAdminComponent } from './AdministratorAirline/seats-modify-admin/seats-modify-admin.component';
-=======
 import { InfoRacComponent } from './AdministratorRAC/info-rac/info-rac.component';
 import { ReportRacComponent } from './AdministratorRAC/report-rac/report-rac.component';
 import { AddCarRacComponent } from './AdministratorRAC/add-car-rac/add-car-rac.component';
 import { FilterRacComponent } from './filter-rac/filter-rac.component';
 import { MenuRacComponent } from './AdministratorRAC/menu-rac/menu-rac.component';
 import { ChangeCarModalComponent } from './ModalsRAC/change-car-modal/change-car-modal.component';
->>>>>>> Stashed changes
+import { AddressRacModalComponent } from './ModalsRAC/address-rac-modal/address-rac-modal.component';
+import { AdminRacAuthGuardService } from './Services/AuthGuards/adminRAC/admin-rac-auth-guard.service';
+import { NameRacModalComponent } from './ModalsRAC/name-rac-modal/name-rac-modal.component';
+import { PromotionalDescriptionRacComponent } from './ModalsRAC/promotional-description-rac/promotional-description-rac.component';
 
 @NgModule({
   declarations: [
@@ -157,17 +158,17 @@ import { ChangeCarModalComponent } from './ModalsRAC/change-car-modal/change-car
     AddressModalComponent,
     BranchesModalComponent,
     PriceListModalComponent,
-<<<<<<< Updated upstream
     SeatMapAdminComponent,
-    SeatsModifyAdminComponent
-=======
+    SeatsModifyAdminComponent,
     InfoRacComponent,
     ReportRacComponent,
     AddCarRacComponent,
     FilterRacComponent,
     MenuRacComponent,
-    ChangeCarModalComponent
->>>>>>> Stashed changes
+    ChangeCarModalComponent,
+    AddressRacModalComponent,
+    NameRacModalComponent,
+    PromotionalDescriptionRacComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -219,7 +220,16 @@ import { ChangeCarModalComponent } from './ModalsRAC/change-car-modal/change-car
       { path: 'adminAirlines/report', component: ReportComponent, canActivate: [AdminAirlineAuthGuardService]},
       { path: 'adminAirlines/:flightId/remove', component: SeatsModifyAdminComponent, canActivate: [AdminAirlineAuthGuardService]},
 
-      { path: ':username', component: ProfileShowComponent, canActivate: [NotUnregisteredUserAuthGuardService]}
+      { path: ':username', component: ProfileShowComponent, canActivate: [NotUnregisteredUserAuthGuardService]},
+
+      //for ADMIN RAC (add username prefix later)
+      { path: 'adminRAC/rent-a-car-search', component: RentACarSearchComponent, canActivate: [AdminRacAuthGuardService]},
+      { path: 'adminRAC/rent-a-car-selected', component: RentACarSelectedComponent, canActivate: [AdminRacAuthGuardService]},
+      //{ path: 'adminRAC/rent-a-car-profile', component: RentACarProfileComponent, canActivate: [AdminRacAuthGuardService]},
+      //{ path: 'adminRAC/report', component: ReportComponent, canActivate: [AdminRacAuthGuardService]},
+      //{ path: 'adminRAC/:flightId/remove', component: SeatsModifyAdminComponent, canActivate: [AdminRacAuthGuardService]},
+
+      //{ path: ':username', component: ProfileShowComponent, canActivate: [NotUnregisteredUserAuthGuardService]}
     ])
   ],
   providers: [

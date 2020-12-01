@@ -15,14 +15,22 @@
                         <option>Alfa Romeo</option>
                         <option>Audi</option>
                         <option>BMW</option>
+                        <option>Chevrolet</option>
+                        <option>Ferrari</option>
+                        <option>Fiat</option>
                         <option>Ford</option>
                         <option>Nissan</option>
                         <option>Mercedes</option>
+                        <option>Mini</option>
                         <option>Opel</option>
                         <option>Peugeot</option>
+                        <option>Porshe</option>
                         <option>Renault</option>
                         <option>Range Rover</option>
                         <option>RAM</option>
+                        <option>Smart</option>
+                        <option>Toyota</option>
+                        <option>Volkswagen</option>
                     </select>
                 </td>
             </tr>
@@ -97,10 +105,13 @@
             </tr>
             <tr >
                 <td colspan="2">
-                    <input type="file" (change)="onSelectFile($event)" >
+                    <button type="submit" class="btn btn-info" (click)="fileInput.click()">
+                        <span>Add Image</span>
+                        <input #fileInput type="file" (change)="onSelectFile($event)" style="display:none;" />
+                    </button>                 
                 </td>
             </tr>
-            <tr >
+            <tr *ngIf="myImage != null">
                 <td colspan="2">
                     <img class="rounded-lg" [src]="myImage" width="300" height="160">
                 </td>
@@ -110,7 +121,7 @@
 
     <div class="form-row justify-content-center">             
         <div class="form-group col-md-4">
-            <button type="submit" class="btn btn-primary form-control" (click)="addCar()">Add</button>
+            <button type="submit" class="btn btn-info form-control" (click)="addCar()">Add</button>
         </div>
     </div>  
 </form>

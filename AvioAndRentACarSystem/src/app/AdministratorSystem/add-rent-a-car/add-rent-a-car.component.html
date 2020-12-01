@@ -1,0 +1,144 @@
+<form class="rounded-lg">
+    <div class="form-row justify-content-center">             
+        <div class="form-group">
+            <h6 class="h6">
+                New Rent-a-car Service
+            </h6>
+        </div>
+    </div>  
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name:</th>
+                <td>
+                    <input type="text" class="form-control" [(ngModel)]="rac.name" [ngModelOptions]="{standalone: true}">
+                </td>
+            </tr>
+            <tr>
+                <th>Description:</th>
+                <td>
+                    <input type="text" class="form-control" [(ngModel)]="rac.promotionalDescription" [ngModelOptions]="{standalone: true}">
+                </td>
+            </tr>
+            <tr>
+                <th>Branches:</th>
+                <td (click)="openBranchesModal()">
+                   <button class="btn myButton">
+                       Click to add address
+                   </button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div *ngFor="let address of racAddresses; let i = index;">
+                         {{address.street}} {{address.number}}, {{address.city}}, {{address.country}}
+                        <button type="submit" class="btn xButton" (click)="deleteAddress(i)">x</button>
+                        <br>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>Price List:</th>
+                <td>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <i class="fa fa-user"></i>  
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForOne" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            €  
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <i class="fa fa-user"></i>  
+                            <i class="fa fa-user"></i> 
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForTwo" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            €  
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <i class="fa fa-user"></i> 
+                            <i class="fa fa-user"></i> 
+                            <i class="fa fa-user"></i>  
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForThree" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            €  
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <i class="fa fa-user"></i> 
+                            <i class="fa fa-user"></i> 
+                            <i class="fa fa-user"></i> 
+                            <i class="fa fa-user"></i>  
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForFour" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            €  
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <i class="fa fa-user"></i> 
+                            <i class="fa fa-user"></i> 
+                            <i class="fa fa-user"></i> 
+                            <i class="fa fa-user"></i> + 
+                        </div>
+                        <div class="form-group col-md-4">
+                            <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForMore" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group col-md-4">
+                            €  
+                        </div>
+                    </div>
+                </td>                
+            </tr>
+            <tr>
+                <th>Administrator:</th>
+                <td (click)="openAdministratorRACModal()">
+                   <button class="btn myButton">
+                       Click to add admin
+                   </button>
+                </td>
+            </tr>
+            <tr *ngIf="racAdministrator != undefined">
+                <td colspan="2">
+                    <div>
+                         {{racAdministrator.firstName}} {{racAdministrator.lastName}}
+                        <button type="submit" class="btn xButton" (click)="deleteAdmin">x</button>
+                        <br>
+                    </div>
+                </td>
+            </tr>
+            <tr *ngIf="rac.logo != null">
+                <td colspan="2">
+                    <img class="rounded-lg" src={{rac.logo}} width="250" height="150">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="form-row justify-content-center">             
+        <div class="form-group col-md-4">
+            <button type="submit" class="btn btn-info form-control" (click)="fileInput.click()">
+                <span>Add Logo</span>
+                <input #fileInput type="file" (change)="onSelectFile($event)" style="display:none;" />
+            </button>
+        </div>
+        <div class="form-group col-md-4">
+            <button type="submit" class="btn btn-info form-control" (click)="addRAC()">Save</button>
+        </div>
+    </div>  
+</form>

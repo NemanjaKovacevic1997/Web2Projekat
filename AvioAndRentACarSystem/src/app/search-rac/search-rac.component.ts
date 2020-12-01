@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { RACService } from '../ModelRAC/racService';
+import { RacServiceService } from '../Services/RACService/rac-service.service';
+import { SearchDataRAC } from '../ModelRAC/HelperModelRAC/searchDataRAC';
+import { IgxDatePickerTemplateDirective } from 'igniteui-angular/lib/date-picker/date-picker.directives';
 
 @Component({
   selector: 'search-rac',
@@ -10,20 +14,19 @@ import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class SearchRacComponent implements OnInit {
   
+  @Output() change = new EventEmitter<SearchDataRAC>();
+
   form = new FormGroup({
-    from: new FormControl('', [
+    name: new FormControl('', [
       Validators.required
     ]),
-    to: new FormControl('', [
+    location: new FormControl('', [
       Validators.required
     ]),
     date1: new FormControl('', [
       Validators.required
     ]),
     date2: new FormControl('', [
-      Validators.required
-    ]),
-    time2: new FormControl('', [
       Validators.required
     ])
   })
@@ -32,12 +35,12 @@ export class SearchRacComponent implements OnInit {
   public minPickerTime1;
   public minPickerTime2;
 
-  get from() {
-    return this.form.get('from');
+  get name() {
+    return this.form.get('name');
   }
 
-  get to() {
-    return this.form.get('to');
+  get location() {
+    return this.form.get('location');
   }
 
   get date1() {
@@ -48,18 +51,30 @@ export class SearchRacComponent implements OnInit {
     return this.form.get('date2');
   }
 
-  get time2(){
-    return this.form.get('time2');
-  }
-
-  constructor(private router: Router, config: NgbTimepickerConfig) {
+  constructor(private router: Router, config: NgbTimepickerConfig, private racServiceService: RacServiceService) {
     config.meridian = true;
     config.minuteStep = 15;
-   }
+  }
 
   onSubmit() {
-    if (this.form.valid)
-      this.router.navigate(['/flights']);
+    if (this.form.valid){
+      let filterData: SearchDataRAC = new SearchDataRAC();
+      filterData.nameOfService = this.name.value;
+      filterData.location = this.location.value;
+      filterData.date1Day = this.date1.value.day;
+      filterData.date1Month = this.date1.value.month;
+      filterData.date1Year = this.date1.value.year;
+      filterData.date2Day = this.date2.value.day;
+      filterData.date2Month = this.date2.value.month;
+      filterData.date2Year = this.date2.value.year;
+      filterData.time1Hour = this.minPickerTime1.hour;
+      filterData.time1Minute = this.minPickerTime1.minute;
+      filterData.time2Hour = this.minPickerTime2.hour;
+      filterData.time2Minute = this.minPickerTime2.minute;
+
+      console.log(filterData);
+      this.change.emit(filterData);
+    }
     else
       alert("Bad input.");
   }

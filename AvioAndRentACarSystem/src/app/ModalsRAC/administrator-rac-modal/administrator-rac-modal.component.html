@@ -1,0 +1,49 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add RAC Administrator</h4>
+    <button type="button" class="close myButton" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+        <div class="form-group">
+          <label for="TextInput">First name :</label>
+          <input name="input1" type="text" id="TextInput1" class="form-control" [(ngModel)]="firstname">
+        </div>
+        <div class="form-group">
+            <label for="TextInput">Last name :</label>
+            <input name="input2" type="text" id="TextInput2" class="form-control" [(ngModel)]="lastname">
+          </div>
+          <div class="form-group">
+            <label for="TextInput">Email address :</label>
+            <input name="input3" type="text" id="TextInput3" class="form-control" [(ngModel)]="email">
+          </div>
+          <div class="form-group">
+            <label for="TextInput">Username :</label>
+            <input name="input4" type="text" id="TextInput4" class="form-control" [(ngModel)]="username">
+          </div>
+          <div class="form-group">
+            <label for="TextInput">Password :</label>
+            <input name="input5" type="password" id="TextInput5" class="form-control" [(ngModel)]="password">
+          </div>
+          <div class="form-group">
+            <label for="TextInput">Repeat password :</label>
+            <input name="input6" type="password" id="TextInput6" class="form-control" [(ngModel)]="repeatPassword">
+          </div>
+          <div class="form-group">
+            <label for="TextInput">City :</label>
+            <input name="input7" type="text" id="TextInput7" class="form-control" [(ngModel)]="city">
+          </div>
+          <div class="form-group">
+            <label for="TextInput">Country :</label>
+            <input name="input8" type="text" id="TextInput8" class="form-control" [(ngModel)]="country">
+          </div>
+          <div class="form-group">
+            <label for="TextInput">Phone number :</label>
+            <input name="input9" type="text" id="TextInput9" class="form-control" [(ngModel)]="phoneNumber">
+          </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="validation()" type="submit" class="btn btn-outline-dark">Add</button>
+  </div>

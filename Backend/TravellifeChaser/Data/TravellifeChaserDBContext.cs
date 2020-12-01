@@ -7,6 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using TravellifeChaser.Models;
 using TravellifeChaser.Models.RACSystem;
+using TravellifeChaser.Models.RACSystem.Many_To_ManyEntities;
 
 namespace TravellifeChaser.Data
 {
@@ -33,6 +34,13 @@ namespace TravellifeChaser.Data
         public DbSet<FlightAirport> FlightsAirports { get; set; }
         public DbSet<Friendship> Frendships { get; set; }
         public DbSet<Car> Cars { get; set; }
+        public DbSet<RACService> RACServices { get; set; }
+        public DbSet<Rent> Rents { get; set; }
+        public DbSet<RACAddress> RACAddresses { get; set; }
+        public DbSet<RACAddressRent> RACAddressesRents { get; set; }
+        public DbSet<AdminRACUser> AdminRACUsers { get; set; }
+        public DbSet<AdminSysUser> AdminSysUsers { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -61,6 +69,7 @@ namespace TravellifeChaser.Data
                .WithMany(x => x.Airlines)
                .HasForeignKey(x => x.AddressId)
                .OnDelete(DeleteBehavior.Cascade);
+                //x.HasOne(x => x.AdminSysUser).WithMany(x => x.Airlines).HasForeignKey(x => x.AdminSysUserId);
             });
 
             modelBuilder.Entity<Airport>(x =>
@@ -222,9 +231,75 @@ namespace TravellifeChaser.Data
             {
                 x.HasKey(x => x.Id);
                 x.Property(x => x.Id).ValueGeneratedOnAdd();
+                x.HasOne(x => x.RACService)
+                .WithMany(x => x.Cars)
+                .HasForeignKey(x => x.RACServiceId);
+            });
+
+            modelBuilder.Entity<RACAddress>(x =>
+            {
+                x.HasKey(x => x.Id);
+                x.Property(x => x.Id).ValueGeneratedOnAdd();
+                x.HasOne(x => x.RACService)
+               .WithMany(x => x.RACAddresses)
+               .HasForeignKey(x => x.RACServiceId)
+               .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            modelBuilder.Entity<Rent>(x =>
+            {
+                x.HasKey(x => x.Id);
+                x.Property(x => x.Id).ValueGeneratedOnAdd();
+
+                x.HasOne(x => x.StartRACAddress)
+                .WithMany(x => x.RentStarts)
+                .HasForeignKey(x => x.StartRACAddressId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(x => x.EndRACAddress)
+                .WithMany(x => x.RentEnds)
+                .HasForeignKey(x => x.EndRACAddressId)
+                .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<RACAddressRent>(x =>
+            {
+                x.HasOne(sc => sc.Rent)
+                 .WithMany(sc => sc.RACAddressRents)
+                 .HasForeignKey(sc => sc.RentId)
+                 .OnDelete(DeleteBehavior.Restrict);
+                x.HasOne(sc => sc.RACAddress)
+                 .WithMany(sc => sc.RACAddressRents)
+                 .HasForeignKey(sc => sc.RACAddressId);
+                x.HasKey(sc => new { sc.RentId, sc.RACAddressId });
+            });
+
+            modelBuilder.Entity<RACService>(x =>
+            {
+                x.HasKey(x => x.Id);
+                x.Property(x => x.Id).ValueGeneratedOnAdd();
+                //x.HasOne(x => x.AdminSysUser).WithMany(x => x.RACServices).HasForeignKey(x => x.AdminSysUserId);
+            });
+
+            modelBuilder.Entity<AdminRACUser>(x =>
+            {
+                x.HasOne(x => x.User).WithOne(x => x.AdminRACUser).HasForeignKey<AdminRACUser>(x => x.Id);
+                x.HasKey(x => x.Id);
+                x.HasOne(x => x.RACService)
+                 .WithOne(x => x.AdminRACUser)
+                 .HasForeignKey<AdminRACUser>(x => x.RACServiceId)
+                 .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            modelBuilder.Entity<AdminSysUser>(x =>
+            {
+                x.HasOne(x => x.User).WithOne(x => x.AdminSysUser).HasForeignKey<AdminSysUser>(x => x.Id);
+                x.HasKey(x => x.Id);
             });
 
             modelBuilder.Seed();
         }
+
+        public DbSet<TravellifeChaser.Models.AdminRACUser> AdminRACUser { get; set; }
     }
 }

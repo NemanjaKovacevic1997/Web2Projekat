@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Airline } from '../AirlineModel/airline';
 import { AirlineService } from '../Services/Airline/airline.service';
 import { Router } from '@angular/router';
+import { LoginService } from '../Services/Login/login.service';
+import { UserRole } from '../AirlineModel/userRole';
 
 @Component({
   selector: 'airlines',
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 export class AirlinesComponent implements OnInit {
   airlines: Airline[];
 
-  constructor(private airlineService: AirlineService, private router: Router) { }
+  constructor(private airlineService: AirlineService, private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.airlineService.getAll().subscribe(res => {
@@ -63,6 +65,7 @@ export class AirlinesComponent implements OnInit {
   }
 
   airlineClick(id: number) {
-    this.router.navigate(['/airline', id]);
+    if(this.loginService.userRole != UserRole.AdminSys)
+      this.router.navigate(['/airline', id]);
   }
 }

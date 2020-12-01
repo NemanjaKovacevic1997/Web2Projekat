@@ -7,18 +7,21 @@
     <script type="text/javascript" src="js/bootstrap-timepicker.min.js"></script>
 </head>
 
-<mat-tab-group>
-    <mat-tab label="Informations"> 
-        <app-info-rac></app-info-rac>
-    </mat-tab>
-    <mat-tab label="Filters" *ngIf="this.loginService.userRole == UserRole.Registered">  
-        <app-filter-rac></app-filter-rac>
-    </mat-tab>
-    <mat-tab label="Report" *ngIf="this.loginService.userRole == UserRole.AdminRAC">
-        <app-report-rac></app-report-rac>
-    </mat-tab>
-    <mat-tab label="Add" *ngIf="this.loginService.userRole == UserRole.AdminRAC">
-        <app-add-car-rac></app-add-car-rac>
-    </mat-tab>
-</mat-tab-group>
+<div>
+    <mat-tab-group>
+        <mat-tab label="Informations"> 
+            <app-info-rac></app-info-rac>
+        </mat-tab>
+        <mat-tab label="Filters" *ngIf="this.loginService.userRole == UserRole.Registered || this.loginService.userRole == UserRole.Unregistered">  
+            <app-filter-rac (change)="fetchFilterData($event)"></app-filter-rac>
+        </mat-tab>
+        <mat-tab label="Report" *ngIf="this.loginService.userRole == UserRole.AdminRAC">
+            <app-report-rac></app-report-rac>
+        </mat-tab>
+        <mat-tab label="Add new car" *ngIf="this.loginService.userRole == UserRole.AdminRAC">
+            <app-add-car-rac></app-add-car-rac>
+        </mat-tab>
+    </mat-tab-group>
+</div>
+
 

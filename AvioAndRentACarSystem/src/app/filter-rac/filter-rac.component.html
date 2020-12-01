@@ -10,12 +10,12 @@
 <form [formGroup]="form" class="rounded-lg">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="From" formControlName="from"
-                [class.alert]="from.invalid && from.touched" [class.alert-danger]="from.invalid && from.touched">
+            <input type="text" class="form-control" placeholder="Delivery address" formControlName="deliveryAddress"
+                [class.alert-danger]="deliveryAddress.invalid && deliveryAddress.touched">
         </div>
         <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="To" formControlName="to"
-                [class.alert]="to.invalid && to.touched" [class.alert-danger]="to.invalid && to.touched">
+            <input type="text" class="form-control" placeholder="Return address" formControlName="returnAddress"
+                [class.alert-danger]="returnAddress.invalid && returnAddress.touched">
         </div>
     </div>
     <div class="form-row">
@@ -28,7 +28,7 @@
             <div class="form-row">
                 <div class="input-group">
                     <input class="form-control" placeholder="Depart" name="dp" ngbDatepicker #d1="ngbDatepicker"
-                        [minDate]="minPickerDate" formControlName="date1" [class.alert]="date1.invalid && date1.touched"
+                        [minDate]="minPickerDate" formControlName="date1"
                         [class.alert-danger]="date1.invalid && date1.touched">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
@@ -50,7 +50,7 @@
             <div class="form-row">
                 <div class="input-group" >
                     <input class="form-control" placeholder="Return" name="dp" ngbDatepicker #d2="ngbDatepicker"
-                        [minDate]="minPickerDate" formControlName="date2" [class.alert]="date2.invalid && date2.touched"
+                        [minDate]="minPickerDate" formControlName="date2"
                         [class.alert-danger]="date2.invalid && date2.touched">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
@@ -61,30 +61,31 @@
         <div class="form-group col-md-6"> 
             <ngb-timepicker id="tp2" [ngModelOptions]="{standalone: true}" [(ngModel)]="minPickerTime2" ></ngb-timepicker>
         </div>
-    </div>   
+    </div> 
     <div class="form-row">
         <div class="form-group col-md-6">
-            <select id="inputState" class="form-control">
-                <option hidden>Car type</option>
-                <option>Micro</option>
-                <option>Hatchback</option>
-                <option>Sedan</option>
-                <option>CUV</option>
-                <option>SUV</option>
-                <option>Pickup</option>
-                <option>VAN</option>
-                <option>Coupe</option>
-                <option>Cabriolet</option>
+            <select id="type" class="form-control" placeholder="Car type" formControlName="type"
+             [class.alert-danger]="type.invalid && type.touched">
+                <option value="" hidden>Car type</option>
+                <option value="Micro">Micro</option>
+                <option value="Hatchback">Hatchback</option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Pickup">Pickup</option>
+                <option value="VAN">VAN</option>
+                <option value="Coupe">Coupe</option>
+                <option value="Cabriolet">Cabriolet</option>
             </select>
-        </div>
+        </div>  
         <div class="form-group col-md-6">
-            <select id="inputState" class="form-control">
-                <option hidden>Pasengers</option>
-                <option>1 pasenger</option>
-                <option>2 pasengers</option>
-                <option>3 pasengers</option>
-                <option>4 pasengers</option>
-                <option>5 pasengers</option>
+            <select id="passengers" class="form-control" placeholder="Passengers" formControlName="passengers"
+             [class.alert-danger]="passengers.invalid && passengers.touched">
+                <option value="" hidden>Passengers</option>
+                <option value=1>1 passenger</option>
+                <option value=2>2 passengers</option>
+                <option value=3>3 passengers</option>
+                <option value=4>4 passengers</option>
+                <option value=5>5 passengers</option>
             </select>
         </div>
     </div>
@@ -97,7 +98,7 @@
         
         <div class="form-group col-md-4">
             <input class="myInput">
-            <button type="submit" class="btn btn-primary form-control" (click)="onSubmit()">Search</button>
+            <button type="submit" class="btn btn-info form-control" (click)="onSubmit()">Search</button>
         </div>
     </div>   
 </form>

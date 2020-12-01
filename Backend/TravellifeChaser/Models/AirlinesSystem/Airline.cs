@@ -27,6 +27,8 @@ namespace TravellifeChaser.Models
 
         //public ICollection<Ticket> QuickReservationTickets { get; set; }  Flight has tickets...
         //public int AdminAirlinesUserId { get; set; }
-        public AdminAirlinesUser Administrator { get; set; } 
+        public AdminAirlinesUser Administrator { get; set; }
+        public AdminSysUser AdminSysUser { get; set; }
+        //public int AdminSysUserId { get; set; }
     }
 }

@@ -12,6 +12,8 @@
   height: 100%;
   padding: 10px;/*RAZMAK IZMEDJU REDOVA*/
   padding-left: 21px;
+  position:relative;
+    z-index:1;
 }
 
 .columnBtnLeft {
@@ -20,6 +22,8 @@
   height: 100%;
   padding: 10px;/*RAZMAK IZMEDJU REDOVA*/
   padding-left: 55px;
+  position:relative;
+    z-index:1;
 }
 
 .columnBtnRight {
@@ -28,6 +32,19 @@
   height: 100%;
   padding: 10px;/*RAZMAK IZMEDJU REDOVA*/
   padding-right: 10px;
+  position:relative;
+  opacity: 1;
+    z-index:1;
+}
+
+.btn{
+  position:relative;
+  opacity: 1;
+    z-index:1;
+}
+
+.btn:disabled{
+  background-color: #4a4a4a;
 }
 
 /* Style the images inside the grid */
@@ -46,6 +63,7 @@
   content: "";
   display: table;
   clear: both;
+  position:absolute;
 }
 
 /* 
@@ -59,7 +77,6 @@ DA SE POJAVLJUJE OPIS NA SLIKAMA KAD SE PREDJE MISOM PREKO NJIH
 
 .middle {
   transition: .5s ease;
-  opacity: 0;
   position: absolute;
   width: 93.5%;
   height: 100.5%;
@@ -68,7 +85,7 @@ DA SE POJAVLJUJE OPIS NA SLIKAMA KAD SE PREDJE MISOM PREKO NJIH
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
-  background-color:#333333;
+  background-color: rgba(51,51,51,0);
 }
 
 .container:hover .img {
@@ -76,14 +93,32 @@ DA SE POJAVLJUJE OPIS NA SLIKAMA KAD SE PREDJE MISOM PREKO NJIH
 }
 
 .container:hover .middle {
-  opacity: 0.8;
+  background-color: rgba(51,51,51,0.8);
 }
 
-.text {
+.container .middle .row {
+  opacity: 0;
+}
+.container:hover .middle .row {
+  transition: .5s ease;
+  opacity: 1;
+}
+
+.container .middle .text {
   background-color: transparent;
   color: white;
   font-size: 16px; 
   padding: 16px 32px;
+  opacity: 0;
+}
+
+.container:hover .middle .text {
+  transition: .5s ease;
+  background-color: transparent;
+  color: white;
+  font-size: 16px; 
+  padding: 16px 32px;
+  opacity: 1;
 }
 
 /*
@@ -172,11 +207,11 @@ MODAL ZA PRIKAZ SLIKA
 }
 .next {
   right: 0;
-  border-radius: 3px 0 0 3px;
+  border-radius: 5px 0 0 5px;
 }
 .prev {
   left: 0;
-  border-radius: 3px 0 0 3px;
+  
 }
 .prev:hover,
 .next:hover {

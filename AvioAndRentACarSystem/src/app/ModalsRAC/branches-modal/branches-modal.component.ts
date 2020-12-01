@@ -11,6 +11,11 @@ export class BranchesModalComponent implements OnInit {
   @Input() public address;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
+  public street: string;
+  public number: number;
+  public city: string;
+  public country: string;
+
   constructor(
     public activeModal: NgbActiveModal
   ) { }
@@ -19,6 +24,11 @@ export class BranchesModalComponent implements OnInit {
   }
 
   passBack() {
+    this.address.street = this.street;
+    this.address.number = this.number;
+    this.address.city = this.city;
+    this.address.country = this.country;
+
     this.passEntry.emit(this.address);
     this.activeModal.close(this.address);
   }

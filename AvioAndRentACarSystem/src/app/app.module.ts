@@ -98,6 +98,17 @@ import { AddressRacModalComponent } from './ModalsRAC/address-rac-modal/address-
 import { AdminRacAuthGuardService } from './Services/AuthGuards/adminRAC/admin-rac-auth-guard.service';
 import { NameRacModalComponent } from './ModalsRAC/name-rac-modal/name-rac-modal.component';
 import { PromotionalDescriptionRacComponent } from './ModalsRAC/promotional-description-rac/promotional-description-rac.component';
+import { RentACarRentsComponent } from './AdministratorRAC/rent-a-car-rents/rent-a-car-rents.component';
+import { AdminSysAuthGuardService } from './Services/AuthGuards/adminSys/admin-sys-auth-guard.service';
+import { AddRentACarComponent } from './AdministratorSystem/add-rent-a-car/add-rent-a-car.component';
+import { AddAirlineComponent } from './AdministratorSystem/add-airline/add-airline.component';
+import { AddAdminComponent } from './AdministratorSystem/add-admin/add-admin.component';
+import { PageRentACarComponent } from './AdministratorSystem/page-rent-a-car/page-rent-a-car.component';
+import { PageAirlinesComponent } from './AdministratorSystem/page-airlines/page-airlines.component';
+import { PageAdministratorsComponent } from './AdministratorSystem/page-administrators/page-administrators.component';
+import { AdminsComponent } from './AdministratorSystem/admins/admins.component';
+import { AdministratorRacModalComponent } from './ModalsRAC/administrator-rac-modal/administrator-rac-modal.component';
+//import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -168,7 +179,16 @@ import { PromotionalDescriptionRacComponent } from './ModalsRAC/promotional-desc
     ChangeCarModalComponent,
     AddressRacModalComponent,
     NameRacModalComponent,
-    PromotionalDescriptionRacComponent
+    PromotionalDescriptionRacComponent,
+    RentACarRentsComponent,
+    AddRentACarComponent,
+    AddAirlineComponent,
+    AddAdminComponent,
+    PageRentACarComponent,
+    PageAirlinesComponent,
+    PageAdministratorsComponent,
+    AdminsComponent,
+    AdministratorRacModalComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -187,6 +207,7 @@ import { PromotionalDescriptionRacComponent } from './ModalsRAC/promotional-desc
     NgbRatingModule,
     HttpClientModule,
     MatTabsModule,
+    //NgbTooltip,
     RouterModule.forRoot([
 
       //for UNREGISTERED and REGISTERED users
@@ -197,7 +218,7 @@ import { PromotionalDescriptionRacComponent } from './ModalsRAC/promotional-desc
       { path: ':airlineId/flights', component: FlightsFilterComponent, canActivate: [UnregisteredOrRegisteredUserAuthGuardServiceService] },
       { path: ':flightId/seats', component: SeatsComponent, canActivate: [UnregisteredOrRegisteredUserAuthGuardServiceService]},
       { path: 'rent-a-car-search', component: RentACarSearchComponent, canActivate: [UnregisteredOrRegisteredUserAuthGuardServiceService]},
-      { path: 'rent-a-car-search-selected', component: RentACarSelectedComponent, canActivate: [UnregisteredOrRegisteredUserAuthGuardServiceService]},
+      { path: 'rent-a-car-search-selected/:id', component: RentACarSelectedComponent, canActivate: [UnregisteredOrRegisteredUserAuthGuardServiceService]},
 
       //for UNREGISTERED users
       { path: 'sign-in', component: SignInComponent, canActivate: [UnregisteredUserAuthGuardService]},
@@ -225,11 +246,17 @@ import { PromotionalDescriptionRacComponent } from './ModalsRAC/promotional-desc
       //for ADMIN RAC (add username prefix later)
       { path: 'adminRAC/rent-a-car-search', component: RentACarSearchComponent, canActivate: [AdminRacAuthGuardService]},
       { path: 'adminRAC/rent-a-car-selected', component: RentACarSelectedComponent, canActivate: [AdminRacAuthGuardService]},
+      { path: 'adminRAC/rent-a-car-rents', component: RentACarRentsComponent, canActivate: [AdminRacAuthGuardService]},
       //{ path: 'adminRAC/rent-a-car-profile', component: RentACarProfileComponent, canActivate: [AdminRacAuthGuardService]},
       //{ path: 'adminRAC/report', component: ReportComponent, canActivate: [AdminRacAuthGuardService]},
       //{ path: 'adminRAC/:flightId/remove', component: SeatsModifyAdminComponent, canActivate: [AdminRacAuthGuardService]},
 
       //{ path: ':username', component: ProfileShowComponent, canActivate: [NotUnregisteredUserAuthGuardService]}
+      
+      //for ADMIN SYS (add username prefix later)
+      { path: 'adminSys/page-rent-a-car', component: PageRentACarComponent, canActivate: [AdminSysAuthGuardService]},
+      { path: 'adminSys/page-airlines', component: PageAirlinesComponent, canActivate: [AdminSysAuthGuardService]},
+      { path: 'adminSys/page-administrators', component: PageAdministratorsComponent, canActivate: [AdminSysAuthGuardService]},
     ])
   ],
   providers: [

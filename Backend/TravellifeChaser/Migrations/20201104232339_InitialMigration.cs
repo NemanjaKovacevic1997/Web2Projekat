@@ -24,26 +24,6 @@ namespace TravellifeChaser.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cars",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Model = table.Column<string>(nullable: true),
-                    Mark = table.Column<string>(nullable: true),
-                    Type = table.Column<string>(nullable: true),
-                    Year = table.Column<int>(nullable: false),
-                    Seats = table.Column<int>(nullable: false),
-                    Rating = table.Column<double>(nullable: false),
-                    DailyPrice = table.Column<double>(nullable: false),
-                    Image = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cars", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Pricelists",
                 columns: table => new
                 {
@@ -105,30 +85,19 @@ namespace TravellifeChaser.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Airlines",
+                name: "AdminSysUsers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    AddressId = table.Column<int>(nullable: false),
-                    PromotionalDescription = table.Column<string>(nullable: true),
-                    AverageRating = table.Column<double>(nullable: false),
-                    PricelistId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false),
+                    Predefined = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Airlines", x => x.Id);
+                    table.PrimaryKey("PK_AdminSysUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Airlines_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Airlines_Pricelists_PricelistId",
-                        column: x => x.PricelistId,
-                        principalTable: "Pricelists",
+                        name: "FK_AdminSysUsers_Users_Id",
+                        column: x => x.Id,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -147,6 +116,117 @@ namespace TravellifeChaser.Migrations
                         name: "FK_RegisteredUsers_Users_Id",
                         column: x => x.Id,
                         principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Airlines",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    AddressId = table.Column<int>(nullable: false),
+                    PromotionalDescription = table.Column<string>(nullable: true),
+                    AverageRating = table.Column<double>(nullable: false),
+                    PricelistId = table.Column<int>(nullable: false),
+                    AdminSysUserId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Airlines", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Airlines_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Airlines_AdminSysUsers_AdminSysUserId",
+                        column: x => x.AdminSysUserId,
+                        principalTable: "AdminSysUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Airlines_Pricelists_PricelistId",
+                        column: x => x.PricelistId,
+                        principalTable: "Pricelists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RACServices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    MainAddress = table.Column<string>(nullable: true),
+                    PromotionalDescription = table.Column<string>(nullable: true),
+                    Rating = table.Column<int>(nullable: false),
+                    PriceList = table.Column<string>(nullable: true),
+                    Logo = table.Column<string>(nullable: true),
+                    AdminSysUserId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RACServices", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RACServices_AdminSysUsers_AdminSysUserId",
+                        column: x => x.AdminSysUserId,
+                        principalTable: "AdminSysUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FrendshipRequests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FromId = table.Column<int>(nullable: false),
+                    ToId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FrendshipRequests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FrendshipRequests_RegisteredUsers_FromId",
+                        column: x => x.FromId,
+                        principalTable: "RegisteredUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FrendshipRequests_RegisteredUsers_ToId",
+                        column: x => x.ToId,
+                        principalTable: "RegisteredUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Frendships",
+                columns: table => new
+                {
+                    User1Id = table.Column<int>(nullable: false),
+                    User2Id = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Frendships", x => new { x.User1Id, x.User2Id });
+                    table.ForeignKey(
+                        name: "FK_Frendships_RegisteredUsers_User1Id",
+                        column: x => x.User1Id,
+                        principalTable: "RegisteredUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Frendships_RegisteredUsers_User2Id",
+                        column: x => x.User2Id,
+                        principalTable: "RegisteredUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -239,51 +319,76 @@ namespace TravellifeChaser.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FrendshipRequests",
+                name: "AdminRACUser",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FromId = table.Column<int>(nullable: false),
-                    ToId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false),
+                    RACServiceId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FrendshipRequests", x => x.Id);
+                    table.PrimaryKey("PK_AdminRACUser", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FrendshipRequests_RegisteredUsers_FromId",
-                        column: x => x.FromId,
-                        principalTable: "RegisteredUsers",
+                        name: "FK_AdminRACUser_Users_Id",
+                        column: x => x.Id,
+                        principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FrendshipRequests_RegisteredUsers_ToId",
-                        column: x => x.ToId,
-                        principalTable: "RegisteredUsers",
+                        name: "FK_AdminRACUser_RACServices_RACServiceId",
+                        column: x => x.RACServiceId,
+                        principalTable: "RACServices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Frendships",
+                name: "Cars",
                 columns: table => new
                 {
-                    User1Id = table.Column<int>(nullable: false),
-                    User2Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Model = table.Column<string>(nullable: true),
+                    Mark = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
+                    Year = table.Column<int>(nullable: false),
+                    Seats = table.Column<int>(nullable: false),
+                    Rating = table.Column<double>(nullable: false),
+                    DailyPrice = table.Column<double>(nullable: false),
+                    Image = table.Column<string>(nullable: true),
+                    Rented = table.Column<bool>(nullable: false),
+                    RACServiceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Frendships", x => new { x.User1Id, x.User2Id });
+                    table.PrimaryKey("PK_Cars", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Frendships_RegisteredUsers_User1Id",
-                        column: x => x.User1Id,
-                        principalTable: "RegisteredUsers",
+                        name: "FK_Cars_RACServices_RACServiceId",
+                        column: x => x.RACServiceId,
+                        principalTable: "RACServices",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RACAddresses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Street = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    Number = table.Column<int>(nullable: false),
+                    RACServiceId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RACAddresses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Frendships_RegisteredUsers_User2Id",
-                        column: x => x.User2Id,
-                        principalTable: "RegisteredUsers",
+                        name: "FK_RACAddresses_RACServices_RACServiceId",
+                        column: x => x.RACServiceId,
+                        principalTable: "RACServices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -368,6 +473,51 @@ namespace TravellifeChaser.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Rents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
+                    RatingForRACService = table.Column<int>(nullable: false),
+                    RatingForCar = table.Column<int>(nullable: false),
+                    StartRACAddressId = table.Column<int>(nullable: false),
+                    EndRACAddressId = table.Column<int>(nullable: false),
+                    CarId = table.Column<int>(nullable: false),
+                    RegisteredUserId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Rents_Cars_CarId",
+                        column: x => x.CarId,
+                        principalTable: "Cars",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Rents_RACAddresses_EndRACAddressId",
+                        column: x => x.EndRACAddressId,
+                        principalTable: "RACAddresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Rents_RegisteredUsers_RegisteredUserId",
+                        column: x => x.RegisteredUserId,
+                        principalTable: "RegisteredUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Rents_RACAddresses_StartRACAddressId",
+                        column: x => x.StartRACAddressId,
+                        principalTable: "RACAddresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tickets",
                 columns: table => new
                 {
@@ -409,6 +559,30 @@ namespace TravellifeChaser.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RACAddressesRents",
+                columns: table => new
+                {
+                    RACAddressId = table.Column<int>(nullable: false),
+                    RentId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RACAddressesRents", x => new { x.RentId, x.RACAddressId });
+                    table.ForeignKey(
+                        name: "FK_RACAddressesRents_RACAddresses_RACAddressId",
+                        column: x => x.RACAddressId,
+                        principalTable: "RACAddresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RACAddressesRents_Rents_RentId",
+                        column: x => x.RentId,
+                        principalTable: "Rents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "Addresses",
                 columns: new[] { "Id", "City", "Country", "Latitude", "Longitude" },
@@ -419,38 +593,23 @@ namespace TravellifeChaser.Migrations
                     { 21, "Abu Dhabi", "UAE", 24.466667000000001, 54.366669000000002 },
                     { 20, "Harmondsworth", "England", 51.486499999999999, -0.47960000000000003 },
                     { 19, "Moscow", "Russia", 55.972777780000001, 37.414722220000002 },
+                    { 18, "Amsterdam", "Netherland", 52.30805556, 4.7641666699999998 },
                     { 17, "Brussel", "Belgium", 50.90138889, 4.4844444399999999 },
-                    { 16, "Madrid", "Spain", 49.009700000000002, 2.5478999999999998 },
                     { 15, "Lisbon", "Portugal", 38.77416667, 38.77416667 },
                     { 14, "Munich", "Deuschland", 48.35388889, 11.78611111 },
                     { 13, "Subotica", "Serbia", null, null },
                     { 12, "Krusevac", "Serbia", null, null },
-                    { 18, "Amsterdam", "Netherland", 52.30805556, 4.7641666699999998 },
+                    { 16, "Madrid", "Spain", 49.009700000000002, 2.5478999999999998 },
                     { 10, "Sremska Mitrovica", "Serbia", null, null },
-                    { 9, "Paris", "France", 49.009700000000002, 2.5478999999999998 },
-                    { 8, "London", "England", 51.469999999999999, 0.45429999999999998 },
-                    { 7, "Doha", "Qatar", 25.278300000000002, 51.552 },
-                    { 6, "Istanbul", "Turkey", 41.008200000000002, 28.978400000000001 },
-                    { 5, "Nis", "Serbia", 43.337600000000002, 21.866299999999999 },
-                    { 4, "Belgrade", "Serbia", 44.820500000000003, 20.291699999999999 },
+                    { 11, "Smederevo", "Serbia", null, null },
                     { 3, "Novi Sad", "Serbia", null, null },
+                    { 4, "Belgrade", "Serbia", 44.820500000000003, 20.291699999999999 },
+                    { 5, "Nis", "Serbia", 43.337600000000002, 21.866299999999999 },
                     { 2, "Pecinci", "Serbia", null, null },
-                    { 11, "Smederevo", "Serbia", null, null }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Cars",
-                columns: new[] { "Id", "DailyPrice", "Image", "Mark", "Model", "Rating", "Seats", "Type", "Year" },
-                values: new object[,]
-                {
-                    { 6, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car6.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
-                    { 5, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car5.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
-                    { 4, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car4.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
-                    { 3, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car3.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
-                    { 2, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car2.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
-                    { 1, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car1.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
-                    { 8, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car8.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 },
-                    { 7, 100.0, "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car7.jpg", "Mercedes", "AMG 310i", 8.5, 5, "Hatchback", 2020 }
+                    { 7, "Doha", "Qatar", 25.278300000000002, 51.552 },
+                    { 8, "London", "England", 51.469999999999999, 0.45429999999999998 },
+                    { 9, "Paris", "France", 49.009700000000002, 2.5478999999999998 },
+                    { 6, "Istanbul", "Turkey", 41.008200000000002, 28.978400000000001 }
                 });
 
             migrationBuilder.InsertData(
@@ -458,25 +617,35 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "HandLuggageOverMaxDimensions", "LuggageOver10kg", "LuggageOver20kg" },
                 values: new object[,]
                 {
-                    { 5, 4.0, 6.0, 12.0 },
-                    { 4, 4.0, 6.0, 12.0 },
-                    { 3, 4.0, 6.0, 12.0 },
                     { 1, 3.0, 5.0, 10.0 },
-                    { 6, 4.0, 6.0, 12.0 },
-                    { 2, 4.0, 6.0, 12.0 }
+                    { 2, 4.0, 6.0, 12.0 },
+                    { 3, 4.0, 6.0, 12.0 },
+                    { 4, 4.0, 6.0, 12.0 },
+                    { 5, 4.0, 6.0, 12.0 },
+                    { 6, 4.0, 6.0, 12.0 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RACServices",
+                columns: new[] { "Id", "AdminSysUserId", "Logo", "MainAddress", "Name", "PriceList", "PromotionalDescription", "Rating" },
+                values: new object[,]
+                {
+                    { 2, null, "../../assets/images/logos/rac3.png", "Azar 33, Istanbul, Turkey", "Istanbul Rent-a-car", "", "Just say where, we know how!", 0 },
+                    { 1, null, "../../assets/images/logos/rac1.png", "Pozeska 3, Belgrade, Serbia", "Belgrade Rent-a-car", "", "Just say where, we know how!", 0 },
+                    { 3, null, "../../assets/images/logos/rac7.png", "Putin 55, Moscow, Russia", "Moscow Rent-a-car", "", "Just say where, we know how!", 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Airlines",
-                columns: new[] { "Id", "AddressId", "AverageRating", "Name", "PricelistId", "PromotionalDescription" },
+                columns: new[] { "Id", "AddressId", "AdminSysUserId", "AverageRating", "Name", "PricelistId", "PromotionalDescription" },
                 values: new object[,]
                 {
-                    { 6, 4, 8.0399999999999991, "Air Serbia", 6, "Fly with us" },
-                    { 4, 21, 8.7300000000000004, "Etihad Airways", 4, "With you" },
-                    { 3, 22, 9.1199999999999992, "Emirates", 3, "Enjoy flight" },
-                    { 2, 7, 8.7300000000000004, "Qatar Airways", 2, "Going Places Together" },
-                    { 1, 6, 9.1199999999999992, "Turkish Airlines", 1, "Widen Your World" },
-                    { 5, 20, 9.1199999999999992, "British Airways", 5, "With you" }
+                    { 1, 6, null, 9.1199999999999992, "Turkish Airlines", 1, "Widen Your World" },
+                    { 6, 4, null, 8.0399999999999991, "Air Serbia", 6, "Fly with us" },
+                    { 5, 20, null, 9.1199999999999992, "British Airways", 5, "With you" },
+                    { 4, 21, null, 8.7300000000000004, "Etihad Airways", 4, "With you" },
+                    { 3, 22, null, 9.1199999999999992, "Emirates", 3, "Enjoy flight" },
+                    { 2, 7, null, 8.7300000000000004, "Qatar Airways", 2, "Going Places Together" }
                 });
 
             migrationBuilder.InsertData(
@@ -487,12 +656,44 @@ namespace TravellifeChaser.Migrations
                     { 8, 19, "Sheremetyevo" },
                     { 9, 18, "Schiphol" },
                     { 7, 17, "Brussel-Nationaal" },
-                    { 4, 16, "Adolfo Suárez" },
                     { 5, 15, "Humberto Delgado" },
-                    { 3, 9, "Charles de Gaulle" },
-                    { 2, 8, "Heathrow" },
+                    { 6, 14, "Munich Airport" },
+                    { 4, 16, "Adolfo Suárez" },
                     { 1, 4, "Nikola Tesla" },
-                    { 6, 14, "Munich Airport" }
+                    { 2, 8, "Heathrow" },
+                    { 3, 9, "Charles de Gaulle" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cars",
+                columns: new[] { "Id", "DailyPrice", "Image", "Mark", "Model", "RACServiceId", "Rating", "Rented", "Seats", "Type", "Year" },
+                values: new object[,]
+                {
+                    { 5, 100.0, "../../assets/images/cars/car5.jpg", "Audi", "TT", 1, 0.0, false, 2, "Coupe", 2016 },
+                    { 1, 100.0, "../../assets/images/cars/car1.jpg", "Mercedes", "A 250", 1, 0.0, false, 5, "Hatchback", 2020 },
+                    { 12, 100.0, "../../assets/images/cars/car12.jpg", "Mercedes", "A 100", 3, 0.0, false, 5, "Hatchback", 2020 },
+                    { 11, 100.0, "../../assets/images/cars/car11.jpg", "BMW", "X6", 3, 0.0, false, 5, "SUV", 2019 },
+                    { 4, 100.0, "../../assets/images/cars/car4.jpg", "RAM", "1500", 1, 0.0, false, 6, "Pickup", 2019 },
+                    { 3, 100.0, "../../assets/images/cars/car3.jpg", "Range Rover", "P525", 1, 0.0, false, 5, "SUV", 2018 },
+                    { 7, 100.0, "../../assets/images/cars/car7.jpg", "BMW", "X6", 1, 0.0, false, 5, "SUV", 2019 },
+                    { 10, 100.0, "../../assets/images/cars/car10.jpg", "Mercedes", "A 100", 2, 0.0, false, 5, "Hatchback", 2020 },
+                    { 2, 100.0, "../../assets/images/cars/car2.jpg", "BMW", "M5", 1, 0.0, false, 5, "Sedan", 2020 },
+                    { 8, 100.0, "../../assets/images/cars/car8.jpg", "Mercedes", "A 100", 1, 0.0, false, 5, "Hatchback", 2020 },
+                    { 9, 100.0, "../../assets/images/cars/car9.jpg", "BMW", "X6", 2, 0.0, false, 5, "SUV", 2019 },
+                    { 6, 100.0, "../../assets/images/cars/car6.jpg", "Renault", "Clio 5", 1, 0.0, false, 5, "Hatchback", 2017 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "RACAddresses",
+                columns: new[] { "Id", "City", "Country", "Number", "RACServiceId", "Street" },
+                values: new object[,]
+                {
+                    { 1, "Belgrade", "Serbia", 3, 1, "Pozeska" },
+                    { 3, "Istanbul", "Turkey", 33, 2, "Azar" },
+                    { 4, "Istanbul", "Turkey", 3, 2, "Izmir" },
+                    { 2, "Belgrade", "Serbia", 33, 1, "Nemanjina" },
+                    { 6, "Moscow", "Russia", 73, 3, "Artem" },
+                    { 5, "Moscow", "Russia", 55, 3, "Putin" }
                 });
 
             migrationBuilder.InsertData(
@@ -500,13 +701,18 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AddressId", "Email", "FirstName", "LastName", "MobileNumber", "Password", "Role", "Username" },
                 values: new object[,]
                 {
-                    { 8, 13, "milicamiric@gmail.com", "Milica", "Miric", "+381604520858", "milicaaaa", 3, "milicaaa" },
+                    { 13, 19, "donaldtrump@gmail.com", "Melanie", "Trump", "+381650000000", "melanie", 4, "melanie" },
+                    { 12, 19, "donaldtrump@gmail.com", "Donald", "Trump", "+381650000000", "trump", 4, "trump" },
+                    { 11, 19, "kovacevicnemanja1997@gmail.com", "Vladimir", "Putin", "+381650000000", "putin", 2, "putin" },
                     { 7, 15, "marijamiric@gmail.com", "Marija", "Miric", "+381604520858", "marijaaaa", 3, "marijaaa" },
+                    { 8, 13, "milicamiric@gmail.com", "Milica", "Miric", "+381604520858", "milicaaaa", 3, "milicaaa" },
                     { 6, 12, "kovacevicnemanja1997@gmail.com", "Mitar", "Miric", "+381604520858", "mitar123", 0, "mitar123" },
                     { 5, 11, "kovacevicnemanja1997@gmail.com", "Milica", "Krivokapic", "+381604520858", "milica123", 0, "milica123" },
                     { 3, 11, "kovacevicnemanja1997@gmail.com", "Lana", "Kovacevic", "+381604520858", "lana123", 0, "lana123" },
                     { 4, 10, "kovacevicnemanja1997@gmail.com", "Milovan", "Zec", "+381604520858", "milovan123", 0, "milovan123" },
-                    { 2, 2, "kovacevicnemanja1997@gmail.com", "Radovan", "Trudic", "+381650000000", "radovan123", 0, "radovan123" },
+                    { 10, 6, "kovacevicnemanja1997@gmail.com", "Burak", "Yilmaz", "+381650000000", "burak", 2, "burak" },
+                    { 9, 2, "kovacevicnemanja1997@gmail.com", "Radovan", "Trudic", "+381650000000", "rasa", 2, "rasa" },
+                    { 2, 2, "kovacevicnemanja1997@gmail.com", "Radovan", "Trudic", "+381650000000", "rasa123", 0, "rasa123" },
                     { 1, 1, "kovacevicnemanja1997@gmail.com", "Nemanja", "Kovacevic", "+381604520858", "nemanja123", 0, "nemanja123" }
                 });
 
@@ -520,22 +726,32 @@ namespace TravellifeChaser.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AdminRACUser",
+                columns: new[] { "Id", "RACServiceId" },
+                values: new object[,]
+                {
+                    { 11, 3 },
+                    { 9, 1 },
+                    { 10, 2 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "AirlinesAirports",
                 columns: new[] { "AirlineId", "AirportId" },
                 values: new object[,]
                 {
-                    { 1, 3 },
-                    { 2, 9 },
-                    { 2, 8 },
-                    { 2, 6 },
-                    { 2, 5 },
-                    { 1, 1 },
-                    { 1, 2 },
-                    { 2, 1 },
-                    { 1, 4 },
-                    { 1, 6 },
                     { 1, 7 },
+                    { 1, 6 },
+                    { 1, 4 },
+                    { 1, 3 },
+                    { 1, 2 },
+                    { 1, 1 },
                     { 2, 4 },
+                    { 2, 5 },
+                    { 2, 6 },
+                    { 2, 8 },
+                    { 2, 9 },
+                    { 2, 1 },
                     { 2, 2 }
                 });
 
@@ -544,16 +760,16 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AirlineId", "AverageRating", "Cost", "Duration", "FromId", "LandingTime", "Length", "TakeoffTime", "ToId" },
                 values: new object[,]
                 {
-                    { 5, 1, 0.0, 300.0, 270.0, 5, new DateTime(2020, 9, 9, 19, 30, 0, 0, DateTimeKind.Unspecified), 250, new DateTime(2020, 9, 9, 15, 0, 0, 0, DateTimeKind.Unspecified), 4 },
+                    { 3, 1, 0.0, 100.0, 165.0, 2, new DateTime(2020, 9, 8, 15, 0, 0, 0, DateTimeKind.Unspecified), 400, new DateTime(2020, 9, 8, 12, 15, 0, 0, DateTimeKind.Unspecified), 3 },
                     { 2, 2, 0.0, 250.0, 100.0, 1, new DateTime(2020, 9, 7, 9, 20, 0, 0, DateTimeKind.Unspecified), 1003, new DateTime(2020, 9, 7, 7, 40, 0, 0, DateTimeKind.Unspecified), 3 },
                     { 12, 1, 0.0, 305.0, 140.0, 5, new DateTime(2020, 9, 12, 11, 20, 0, 0, DateTimeKind.Unspecified), 555, new DateTime(2020, 9, 12, 9, 0, 0, 0, DateTimeKind.Unspecified), 9 },
                     { 10, 1, 0.0, 450.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 600, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
                     { 11, 2, 0.0, 100.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 1000, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
                     { 7, 1, 0.0, 300.0, 90.0, 3, new DateTime(2020, 9, 11, 8, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 9, 11, 7, 0, 0, 0, DateTimeKind.Unspecified), 7 },
                     { 6, 1, 0.0, 300.0, 90.0, 7, new DateTime(2020, 9, 10, 19, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 9, 10, 18, 0, 0, 0, DateTimeKind.Unspecified), 9 },
-                    { 9, 2, 0.0, 250.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 300, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
+                    { 5, 1, 0.0, 300.0, 270.0, 5, new DateTime(2020, 9, 9, 19, 30, 0, 0, DateTimeKind.Unspecified), 250, new DateTime(2020, 9, 9, 15, 0, 0, 0, DateTimeKind.Unspecified), 4 },
                     { 4, 1, 0.0, 200.0, 330.0, 4, new DateTime(2020, 9, 8, 19, 30, 0, 0, DateTimeKind.Unspecified), 500, new DateTime(2020, 9, 8, 14, 0, 0, 0, DateTimeKind.Unspecified), 5 },
-                    { 3, 1, 0.0, 100.0, 165.0, 2, new DateTime(2020, 9, 8, 15, 0, 0, 0, DateTimeKind.Unspecified), 400, new DateTime(2020, 9, 8, 12, 15, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 9, 2, 0.0, 250.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 300, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
                     { 1, 1, 0.0, 300.0, 270.0, 1, new DateTime(2020, 9, 7, 17, 30, 0, 0, DateTimeKind.Unspecified), 2506, new DateTime(2020, 9, 7, 13, 0, 0, 0, DateTimeKind.Unspecified), 2 },
                     { 8, 1, 0.0, 301.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 }
                 });
@@ -2823,9 +3039,21 @@ namespace TravellifeChaser.Migrations
                 filter: "[AirlineId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AdminRACUser_RACServiceId",
+                table: "AdminRACUser",
+                column: "RACServiceId",
+                unique: true,
+                filter: "[RACServiceId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Airlines_AddressId",
                 table: "Airlines",
                 column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Airlines_AdminSysUserId",
+                table: "Airlines",
+                column: "AdminSysUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Airlines_PricelistId",
@@ -2842,6 +3070,11 @@ namespace TravellifeChaser.Migrations
                 name: "IX_Airports_AddressId",
                 table: "Airports",
                 column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cars_RACServiceId",
+                table: "Cars",
+                column: "RACServiceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Flights_AirlineId",
@@ -2894,6 +3127,41 @@ namespace TravellifeChaser.Migrations
                 column: "ToId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RACAddresses_RACServiceId",
+                table: "RACAddresses",
+                column: "RACServiceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RACAddressesRents_RACAddressId",
+                table: "RACAddressesRents",
+                column: "RACAddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RACServices_AdminSysUserId",
+                table: "RACServices",
+                column: "AdminSysUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rents_CarId",
+                table: "Rents",
+                column: "CarId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rents_EndRACAddressId",
+                table: "Rents",
+                column: "EndRACAddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rents_RegisteredUserId",
+                table: "Rents",
+                column: "RegisteredUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Rents_StartRACAddressId",
+                table: "Rents",
+                column: "StartRACAddressId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Seats_FlightId",
                 table: "Seats",
                 column: "FlightId");
@@ -2926,10 +3194,10 @@ namespace TravellifeChaser.Migrations
                 name: "AdminAirlinesUsers");
 
             migrationBuilder.DropTable(
-                name: "AirlinesAirports");
+                name: "AdminRACUser");
 
             migrationBuilder.DropTable(
-                name: "Cars");
+                name: "AirlinesAirports");
 
             migrationBuilder.DropTable(
                 name: "FlightsAirports");
@@ -2944,19 +3212,31 @@ namespace TravellifeChaser.Migrations
                 name: "Invitations");
 
             migrationBuilder.DropTable(
+                name: "RACAddressesRents");
+
+            migrationBuilder.DropTable(
                 name: "Tickets");
 
             migrationBuilder.DropTable(
-                name: "RegisteredUsers");
+                name: "Rents");
 
             migrationBuilder.DropTable(
                 name: "Seats");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Cars");
+
+            migrationBuilder.DropTable(
+                name: "RACAddresses");
+
+            migrationBuilder.DropTable(
+                name: "RegisteredUsers");
 
             migrationBuilder.DropTable(
                 name: "Flights");
+
+            migrationBuilder.DropTable(
+                name: "RACServices");
 
             migrationBuilder.DropTable(
                 name: "Airlines");
@@ -2965,7 +3245,13 @@ namespace TravellifeChaser.Migrations
                 name: "Airports");
 
             migrationBuilder.DropTable(
+                name: "AdminSysUsers");
+
+            migrationBuilder.DropTable(
                 name: "Pricelists");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Addresses");

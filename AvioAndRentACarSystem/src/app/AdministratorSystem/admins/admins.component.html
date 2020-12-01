@@ -1,0 +1,18 @@
+<table class="table table-borderless table-hover">
+    <thead class="thead-light">
+    <tr class="bg-primary">
+        <th>Full name</th>
+        <th>Username</th>
+        <th>Location</th>
+        <th>Password</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users;">
+            <td>{{user.firstName}} {{user.lastName}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.address.city}}, {{user.address.country}}</td>
+            <td>{{user.password}}</td>
+        </tr>
+    </tbody>
+</table>

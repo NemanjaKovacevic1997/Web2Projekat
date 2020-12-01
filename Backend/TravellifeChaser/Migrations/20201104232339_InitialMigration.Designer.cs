@@ -10,7 +10,7 @@ using TravellifeChaser.Data;
 namespace TravellifeChaser.Migrations
 {
     [DbContext(typeof(TravellifeChaserDBContext))]
-    [Migration("20200908163233_InitialMigration")]
+    [Migration("20201104232339_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -238,6 +238,53 @@ namespace TravellifeChaser.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TravellifeChaser.Models.AdminRACUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RACServiceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RACServiceId")
+                        .IsUnique()
+                        .HasFilter("[RACServiceId] IS NOT NULL");
+
+                    b.ToTable("AdminRACUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 9,
+                            RACServiceId = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            RACServiceId = 2
+                        },
+                        new
+                        {
+                            Id = 11,
+                            RACServiceId = 3
+                        });
+                });
+
+            modelBuilder.Entity("TravellifeChaser.Models.AdminSysUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Predefined")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AdminSysUsers");
+                });
+
             modelBuilder.Entity("TravellifeChaser.Models.Airline", b =>
                 {
                     b.Property<int>("Id")
@@ -246,6 +293,9 @@ namespace TravellifeChaser.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AdminSysUserId")
                         .HasColumnType("int");
 
                     b.Property<double>("AverageRating")
@@ -263,6 +313,8 @@ namespace TravellifeChaser.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
+
+                    b.HasIndex("AdminSysUserId");
 
                     b.HasIndex("PricelistId")
                         .IsUnique();
@@ -879,8 +931,14 @@ namespace TravellifeChaser.Migrations
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RACServiceId")
+                        .HasColumnType("int");
+
                     b.Property<double>("Rating")
                         .HasColumnType("float");
+
+                    b.Property<bool>("Rented")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Seats")
                         .HasColumnType("int");
@@ -893,6 +951,8 @@ namespace TravellifeChaser.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RACServiceId");
+
                     b.ToTable("Cars");
 
                     b.HasData(
@@ -900,10 +960,12 @@ namespace TravellifeChaser.Migrations
                         {
                             Id = 1,
                             DailyPrice = 100.0,
-                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car1.jpg",
+                            Image = "../../assets/images/cars/car1.jpg",
                             Mark = "Mercedes",
-                            Model = "AMG 310i",
-                            Rating = 8.5,
+                            Model = "A 250",
+                            RACServiceId = 1,
+                            Rating = 0.0,
+                            Rented = false,
                             Seats = 5,
                             Type = "Hatchback",
                             Year = 2020
@@ -912,86 +974,370 @@ namespace TravellifeChaser.Migrations
                         {
                             Id = 2,
                             DailyPrice = 100.0,
-                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car2.jpg",
-                            Mark = "Mercedes",
-                            Model = "AMG 310i",
-                            Rating = 8.5,
+                            Image = "../../assets/images/cars/car2.jpg",
+                            Mark = "BMW",
+                            Model = "M5",
+                            RACServiceId = 1,
+                            Rating = 0.0,
+                            Rented = false,
                             Seats = 5,
-                            Type = "Hatchback",
+                            Type = "Sedan",
                             Year = 2020
                         },
                         new
                         {
                             Id = 3,
                             DailyPrice = 100.0,
-                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car3.jpg",
-                            Mark = "Mercedes",
-                            Model = "AMG 310i",
-                            Rating = 8.5,
+                            Image = "../../assets/images/cars/car3.jpg",
+                            Mark = "Range Rover",
+                            Model = "P525",
+                            RACServiceId = 1,
+                            Rating = 0.0,
+                            Rented = false,
                             Seats = 5,
-                            Type = "Hatchback",
-                            Year = 2020
+                            Type = "SUV",
+                            Year = 2018
                         },
                         new
                         {
                             Id = 4,
                             DailyPrice = 100.0,
-                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car4.jpg",
-                            Mark = "Mercedes",
-                            Model = "AMG 310i",
-                            Rating = 8.5,
-                            Seats = 5,
-                            Type = "Hatchback",
-                            Year = 2020
+                            Image = "../../assets/images/cars/car4.jpg",
+                            Mark = "RAM",
+                            Model = "1500",
+                            RACServiceId = 1,
+                            Rating = 0.0,
+                            Rented = false,
+                            Seats = 6,
+                            Type = "Pickup",
+                            Year = 2019
                         },
                         new
                         {
                             Id = 5,
                             DailyPrice = 100.0,
-                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car5.jpg",
-                            Mark = "Mercedes",
-                            Model = "AMG 310i",
-                            Rating = 8.5,
-                            Seats = 5,
-                            Type = "Hatchback",
-                            Year = 2020
+                            Image = "../../assets/images/cars/car5.jpg",
+                            Mark = "Audi",
+                            Model = "TT",
+                            RACServiceId = 1,
+                            Rating = 0.0,
+                            Rented = false,
+                            Seats = 2,
+                            Type = "Coupe",
+                            Year = 2016
                         },
                         new
                         {
                             Id = 6,
                             DailyPrice = 100.0,
-                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car6.jpg",
-                            Mark = "Mercedes",
-                            Model = "AMG 310i",
-                            Rating = 8.5,
+                            Image = "../../assets/images/cars/car6.jpg",
+                            Mark = "Renault",
+                            Model = "Clio 5",
+                            RACServiceId = 1,
+                            Rating = 0.0,
+                            Rented = false,
                             Seats = 5,
                             Type = "Hatchback",
-                            Year = 2020
+                            Year = 2017
                         },
                         new
                         {
                             Id = 7,
                             DailyPrice = 100.0,
-                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car7.jpg",
+                            Image = "../../assets/images/cars/car7.jpg",
+                            Mark = "BMW",
+                            Model = "X6",
+                            RACServiceId = 1,
+                            Rating = 0.0,
+                            Rented = false,
+                            Seats = 5,
+                            Type = "SUV",
+                            Year = 2019
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DailyPrice = 100.0,
+                            Image = "../../assets/images/cars/car8.jpg",
                             Mark = "Mercedes",
-                            Model = "AMG 310i",
-                            Rating = 8.5,
+                            Model = "A 100",
+                            RACServiceId = 1,
+                            Rating = 0.0,
+                            Rented = false,
                             Seats = 5,
                             Type = "Hatchback",
                             Year = 2020
                         },
                         new
                         {
-                            Id = 8,
+                            Id = 9,
                             DailyPrice = 100.0,
-                            Image = "C:\\Users\\Trudic\\Desktop\\GitDesktop\\Web2_Projekat\\AvioAndRentACarSystem\\src\\assets\\images\\car8.jpg",
+                            Image = "../../assets/images/cars/car9.jpg",
+                            Mark = "BMW",
+                            Model = "X6",
+                            RACServiceId = 2,
+                            Rating = 0.0,
+                            Rented = false,
+                            Seats = 5,
+                            Type = "SUV",
+                            Year = 2019
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DailyPrice = 100.0,
+                            Image = "../../assets/images/cars/car10.jpg",
                             Mark = "Mercedes",
-                            Model = "AMG 310i",
-                            Rating = 8.5,
+                            Model = "A 100",
+                            RACServiceId = 2,
+                            Rating = 0.0,
+                            Rented = false,
+                            Seats = 5,
+                            Type = "Hatchback",
+                            Year = 2020
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DailyPrice = 100.0,
+                            Image = "../../assets/images/cars/car11.jpg",
+                            Mark = "BMW",
+                            Model = "X6",
+                            RACServiceId = 3,
+                            Rating = 0.0,
+                            Rented = false,
+                            Seats = 5,
+                            Type = "SUV",
+                            Year = 2019
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DailyPrice = 100.0,
+                            Image = "../../assets/images/cars/car12.jpg",
+                            Mark = "Mercedes",
+                            Model = "A 100",
+                            RACServiceId = 3,
+                            Rating = 0.0,
+                            Rented = false,
                             Seats = 5,
                             Type = "Hatchback",
                             Year = 2020
                         });
+                });
+
+            modelBuilder.Entity("TravellifeChaser.Models.RACSystem.Many_To_ManyEntities.RACAddressRent", b =>
+                {
+                    b.Property<int>("RentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RACAddressId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RentId", "RACAddressId");
+
+                    b.HasIndex("RACAddressId");
+
+                    b.ToTable("RACAddressesRents");
+                });
+
+            modelBuilder.Entity("TravellifeChaser.Models.RACSystem.RACAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RACServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RACServiceId");
+
+                    b.ToTable("RACAddresses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "Belgrade",
+                            Country = "Serbia",
+                            Number = 3,
+                            RACServiceId = 1,
+                            Street = "Pozeska"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "Belgrade",
+                            Country = "Serbia",
+                            Number = 33,
+                            RACServiceId = 1,
+                            Street = "Nemanjina"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "Istanbul",
+                            Country = "Turkey",
+                            Number = 33,
+                            RACServiceId = 2,
+                            Street = "Azar"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            City = "Istanbul",
+                            Country = "Turkey",
+                            Number = 3,
+                            RACServiceId = 2,
+                            Street = "Izmir"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            City = "Moscow",
+                            Country = "Russia",
+                            Number = 55,
+                            RACServiceId = 3,
+                            Street = "Putin"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            City = "Moscow",
+                            Country = "Russia",
+                            Number = 73,
+                            RACServiceId = 3,
+                            Street = "Artem"
+                        });
+                });
+
+            modelBuilder.Entity("TravellifeChaser.Models.RACSystem.RACService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AdminSysUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Logo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MainAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PriceList")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PromotionalDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdminSysUserId");
+
+                    b.ToTable("RACServices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Logo = "../../assets/images/logos/rac1.png",
+                            MainAddress = "Pozeska 3, Belgrade, Serbia",
+                            Name = "Belgrade Rent-a-car",
+                            PriceList = "",
+                            PromotionalDescription = "Just say where, we know how!",
+                            Rating = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Logo = "../../assets/images/logos/rac3.png",
+                            MainAddress = "Azar 33, Istanbul, Turkey",
+                            Name = "Istanbul Rent-a-car",
+                            PriceList = "",
+                            PromotionalDescription = "Just say where, we know how!",
+                            Rating = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Logo = "../../assets/images/logos/rac7.png",
+                            MainAddress = "Putin 55, Moscow, Russia",
+                            Name = "Moscow Rent-a-car",
+                            PriceList = "",
+                            PromotionalDescription = "Just say where, we know how!",
+                            Rating = 0
+                        });
+                });
+
+            modelBuilder.Entity("TravellifeChaser.Models.RACSystem.Rent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EndRACAddressId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("RatingForCar")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RatingForRACService")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RegisteredUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StartRACAddressId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CarId");
+
+                    b.HasIndex("EndRACAddressId");
+
+                    b.HasIndex("RegisteredUserId");
+
+                    b.HasIndex("StartRACAddressId");
+
+                    b.ToTable("Rents");
                 });
 
             modelBuilder.Entity("TravellifeChaser.Models.RegisteredUser", b =>
@@ -18689,9 +19035,9 @@ namespace TravellifeChaser.Migrations
                             FirstName = "Radovan",
                             LastName = "Trudic",
                             MobileNumber = "+381650000000",
-                            Password = "radovan123",
+                            Password = "rasa123",
                             Role = 0,
-                            Username = "radovan123"
+                            Username = "rasa123"
                         },
                         new
                         {
@@ -18764,6 +19110,66 @@ namespace TravellifeChaser.Migrations
                             Password = "milicaaaa",
                             Role = 3,
                             Username = "milicaaa"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            AddressId = 2,
+                            Email = "kovacevicnemanja1997@gmail.com",
+                            FirstName = "Radovan",
+                            LastName = "Trudic",
+                            MobileNumber = "+381650000000",
+                            Password = "rasa",
+                            Role = 2,
+                            Username = "rasa"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            AddressId = 6,
+                            Email = "kovacevicnemanja1997@gmail.com",
+                            FirstName = "Burak",
+                            LastName = "Yilmaz",
+                            MobileNumber = "+381650000000",
+                            Password = "burak",
+                            Role = 2,
+                            Username = "burak"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            AddressId = 19,
+                            Email = "kovacevicnemanja1997@gmail.com",
+                            FirstName = "Vladimir",
+                            LastName = "Putin",
+                            MobileNumber = "+381650000000",
+                            Password = "putin",
+                            Role = 2,
+                            Username = "putin"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            AddressId = 19,
+                            Email = "donaldtrump@gmail.com",
+                            FirstName = "Donald",
+                            LastName = "Trump",
+                            MobileNumber = "+381650000000",
+                            Password = "trump",
+                            Role = 4,
+                            Username = "trump"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            AddressId = 19,
+                            Email = "donaldtrump@gmail.com",
+                            FirstName = "Melanie",
+                            LastName = "Trump",
+                            MobileNumber = "+381650000000",
+                            Password = "melanie",
+                            Role = 4,
+                            Username = "melanie"
                         });
                 });
 
@@ -18781,6 +19187,29 @@ namespace TravellifeChaser.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TravellifeChaser.Models.AdminRACUser", b =>
+                {
+                    b.HasOne("TravellifeChaser.Models.User", "User")
+                        .WithOne("AdminRACUser")
+                        .HasForeignKey("TravellifeChaser.Models.AdminRACUser", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TravellifeChaser.Models.RACSystem.RACService", "RACService")
+                        .WithOne("AdminRACUser")
+                        .HasForeignKey("TravellifeChaser.Models.AdminRACUser", "RACServiceId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("TravellifeChaser.Models.AdminSysUser", b =>
+                {
+                    b.HasOne("TravellifeChaser.Models.User", "User")
+                        .WithOne("AdminSysUser")
+                        .HasForeignKey("TravellifeChaser.Models.AdminSysUser", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("TravellifeChaser.Models.Airline", b =>
                 {
                     b.HasOne("TravellifeChaser.Models.Address", "Address")
@@ -18788,6 +19217,10 @@ namespace TravellifeChaser.Migrations
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("TravellifeChaser.Models.AdminSysUser", "AdminSysUser")
+                        .WithMany("Airlines")
+                        .HasForeignKey("AdminSysUserId");
 
                     b.HasOne("TravellifeChaser.Models.Pricelist", "Pricelist")
                         .WithOne("Airline")
@@ -18903,6 +19336,73 @@ namespace TravellifeChaser.Migrations
                     b.HasOne("TravellifeChaser.Models.RegisteredUser", "To")
                         .WithMany("InvitationsRecieved")
                         .HasForeignKey("ToId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TravellifeChaser.Models.RACSystem.Car", b =>
+                {
+                    b.HasOne("TravellifeChaser.Models.RACSystem.RACService", "RACService")
+                        .WithMany("Cars")
+                        .HasForeignKey("RACServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TravellifeChaser.Models.RACSystem.Many_To_ManyEntities.RACAddressRent", b =>
+                {
+                    b.HasOne("TravellifeChaser.Models.RACSystem.RACAddress", "RACAddress")
+                        .WithMany("RACAddressRents")
+                        .HasForeignKey("RACAddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TravellifeChaser.Models.RACSystem.Rent", "Rent")
+                        .WithMany("RACAddressRents")
+                        .HasForeignKey("RentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TravellifeChaser.Models.RACSystem.RACAddress", b =>
+                {
+                    b.HasOne("TravellifeChaser.Models.RACSystem.RACService", "RACService")
+                        .WithMany("RACAddresses")
+                        .HasForeignKey("RACServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TravellifeChaser.Models.RACSystem.RACService", b =>
+                {
+                    b.HasOne("TravellifeChaser.Models.AdminSysUser", "AdminSysUser")
+                        .WithMany("RACServices")
+                        .HasForeignKey("AdminSysUserId");
+                });
+
+            modelBuilder.Entity("TravellifeChaser.Models.RACSystem.Rent", b =>
+                {
+                    b.HasOne("TravellifeChaser.Models.RACSystem.Car", "Car")
+                        .WithMany("Rents")
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TravellifeChaser.Models.RACSystem.RACAddress", "EndRACAddress")
+                        .WithMany("RentEnds")
+                        .HasForeignKey("EndRACAddressId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TravellifeChaser.Models.RegisteredUser", "RegisteredUser")
+                        .WithMany("Rents")
+                        .HasForeignKey("RegisteredUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TravellifeChaser.Models.RACSystem.RACAddress", "StartRACAddress")
+                        .WithMany("RentStarts")
+                        .HasForeignKey("StartRACAddressId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

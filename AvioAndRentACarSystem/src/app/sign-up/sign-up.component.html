@@ -1,30 +1,36 @@
 <body class="myBody text-center">
-    <form class="form-signin">      
+    <form name="formSingUp">      
         <img class="" src="/assets/images/part5.png" alt="" width="272" height="192">
         <h5 class="h5 mb-3 font-weight-normal">Please create your account</h5>
         
         <label for="inputFirstName" class="sr-only">First name</label>
-        <input type="text" id="inputFirstName" class="form-control mb-2" placeholder="First name" required="" autofocus="">
+        <input type="text" name="inputFirstName" id="inputFirstName" class="form-control mb-2" placeholder="First name" required="" autofocus="" [(ngModel)]="firstname">
 
         <label for="inputLastName" class="sr-only">Last name</label>
-        <input type="text" id="inputLastName" class="form-control mb-2" placeholder="Last name" required="" autofocus="">
+        <input type="text" name="inputLastName" id="inputLastName" class="form-control mb-2" placeholder="Last name" required="" autofocus="" [(ngModel)]="lastname">
 
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control mb-2" placeholder="Email address" required="" autofocus="">
+        <input type="email" name="inputEmail" id="inputEmail" class="form-control mb-2" placeholder="Email address" required="" autofocus="" [(ngModel)]="email">
         
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" name="inputUsername" id="inputUsername" class="form-control mb-2" placeholder="Username" required="" autofocus="" [(ngModel)]="username">
+
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Password" required="">
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control mb-2" placeholder="Password" required="" [(ngModel)]="password">
         
         <label for="inputRepeatPassword" class="sr-only">Repeat password</label>
-        <input type="password" id="inputRepeatPassword" class="form-control mb-2" placeholder="Repeat password" required="">
+        <input type="password" name="inputRepeatPassword" id="inputRepeatPassword" class="form-control mb-2" placeholder="Repeat password" required="" [(ngModel)]="repeatPassword">
         
-        <label for="inputPlace" class="sr-only">Place</label>
-        <input type="text" id="inputPlace" class="form-control mb-2" placeholder="Place" required="" autofocus="">
+        <label for="inputCity" class="sr-only">City</label>
+        <input type="text" name="inputCity" id="inputCity" class="form-control mb-2" placeholder="City" required="" autofocus="" [(ngModel)]="city">
+
+        <label for="inputCountry" class="sr-only">Country</label>
+        <input type="text" name="inputCountry" id="inputCountry" class="form-control mb-2" placeholder="Country" required="" autofocus="" [(ngModel)]="country">
 
         <label for="inputPhoneNumber" class="sr-only">Phone number</label>
-        <input type="text" id="inputPhoneNumber" class="form-control mb-2" placeholder="Phone number" required="" autofocus="">
+        <input type="text" name="inputPhoneNumber" id="inputPhoneNumber" class="form-control mb-2" placeholder="Phone number" required="" autofocus="" [(ngModel)]="phoneNumber">
 
-        <button class="btn mb-3 btn-primary btn-lm" type="submit">Sign up</button>   
+        <button class="btn btn-info" type="button" (click)="signUpClick()">Sign up</button>   
         <p class="mt-5 mb-3 p">© 2019-2020</p>  
     </form>
 </body>

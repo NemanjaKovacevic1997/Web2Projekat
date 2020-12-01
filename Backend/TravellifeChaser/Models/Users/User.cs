@@ -22,5 +22,7 @@ namespace TravellifeChaser.Models
 
         public RegisteredUser RegisteredUser { get; set; }
         public AdminAirlinesUser AdminAirlinesUser { get; set; }
+        public AdminRACUser AdminRACUser { get; set; }
+        public AdminSysUser AdminSysUser { get; set; }
     }
 }

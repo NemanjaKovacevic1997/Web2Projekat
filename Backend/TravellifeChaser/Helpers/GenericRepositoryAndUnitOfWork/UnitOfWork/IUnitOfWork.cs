@@ -21,6 +21,12 @@ namespace TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork
         IAirportRepository AirportRepository { get; }
         IAirlineAirportRepository AirlineAirportRepository { get; }
         ICarRepository CarRepository { get; }
+        IRACServiceRepository RACServiceRepository { get; }
+        IRentRepository RentRepository { get; }
+        IRACAddressRepository RACAddressRepository { get; }
+        IRACAddressRentRepository RACAddressRentRepository { get; }
+        IAdminRACUserRepository AdminRACUserRepository { get; }
+        IAdminSysUserRepository AdminSysUserRepository { get; }
 
         int Save();
     }

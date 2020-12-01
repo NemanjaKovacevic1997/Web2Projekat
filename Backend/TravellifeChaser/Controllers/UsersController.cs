@@ -88,8 +88,21 @@ namespace TravellifeChaser.Controllers
         [HttpPost]
         public ActionResult<User> PostUser(User user)
         {
-            user.Role = UserRole.Registered;
+            if(user.Role == UserRole.AdminSys)
+            {
 
+            }else if(user.Role == UserRole.AdminRAC)
+            {
+
+            }else if(user.Role == UserRole.AdminAirlines)
+            {
+
+            }
+            else
+            {
+                user.Role = UserRole.Registered;
+            }
+                
             try
             {
                 _unitOfWork.UserRepository.Add(user);
@@ -122,6 +135,13 @@ namespace TravellifeChaser.Controllers
         private bool UserExists(int id)
         {
             return _unitOfWork.UserRepository.Any(e => e.Id == id);
+        }
+
+        // GET: api/Users/5
+        [HttpGet("{userRole}/userRoleUsers")]
+        public ActionResult<IEnumerable<User>> GetUserRoleUsers(UserRole userRole)
+        {
+            return _unitOfWork.UserRepository.GetAll().Where(x => x.Role == userRole).ToList();
         }
     }
 }

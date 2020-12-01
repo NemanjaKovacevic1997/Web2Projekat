@@ -16,9 +16,9 @@ namespace TravellifeChaser.Models
             Address addr1 = new Address() { Id = 1, City = "Gajdobra", Country = "Serbia" };
             Address addr2 = new Address() { Id = 2, City = "Pecinci", Country = "Serbia" };
             Address addr3 = new Address() { Id = 3, City = "Novi Sad", Country = "Serbia" };
-            Address addr4 = new Address() { Id = 4, City = "Belgrade", Country = "Serbia" , Latitude = 44.8205, Longitude = 20.2917 };
+            Address addr4 = new Address() { Id = 4, City = "Belgrade", Country = "Serbia", Latitude = 44.8205, Longitude = 20.2917 };
             Address addr5 = new Address() { Id = 5, City = "Nis", Country = "Serbia", Latitude = 43.3376, Longitude = 21.8663 };
-            Address addr6 = new Address() { Id = 6, City = "Istanbul", Country = "Turkey" , Latitude = 41.0082, Longitude = 28.9784 };
+            Address addr6 = new Address() { Id = 6, City = "Istanbul", Country = "Turkey", Latitude = 41.0082, Longitude = 28.9784 };
             Address addr7 = new Address() { Id = 7, City = "Doha", Country = "Qatar", Latitude = 25.2783, Longitude = 51.5520 };
             Address addr8 = new Address() { Id = 8, City = "London", Country = "England", Latitude = 51.4700, Longitude = 0.4543 };
             Address addr9 = new Address() { Id = 9, City = "Paris", Country = "France", Latitude = 49.0097, Longitude = 2.5479 };
@@ -32,15 +32,15 @@ namespace TravellifeChaser.Models
             Address addr17 = new Address() { Id = 17, City = "Brussel", Country = "Belgium", Latitude = 50.90138889, Longitude = 4.48444444 };
             Address addr18 = new Address() { Id = 18, City = "Amsterdam", Country = "Netherland", Latitude = 52.30805556, Longitude = 4.76416667 };
             Address addr19 = new Address() { Id = 19, City = "Moscow", Country = "Russia", Latitude = 55.97277778, Longitude = 37.41472222 };
-         
+
             Address addr20 = new Address() { Id = 20, City = "Harmondsworth", Country = "England", Latitude = 51.4865, Longitude = -0.4796 };
             Address addr21 = new Address() { Id = 21, City = "Abu Dhabi", Country = "UAE", Latitude = 24.466667, Longitude = 54.366669 };
             Address addr22 = new Address() { Id = 22, City = "Dubai", Country = "UAE", Latitude = 25.276987, Longitude = 55.296249 };
-            
+
             User u1 = new User() { Id = 1, FirstName = "Nemanja", LastName = "Kovacevic", Username = "nemanja123", Email = "kovacevicnemanja1997@gmail.com", Password = "nemanja123", MobileNumber = "+381604520858", AddressId = addr1.Id, Role = UserRole.Registered };
             RegisteredUser ru1 = new RegisteredUser() { Id = u1.Id, BounusPoints = 0 };
 
-            User u2 = new User() { Id = 2, FirstName = "Radovan", LastName = "Trudic", Username = "radovan123", Email = "kovacevicnemanja1997@gmail.com", Password = "radovan123", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.Registered };
+            User u2 = new User() { Id = 2, FirstName = "Radovan", LastName = "Trudic", Username = "rasa123", Email = "kovacevicnemanja1997@gmail.com", Password = "rasa123", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.Registered };
             RegisteredUser ru2 = new RegisteredUser() { Id = u2.Id, BounusPoints = 0 };
 
             User u3 = new User() { Id = 3, FirstName = "Lana", LastName = "Kovacevic", Username = "lana123", Email = "kovacevicnemanja1997@gmail.com", Password = "lana123", MobileNumber = "+381604520858", AddressId = addr11.Id, Role = UserRole.Registered };
@@ -55,7 +55,9 @@ namespace TravellifeChaser.Models
             User u6 = new User() { Id = 6, FirstName = "Mitar", LastName = "Miric", Username = "mitar123", Email = "kovacevicnemanja1997@gmail.com", Password = "mitar123", MobileNumber = "+381604520858", AddressId = addr12.Id, Role = UserRole.Registered };
             RegisteredUser ru6 = new RegisteredUser() { Id = u6.Id, BounusPoints = 0 };
 
-
+            User u12 = new User() { Id = 12, FirstName = "Donald", LastName = "Trump", Username = "trump", Email = "donaldtrump@gmail.com", Password = "trump", MobileNumber = "+381650000000", AddressId = addr19.Id, Role = UserRole.AdminSys };
+            User u13 = new User() { Id = 13, FirstName = "Melanie", LastName = "Trump", Username = "melanie", Email = "donaldtrump@gmail.com", Password = "melanie", MobileNumber = "+381650000000", AddressId = addr19.Id, Role = UserRole.AdminSys };
+            
             FriendshipRequest fr1 = new FriendshipRequest() { Id = 1, FromId = 1, ToId = 2 };
             FriendshipRequest fr2 = new FriendshipRequest() { Id = 2, FromId = 3, ToId = 1 };
             Friendship friendship1 = new Friendship() { User1Id = 1, User2Id = 4 };
@@ -69,17 +71,21 @@ namespace TravellifeChaser.Models
             Pricelist pl6 = new Pricelist() { Id = 6, HandLuggageOverMaxDimensions = 4, LuggageOver10kg = 6, LuggageOver20kg = 12 };
 
             Airline airline1 = new Airline() { Id = 1, Name = "Turkish Airlines", AddressId = addr6.Id, AverageRating = 9.12, PricelistId = pl1.Id, PromotionalDescription = "Widen Your World", };
-            Airline airline2 = new Airline() { Id = 2, Name = "Qatar Airways", AddressId = addr7.Id, AverageRating = 8.73, PricelistId = pl2.Id, PromotionalDescription = "Going Places Together" };
-            Airline airline3 = new Airline() { Id = 3, Name = "Emirates", AddressId = addr22.Id, AverageRating = 9.12, PricelistId = pl3.Id, PromotionalDescription = "Enjoy flight", };  //dubai
-            Airline airline4 = new Airline() { Id = 4, Name = "Etihad Airways", AddressId = addr21.Id, AverageRating = 8.73, PricelistId = pl4.Id, PromotionalDescription = "With you" }; //abu dabi
+            Airline airline2 = new Airline() { Id = 2, Name = "Qatar Airways", AddressId = addr7.Id, AverageRating = 8.73, PricelistId = pl2.Id, PromotionalDescription = "Going Places Together", };
+            Airline airline3 = new Airline() { Id = 3, Name = "Emirates", AddressId = addr22.Id, AverageRating = 9.12, PricelistId = pl3.Id, PromotionalDescription = "Enjoy flight",};  //dubai
+            Airline airline4 = new Airline() { Id = 4, Name = "Etihad Airways", AddressId = addr21.Id, AverageRating = 8.73, PricelistId = pl4.Id, PromotionalDescription = "With you", }; //abu dabi
             Airline airline5 = new Airline() { Id = 5, Name = "British Airways", AddressId = addr20.Id, AverageRating = 9.12, PricelistId = pl5.Id, PromotionalDescription = "With you", }; //Harmondsworth
-            Airline airline6 = new Airline() { Id = 6, Name = "Air Serbia", AddressId = addr4.Id, AverageRating = 8.04, PricelistId = pl6.Id, PromotionalDescription = "Fly with us" }; //Belgrade
+            Airline airline6 = new Airline() { Id = 6, Name = "Air Serbia", AddressId = addr4.Id, AverageRating = 8.04, PricelistId = pl6.Id, PromotionalDescription = "Fly with us",  }; //Belgrade
 
             User u7 = new User() { Id = 7, FirstName = "Marija", LastName = "Miric", Username = "marijaaa", Email = "marijamiric@gmail.com", Password = "marijaaaa", MobileNumber = "+381604520858", AddressId = addr15.Id, Role = UserRole.AdminAirlines };
             AdminAirlinesUser ru7 = new AdminAirlinesUser() { Id = u7.Id, AirlineId = 1 };
 
             User u8 = new User() { Id = 8, FirstName = "Milica", LastName = "Miric", Username = "milicaaa", Email = "milicamiric@gmail.com", Password = "milicaaaa", MobileNumber = "+381604520858", AddressId = addr13.Id, Role = UserRole.AdminAirlines };
             AdminAirlinesUser ru8 = new AdminAirlinesUser() { Id = u8.Id, AirlineId = 2 };
+
+            User u9 = new User() { Id = 9, FirstName = "Radovan", LastName = "Trudic", Username = "rasa", Email = "kovacevicnemanja1997@gmail.com", Password = "rasa", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.AdminRAC };
+            User u10 = new User() { Id = 10, FirstName = "Burak", LastName = "Yilmaz", Username = "burak", Email = "kovacevicnemanja1997@gmail.com", Password = "burak", MobileNumber = "+381650000000", AddressId = addr6.Id, Role = UserRole.AdminRAC };
+            User u11 = new User() { Id = 11, FirstName = "Vladimir", LastName = "Putin", Username = "putin", Email = "kovacevicnemanja1997@gmail.com", Password = "putin", MobileNumber = "+381650000000", AddressId = addr19.Id, Role = UserRole.AdminRAC };
 
             Airport airport1 = new Airport() { Id = 1, AddressId = addr4.Id, Name = "Nikola Tesla" };
             Airport airport2 = new Airport() { Id = 2, AddressId = addr8.Id, Name = "Heathrow" };
@@ -91,7 +97,7 @@ namespace TravellifeChaser.Models
             Airport airport8 = new Airport() { Id = 8, AddressId = addr19.Id, Name = "Sheremetyevo" };
             Airport airport9 = new Airport() { Id = 9, AddressId = addr18.Id, Name = "Schiphol" };
 
-          
+
 
             AirlineAirport aa1 = new AirlineAirport() { AirlineId = 1, AirportId = 1 };
             AirlineAirport aa2 = new AirlineAirport() { AirlineId = 1, AirportId = 2 };
@@ -151,7 +157,7 @@ namespace TravellifeChaser.Models
             int columns = 9;
             int firstClassEndRow = 3, buisinessClassEndRow = 8;
 
-            Flight f1 = new Flight() { 
+            Flight f1 = new Flight() {
                 Id = 1,
                 FromId = 1,
                 ToId = 2,
@@ -164,7 +170,7 @@ namespace TravellifeChaser.Models
                 Length = 2506,
             };
 
-            
+
             Flight f2 = new Flight()
             {
                 Id = 2,
@@ -339,7 +345,7 @@ namespace TravellifeChaser.Models
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 3, 14, 30, 11),
                 CreatorId = 1
-            };  
+            };
 
             Ticket t2 = new Ticket()
             {
@@ -612,7 +618,7 @@ namespace TravellifeChaser.Models
             modelBuilder.Entity<Address>().HasData(addr1, addr2, addr3, addr4, addr5, addr6, addr7, addr8, addr9, addr10,
                                                    addr11, addr12, addr13, addr14, addr15, addr16, addr17, addr18, addr19,
                                                    addr20, addr21, addr22);
-            modelBuilder.Entity<User>().HasData(u1, u2, u3, u4, u5, u6, u7, u8);
+            modelBuilder.Entity<User>().HasData(u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, u11, u12, u13);
             modelBuilder.Entity<RegisteredUser>().HasData(ru1, ru2, ru3, ru4, ru5, ru6);
             modelBuilder.Entity<AdminAirlinesUser>().HasData(ru7, ru8);
             modelBuilder.Entity<FriendshipRequest>().HasData(fr1, fr2);
@@ -627,109 +633,283 @@ namespace TravellifeChaser.Models
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //MOJI PODACI
+            RACService racs1 = new RACService();
+            RACService racs2 = new RACService();
+            RACService racs3 = new RACService();
+
+            RACAddress racAddr1 = new RACAddress();
+            RACAddress racAddr2 = new RACAddress();
+            RACAddress racAddr3 = new RACAddress();
+            RACAddress racAddr4 = new RACAddress();
+            RACAddress racAddr5 = new RACAddress();
+            RACAddress racAddr6 = new RACAddress();
+
+            //ADRESE
+            racAddr1.Street = "Pozeska";
+            racAddr1.Number = 3;
+            racAddr1.City = "Belgrade";
+            racAddr1.Country = "Serbia";
+            racAddr1.Id = 1;
+            racAddr1.RACServiceId = 1;
+            //racAddr1.RACService = racs1;
+
+            racAddr2.Street = "Nemanjina";
+            racAddr2.Number = 33;
+            racAddr2.City = "Belgrade";
+            racAddr2.Country = "Serbia";
+            racAddr2.Id = 2;
+            racAddr2.RACServiceId = 1;
+            //racAddr2.RACService = racs1;
+
+            racAddr3.Street = "Azar";
+            racAddr3.Number = 33;
+            racAddr3.City = "Istanbul";
+            racAddr3.Country = "Turkey";
+            racAddr3.Id = 3;
+            racAddr3.RACServiceId = 2;
+            //racAddr3.RACService = racs2;
+
+            racAddr4.Street = "Izmir";
+            racAddr4.Number = 3;
+            racAddr4.City = "Istanbul";
+            racAddr4.Country = "Turkey";
+            racAddr4.Id = 4;
+            racAddr4.RACServiceId = 2;
+            //racAddr4.RACService = racs2;
+
+            racAddr5.Street = "Putin";
+            racAddr5.Number = 55;
+            racAddr5.City = "Moscow";
+            racAddr5.Country = "Russia";
+            racAddr5.Id = 5;
+            racAddr5.RACServiceId = 3;
+            //racAddr5.RACService = racs3;
+
+            racAddr6.Street = "Artem";
+            racAddr6.Number = 73;
+            racAddr6.City = "Moscow";
+            racAddr6.Country = "Russia";
+            racAddr6.Id = 6;
+            racAddr6.RACServiceId = 3;
+            //racAddr6.RACService = racs3;
+
+            //RAC SERVISI
+            racs2.Id = 2;
+            racs2.Logo = @"../../assets/images/logos/rac3.png";
+            racs2.MainAddress = "Azar 33, Istanbul, Turkey";
+            racs2.Name = "Istanbul Rent-a-car";
+            racs2.PriceList = "";
+            racs2.PromotionalDescription = "Just say where, we know how!";
+            racs2.Rating = 0;
+            //racs2.AdminSysUserId = u12.Id;
+
+            racs1.Id = 1;
+            racs1.Logo = @"../../assets/images/logos/rac1.png";
+            racs1.MainAddress = "Pozeska 3, Belgrade, Serbia";
+            racs1.Name = "Belgrade Rent-a-car";
+            racs1.PriceList = "";
+            racs1.PromotionalDescription = "Just say where, we know how!";
+            racs1.Rating = 0;
+            //racs1.AdminSysUserId = u12.Id;
+
+            racs3.Id = 3;
+            racs3.Logo = @"../../assets/images/logos/rac7.png";
+            racs3.MainAddress = "Putin 55, Moscow, Russia";
+            racs3.Name = "Moscow Rent-a-car";
+            racs3.PriceList = "";
+            racs3.PromotionalDescription = "Just say where, we know how!";
+            racs3.Rating = 0;
+            //racs3.AdminSysUserId = u12.Id;
+            //racs1.AdminRACUser = adminRAC1;
+
+            //RAC ADMINI
+            AdminRACUser adminRAC1 = new AdminRACUser() { RACServiceId = racs1.Id, Id = u9.Id };
+            AdminRACUser adminRAC2 = new AdminRACUser() { RACServiceId = racs2.Id, Id = u10.Id };
+            AdminRACUser adminRAC3 = new AdminRACUser() { RACServiceId = racs3.Id, Id = u11.Id };
+            //AdminRACUser ru9 = new AdminRACUser() { Id = u9.Id, RACServiceId = 1 };
+
+            //SYS ADMINI
+            AdminSysUser adminSys1 = new AdminSysUser() { Predefined = true, Id = u12.Id };
+            AdminSysUser adminSys2 = new AdminSysUser() { Predefined = false, Id = u13.Id };//Ovu obrisi posle
 
             Car c1 = new Car()
             {
                 Id = 1,
                 DailyPrice = 100,
-                Image = @"../../assets/images/car1.jpg", 
-                Mark = "Mercedes", 
-                Model = "A 250", 
-                Rating = 0, 
-                Seats = 5, 
-                Type = "Hatchback", 
-                Year=2020
+                Image = @"../../assets/images/cars/car1.jpg",
+                Mark = "Mercedes",
+                Model = "A 250",
+                Rating = 0,
+                Seats = 5,
+                Type = "Hatchback",
+                Year = 2020,
+                Rented = false,
+                RACServiceId = racs1.Id
             };
 
             Car c2 = new Car()
             {
                 Id = 2,
                 DailyPrice = 100,
-                Image = @"../../assets/images/car2.jpg",
+                Image = @"../../assets/images/cars/car2.jpg",
                 Mark = "BMW",
                 Model = "M5",
                 Rating = 0,
                 Seats = 5,
                 Type = "Sedan",
-                Year = 2020
+                Year = 2020,
+                Rented = false,
+                RACServiceId = racs1.Id
             };
 
             Car c3 = new Car()
             {
                 Id = 3,
                 DailyPrice = 100,
-                Image = @"../../assets/images/car3.jpg",
+                Image = @"../../assets/images/cars/car3.jpg",
                 Mark = "Range Rover",
                 Model = "P525",
                 Rating = 0,
                 Seats = 5,
                 Type = "SUV",
-                Year = 2018
+                Year = 2018,
+                Rented = false,
+                RACServiceId = racs1.Id
             };
 
             Car c4 = new Car()
             {
                 Id = 4,
                 DailyPrice = 100,
-                Image = @"../../assets/images/car4.jpg",
+                Image = @"../../assets/images/cars/car4.jpg",
                 Mark = "RAM",
                 Model = "1500",
                 Rating = 0,
                 Seats = 6,
                 Type = "Pickup",
-                Year = 2019
+                Year = 2019,
+                Rented = false,
+                RACServiceId = racs1.Id
             };
 
             Car c5 = new Car()
             {
                 Id = 5,
                 DailyPrice = 100,
-                Image = @"../../assets/images/car5.jpg",
+                Image = @"../../assets/images/cars/car5.jpg",
                 Mark = "Audi",
                 Model = "TT",
                 Rating = 0,
                 Seats = 2,
                 Type = "Coupe",
-                Year = 2016
+                Year = 2016,
+                Rented = false,
+                RACServiceId = racs1.Id
             };
 
             Car c6 = new Car()
             {
                 Id = 6,
                 DailyPrice = 100,
-                Image = @"../../assets/images/car6.jpg",
+                Image = @"../../assets/images/cars/car6.jpg",
                 Mark = "Renault",
                 Model = "Clio 5",
                 Rating = 0,
                 Seats = 5,
                 Type = "Hatchback",
-                Year = 2017
+                Year = 2017,
+                Rented = false,
+                RACServiceId = racs1.Id
             };
 
             Car c7 = new Car()
             {
                 Id = 7,
                 DailyPrice = 100,
-                Image = @"../../assets/images/car7.jpg",
+                Image = @"../../assets/images/cars/car7.jpg",
                 Mark = "BMW",
                 Model = "X6",
                 Rating = 0,
                 Seats = 5,
                 Type = "SUV",
-                Year = 2019
+                Year = 2019,
+                Rented = false,
+                RACServiceId = racs1.Id
             };
 
             Car c8 = new Car()
             {
                 Id = 8,
                 DailyPrice = 100,
-                Image = @"../../assets/images/car8.jpg",
+                Image = @"../../assets/images/cars/car8.jpg",
                 Mark = "Mercedes",
                 Model = "A 100",
                 Rating = 0,
                 Seats = 5,
                 Type = "Hatchback",
-                Year = 2020
+                Year = 2020,
+                Rented = false,
+                RACServiceId = racs1.Id
+            };
+
+            Car c9 = new Car()
+            {
+                Id = 9,
+                DailyPrice = 100,
+                Image = @"../../assets/images/cars/car9.jpg",
+                Mark = "BMW",
+                Model = "X6",
+                Rating = 0,
+                Seats = 5,
+                Type = "SUV",
+                Year = 2019,
+                Rented = false,
+                RACServiceId = racs2.Id
+            };
+
+            Car c10 = new Car()
+            {
+                Id = 10,
+                DailyPrice = 100,
+                Image = @"../../assets/images/cars/car10.jpg",
+                Mark = "Mercedes",
+                Model = "A 100",
+                Rating = 0,
+                Seats = 5,
+                Type = "Hatchback",
+                Year = 2020,
+                Rented = false,
+                RACServiceId = racs2.Id
+            };
+
+            Car c11 = new Car()
+            {
+                Id = 11,
+                DailyPrice = 100,
+                Image = @"../../assets/images/cars/car11.jpg",
+                Mark = "BMW",
+                Model = "X6",
+                Rating = 0,
+                Seats = 5,
+                Type = "SUV",
+                Year = 2019,
+                Rented = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c12 = new Car()
+            {
+                Id = 12,
+                DailyPrice = 100,
+                Image = @"../../assets/images/cars/car12.jpg",
+                Mark = "Mercedes",
+                Model = "A 100",
+                Rating = 0,
+                Seats = 5,
+                Type = "Hatchback",
+                Year = 2020,
+                Rented = false,
+                RACServiceId = racs3.Id
             };
 
             List<Car> cars = new List<Car>();
@@ -741,8 +921,15 @@ namespace TravellifeChaser.Models
             cars.Add(c6);
             cars.Add(c7);
             cars.Add(c8);
+            cars.Add(c9);
+            cars.Add(c10);
+            cars.Add(c11);
+            cars.Add(c12);
 
             modelBuilder.Entity<Car>().HasData(cars);
+            modelBuilder.Entity<RACAddress>().HasData(racAddr1, racAddr2, racAddr3, racAddr4, racAddr5, racAddr6);
+            modelBuilder.Entity<RACService>().HasData(racs1, racs2, racs3);
+            modelBuilder.Entity<AdminRACUser>().HasData(adminRAC1, adminRAC2, adminRAC3);
         }
     }
 }

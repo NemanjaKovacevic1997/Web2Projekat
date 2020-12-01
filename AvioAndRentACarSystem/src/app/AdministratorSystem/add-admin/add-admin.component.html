@@ -1,0 +1,43 @@
+<form class="rounded-lg">
+    <div class="form-row justify-content-center">             
+        <div class="form-group">
+            <h6 class="h6">
+                New System Administrator
+            </h6>
+        </div>
+    </div>  
+    <div>
+        <label for="inputFirstName" class="sr-only">First name</label>
+        <input type="text" name="inputFirstName" id="inputFirstName" class="form-control mb-2" placeholder="First name" required="" autofocus="" [(ngModel)]="firstname">
+    
+        <label for="inputLastName" class="sr-only">Last name</label>
+        <input type="text" name="inputLastName" id="inputLastName" class="form-control mb-2" placeholder="Last name" required="" autofocus="" [(ngModel)]="lastname">
+    
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" name="inputEmail" id="inputEmail" class="form-control mb-2" placeholder="Email address" required="" autofocus="" [(ngModel)]="email">
+        
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" name="inputUsername" id="inputUsername" class="form-control mb-2" placeholder="Username" required="" autofocus="" [(ngModel)]="username">
+    
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="inputPassword" id="inputPassword" class="form-control mb-2" placeholder="Password" required="" [(ngModel)]="password">
+        
+        <label for="inputRepeatPassword" class="sr-only">Repeat password</label>
+        <input type="password" name="inputRepeatPassword" id="inputRepeatPassword" class="form-control mb-2" placeholder="Repeat password" required="" [(ngModel)]="repeatPassword">
+        
+        <label for="inputCity" class="sr-only">City</label>
+        <input type="text" name="inputCity" id="inputCity" class="form-control mb-2" placeholder="City" required="" autofocus="" [(ngModel)]="city">
+    
+        <label for="inputCountry" class="sr-only">Country</label>
+        <input type="text" name="inputCountry" id="inputCountry" class="form-control mb-2" placeholder="Country" required="" autofocus="" [(ngModel)]="country">
+    
+        <label for="inputPhoneNumber" class="sr-only">Phone number</label>
+        <input type="text" name="inputPhoneNumber" id="inputPhoneNumber" class="form-control mb-2" placeholder="Phone number" required="" autofocus="" [(ngModel)]="phoneNumber">    
+    </div>
+    
+    <div class="form-row justify-content-center saveBtn">             
+        <div class="form-group col-md-4">
+            <button type="submit" class="btn btn-info form-control" (click)="addNew()">Save</button>
+        </div>
+    </div>  
+</form>

@@ -1,0 +1,31 @@
+form {
+    padding: 40px;
+    background-color: rgb(56, 55, 55, 0.7);   
+}
+
+table {
+    color: white;
+}
+
+.ngb-rating {
+    font-size: 25px;
+    color: yellow;
+}
+
+.xButton{
+    background-color: transparent;
+    color: turquoise;
+}
+
+.myButton{
+    background-color: transparent;
+    color: lightslategray;
+}
+
+.h6{
+    color: white;
+}
+
+.myInputNumber{
+    width: 70px;
+}

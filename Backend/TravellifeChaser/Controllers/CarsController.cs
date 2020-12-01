@@ -107,5 +107,15 @@ namespace TravellifeChaser.Controllers
         {
             return _unitOfWork.CarRepository.Any(e => e.Id == id);
         }
+
+        [HttpGet("{id}/racServiceCars")]
+        public ActionResult<IEnumerable<Car>> GetRACServiceCars(int id)
+        {
+            if (!_unitOfWork.CarRepository.Any(x => x.RACServiceId == id))
+                return NotFound();
+
+
+            return _unitOfWork.CarRepository.GetByCondition(x => x.RACServiceId == id).ToList();
+        }
     }
 }

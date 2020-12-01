@@ -1,0 +1,50 @@
+form {
+    padding: 40px;
+    background-color: rgb(56, 55, 55, 0.7);   
+}
+
+table {
+    color: white;
+}
+
+.ngb-rating {
+    font-size: 25px;
+    color: yellow;
+}
+
+.xButton{
+    background-color: transparent;
+    color: turquoise;
+}
+
+.myButton{
+    background-color: transparent;
+    color: lightslategray;
+}
+
+.h6{
+    color: white;
+}
+
+.myInputNumber{
+    width: 70px;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.saveBtn{
+    padding: 20px;
+}

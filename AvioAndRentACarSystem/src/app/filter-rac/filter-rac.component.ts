@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Options, LabelType } from 'ng5-slider';
 import { Router } from '@angular/router';
 import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { SearchDataRAC } from '../ModelRAC/HelperModelRAC/searchDataRAC';
+import { FilterDataRAC } from '../ModelRAC/HelperModelRAC/filterDataRAC';
 
 @Component({
   selector: 'app-filter-rac',
@@ -11,6 +13,8 @@ import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class FilterRacComponent implements OnInit {
 
+  @Output() change = new EventEmitter<FilterDataRAC>();
+
   public minPickerDate;
   public minPickerTime1;
   public minPickerTime2;
@@ -18,10 +22,10 @@ export class FilterRacComponent implements OnInit {
   public maxValue1: number = 400;
 
   form = new FormGroup({
-    from: new FormControl('', [
+    deliveryAddress: new FormControl('', [
       Validators.required
     ]),
-    to: new FormControl('', [
+    returnAddress: new FormControl('', [
       Validators.required
     ]),
     date1: new FormControl('', [
@@ -30,7 +34,10 @@ export class FilterRacComponent implements OnInit {
     date2: new FormControl('', [
       Validators.required
     ]),
-    time2: new FormControl('', [
+    type: new FormControl('', [
+      Validators.required
+    ]),
+    passengers: new FormControl('', [
       Validators.required
     ])
   })
@@ -50,12 +57,12 @@ export class FilterRacComponent implements OnInit {
     }
   };
 
-  get from() {
-    return this.form.get('from');
+  get deliveryAddress() {
+    return this.form.get('deliveryAddress');
   }
 
-  get to() {
-    return this.form.get('to');
+  get returnAddress() {
+    return this.form.get('returnAddress');
   }
 
   get date1() {
@@ -66,8 +73,12 @@ export class FilterRacComponent implements OnInit {
     return this.form.get('date2');
   }
 
-  get time2(){
-    return this.form.get('time2');
+  get type() {
+    return this.form.get('type');
+  }
+
+  get passengers() {
+    return this.form.get('passengers');
   }
 
   constructor(private router: Router, config: NgbTimepickerConfig) {
@@ -94,8 +105,28 @@ export class FilterRacComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.form.valid)
-      this.router.navigate(['/flights']);
+    if (this.form.valid){
+    let filterData: FilterDataRAC = new FilterDataRAC();
+    filterData.deliveryAddress = this.deliveryAddress.value;
+    filterData.returnAddress = this.returnAddress.value;
+    filterData.date1Day = this.date1.value.day;
+    filterData.date1Month = this.date1.value.month;
+    filterData.date1Year = this.date1.value.year;
+    filterData.date2Day = this.date2.value.day;
+    filterData.date2Month = this.date2.value.month;
+    filterData.date2Year = this.date2.value.year;
+    filterData.time1Hour = this.minPickerTime1.hour;
+    filterData.time1Minute = this.minPickerTime1.minute;
+    filterData.time2Hour = this.minPickerTime2.hour;
+    filterData.time2Minute = this.minPickerTime2.minute;
+    filterData.carType = this.type.value;
+    filterData.numberOfPasengers = this.passengers.value;
+    filterData.maxTotalPrice = this.maxValue1;
+    filterData.minTotalPrice = this.minValue1;
+
+    console.log(filterData);
+    this.change.emit(filterData);
+    }
     else
       alert("Bad input.");
   }

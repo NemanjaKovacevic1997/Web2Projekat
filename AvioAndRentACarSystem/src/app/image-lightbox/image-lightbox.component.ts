@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation  } from '@angular/core';
 import { ImageService } from '../Services/Image/image.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ChangeCarModalComponent } from '../ModalsRAC/change-car-modal/change-car-modal.component';
@@ -6,7 +6,9 @@ import { CarService } from '../Services/Car/car.service';
 import { Car } from '../ModelRAC/car';
 import { LoginService } from '../Services/Login/login.service';
 import { UserRole } from '../AirlineModel/userRole';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RacServiceService } from '../Services/RACService/rac-service.service';
+import { RACService } from '../ModelRAC/racService';
 
 @Component({
   selector: 'app-image-lightbox',
@@ -16,20 +18,46 @@ import { Router } from '@angular/router';
 })
 export class ImageLightboxComponent implements OnInit {
 
+  public id: number;
+  public rac: RACService;
   slideIndex = 0;
-  public cars: Array<Car>;
+  @Input() public cars: Array<Car>;
   myCar: Car;
   myCarBefore: Car;
   indexOfMyCar: number;
   get UserRole() { return UserRole; }
   public loginService: LoginService;
 
-  constructor(private imageService: ImageService, private modalService: NgbModal, private carService: CarService, loginService: LoginService, private router: Router) {
+  constructor(private imageService: ImageService, private modalService: NgbModal, private carService: CarService, loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute, private racServiceService: RacServiceService) {
     this.loginService = loginService;
+    this.rac = new RACService();
   }
 
   ngOnInit(): void {
-    this.updateCarList();
+    /*this.activatedRoute.params.subscribe(paramsId => {
+      this.id = paramsId.id;
+      this.getRACServiceAndCars();
+    });*/
+  }
+
+  getRACServiceAndCars(){
+    if(this.loginService.userRole == UserRole.AdminRAC){
+      this.racServiceService.getAdminRACServiceRACService(this.loginService.user.id).subscribe(ret => { 
+        this.rac = ret as RACService
+        this.getCars();
+      });
+    }else{
+      this.racServiceService.get(this.id).subscribe(ret => {
+        this.rac = ret as RACService;
+        this.getCars();
+      });
+    }
+  }
+
+  getCars(){
+    this.carService.getRACServiceCars(this.rac.id).subscribe( ret => {
+      this.cars = ret as Array<Car>;
+    });
   }
 
   removeCar(id){
@@ -39,7 +67,7 @@ export class ImageLightboxComponent implements OnInit {
   }
 
   updateCarList(){
-    this.carService.getAll().subscribe(ret => {
+    this.carService.getRACServiceCars(this.rac.id).subscribe( ret => {
       this.cars = ret as Array<Car>;
     });
   }

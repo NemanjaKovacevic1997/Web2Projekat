@@ -1,0 +1,18 @@
+tbody > tr {
+    height: 70px;
+}
+
+th {
+    text-align: center;
+} 
+
+td {
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}

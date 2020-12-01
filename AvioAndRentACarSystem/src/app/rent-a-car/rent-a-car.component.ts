@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserRole } from '../AirlineModel/userRole';
+import { RACService } from '../ModelRAC/racService';
+import { LoginService } from '../Services/Login/login.service';
+import { RacServiceService } from '../Services/RACService/rac-service.service';
 
 @Component({
   selector: 'rent-a-car',
@@ -7,9 +12,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RentACarComponent implements OnInit {
 
-  constructor() { }
+  @Input() racServices: Array<RACService>;
 
-  ngOnInit(): void {
+  constructor(private racServiceService: RacServiceService, private router: Router, private loginService: LoginService) { }
+
+  ngOnInit(): void { }
+
+  racClick(id: number) {
+    if(this.loginService.userRole != UserRole.AdminSys)
+      this.router.navigate(['/rent-a-car-search-selected', id]);
   }
-
 }

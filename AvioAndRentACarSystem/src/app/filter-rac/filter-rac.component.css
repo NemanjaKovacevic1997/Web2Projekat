@@ -17,11 +17,11 @@ input [name="dp"] {
 }
 
 ::ng-deep .custom-slider .ng5-slider .ng5-slider-selection {
-    background: rgb(2, 117, 216) !important;
+    background: rgb(51, 181, 229) !important;
 }
 
 ::ng-deep .custom-slider .ng5-slider .ng5-slider-pointer {
-    background: rgb(2, 117, 216) !important;
+    background: rgb(51, 181, 229) !important;
 }
 
 mat-tab-group {

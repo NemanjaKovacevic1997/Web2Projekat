@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TravellifeChaser.Models.RACSystem;
 
 namespace TravellifeChaser.Models
 {
@@ -21,5 +22,7 @@ namespace TravellifeChaser.Models
         public ICollection<Friendship> FriendsFrom { get; set; }  // N : 1 User - Frendship
 
         public ICollection<Ticket> Tickets { get; set; }  //N : 1 User - Ticket
+        public ICollection<Rent> Rents { get; set; }  //N : 1 User - Rent
+
     }
 }

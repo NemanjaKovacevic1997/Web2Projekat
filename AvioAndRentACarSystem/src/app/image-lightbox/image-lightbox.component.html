@@ -8,34 +8,33 @@
                                       Year: {{car.year}}<br>
                                       Car type: {{car.type}}<br>
                                       Number of seats: {{car.seats}}<br>
-                                      Total price: {{car.dailyPrice}}€
+                                      Daily price: {{car.dailyPrice}}€
                     </div>
 
                     <div class="row" *ngIf="this.loginService.userRole == UserRole.Registered">
                         <div class="columnBtnLeft">
-                            <button class="btn btn-primary" style="width: 100px; visibility: hidden;" (click)="removeCar(car.id)">Remove</button>
+                            <button class="btn btn-info" style="width: 100px; visibility: hidden;" (click)="removeCar(car.id)">Remove</button>
                         </div>
                         <div class="columnBtn">
-                            <button class="btn btn-primary" style="width: 100px;">Rent</button>
+                            <button class="btn btn-info" style="width: 100px;">Rent</button>
                         </div>
                         <div class="columnBtnRight">
-                            <button class="btn btn-primary" style="width: 100px; visibility: hidden;" (click)="openChangeCarModal(car.id);">Change</button>
+                            <button class="btn btn-info" style="width: 100px; visibility: hidden;" (click)="openChangeCarModal(car.id);">Change</button>
                         </div>
                     </div>
 
                     <div class="row" *ngIf="this.loginService.userRole == UserRole.AdminRAC">
                         <div class="columnBtnLeft">
-                            <button class="btn btn-primary" style="width: 100px;" (click)="removeCar(car.id)">Remove</button>
+                            <button class="btn btn-info" [disabled]="car.rented" style="width: 100px;" (click)="removeCar(car.id)">Remove</button>
                         </div>
                         <div class="columnBtn">
-                            <button class="btn btn-primary" style="width: 100px; visibility: hidden;">Rent</button>
+                            <button class="btn btn-info" style="width: 100px; visibility: hidden;">Rent</button>
                         </div>
-                        <div class="columnBtnRight">
-                            <button class="btn btn-primary" style="width: 100px;" (click)="openChangeCarModal(car.id);">Change</button>
+                        <div class="columnBtnRight" >
+                            <button class="btn btn-info" [disabled]="car.rented" style="width: 100px;" (click)="openChangeCarModal(car.id);">Change</button>
                         </div>
                     </div>
-
-                </div>                   
+                </div>          
         </div> 
         <ngb-rating [(rate)]="car.rating" [readonly]="true" class="ngb-rating"></ngb-rating>
     </div>

@@ -2,10 +2,10 @@
     <div class="container-fluid">
       <div class="row">
           <div class="col-sm-3 col-md-6 col-lg-4">    
-            <search-rac></search-rac>
+            <search-rac (change)="fetchFilterData($event)"></search-rac>
           </div>
           <div class="col-sm-9 col-md-6 col-lg-8">
-              <rent-a-car></rent-a-car>
+              <rent-a-car [racServices]="racServices"></rent-a-car>
           </div>
       </div>
     </div>

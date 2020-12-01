@@ -43,6 +43,18 @@ namespace TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork
 
         private ICarRepository carRepository;
 
+        private IRACServiceRepository racServiceRepository;
+
+        private IRentRepository rentRepository;
+
+        private IRACAddressRepository racAddressRepository;
+
+        private IRACAddressRentRepository racAddressRentRepository;
+
+        private IAdminRACUserRepository adminRACUserRepository;
+
+        private IAdminSysUserRepository adminSysUserRepository;
+
         public IAirlineRepository AirlineRepository
         {
             get
@@ -160,6 +172,66 @@ namespace TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork
                 if (this.carRepository == null)
                     this.carRepository = new CarRepository(_context);
                 return carRepository;
+            }
+        }
+
+        public IRACServiceRepository RACServiceRepository
+        {
+            get
+            {
+                if (this.racServiceRepository == null)
+                    this.racServiceRepository = new RACServiceRepository(_context);
+                return racServiceRepository;
+            }
+        }
+
+        public IRentRepository RentRepository
+        {
+            get
+            {
+                if (this.rentRepository == null)
+                    this.rentRepository = new RentRepository(_context);
+                return rentRepository;
+            }
+        }
+
+        public IRACAddressRepository RACAddressRepository
+        {
+            get
+            {
+                if (this.racAddressRepository == null)
+                    this.racAddressRepository = new RACAddressRepository(_context);
+                return racAddressRepository;
+            }
+        }
+
+        public IAdminRACUserRepository AdminRACUserRepository
+        {
+            get
+            {
+                if (this.adminRACUserRepository == null)
+                    this.adminRACUserRepository = new AdminRACUserRepository(_context);
+                return adminRACUserRepository;
+            }
+        }
+
+        public IRACAddressRentRepository RACAddressRentRepository
+        {
+            get
+            {
+                if (this.racAddressRentRepository == null)
+                    this.racAddressRentRepository = new RACAddressRentRepository(_context);
+                return racAddressRentRepository;
+            }
+        }
+
+        public IAdminSysUserRepository AdminSysUserRepository
+        {
+            get
+            {
+                if (this.adminSysUserRepository == null)
+                    this.adminSysUserRepository = new AdminSysUserRepository(_context);
+                return adminSysUserRepository;
             }
         }
 

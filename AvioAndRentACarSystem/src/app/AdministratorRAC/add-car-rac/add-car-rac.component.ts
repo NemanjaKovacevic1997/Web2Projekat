@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CarService } from 'src/app/Services/Car/car.service';
 import { Car } from 'src/app/ModelRAC/car';
+import { LoginService } from 'src/app/Services/Login/login.service';
+import { AdminRacUserService } from 'src/app/Services/AdminRACUser/admin-rac-user.service';
+import { AdminRACUser } from 'src/app/ModelRAC/adminRACUser';
 
 @Component({
   selector: 'app-add-car-rac',
@@ -19,11 +22,13 @@ export class AddCarRacComponent implements OnInit {
   myDailyPrice: number;
   myImage: string;
   myRating: number = 0;
-
-  currentId: number = 0;
-  addedCar: Car;
+  myRented: boolean = false;
+  adminRACUser: AdminRACUser;
+  public loginService: LoginService;
   
-  constructor(private router: Router, private carService: CarService) { }
+  constructor(private router: Router, private carService: CarService, loginService: LoginService, private adminRACUserService: AdminRacUserService) {
+    this.loginService = loginService;
+   }
 
   ngOnInit(): void {
     
@@ -47,10 +52,14 @@ export class AddCarRacComponent implements OnInit {
       return;
     }
 
-    //var car = new Car(this.currentId, this.myMark, this.myType, this.mySeats, this.myRating, this.myDailyPrice, this.myModel);
-    var car = new Car (0, this.myModel, this.myMark, this.myType, this.myYear, this.mySeats, this.myRating, this.myDailyPrice, this.myImage )
-
-    this.carService.add(car).subscribe(() => this.ngOnInit());
+    var userId = this.loginService.user.id;
+    this.adminRACUserService.get(userId).subscribe( ret =>{
+      this.adminRACUser = ret as AdminRACUser;
+      var car = new Car (0, this.myModel, this.myMark, this.myType, this.myYear, this.mySeats, this.myRating, this.myDailyPrice, this.myImage, this.myRented, this.adminRACUser.racServiceId )
+      this.carService.add(car).subscribe(() => 
+        alert(car.mark + " " + car.model + " added to database. Please, refresh this page to show up new car.")
+        );
+    });
   }
 
   private validationFull() {

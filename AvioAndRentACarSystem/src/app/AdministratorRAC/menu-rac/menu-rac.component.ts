@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { LoginService } from 'src/app/Services/Login/login.service';
 import { UserRole } from 'src/app/AirlineModel/userRole';
+import { FilterDataRAC } from 'src/app/ModelRAC/HelperModelRAC/filterDataRAC';
 
 @Component({
   selector: 'app-menu-rac',
@@ -9,6 +10,7 @@ import { UserRole } from 'src/app/AirlineModel/userRole';
 })
 export class MenuRacComponent implements OnInit {
 
+  @Output() change = new EventEmitter<FilterDataRAC>();
   public loginService: LoginService;
   get UserRole() { return UserRole; }
 
@@ -19,4 +21,7 @@ export class MenuRacComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  fetchFilterData(filterData: FilterDataRAC){
+    this.change.emit(filterData);
+  }
 }

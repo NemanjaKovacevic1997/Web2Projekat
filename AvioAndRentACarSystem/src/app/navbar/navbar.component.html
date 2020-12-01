@@ -40,9 +40,25 @@
             routerLinkActive="active current" class="nav-item">
           <a class="nav-link" routerLink="/adminAirlines/airline-flights"><i class="fa fa-plane"></i> Filghts </a>
         </li>
+        <li *ngIf="this.loginService.userRole == UserRole.AdminRAC" 
+            routerLinkActive="active current" class="nav-item">
+          <a class="nav-link" routerLink="/adminRAC/rent-a-car-rents"><i class="fa fa-car"></i> Rents </a>
+        </li>
         <li *ngIf="this.loginService.userRole == UserRole.AdminAirlines"
             routerLinkActive="active current" class="nav-item">
           <a class="nav-link" routerLink="/adminAirlines/report"><i class="fa fa-list-alt"></i> Report </a>
+        </li>
+        <li *ngIf="this.loginService.userRole == UserRole.AdminSys" 
+            routerLinkActive="active current" class="nav-item">
+          <a class="nav-link" routerLink="/adminSys/page-rent-a-car"><i class="fa fa-car"></i> Rent-A-Car </a>
+        </li>
+        <li *ngIf="this.loginService.userRole == UserRole.AdminSys" 
+            routerLinkActive="active current" class="nav-item">
+          <a class="nav-link" routerLink="/adminSys/page-airlines"><i class="fa fa-plane"></i> Airlines </a>
+        </li>
+        <li *ngIf="this.loginService.userRole == UserRole.AdminSys" 
+            routerLinkActive="active current" class="nav-item">
+          <a class="nav-link" routerLink="/adminSys/page-administrators"><i class="fa fa-id-card"></i> Administrators </a>
         </li>
       </ul>
       <div *ngIf="this.loginService.userRole == UserRole.Unregistered"

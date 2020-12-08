@@ -19,7 +19,7 @@ export class RentACarSelectedComponent implements OnInit {
   public rac: RACService;
   public loginService: LoginService;
   public cars: Array<Car>;
-  public carsAll: Array<Car>;
+  public carsAll: Array<Car>; 
 
   constructor(private racServiceService: RacServiceService, loginService: LoginService, private activatedRoute: ActivatedRoute, private carService: CarService) {
     this.loginService = loginService;
@@ -34,7 +34,7 @@ export class RentACarSelectedComponent implements OnInit {
   }
 
   getRACService(){
-    if(this.loginService.userRole == UserRole.AdminRAC){
+    if(this.loginService.userRole == UserRole.AdminRAC){ 
       this.racServiceService.getAdminRACServiceRACService(this.loginService.user.id).subscribe(ret => { 
         this.rac = ret as RACService
       });

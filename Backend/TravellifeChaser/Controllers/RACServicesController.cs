@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravellifeChaser.Data;
 using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork;
+using TravellifeChaser.Models;
 using TravellifeChaser.Models.RACSystem;
 
 namespace TravellifeChaser.Controllers
@@ -111,7 +112,22 @@ namespace TravellifeChaser.Controllers
         [HttpGet("adminRACServiceId/{id}")]
         public ActionResult<RACService> GetAdminRACServiceRACService(int id)
         {
-            var user = _unitOfWork.AdminRACUserRepository.Get(id);
+            var users = _unitOfWork.AdminRACUserRepository.GetAll();
+
+            if (!users.Any(x => x.Id == id))
+                return NotFound();
+
+            AdminRACUser user = new AdminRACUser();
+
+            foreach (var item in users)
+            {
+                if (item.Id == id)
+                {
+                    user = item;
+                }
+            }
+            
+            //var user = _unitOfWork.AdminRACUserRepository.Get(id);
             if (user == null)
                 return BadRequest();
 
@@ -121,7 +137,7 @@ namespace TravellifeChaser.Controllers
             var racService = _unitOfWork.RACServiceRepository.Get((int)user.RACServiceId);
             if (racService == null)
                 return NotFound();
-
+  
             return racService;
         }
     }

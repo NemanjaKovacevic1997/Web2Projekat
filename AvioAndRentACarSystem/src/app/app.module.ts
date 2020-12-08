@@ -109,6 +109,8 @@ import { PageAdministratorsComponent } from './AdministratorSystem/page-administ
 import { AdminsComponent } from './AdministratorSystem/admins/admins.component';
 import { AdministratorRacModalComponent } from './ModalsRAC/administrator-rac-modal/administrator-rac-modal.component';
 //import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { MatExpansionModule } from  '@angular/material/expansion';
+import { BusinessDestinationsModalComponent } from './ModalsRAC/business-destinations-modal/business-destinations-modal.component';
 
 @NgModule({
   declarations: [
@@ -188,7 +190,8 @@ import { AdministratorRacModalComponent } from './ModalsRAC/administrator-rac-mo
     PageAirlinesComponent,
     PageAdministratorsComponent,
     AdminsComponent,
-    AdministratorRacModalComponent
+    AdministratorRacModalComponent,
+    BusinessDestinationsModalComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -207,6 +210,7 @@ import { AdministratorRacModalComponent } from './ModalsRAC/administrator-rac-mo
     NgbRatingModule,
     HttpClientModule,
     MatTabsModule,
+    MatExpansionModule,
     //NgbTooltip,
     RouterModule.forRoot([
 

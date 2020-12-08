@@ -106,5 +106,28 @@ namespace TravellifeChaser.Controllers
         {
             return _unitOfWork.AdminRACUserRepository.Any(e => e.Id == id);
         }
+
+        [HttpGet("getAdminRACUserById/{id}")]
+        public ActionResult<AdminRACUser> GetAdminRACUserById(int id)
+        {
+            var adminRACUsers = _unitOfWork.AdminRACUserRepository.GetAll();
+
+            AdminRACUser adminRACUser = new AdminRACUser();
+
+            foreach (var item in adminRACUsers)
+            {
+                if(item.Id == id)
+                {
+                    adminRACUser = item;
+                }
+            }
+
+            if (adminRACUser == null)
+            {
+                return NotFound();
+            }
+
+            return adminRACUser;
+        }
     }
 }

@@ -35,20 +35,15 @@ export class AdministratorRacModalComponent implements OnInit {
   }
 
   passBack() {
-    alert("KRAAAAAJjjjjjjjjjjjjjjjjjjjzzzzzzzzzzzzzzzzzzz")
     this.racAdministrator.firstName = this.firstname;
-    alert("KRAAAAAJjjjjjjjjjjjjjjjjjjjzzzzzzzzzzzzzzzzzzz222222")
     this.racAdministrator.lastName = this.lastname;
     this.racAdministrator.username = this.username;
     this.racAdministrator.password = this.password;
     this.racAdministrator.address = new Address(0, this.city, this.country);
-    alert("KRAAAAAJjjjjjjjjjjjjjjjjjjjzzzzzzzzzzzzzzzzzzz33333333")
     this.racAdministrator.email = this.email;
     this.racAdministrator.mobileNumber = this.phoneNumber;
     this.racAdministrator.role = UserRole.AdminRAC;
-    alert("KRAAAAAJjjjjjjjjjjjjjjjjjjj")
     this.passEntry.emit(this.racAdministrator);
-    alert("KRAAAAAJ")
     this.activeModal.close(this.racAdministrator);
   }
 
@@ -70,7 +65,6 @@ export class AdministratorRacModalComponent implements OnInit {
       return
     } 
     else{
-      alert("aaaaaaaaaaaaaaaaa")
       this.passBack();
     }
   }

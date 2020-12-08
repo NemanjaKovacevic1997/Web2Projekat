@@ -116,5 +116,14 @@ namespace TravellifeChaser.Controllers
 
             return _unitOfWork.RACAddressRepository.GetByCondition(x => x.RACServiceId == id).ToList();
         }
+
+        [HttpGet("{id}/racServiceMainAddresses")]
+        public ActionResult<IEnumerable<RACAddress>> GetRACServiceMainAddresses(int id)
+        {
+            if (!_unitOfWork.RACAddressRepository.Any(x => x.IsMain == true))
+                return NotFound();
+
+            return _unitOfWork.RACAddressRepository.GetByCondition(x => x.IsMain == true).ToList();
+        }
     }
 }

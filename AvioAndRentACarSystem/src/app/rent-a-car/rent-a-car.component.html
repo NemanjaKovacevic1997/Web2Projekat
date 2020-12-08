@@ -11,7 +11,12 @@
         <tr *ngFor="let racService of racServices;" (click)="racClick(racService.id);">
             <td><img src="{{racService.logo}}"></td>
             <td>{{racService.name}}</td>
-            <td>{{racService.mainAddress}}</td>
+            <td>
+                {{racAddresses[racService.id-1].street}}
+                {{racAddresses[racService.id-1].number}},
+                {{racAddresses[racService.id-1].city}},
+                {{racAddresses[racService.id-1].country}}
+            </td>
             <td>{{racService.rating}}</td>
         </tr>
     </tbody>

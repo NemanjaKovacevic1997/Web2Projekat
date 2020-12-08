@@ -1,17 +1,29 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Address update</h4>
-    <button type="button" class="close myButton" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form>
-        <div class="form-group">
-          <label for="TextInput">Address :</label>
-          <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="address">
-        </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button (click)="passBack()" type="submit" class="btn btn-outline-dark">Change</button>
+  <h4 class="modal-title" id="modal-basic-title">Address update</h4>
+  <button type="button" class="close myButton" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+      <div class="form-group">
+        <label for="TextInput">Street :</label>
+        <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="street">
+      </div>
+      <div class="form-group">
+        <label for="TextInput">Number :</label>
+        <input name="input" type="number" id="TextInput" class="form-control" [(ngModel)]="number">
+      </div>
+      <div class="form-group">
+        <label for="TextInput">City :</label>
+        <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="city">
+      </div>
+      <div class="form-group">
+        <label for="TextInput">Country :</label>
+        <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="country">
+      </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button (click)="passBack()" type="submit" class="btn btn-outline-dark">Update</button>
 </div>

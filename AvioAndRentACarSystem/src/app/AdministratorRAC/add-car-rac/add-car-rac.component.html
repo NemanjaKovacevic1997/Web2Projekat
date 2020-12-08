@@ -103,14 +103,6 @@
                     <input type="number" id="inputDailyPrice" name="inputDailyPrice" class="form-control" [(ngModel)]="myDailyPrice">
                 </td>
             </tr>
-            <tr >
-                <td colspan="2">
-                    <button type="submit" class="btn btn-info" (click)="fileInput.click()">
-                        <span>Add Image</span>
-                        <input #fileInput type="file" (change)="onSelectFile($event)" style="display:none;" />
-                    </button>                 
-                </td>
-            </tr>
             <tr *ngIf="myImage != null">
                 <td colspan="2">
                     <img class="rounded-lg" [src]="myImage" width="300" height="160">
@@ -119,7 +111,13 @@
         </tbody>
     </table>
 
-    <div class="form-row justify-content-center">             
+    <div class="form-row justify-content-center">   
+        <div class="form-group col-md-4">
+            <button type="submit" class="btn btn-info form-control" (click)="fileInput.click()">
+                <span>Image</span>
+                <input #fileInput type="file" (change)="onSelectFile($event)" style="display:none;" />
+            </button>
+        </div>               
         <div class="form-group col-md-4">
             <button type="submit" class="btn btn-info form-control" (click)="addCar()">Add</button>
         </div>

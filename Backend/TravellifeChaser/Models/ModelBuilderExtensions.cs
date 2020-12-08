@@ -78,10 +78,10 @@ namespace TravellifeChaser.Models
             Airline airline6 = new Airline() { Id = 6, Name = "Air Serbia", AddressId = addr4.Id, AverageRating = 8.04, PricelistId = pl6.Id, PromotionalDescription = "Fly with us",  }; //Belgrade
 
             User u7 = new User() { Id = 7, FirstName = "Marija", LastName = "Miric", Username = "marijaaa", Email = "marijamiric@gmail.com", Password = "marijaaaa", MobileNumber = "+381604520858", AddressId = addr15.Id, Role = UserRole.AdminAirlines };
-            AdminAirlinesUser ru7 = new AdminAirlinesUser() { Id = u7.Id, AirlineId = 1 };
+            AdminAirlinesUser ru7 = new AdminAirlinesUser() { adminId= 1, Id = u7.Id, AirlineId = 1 };
 
             User u8 = new User() { Id = 8, FirstName = "Milica", LastName = "Miric", Username = "milicaaa", Email = "milicamiric@gmail.com", Password = "milicaaaa", MobileNumber = "+381604520858", AddressId = addr13.Id, Role = UserRole.AdminAirlines };
-            AdminAirlinesUser ru8 = new AdminAirlinesUser() { Id = u8.Id, AirlineId = 2 };
+            AdminAirlinesUser ru8 = new AdminAirlinesUser() { adminId = 2, Id = u8.Id, AirlineId = 2 };
 
             User u9 = new User() { Id = 9, FirstName = "Radovan", LastName = "Trudic", Username = "rasa", Email = "kovacevicnemanja1997@gmail.com", Password = "rasa", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.AdminRAC };
             User u10 = new User() { Id = 10, FirstName = "Burak", LastName = "Yilmaz", Username = "burak", Email = "kovacevicnemanja1997@gmail.com", Password = "burak", MobileNumber = "+381650000000", AddressId = addr6.Id, Role = UserRole.AdminRAC };
@@ -651,6 +651,7 @@ namespace TravellifeChaser.Models
             racAddr1.Country = "Serbia";
             racAddr1.Id = 1;
             racAddr1.RACServiceId = 1;
+            racAddr1.IsMain = true;
             //racAddr1.RACService = racs1;
 
             racAddr2.Street = "Nemanjina";
@@ -659,6 +660,7 @@ namespace TravellifeChaser.Models
             racAddr2.Country = "Serbia";
             racAddr2.Id = 2;
             racAddr2.RACServiceId = 1;
+            racAddr2.IsMain = false;
             //racAddr2.RACService = racs1;
 
             racAddr3.Street = "Azar";
@@ -667,6 +669,7 @@ namespace TravellifeChaser.Models
             racAddr3.Country = "Turkey";
             racAddr3.Id = 3;
             racAddr3.RACServiceId = 2;
+            racAddr3.IsMain = true;
             //racAddr3.RACService = racs2;
 
             racAddr4.Street = "Izmir";
@@ -675,6 +678,7 @@ namespace TravellifeChaser.Models
             racAddr4.Country = "Turkey";
             racAddr4.Id = 4;
             racAddr4.RACServiceId = 2;
+            racAddr4.IsMain = false;
             //racAddr4.RACService = racs2;
 
             racAddr5.Street = "Putin";
@@ -683,6 +687,7 @@ namespace TravellifeChaser.Models
             racAddr5.Country = "Russia";
             racAddr5.Id = 5;
             racAddr5.RACServiceId = 3;
+            racAddr5.IsMain = true;
             //racAddr5.RACService = racs3;
 
             racAddr6.Street = "Artem";
@@ -691,12 +696,13 @@ namespace TravellifeChaser.Models
             racAddr6.Country = "Russia";
             racAddr6.Id = 6;
             racAddr6.RACServiceId = 3;
+            racAddr6.IsMain = false;
             //racAddr6.RACService = racs3;
 
             //RAC SERVISI
             racs2.Id = 2;
             racs2.Logo = @"../../assets/images/logos/rac3.png";
-            racs2.MainAddress = "Azar 33, Istanbul, Turkey";
+            //racs2.MainAddress = "Azar 33, Istanbul, Turkey";
             racs2.Name = "Istanbul Rent-a-car";
             racs2.PriceList = "";
             racs2.PromotionalDescription = "Just say where, we know how!";
@@ -705,7 +711,7 @@ namespace TravellifeChaser.Models
 
             racs1.Id = 1;
             racs1.Logo = @"../../assets/images/logos/rac1.png";
-            racs1.MainAddress = "Pozeska 3, Belgrade, Serbia";
+            //racs1.MainAddress = "Pozeska 3, Belgrade, Serbia";
             racs1.Name = "Belgrade Rent-a-car";
             racs1.PriceList = "";
             racs1.PromotionalDescription = "Just say where, we know how!";
@@ -714,7 +720,7 @@ namespace TravellifeChaser.Models
 
             racs3.Id = 3;
             racs3.Logo = @"../../assets/images/logos/rac7.png";
-            racs3.MainAddress = "Putin 55, Moscow, Russia";
+            //racs3.MainAddress = "Putin 55, Moscow, Russia";
             racs3.Name = "Moscow Rent-a-car";
             racs3.PriceList = "";
             racs3.PromotionalDescription = "Just say where, we know how!";
@@ -723,9 +729,9 @@ namespace TravellifeChaser.Models
             //racs1.AdminRACUser = adminRAC1;
 
             //RAC ADMINI
-            AdminRACUser adminRAC1 = new AdminRACUser() { RACServiceId = racs1.Id, Id = u9.Id };
-            AdminRACUser adminRAC2 = new AdminRACUser() { RACServiceId = racs2.Id, Id = u10.Id };
-            AdminRACUser adminRAC3 = new AdminRACUser() { RACServiceId = racs3.Id, Id = u11.Id };
+            AdminRACUser adminRAC1 = new AdminRACUser() { RACServiceId = racs1.Id, Id = u9.Id, adminId = 1 };
+            AdminRACUser adminRAC2 = new AdminRACUser() { RACServiceId = racs2.Id, Id = u10.Id, adminId = 2 };
+            AdminRACUser adminRAC3 = new AdminRACUser() { RACServiceId = racs3.Id, Id = u11.Id, adminId = 3 };
             //AdminRACUser ru9 = new AdminRACUser() { Id = u9.Id, RACServiceId = 1 };
 
             //SYS ADMINI
@@ -930,6 +936,7 @@ namespace TravellifeChaser.Models
             modelBuilder.Entity<RACAddress>().HasData(racAddr1, racAddr2, racAddr3, racAddr4, racAddr5, racAddr6);
             modelBuilder.Entity<RACService>().HasData(racs1, racs2, racs3);
             modelBuilder.Entity<AdminRACUser>().HasData(adminRAC1, adminRAC2, adminRAC3);
+            modelBuilder.Entity<AdminSysUser>().HasData(adminSys1, adminSys2);
         }
     }
 }

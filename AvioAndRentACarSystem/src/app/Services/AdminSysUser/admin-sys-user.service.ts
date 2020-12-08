@@ -6,14 +6,13 @@ import { DataService } from '../Data/data.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminRacUserService extends DataService {
+export class AdminSysUserService extends DataService {
 
   constructor(http: HttpClient, private httpClient: HttpClient) {
-    super(environment.serverUrl + 'AdminRACUsers', http)
+    super(environment.serverUrl + 'AdminSysUsers', http)
    }
 
-   getAdminRACUserById(adminRACServiceId: number) {
-    return this.httpClient.get(environment.serverUrl + 'AdminRACUsers/getAdminRACUserById/' + adminRACServiceId);
+   getAdminSysUserById(adminSysServiceId: number) {
+    return this.httpClient.get(environment.serverUrl + 'AdminSysUsers/getAdminSysUserById/' + adminSysServiceId);
   }
 }
-

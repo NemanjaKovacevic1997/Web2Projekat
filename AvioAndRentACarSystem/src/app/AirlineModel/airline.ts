@@ -13,7 +13,7 @@ export class Airline
     averageRating: number;
     businessDestinations: Array<AirlineAirport>;
 
-    constructor(name: string, address: Address, promotionalDescription: string, priceList: PriceList)
+    constructor(name?: string, address?: Address, promotionalDescription?: string, priceList?: PriceList)
     {
         this.name = name;
         this.address = address;

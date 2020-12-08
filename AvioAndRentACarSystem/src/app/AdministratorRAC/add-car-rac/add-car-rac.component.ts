@@ -53,7 +53,7 @@ export class AddCarRacComponent implements OnInit {
     }
 
     var userId = this.loginService.user.id;
-    this.adminRACUserService.get(userId).subscribe( ret =>{
+    this.adminRACUserService.getAdminRACUserById(userId).subscribe( ret =>{
       this.adminRACUser = ret as AdminRACUser;
       var car = new Car (0, this.myModel, this.myMark, this.myType, this.myYear, this.mySeats, this.myRating, this.myDailyPrice, this.myImage, this.myRented, this.adminRACUser.racServiceId )
       this.carService.add(car).subscribe(() => 

@@ -163,7 +163,6 @@ namespace TravellifeChaser.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
-                    MainAddress = table.Column<string>(nullable: true),
                     PromotionalDescription = table.Column<string>(nullable: true),
                     Rating = table.Column<int>(nullable: false),
                     PriceList = table.Column<string>(nullable: true),
@@ -235,12 +234,14 @@ namespace TravellifeChaser.Migrations
                 name: "AdminAirlinesUsers",
                 columns: table => new
                 {
+                    adminId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Id = table.Column<int>(nullable: false),
                     AirlineId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdminAirlinesUsers", x => x.Id);
+                    table.PrimaryKey("PK_AdminAirlinesUsers", x => x.adminId);
                     table.ForeignKey(
                         name: "FK_AdminAirlinesUsers_Airlines_AirlineId",
                         column: x => x.AirlineId,
@@ -322,12 +323,14 @@ namespace TravellifeChaser.Migrations
                 name: "AdminRACUser",
                 columns: table => new
                 {
+                    adminId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Id = table.Column<int>(nullable: false),
                     RACServiceId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdminRACUser", x => x.Id);
+                    table.PrimaryKey("PK_AdminRACUser", x => x.adminId);
                     table.ForeignKey(
                         name: "FK_AdminRACUser_Users_Id",
                         column: x => x.Id,
@@ -380,6 +383,7 @@ namespace TravellifeChaser.Migrations
                     City = table.Column<string>(nullable: true),
                     Country = table.Column<string>(nullable: true),
                     Number = table.Column<int>(nullable: false),
+                    IsMain = table.Column<bool>(nullable: false),
                     RACServiceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -627,12 +631,12 @@ namespace TravellifeChaser.Migrations
 
             migrationBuilder.InsertData(
                 table: "RACServices",
-                columns: new[] { "Id", "AdminSysUserId", "Logo", "MainAddress", "Name", "PriceList", "PromotionalDescription", "Rating" },
+                columns: new[] { "Id", "AdminSysUserId", "Logo", "Name", "PriceList", "PromotionalDescription", "Rating" },
                 values: new object[,]
                 {
-                    { 2, null, "../../assets/images/logos/rac3.png", "Azar 33, Istanbul, Turkey", "Istanbul Rent-a-car", "", "Just say where, we know how!", 0 },
-                    { 1, null, "../../assets/images/logos/rac1.png", "Pozeska 3, Belgrade, Serbia", "Belgrade Rent-a-car", "", "Just say where, we know how!", 0 },
-                    { 3, null, "../../assets/images/logos/rac7.png", "Putin 55, Moscow, Russia", "Moscow Rent-a-car", "", "Just say where, we know how!", 0 }
+                    { 2, null, "../../assets/images/logos/rac3.png", "Istanbul Rent-a-car", "", "Just say where, we know how!", 0 },
+                    { 1, null, "../../assets/images/logos/rac1.png", "Belgrade Rent-a-car", "", "Just say where, we know how!", 0 },
+                    { 3, null, "../../assets/images/logos/rac7.png", "Moscow Rent-a-car", "", "Just say where, we know how!", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -685,15 +689,15 @@ namespace TravellifeChaser.Migrations
 
             migrationBuilder.InsertData(
                 table: "RACAddresses",
-                columns: new[] { "Id", "City", "Country", "Number", "RACServiceId", "Street" },
+                columns: new[] { "Id", "City", "Country", "IsMain", "Number", "RACServiceId", "Street" },
                 values: new object[,]
                 {
-                    { 1, "Belgrade", "Serbia", 3, 1, "Pozeska" },
-                    { 3, "Istanbul", "Turkey", 33, 2, "Azar" },
-                    { 4, "Istanbul", "Turkey", 3, 2, "Izmir" },
-                    { 2, "Belgrade", "Serbia", 33, 1, "Nemanjina" },
-                    { 6, "Moscow", "Russia", 73, 3, "Artem" },
-                    { 5, "Moscow", "Russia", 55, 3, "Putin" }
+                    { 1, "Belgrade", "Serbia", true, 3, 1, "Pozeska" },
+                    { 3, "Istanbul", "Turkey", true, 33, 2, "Azar" },
+                    { 4, "Istanbul", "Turkey", false, 3, 2, "Izmir" },
+                    { 2, "Belgrade", "Serbia", false, 33, 1, "Nemanjina" },
+                    { 6, "Moscow", "Russia", false, 73, 3, "Artem" },
+                    { 5, "Moscow", "Russia", true, 55, 3, "Putin" }
                 });
 
             migrationBuilder.InsertData(
@@ -718,21 +722,30 @@ namespace TravellifeChaser.Migrations
 
             migrationBuilder.InsertData(
                 table: "AdminAirlinesUsers",
-                columns: new[] { "Id", "AirlineId" },
+                columns: new[] { "adminId", "AirlineId", "Id" },
                 values: new object[,]
                 {
-                    { 8, 2 },
-                    { 7, 1 }
+                    { 1, 1, 7 },
+                    { 2, 2, 8 }
                 });
 
             migrationBuilder.InsertData(
                 table: "AdminRACUser",
-                columns: new[] { "Id", "RACServiceId" },
+                columns: new[] { "adminId", "Id", "RACServiceId" },
                 values: new object[,]
                 {
-                    { 11, 3 },
-                    { 9, 1 },
-                    { 10, 2 }
+                    { 1, 9, 1 },
+                    { 2, 10, 2 },
+                    { 3, 11, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AdminSysUsers",
+                columns: new[] { "Id", "Predefined" },
+                values: new object[,]
+                {
+                    { 13, false },
+                    { 12, true }
                 });
 
             migrationBuilder.InsertData(
@@ -740,18 +753,18 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "AirlineId", "AirportId" },
                 values: new object[,]
                 {
-                    { 1, 7 },
-                    { 1, 6 },
-                    { 1, 4 },
-                    { 1, 3 },
-                    { 1, 2 },
-                    { 1, 1 },
-                    { 2, 4 },
                     { 2, 5 },
-                    { 2, 6 },
                     { 2, 8 },
+                    { 2, 4 },
                     { 2, 9 },
                     { 2, 1 },
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 1, 3 },
+                    { 1, 4 },
+                    { 1, 6 },
+                    { 1, 7 },
+                    { 2, 6 },
                     { 2, 2 }
                 });
 
@@ -760,7 +773,7 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AirlineId", "AverageRating", "Cost", "Duration", "FromId", "LandingTime", "Length", "TakeoffTime", "ToId" },
                 values: new object[,]
                 {
-                    { 3, 1, 0.0, 100.0, 165.0, 2, new DateTime(2020, 9, 8, 15, 0, 0, 0, DateTimeKind.Unspecified), 400, new DateTime(2020, 9, 8, 12, 15, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 1, 1, 0.0, 300.0, 270.0, 1, new DateTime(2020, 9, 7, 17, 30, 0, 0, DateTimeKind.Unspecified), 2506, new DateTime(2020, 9, 7, 13, 0, 0, 0, DateTimeKind.Unspecified), 2 },
                     { 2, 2, 0.0, 250.0, 100.0, 1, new DateTime(2020, 9, 7, 9, 20, 0, 0, DateTimeKind.Unspecified), 1003, new DateTime(2020, 9, 7, 7, 40, 0, 0, DateTimeKind.Unspecified), 3 },
                     { 12, 1, 0.0, 305.0, 140.0, 5, new DateTime(2020, 9, 12, 11, 20, 0, 0, DateTimeKind.Unspecified), 555, new DateTime(2020, 9, 12, 9, 0, 0, 0, DateTimeKind.Unspecified), 9 },
                     { 10, 1, 0.0, 450.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 600, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
@@ -769,8 +782,8 @@ namespace TravellifeChaser.Migrations
                     { 6, 1, 0.0, 300.0, 90.0, 7, new DateTime(2020, 9, 10, 19, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 9, 10, 18, 0, 0, 0, DateTimeKind.Unspecified), 9 },
                     { 5, 1, 0.0, 300.0, 270.0, 5, new DateTime(2020, 9, 9, 19, 30, 0, 0, DateTimeKind.Unspecified), 250, new DateTime(2020, 9, 9, 15, 0, 0, 0, DateTimeKind.Unspecified), 4 },
                     { 4, 1, 0.0, 200.0, 330.0, 4, new DateTime(2020, 9, 8, 19, 30, 0, 0, DateTimeKind.Unspecified), 500, new DateTime(2020, 9, 8, 14, 0, 0, 0, DateTimeKind.Unspecified), 5 },
+                    { 3, 1, 0.0, 100.0, 165.0, 2, new DateTime(2020, 9, 8, 15, 0, 0, 0, DateTimeKind.Unspecified), 400, new DateTime(2020, 9, 8, 12, 15, 0, 0, DateTimeKind.Unspecified), 3 },
                     { 9, 2, 0.0, 250.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 300, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
-                    { 1, 1, 0.0, 300.0, 270.0, 1, new DateTime(2020, 9, 7, 17, 30, 0, 0, DateTimeKind.Unspecified), 2506, new DateTime(2020, 9, 7, 13, 0, 0, 0, DateTimeKind.Unspecified), 2 },
                     { 8, 1, 0.0, 301.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 }
                 });
 
@@ -3037,6 +3050,18 @@ namespace TravellifeChaser.Migrations
                 column: "AirlineId",
                 unique: true,
                 filter: "[AirlineId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdminAirlinesUsers_Id",
+                table: "AdminAirlinesUsers",
+                column: "Id",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AdminRACUser_Id",
+                table: "AdminRACUser",
+                column: "Id",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AdminRACUser_RACServiceId",

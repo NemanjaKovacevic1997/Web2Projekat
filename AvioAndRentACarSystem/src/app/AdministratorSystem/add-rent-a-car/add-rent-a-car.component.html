@@ -21,106 +21,152 @@
                 </td>
             </tr>
             <tr>
-                <th>Branches:</th>
-                <td (click)="openBranchesModal()">
-                   <button class="btn myButton">
-                       Click to add address
-                   </button>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <div *ngFor="let address of racAddresses; let i = index;">
-                         {{address.street}} {{address.number}}, {{address.city}}, {{address.country}}
-                        <button type="submit" class="btn xButton" (click)="deleteAddress(i)">x</button>
-                        <br>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th>Price List:</th>
+                <th>Street:</th>
                 <td>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <i class="fa fa-user"></i>  
-                        </div>
-                        <div class="form-group col-md-4">
-                            <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForOne" [ngModelOptions]="{standalone: true}">
-                        </div>
-                        <div class="form-group col-md-4">
-                            €  
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <i class="fa fa-user"></i>  
-                            <i class="fa fa-user"></i> 
-                        </div>
-                        <div class="form-group col-md-4">
-                            <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForTwo" [ngModelOptions]="{standalone: true}">
-                        </div>
-                        <div class="form-group col-md-4">
-                            €  
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <i class="fa fa-user"></i> 
-                            <i class="fa fa-user"></i> 
-                            <i class="fa fa-user"></i>  
-                        </div>
-                        <div class="form-group col-md-4">
-                            <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForThree" [ngModelOptions]="{standalone: true}">
-                        </div>
-                        <div class="form-group col-md-4">
-                            €  
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <i class="fa fa-user"></i> 
-                            <i class="fa fa-user"></i> 
-                            <i class="fa fa-user"></i> 
-                            <i class="fa fa-user"></i>  
-                        </div>
-                        <div class="form-group col-md-4">
-                            <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForFour" [ngModelOptions]="{standalone: true}">
-                        </div>
-                        <div class="form-group col-md-4">
-                            €  
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <i class="fa fa-user"></i> 
-                            <i class="fa fa-user"></i> 
-                            <i class="fa fa-user"></i> 
-                            <i class="fa fa-user"></i> + 
-                        </div>
-                        <div class="form-group col-md-4">
-                            <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForMore" [ngModelOptions]="{standalone: true}">
-                        </div>
-                        <div class="form-group col-md-4">
-                            €  
-                        </div>
-                    </div>
-                </td>                
-            </tr>
-            <tr>
-                <th>Administrator:</th>
-                <td (click)="openAdministratorRACModal()">
-                   <button class="btn myButton">
-                       Click to add admin
-                   </button>
+                    <input type="text" class="form-control" [(ngModel)]="mainAddress.street" [ngModelOptions]="{standalone: true}">
                 </td>
             </tr>
-            <tr *ngIf="racAdministrator != undefined">
+            <tr>
+                <th>Number:</th>
+                <td>
+                    <input type="number" class="form-control" [(ngModel)]="mainAddress.number" [ngModelOptions]="{standalone: true}">
+                </td>
+            </tr>
+            <tr>
+                <th>City:</th>
+                <td>
+                    <input type="text" class="form-control" [(ngModel)]="mainAddress.city" [ngModelOptions]="{standalone: true}">
+                </td>
+            </tr>
+            <tr>
+                <th>Country:</th>
+                <td>
+                    <input type="text" class="form-control" [(ngModel)]="mainAddress.country" [ngModelOptions]="{standalone: true}">
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2">
-                    <div>
-                         {{racAdministrator.firstName}} {{racAdministrator.lastName}}
-                        <button type="submit" class="btn xButton" (click)="deleteAdmin">x</button>
-                        <br>
-                    </div>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <b>Branches</b>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ng-container *ngFor="let address of racAddresses; let i = index;">
+                            <tr *ngIf="address.isMain != true">                  
+                                {{address.street}} {{address.number}}, {{address.city}}, {{address.country}}
+                                <button type="submit" class="btn xButton" (click)="deleteAddress(i)">
+                                    <i class="fa fa-close"></i>
+                                </button>              
+                            </tr>
+                        </ng-container>  
+                        <tr (click)="openBranchesModal()">
+                            <button class="btn myButton">
+                                Click to add address
+                                <i class="fa fa-plus"></i>
+                            </button>      
+                         </tr>   
+                    </mat-expansion-panel> 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <b>Price List</b>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <i class="fa fa-user"></i>  
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForOne" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-2">
+                                €  
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <i class="fa fa-user"></i>  
+                                <i class="fa fa-user"></i> 
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForTwo" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-2">
+                                €  
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <i class="fa fa-user"></i> 
+                                <i class="fa fa-user"></i> 
+                                <i class="fa fa-user"></i>  
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForThree" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-2">
+                                €  
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <i class="fa fa-user"></i> 
+                                <i class="fa fa-user"></i> 
+                                <i class="fa fa-user"></i> 
+                                <i class="fa fa-user"></i>  
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForFour" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-2">
+                                €  
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <i class="fa fa-user"></i> 
+                                <i class="fa fa-user"></i> 
+                                <i class="fa fa-user"></i> 
+                                <i class="fa fa-user"></i> + 
+                            </div>
+                            <div class="form-group col-md-4">
+                                <input type="number" class="form-control myInputNumber" value=0 max=999 min=0 [(ngModel)]="priceListForMore" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="form-group col-md-2">
+                                €  
+                            </div>
+                        </div>
+                    </mat-expansion-panel> 
+                </td>                        
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <b>Administrator</b>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ng-container>
+                            <tr *ngIf="racAdministrator != undefined && racAdministrator.firstName != undefined">                  
+                                {{racAdministrator.firstName}} {{racAdministrator.lastName}}
+                                <button type="submit" class="btn xButton" (click)="deleteAdmin()">
+                                    <i class="fa fa-close"></i>
+                                </button>              
+                            </tr>
+                        </ng-container>  
+                        <tr (click)="openAdministratorRACModal()">
+                            <button class="btn myButton">
+                                Click to add/change administrator
+                                <i class="fa fa-plus"></i>
+                            </button>      
+                         </tr>   
+                    </mat-expansion-panel> 
                 </td>
             </tr>
             <tr *ngIf="rac.logo != null">

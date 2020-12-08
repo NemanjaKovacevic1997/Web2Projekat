@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { element } from 'protractor';
 import { SearchDataRAC } from '../ModelRAC/HelperModelRAC/searchDataRAC';
+import { RACAddress } from '../ModelRAC/racAddress';
 import { RACService } from '../ModelRAC/racService';
+import { RacAddressService } from '../Services/RACAddress/rac-address.service';
 import { RacServiceService } from '../Services/RACService/rac-service.service';
 
 @Component({

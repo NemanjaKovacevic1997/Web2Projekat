@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRole } from '../AirlineModel/userRole';
+import { RACAddress } from '../ModelRAC/racAddress';
 import { RACService } from '../ModelRAC/racService';
 import { LoginService } from '../Services/Login/login.service';
+import { RacAddressService } from '../Services/RACAddress/rac-address.service';
 import { RacServiceService } from '../Services/RACService/rac-service.service';
 
 @Component({
@@ -13,10 +15,23 @@ import { RacServiceService } from '../Services/RACService/rac-service.service';
 export class RentACarComponent implements OnInit {
 
   @Input() racServices: Array<RACService>;
+  
+  public mainAddresses: Map<number, RACAddress>;
+  public racAddresses: Array<RACAddress>;
 
-  constructor(private racServiceService: RacServiceService, private router: Router, private loginService: LoginService) { }
+  constructor(private router: Router, private loginService: LoginService, private racAddressService: RacAddressService) { 
+    this.mainAddresses = new Map<number, RACAddress>();
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.racAddressService.getRACServiceMainAddresses(1).subscribe(ret=>{
+      this.racAddresses = ret as Array<RACAddress>;
+      this.racAddresses.forEach(element => {
+        this.mainAddresses.set(element.id, element);
+      });
+    });
+  }
+  //mainAddresses[racService.id].value.street
 
   racClick(id: number) {
     if(this.loginService.userRole != UserRole.AdminSys)

@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Name update</h4>
+    <h4 class="modal-title" id="modal-basic-title">Branches update</h4>
     <button type="button" class="close myButton" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -10,8 +10,16 @@
           <label for="TextInput">Name :</label>
           <input name="input" type="text" id="TextInput" class="form-control" [(ngModel)]="name">
         </div>
+        <div class="form-group">
+          <label for="TextInput2">City :</label>
+          <input name="input" type="text" id="TextInput2" class="form-control" [(ngModel)]="city">
+        </div>
+        <div class="form-group">
+          <label for="TextInput3">Country :</label>
+          <input name="input" type="text" id="TextInput3" class="form-control" [(ngModel)]="country">
+        </div>
     </form>
   </div>
   <div class="modal-footer">
     <button (click)="passBack()" type="submit" class="btn btn-outline-dark">Update</button>
-</div>
+  </div>

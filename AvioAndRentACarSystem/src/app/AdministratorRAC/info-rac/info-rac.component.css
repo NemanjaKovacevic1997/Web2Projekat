@@ -11,3 +11,17 @@ table {
     font-size: 25px;
     color: yellow;
 }
+
+.mat-expansion-panel{
+    width: auto;
+}
+
+.myButton{
+    background-color: transparent;
+    color: lightslategray;
+}
+
+.xButton{
+    background-color: transparent;
+    color: turquoise;
+}

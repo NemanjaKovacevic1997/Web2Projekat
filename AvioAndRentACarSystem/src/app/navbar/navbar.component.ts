@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import { LoginService } from '../Services/Login/login.service';
 import { UserRole } from '../AirlineModel/userRole';
+import { AdminSysUserService } from '../Services/AdminSysUser/admin-sys-user.service';
+import { AdminSysUser } from '../ModelRAC/adminSysUser';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +20,7 @@ export class NavbarComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    
   }
 
   logoutClick() {

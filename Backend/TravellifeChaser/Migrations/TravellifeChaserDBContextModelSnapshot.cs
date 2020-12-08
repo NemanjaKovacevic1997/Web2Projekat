@@ -209,42 +209,60 @@ namespace TravellifeChaser.Migrations
 
             modelBuilder.Entity("TravellifeChaser.Models.AdminAirlinesUser", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<int>("adminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AirlineId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("adminId");
 
                     b.HasIndex("AirlineId")
                         .IsUnique()
                         .HasFilter("[AirlineId] IS NOT NULL");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.ToTable("AdminAirlinesUsers");
 
                     b.HasData(
                         new
                         {
-                            Id = 7,
-                            AirlineId = 1
+                            adminId = 1,
+                            AirlineId = 1,
+                            Id = 7
                         },
                         new
                         {
-                            Id = 8,
-                            AirlineId = 2
+                            adminId = 2,
+                            AirlineId = 2,
+                            Id = 8
                         });
                 });
 
             modelBuilder.Entity("TravellifeChaser.Models.AdminRACUser", b =>
                 {
+                    b.Property<int>("adminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<int?>("RACServiceId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("adminId");
+
+                    b.HasIndex("Id")
+                        .IsUnique();
 
                     b.HasIndex("RACServiceId")
                         .IsUnique()
@@ -255,16 +273,19 @@ namespace TravellifeChaser.Migrations
                     b.HasData(
                         new
                         {
+                            adminId = 1,
                             Id = 9,
                             RACServiceId = 1
                         },
                         new
                         {
+                            adminId = 2,
                             Id = 10,
                             RACServiceId = 2
                         },
                         new
                         {
+                            adminId = 3,
                             Id = 11,
                             RACServiceId = 3
                         });
@@ -281,6 +302,18 @@ namespace TravellifeChaser.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AdminSysUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 12,
+                            Predefined = true
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Predefined = false
+                        });
                 });
 
             modelBuilder.Entity("TravellifeChaser.Models.Airline", b =>
@@ -1152,6 +1185,9 @@ namespace TravellifeChaser.Migrations
                     b.Property<string>("Country")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
@@ -1173,6 +1209,7 @@ namespace TravellifeChaser.Migrations
                             Id = 1,
                             City = "Belgrade",
                             Country = "Serbia",
+                            IsMain = true,
                             Number = 3,
                             RACServiceId = 1,
                             Street = "Pozeska"
@@ -1182,6 +1219,7 @@ namespace TravellifeChaser.Migrations
                             Id = 2,
                             City = "Belgrade",
                             Country = "Serbia",
+                            IsMain = false,
                             Number = 33,
                             RACServiceId = 1,
                             Street = "Nemanjina"
@@ -1191,6 +1229,7 @@ namespace TravellifeChaser.Migrations
                             Id = 3,
                             City = "Istanbul",
                             Country = "Turkey",
+                            IsMain = true,
                             Number = 33,
                             RACServiceId = 2,
                             Street = "Azar"
@@ -1200,6 +1239,7 @@ namespace TravellifeChaser.Migrations
                             Id = 4,
                             City = "Istanbul",
                             Country = "Turkey",
+                            IsMain = false,
                             Number = 3,
                             RACServiceId = 2,
                             Street = "Izmir"
@@ -1209,6 +1249,7 @@ namespace TravellifeChaser.Migrations
                             Id = 5,
                             City = "Moscow",
                             Country = "Russia",
+                            IsMain = true,
                             Number = 55,
                             RACServiceId = 3,
                             Street = "Putin"
@@ -1218,6 +1259,7 @@ namespace TravellifeChaser.Migrations
                             Id = 6,
                             City = "Moscow",
                             Country = "Russia",
+                            IsMain = false,
                             Number = 73,
                             RACServiceId = 3,
                             Street = "Artem"
@@ -1235,9 +1277,6 @@ namespace TravellifeChaser.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Logo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MainAddress")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -1263,7 +1302,6 @@ namespace TravellifeChaser.Migrations
                         {
                             Id = 1,
                             Logo = "../../assets/images/logos/rac1.png",
-                            MainAddress = "Pozeska 3, Belgrade, Serbia",
                             Name = "Belgrade Rent-a-car",
                             PriceList = "",
                             PromotionalDescription = "Just say where, we know how!",
@@ -1273,7 +1311,6 @@ namespace TravellifeChaser.Migrations
                         {
                             Id = 2,
                             Logo = "../../assets/images/logos/rac3.png",
-                            MainAddress = "Azar 33, Istanbul, Turkey",
                             Name = "Istanbul Rent-a-car",
                             PriceList = "",
                             PromotionalDescription = "Just say where, we know how!",
@@ -1283,7 +1320,6 @@ namespace TravellifeChaser.Migrations
                         {
                             Id = 3,
                             Logo = "../../assets/images/logos/rac7.png",
-                            MainAddress = "Putin 55, Moscow, Russia",
                             Name = "Moscow Rent-a-car",
                             PriceList = "",
                             PromotionalDescription = "Just say where, we know how!",

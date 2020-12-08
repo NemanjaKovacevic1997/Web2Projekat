@@ -7,6 +7,7 @@ namespace TravellifeChaser.Models
 {
     public class AdminAirlinesUser
     {
+        public int adminId { get; set; }
         public int Id { get; set; }
         public User User { get; set; }
 

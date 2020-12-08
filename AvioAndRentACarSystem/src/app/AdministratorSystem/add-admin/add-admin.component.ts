@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Address } from 'src/app/AirlineModel/address';
 import { User } from 'src/app/AirlineModel/user';
 import { UserRole } from 'src/app/AirlineModel/userRole';
+import { AdminSysUser } from 'src/app/ModelRAC/adminSysUser';
+import { AdminSysUserService } from 'src/app/Services/AdminSysUser/admin-sys-user.service';
+import { LoginService } from 'src/app/Services/Login/login.service';
 import { UserService } from 'src/app/Services/User/user.service';
 
 @Component({
@@ -22,12 +25,18 @@ export class AddAdminComponent implements OnInit {
   city: string ="";
   country: string ="";
   message: string ="";
+  predefined: boolean;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private adminSysUserService: AdminSysUserService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.userService.getAll().subscribe(ret => {
       this.allUsers = ret as Array<User>;})
+
+    this.adminSysUserService.get(this.loginService.user.id).subscribe(ret => {
+      var admin = ret as AdminSysUser;
+      this.predefined = admin.predefined;
+    })
   }
 
   addNew() {
@@ -49,15 +58,22 @@ export class AddAdminComponent implements OnInit {
     }
       
     var address = new Address(0, this.city, this.country);
-
     var newUser = new User(this.firstname, this.lastname,this.email, address, this.phoneNumber, this.password, UserRole.AdminSys, this.username)
+    var adminSysUser = new AdminSysUser();
+    adminSysUser.user = newUser;
+    adminSysUser.predefined = false;
+    this.adminSysUserService.add(adminSysUser).subscribe(() => {
+      alert("New system administrator added. Reload this page to show up new list.")
+    });
+    
+    /*
     this.userService.add(newUser)
                      .subscribe(
                        (res: any) => {
                          //this.router.navigateByUrl('/sign-in');
                          alert("New system administrator added. Reload this page to show up new list.")
                        },
-                     ); 
+                     ); */
   }
 
   checkInput():boolean{

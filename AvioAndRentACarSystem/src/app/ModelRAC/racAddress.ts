@@ -7,8 +7,9 @@ export class RACAddress
     country: string;
     number: number;
     racServiceId: number;
+    isMain: boolean;
 
-    constructor(id?: number, street?: string, city?: string, country?: string, number?: number, racServiceId?: number )
+    constructor(id?: number, street?: string, city?: string, country?: string, number?: number, racServiceId?: number, isMain?: boolean )
     {
         this.id = id;
         this.street = street;
@@ -16,5 +17,6 @@ export class RACAddress
         this.country = country;
         this.number = number;
         this.racServiceId = racServiceId;
+        this.isMain = isMain;
     }
 }

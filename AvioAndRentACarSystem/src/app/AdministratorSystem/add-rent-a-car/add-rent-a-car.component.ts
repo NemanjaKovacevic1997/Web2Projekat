@@ -37,21 +37,24 @@ export class AddRentACarComponent implements OnInit {
   public racAddresses: Array<RACAddress>;
   public address: RACAddress;
   public racAdministrator: User;
+  public mainAddress: RACAddress;
   get UserRole() { return UserRole; }
 
   constructor(private adminRACUserService: AdminRacUserService, private modalService: NgbModal, private activatedRoute: ActivatedRoute, loginService: LoginService, private racServiceService: RacServiceService, private racAddressService: RacAddressService, private userService: UserService) {
     this.rac = new RACService();
     this.racAddresses = new Array<RACAddress>();
+    this.mainAddress = new RACAddress();
+    this.racAdministrator = new User();
+    this.racId = 0;
+    this.userId = 0;
     this.loginService = loginService;
   }
 
   ngOnInit(): void {
-    //Pronaci ID novog rac admina
     this.userService.getAll().subscribe(res => {
       this.allUsers = res as Array<User>;
     });
 
-    //Pronaci ID novog rac servisa
     this.racServiceService.getAll().subscribe(res => {
       this.allRAC = res as Array<RACService>;
     });
@@ -59,39 +62,49 @@ export class AddRentACarComponent implements OnInit {
 
   addRAC() {
     if (confirm('Are you sure you want to save this service?')) {
-      var mainAddress = this.racAddresses[0];
       this.rac.rating = 0;
-      this.rac.mainAddress = mainAddress.street + " " + mainAddress.number + ", " + mainAddress.city + ", " + mainAddress.country 
       this.rac.priceList = "For one person " + this.priceListForOne + "€\n"+
                            "For two persons " + this.priceListForTwo + "€\n"+
                            "For three persons " + this.priceListForThree + "€\n"+
                            "For four persons " + this.priceListForFour + "€\n"+
-                           "For more than four " + this.priceListForMore + "€"
+                           "For more persons " + this.priceListForMore + "€"
       ;
 
       this.racServiceService.add(this.rac).subscribe(() => {
-        alert("Service is saved successfuly.")
-      });
-
-      this.userService.add(this.racAdministrator).subscribe(() => {
-
-      });  
-     
-      this.racAddresses.forEach(element => {
-        element.racServiceId = this.allRAC.length+1;
-        this.racAddressService.add(element).subscribe(() => {
+        this.userService.add(this.racAdministrator).subscribe(() => {
+          //PRONALAZIM NAJVECI ID UNUTAR LISTE RAC SERVISA KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
+          this.allRAC.forEach(element => {
+            if(element.id > this.racId)
+              this.racId = element.id;
+          });
           
-        });
-      });
-
-      var adminRACUser = new AdminRACUser();
-      adminRACUser.id = this.allUsers.length+1;
-      adminRACUser.racServiceId = this.allRAC.length+1;
-      this.adminRACUserService.add(adminRACUser).subscribe(() => {
-
-      });  
-
-      alert(this.allRAC.length)
+          this.mainAddress.racServiceId = this.racId + 1;
+          this.mainAddress.isMain = true;
+          this.racAddressService.add(this.mainAddress).subscribe(() => {
+            this.racAddresses.forEach(element => {
+              element.racServiceId = this.racId + 1;
+              element.isMain = false;
+              this.racAddressService.add(element).subscribe(() => {
+                
+              });
+            });
+          });
+     
+          //PRONALAZIM NAJVECI ID UNUTAR LISTE USER-A KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
+          this.allUsers.forEach(element => {
+            if(element.id > this.userId)
+              this.userId = element.id;
+          });
+          
+          var adminRACUser = new AdminRACUser();
+          adminRACUser.id = this.userId + 1;
+          adminRACUser.racServiceId = this.racId + 1;
+          this.adminRACUserService.add(adminRACUser).subscribe(() => {
+            
+          });  
+        }); 
+        alert("Service is saved successfuly.")
+      }); 
     }
   }
 
@@ -109,7 +122,6 @@ export class AddRentACarComponent implements OnInit {
 
   openAdministratorRACModal(){
     if(this.loginService.userRole == UserRole.AdminSys){
-      this.racAdministrator = new User();
       const modalRef = this.modalService.open(AdministratorRacModalComponent);
       modalRef.componentInstance.racAdministrator = this.racAdministrator;
       modalRef.result.then((result) => {
@@ -145,6 +157,6 @@ export class AddRentACarComponent implements OnInit {
   }
 
   deleteAdmin(){
-    
+    this.racAdministrator = new User();
   }
 }

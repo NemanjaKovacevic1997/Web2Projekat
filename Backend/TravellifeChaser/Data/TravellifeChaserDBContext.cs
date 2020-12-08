@@ -114,7 +114,7 @@ namespace TravellifeChaser.Data
             modelBuilder.Entity<AdminAirlinesUser>(x =>
             {
                 x.HasOne(x => x.User).WithOne(x => x.AdminAirlinesUser).HasForeignKey<AdminAirlinesUser>(x => x.Id);
-                x.HasKey(x => x.Id);
+                x.HasKey(x => x.adminId);
                 x.HasOne(x => x.Airline)
                  .WithOne(x => x.Administrator)
                  .HasForeignKey<AdminAirlinesUser>(x => x.AirlineId)
@@ -282,9 +282,11 @@ namespace TravellifeChaser.Data
             });
 
             modelBuilder.Entity<AdminRACUser>(x =>
-            {
-                x.HasOne(x => x.User).WithOne(x => x.AdminRACUser).HasForeignKey<AdminRACUser>(x => x.Id);
-                x.HasKey(x => x.Id);
+            {   
+                x.HasKey(x => x.adminId);
+                x.HasOne(x => x.User)
+                 .WithOne(x => x.AdminRACUser)
+                 .HasForeignKey<AdminRACUser>(x => x.Id);
                 x.HasOne(x => x.RACService)
                  .WithOne(x => x.AdminRACUser)
                  .HasForeignKey<AdminRACUser>(x => x.RACServiceId)

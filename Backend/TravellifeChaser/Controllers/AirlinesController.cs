@@ -116,7 +116,22 @@ namespace TravellifeChaser.Controllers
         [HttpGet("adminAirlinesId/{id}")]
         public ActionResult<Airline> GetAdminAirlinesAirline(int id)
         {
-            var user = _unitOfWork.AdminAirlineRepository.Get(id);
+            var users = _unitOfWork.AdminAirlineRepository.GetAll();
+
+            if (!users.Any(x => x.Id == id))
+                return NotFound();
+
+            AdminAirlinesUser user = new AdminAirlinesUser();
+
+            foreach (var item in users)
+            {
+                if (item.Id == id)
+                {
+                    user = item;
+                }
+            }
+
+            //var user = _unitOfWork.AdminRACUserRepository.Get(id);
             if (user == null)
                 return BadRequest();
 
@@ -128,6 +143,19 @@ namespace TravellifeChaser.Controllers
                 return NotFound();
 
             return airline;
+            /*
+            var user = _unitOfWork.AdminAirlineRepository.Get(id);
+            if (user == null)
+                return BadRequest();
+
+            if (user.AirlineId == null)
+                return NoContent();
+
+            var airline = _unitOfWork.AirlineRepository.Get((int)user.AirlineId);
+            if (airline == null)
+                return NotFound();
+
+            return airline;*/
         }
 
         [HttpGet("{id}/report")]

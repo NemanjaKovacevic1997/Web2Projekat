@@ -16,19 +16,19 @@
                             <button class="btn btn-info" style="width: 100px; visibility: hidden;" (click)="removeCar(car.id)">Remove</button>
                         </div>
                         <div class="columnBtn">
-                            <button class="btn btn-info" style="width: 100px;">Rent</button>
+                            <button class="btn btn-info" style="width: 100px;" (click)="openRentModal(car.id)">Rent</button>
                         </div>
                         <div class="columnBtnRight">
                             <button class="btn btn-info" style="width: 100px; visibility: hidden;" (click)="openChangeCarModal(car.id);">Change</button>
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="row" *ngIf="this.loginService.userRole == UserRole.AdminRAC">
                         <div class="columnBtnLeft">
                             <button class="btn btn-info" [disabled]="car.rented" style="width: 100px;" (click)="removeCar(car.id)">Remove</button>
                         </div>
                         <div class="columnBtn">
-                            <button class="btn btn-info" style="width: 100px; visibility: hidden;">Rent</button>
+                            <button class="btn btn-info" style="width: 100px; visibility: hidden;" (click)="openRentModal(car.id)">Rent</button>
                         </div>
                         <div class="columnBtnRight" >
                             <button class="btn btn-info" [disabled]="car.rented" style="width: 100px;" (click)="openChangeCarModal(car.id);">Change</button>

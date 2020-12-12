@@ -4,6 +4,8 @@ import { format } from 'path';
 import { Address } from '../AirlineModel/address';
 import { User } from '../AirlineModel/user';
 import { UserRole } from '../AirlineModel/userRole';
+import { RegisteredUser } from '../ModelRAC/registeredUser';
+import { RegisteredUserService } from '../Services/RegisteredUser/registeredUser.service';
 import { UserService } from '../Services/User/user.service';
 
 @Component({
@@ -25,7 +27,7 @@ export class SignUpComponent implements OnInit {
   country: string ="";
   message: string ="";
 
-  constructor(private userService: UserService, public router: Router) { }
+  constructor(private userService: UserService, public router: Router, private registeredUserService: RegisteredUserService) { }
 
   ngOnInit(): void {
     this.userService.getAll().subscribe(ret => {
@@ -56,7 +58,13 @@ export class SignUpComponent implements OnInit {
     this.userService.add(newUser)
                      .subscribe(
                        (res: any) => {
-                         this.router.navigateByUrl('/sign-in');
+                        var registeredUser = new RegisteredUser();
+                        registeredUser.user = newUser;
+                        registeredUser.id = newUser.id;
+                        registeredUser.bonus = 0;
+                        this.registeredUserService.add(registeredUser).subscribe(() => {
+                          this.router.navigateByUrl('/sign-in');
+                        });
                        },
                      ); 
   }

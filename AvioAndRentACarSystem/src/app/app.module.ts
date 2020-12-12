@@ -111,6 +111,7 @@ import { AdministratorRacModalComponent } from './ModalsRAC/administrator-rac-mo
 //import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { MatExpansionModule } from  '@angular/material/expansion';
 import { BusinessDestinationsModalComponent } from './ModalsRAC/business-destinations-modal/business-destinations-modal.component';
+import { RentModalComponent } from './ModalsRAC/rent-modal/rent-modal.component';
 
 @NgModule({
   declarations: [
@@ -191,7 +192,8 @@ import { BusinessDestinationsModalComponent } from './ModalsRAC/business-destina
     PageAdministratorsComponent,
     AdminsComponent,
     AdministratorRacModalComponent,
-    BusinessDestinationsModalComponent
+    BusinessDestinationsModalComponent,
+    RentModalComponent
   ],
   imports: [
     BrowserAnimationsModule,

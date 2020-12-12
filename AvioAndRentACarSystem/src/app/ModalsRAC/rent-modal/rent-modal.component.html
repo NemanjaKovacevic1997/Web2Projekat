@@ -1,0 +1,69 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Rent details</h4>
+    <button type="button" class="close myButton" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="TextInput3">Delivery address :</label>
+            <select name="input3" id="TextInput3" class="form-control" [(ngModel)]="startRACAddressId">
+                <option *ngFor="let address of addresses" [value]="address.id">
+                    {{address.street}} {{address.number}}, {{address.city}}, {{address.country}}
+                </option>
+            </select>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5 myClass">
+                <div class="form-row">
+                    <div class="input-group">
+                        <input class="form-control myInput">              
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <input class="form-control" id="TextInput1" placeholder="Start date" name="dp" ngbDatepicker #d1="ngbDatepicker" [minDate]="minPickerDate" [(ngModel)]="startDate">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
+                        </div>
+                    </div>
+                </div>      
+            </div>
+            <div class="form-group col-md-6"> 
+                <ngb-timepicker id="tp1" [ngModelOptions]="{standalone: true}" [(ngModel)]="minPickerTime1"></ngb-timepicker>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="TextInput4">Return address :</label>
+            <select name="input4" id="TextInput4" class="form-control" [(ngModel)]="endRACAddressId">
+                <option *ngFor="let address of addresses" [value]="address.id">
+                    {{address.street}} {{address.number}}, {{address.city}}, {{address.country}}
+                </option>
+            </select>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5 myClass">
+                <div class="form-row">
+                    <div class="input-group">
+                        <input class="form-control myInput">              
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group" >
+                        <input class="form-control" id="TextInput2" placeholder="End date" name="dp" ngbDatepicker #d2="ngbDatepicker" [minDate]="minPickerDate" [(ngModel)]="endDate">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            <div class="form-group col-md-6"> 
+                <ngb-timepicker id="tp2" [ngModelOptions]="{standalone: true}" [(ngModel)]="minPickerTime2" ></ngb-timepicker>
+            </div> 
+        </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="passBack()" type="submit" class="btn btn-outline-dark">Rent</button>
+</div>

@@ -1,3 +1,6 @@
+import { User } from "../AirlineModel/user";
+import { Car } from "./car";
+import { RACAddress } from "./racAddress";
 
 export class Rent
 {
@@ -8,7 +11,7 @@ export class Rent
     ratingForService: number;
     ratingForCar: number;
     startRACAddressId: number;
-    endRACAddtessId: number;
+    endRACAddressId: number;
     carId: number;
     registeredUserId: number;
 
@@ -21,7 +24,7 @@ export class Rent
         this.ratingForService = ratingForService;
         this.ratingForCar = ratingForCar;
         this.startRACAddressId = startRACAddressId;
-        this.endRACAddtessId = endRACAddressId;
+        this.endRACAddressId = endRACAddressId;
         this.carId = carId;
         this.registeredUserId = registeredUserId;
     }

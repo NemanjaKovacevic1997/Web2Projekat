@@ -9,6 +9,9 @@ import { UserRole } from '../AirlineModel/userRole';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RacServiceService } from '../Services/RACService/rac-service.service';
 import { RACService } from '../ModelRAC/racService';
+import { RentService } from '../Services/Rent/rent.service';
+import { Rent } from '../ModelRAC/rent';
+import { RentModalComponent } from '../ModalsRAC/rent-modal/rent-modal.component';
 
 @Component({
   selector: 'app-image-lightbox',
@@ -18,46 +21,37 @@ import { RACService } from '../ModelRAC/racService';
 })
 export class ImageLightboxComponent implements OnInit {
 
+  @Input() public cars: Array<Car>;
+
   public id: number;
   public rac: RACService;
-  slideIndex = 0;
-  @Input() public cars: Array<Car>;
-  myCar: Car;
-  myCarBefore: Car;
-  indexOfMyCar: number;
-  get UserRole() { return UserRole; }
+  public slideIndex = 0;
+  public myCar: Car;
+  public myCarBefore: Car;
+  public indexOfMyCar: number;
+  public myRent: Rent;
   public loginService: LoginService;
+  get UserRole() { return UserRole; }
 
-  constructor(private imageService: ImageService, private modalService: NgbModal, private carService: CarService, loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute, private racServiceService: RacServiceService) {
+  constructor(private imageService: ImageService, private modalService: NgbModal, private carService: CarService, loginService: LoginService, private router: Router, private activatedRoute: ActivatedRoute, private racServiceService: RacServiceService, private rentService: RentService) {
     this.loginService = loginService;
     this.rac = new RACService();
   }
 
   ngOnInit(): void {
-    /*this.activatedRoute.params.subscribe(paramsId => {
+    this.activatedRoute.params.subscribe(paramsId => {
       this.id = paramsId.id;
-      this.getRACServiceAndCars();
-    });*/
-  }
+    });
 
-  getRACServiceAndCars(){
     if(this.loginService.userRole == UserRole.AdminRAC){
       this.racServiceService.getAdminRACServiceRACService(this.loginService.user.id).subscribe(ret => { 
         this.rac = ret as RACService
-        this.getCars();
       });
     }else{
       this.racServiceService.get(this.id).subscribe(ret => {
         this.rac = ret as RACService;
-        this.getCars();
       });
-    }
-  }
-
-  getCars(){
-    this.carService.getRACServiceCars(this.rac.id).subscribe( ret => {
-      this.cars = ret as Array<Car>;
-    });
+    } 
   }
 
   removeCar(id){
@@ -70,6 +64,28 @@ export class ImageLightboxComponent implements OnInit {
     this.carService.getRACServiceCars(this.rac.id).subscribe( ret => {
       this.cars = ret as Array<Car>;
     });
+  }
+
+  openRentModal(id){ 
+    this.myRent = new Rent();
+    const modalRef = this.modalService.open(RentModalComponent);
+    modalRef.componentInstance.myRent = this.myRent;
+    modalRef.componentInstance.racId = this.id;
+    modalRef.result.then((result) => {
+      if (result) {
+        this.myRent = result;
+        console.log(result);
+        var days = Math.floor((Date.UTC(this.myRent.endDate.getFullYear(), this.myRent.endDate.getMonth(), this.myRent.endDate.getDate()) - Date.UTC(this.myRent.startDate.getFullYear(), this.myRent.startDate.getMonth(), this.myRent.startDate.getDate()) ) /(1000 * 60 * 60 * 24));
+        this.myRent.price = days * this.cars.find(x => x.id == id).dailyPrice;
+        this.myRent.registeredUserId = this.loginService.user.id;
+        this.myRent.carId = id;
+        this.rentService.add(this.myRent).subscribe((res: any) => {
+            this.router.navigateByUrl("/"+ this.loginService.user.username + '/history');
+        });
+      }
+    }, (reason) => {
+      console.log(reason);
+    }); 
   }
   
   saveChanges(id) {

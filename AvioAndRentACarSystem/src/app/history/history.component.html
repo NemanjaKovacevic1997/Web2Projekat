@@ -1,4 +1,4 @@
-<body class="myBody text-center">
+<body class="myBody2 text-center">
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3"></div>
@@ -6,54 +6,91 @@
                 <table class="table table-borderless">
                     <thead>
                       <tr>
-                        <th scope="col" align="center" style="color:white">History</th>
+                        <th scope="col" style="color:white">History</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let history of historys; let i = index;">
-                        <td scope="row">
-                            <div>
-                                <table class="table table-bordered table-dark">
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th colspan="2">{{ i + 1 }}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th>From</th>
-                                            <td>{{ history.from }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>To</th>
-                                            <td>{{ history.to }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Depart</th>
-                                            <td> {{ history.departHours + 'h ' + history.departMinutes + 'min  ' + history.departDay + '.' + history.departMonth + '.' + history.departYear }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Seat</th>
-                                            <td>{{ history.seatRow + '' + history.seatColumn + ', ' + history.seatClass + ' class'}}</td>
-                                        </tr>
-                                        <tr *ngIf="isAfter3HoursBeforeFlight(history.departDay, history.departMonth, history.departYear, history.departHours, history.departMinutes)">
-                                            <th></th>
-                                            <td>
-                                                <form>
-                                                    <div class="form-row">
-                                                        <div class="col">
-                                                            <button type="button" (click)="drop(history.ticketId)" class="btn btn-info">Drop</button>
+                        <tr *ngFor="let historyRAC of rents; let i = index;">
+                            <td scope="row">
+                                <div>
+                                    <table class="table table-bordered table-dark">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th colspan="2">{{ i + 1 }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>Delivery address</th>
+                                                <td>
+                                                    {{ historyRAC.startRACAddress.street }}
+                                                    {{ historyRAC.startRACAddress.number }},    
+                                                    {{ historyRAC.startRACAddress.city }},
+                                                    {{ historyRAC.startRACAddress.country }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Return address</th>
+                                                <td>
+                                                    {{ historyRAC.endRACAddress.street }}
+                                                    {{ historyRAC.endRACAddress.number }},    
+                                                    {{ historyRAC.endRACAddress.city }},
+                                                    {{ historyRAC.endRACAddress.country }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Start date</th>
+                                                <td> {{ historyRAC.startDate }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>End date</th>
+                                                <td> {{ historyRAC.endDate }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total price</th>
+                                                <td> {{ historyRAC.price }} €</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Car</th>
+                                                <td> 
+                                                    {{ historyRAC.car.mark }}
+                                                    {{ historyRAC.car.model }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Rate car</th>
+                                                <td> 
+                                                    <ngb-rating [(rate)]="historyRAC.car.rating" [readonly]="true" class="ngb-rating"></ngb-rating>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Service</th>
+                                                <td> {{ historyRAC.rac.name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Rate service</th>
+                                                <td> 
+                                                    <ngb-rating [(rate)]="historyRAC.rac.rating" [readonly]="true" class="ngb-rating"></ngb-rating>
+                                                </td>
+                                            </tr>
+                                            <tr *ngIf="is2DaysBeforeDelivery(historyRAC.startDate)">
+                                                <th></th>
+                                                <td>
+                                                    <form>
+                                                        <div class="form-row">
+                                                            <div class="col">
+                                                                <button type="button" (click)="drop(historyRAC.id)" class="btn btn-info">Drop</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </td>
-                      </tr>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                          </tr>
                     </tbody>
                 </table>
             </div>

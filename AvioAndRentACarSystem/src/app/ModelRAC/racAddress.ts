@@ -8,6 +8,7 @@ export class RACAddress
     number: number;
     racServiceId: number;
     isMain: boolean;
+    isUsedForRent: boolean;
 
     constructor(id?: number, street?: string, city?: string, country?: string, number?: number, racServiceId?: number, isMain?: boolean )
     {

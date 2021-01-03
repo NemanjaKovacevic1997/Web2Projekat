@@ -9,7 +9,7 @@ export class Rent
     startDate: Date;
     endDate: Date;
     price: number;
-    ratingForService: number;
+    ratingForRACService: number;
     ratingForCar: number;
     startRACAddressId: number;
     startRACAddress: RACAddress;
@@ -19,14 +19,16 @@ export class Rent
     car: Car;
     rac: RACService;
     registeredUserId: number;
+    registeredUser: User;
+    numberOfUsers: number;
 
-    constructor(id?: number, startDate?: Date, endDate?: Date, price?: number, ratingForService?: number, ratingForCar?: number, startRACAddressId?: number, endRACAddressId?: number, carId?: number, registeredUserId?: number )
+    constructor(id?: number, startDate?: Date, endDate?: Date, price?: number, ratingForRACService?: number, ratingForCar?: number, startRACAddressId?: number, endRACAddressId?: number, carId?: number, registeredUserId?: number )
     {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
         this.price = price;
-        this.ratingForService = ratingForService;
+        this.ratingForRACService = ratingForRACService;
         this.ratingForCar = ratingForCar;
         this.startRACAddressId = startRACAddressId;
         this.endRACAddressId = endRACAddressId;

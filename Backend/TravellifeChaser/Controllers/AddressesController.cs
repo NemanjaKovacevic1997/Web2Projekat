@@ -7,26 +7,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TravellifeChaser.Data;
 using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork;
-using TravellifeChaser.Models.RACSystem;
+using TravellifeChaser.Models;
 
 namespace TravellifeChaser.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RACAddressesController : ControllerBase
+    public class AddressesController : ControllerBase
     {
+        /*
         private readonly IUnitOfWork _unitOfWork;
 
-        public RACAddressesController(IUnitOfWork unitOfWork)
+        public AddressesController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
 
-        // GET: api/RACAddresses
+        // GET: api/Addresses
         [HttpGet]
-        public ActionResult<IEnumerable<RACAddress>> GetRACAddresses()
+        public ActionResult<IEnumerable<Address>> GetAddresses()
         {
-            return _unitOfWork.RACAddressRepository.GetAll().ToList();
+            return _unitOfWork.AddressRepository.GetAll().ToList();
         }
 
         // GET: api/RACAddresses/5
@@ -106,35 +107,6 @@ namespace TravellifeChaser.Controllers
         private bool RACAddressExists(int id)
         {
             return _unitOfWork.RACAddressRepository.Any(e => e.Id == id);
-        }
-
-        [HttpGet("{id}/racServiceAddresses")]
-        public ActionResult<IEnumerable<RACAddress>> GetRACServiceAddresses(int id)
-        {
-            if (!_unitOfWork.RACAddressRepository.Any(x => x.RACServiceId == id))
-                return NotFound();
-
-            return _unitOfWork.RACAddressRepository.GetByCondition(x => x.RACServiceId == id).ToList();
-        }
-
-        [HttpGet("{id}/racServiceMainAddresses")]
-        public ActionResult<IEnumerable<RACAddress>> GetRACServiceMainAddresses(int id)
-        {
-            if (!_unitOfWork.RACAddressRepository.Any(x => x.IsMain == true))
-                return NotFound();
-
-            return _unitOfWork.RACAddressRepository.GetByCondition(x => x.IsMain == true).ToList();
-        }
-
-        [HttpGet("{id}/racServiceMainAddress")]
-        public ActionResult<RACAddress> GetRACServiceMainAddress(int id)
-        {
-            if (!_unitOfWork.RACAddressRepository.Any(x => x.IsMain == true && x.RACServiceId == id))
-                return NotFound();
-
-            var list = _unitOfWork.RACAddressRepository.GetByCondition(x => x.IsMain == true && x.RACServiceId == id).ToList();
-
-            return list[0];
-        }
+        }*/
     }
 }

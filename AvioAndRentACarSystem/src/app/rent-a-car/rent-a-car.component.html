@@ -2,9 +2,9 @@
     <thead class="thead-light">
     <tr class="bg-primary">
         <th>Logo</th>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Rating</th>
+        <th (click)="sortByName()">Name</th>
+        <th (click)="sortByAddress()">Location</th>
+        <th (click)="sortByRating()">Rating</th>
     </tr>
     </thead>
     <tbody>
@@ -17,7 +17,7 @@
                 {{racAddresses[racService.id-1].city}},
                 {{racAddresses[racService.id-1].country}}
             </td>
-            <td>{{racService.rating}}</td>
+            <td>{{racService.rating | number : '1.2-2'}}</td>
         </tr>
     </tbody>
 </table>

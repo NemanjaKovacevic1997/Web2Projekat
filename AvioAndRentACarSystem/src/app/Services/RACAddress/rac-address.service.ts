@@ -20,4 +20,8 @@ export class RacAddressService extends DataService {
   getRACServiceMainAddresses(racServiceId: number) {
     return this.httpClient.get(environment.serverUrl + 'RACAddresses/' + racServiceId + '/racServiceMainAddresses');
   }
+
+  getRACServiceMainAddress(racServiceId: number) {
+    return this.httpClient.get(environment.serverUrl + 'RACAddresses/' + racServiceId + '/racServiceMainAddress');
+  }
 }

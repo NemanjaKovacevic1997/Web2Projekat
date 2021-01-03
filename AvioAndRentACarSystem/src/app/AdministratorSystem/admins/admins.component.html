@@ -10,9 +10,11 @@
     <tbody>
         <tr *ngFor="let user of users;">
             <td>{{user.firstName}} {{user.lastName}}</td>
-            <td>{{user.username}}</td>
+            <td *ngIf="admin.predefined == true">{{user.username}}</td>
+            <td *ngIf="admin.predefined == false">*************</td>
             <td>{{user.address.city}}, {{user.address.country}}</td>
-            <td>{{user.password}}</td>
+            <td *ngIf="admin.predefined == true">{{user.password}}</td>
+            <td *ngIf="admin.predefined == false">*************</td>
         </tr>
     </tbody>
 </table>

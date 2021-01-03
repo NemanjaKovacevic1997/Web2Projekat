@@ -1,0 +1,44 @@
+.myBody{
+    background-image: url("/assets/images/background41.jpg");
+    /*height: auto;*/
+    background-repeat: 'no-repeat';
+    background-position: top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+  }
+  
+  .ngb-rating{
+    color: yellow;
+    font-size: small;
+  }
+
+  .ngb-rating-disabled{
+    color: gray;
+    font-size: small;
+  }
+
+.table{
+    background-color: transparent;
+}
+
+tbody > tr {
+    height: 70px;
+}
+
+th {
+    text-align: center;
+} 
+
+td {
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}

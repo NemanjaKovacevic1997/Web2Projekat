@@ -5,6 +5,7 @@ import { Address } from '../AirlineModel/address';
 import { User } from '../AirlineModel/user';
 import { UserRole } from '../AirlineModel/userRole';
 import { RegisteredUser } from '../ModelRAC/registeredUser';
+import { AddressService } from '../Services/Address/address.service';
 import { RegisteredUserService } from '../Services/RegisteredUser/registeredUser.service';
 import { UserService } from '../Services/User/user.service';
 
@@ -27,7 +28,7 @@ export class SignUpComponent implements OnInit {
   country: string ="";
   message: string ="";
 
-  constructor(private userService: UserService, public router: Router, private registeredUserService: RegisteredUserService) { }
+  constructor(private userService: UserService, public router: Router, private registeredUserService: RegisteredUserService, private addressService: AddressService) { }
 
   ngOnInit(): void {
     this.userService.getAll().subscribe(ret => {
@@ -53,20 +54,14 @@ export class SignUpComponent implements OnInit {
     }
       
     var address = new Address(0, this.city, this.country);
+    var newUser = new User(this.firstname, this.lastname,this.email, this.phoneNumber, this.password, UserRole.Registered, this.username, address)
+    var registeredUser = new RegisteredUser();
+    registeredUser.user = newUser;
+    registeredUser.bonus = 0;
 
-    var newUser = new User(this.firstname, this.lastname,this.email, address, this.phoneNumber, this.password, UserRole.Registered, this.username)
-    this.userService.add(newUser)
-                     .subscribe(
-                       (res: any) => {
-                        var registeredUser = new RegisteredUser();
-                        registeredUser.user = newUser;
-                        registeredUser.id = newUser.id;
-                        registeredUser.bonus = 0;
-                        this.registeredUserService.add(registeredUser).subscribe(() => {
-                          this.router.navigateByUrl('/sign-in');
-                        });
-                       },
-                     ); 
+    this.registeredUserService.add(newUser).subscribe(() => {
+      this.router.navigateByUrl('/sign-in');
+    }); 
   }
 
   checkInput():boolean{

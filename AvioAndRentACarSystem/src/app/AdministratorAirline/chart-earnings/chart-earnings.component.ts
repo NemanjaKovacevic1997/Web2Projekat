@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ChartDataSets } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
 
@@ -7,7 +7,7 @@ import { Label, Color } from 'ng2-charts';
   templateUrl: './chart-earnings.component.html',
   styleUrls: ['./chart-earnings.component.css']
 })
-export class ChartEarningsComponent implements OnInit {
+export class ChartEarningsComponent implements OnChanges {
 
   @Input('earnings') earnings : Map<string, number>;
 
@@ -19,16 +19,22 @@ export class ChartEarningsComponent implements OnInit {
   barChartPlugins;
   barChartType;
   
-  constructor() { }
+  constructor() { 
+    this.barChartOptions = {
+      responsive: true,
+      };
+    
+      this.barChartType= 'bar';
+      this.barChartLegend = true;
+      this.barChartPlugins = [];
+  }
 
   ngOnInit(): void {
-    this.barChartOptions = {
-    responsive: true,
-    };
-  
-    this.barChartType= 'bar';
-    this.barChartLegend = true;
-    this.barChartPlugins = [];
+    
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
 
     this.barChartData = [
       { data: Array.from(this.earnings.values()), label: 'Earnings' }
@@ -36,5 +42,4 @@ export class ChartEarningsComponent implements OnInit {
 
     this.barChartLabels = Array.from(this.earnings.keys());
   }
-
 }

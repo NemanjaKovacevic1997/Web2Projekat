@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Math.EC.Rfc7748;
 using TravellifeChaser.Data;
+using TravellifeChaser.Helpers.DTOs;
 using TravellifeChaser.Helpers.GenericRepositoryAndUnitOfWork.UnitOfWork;
 using TravellifeChaser.Models.RACSystem;
 
@@ -106,6 +108,152 @@ namespace TravellifeChaser.Controllers
         private bool RentExists(int id)
         {
             return _unitOfWork.RentRepository.Any(e => e.Id == id);
+        }
+
+        [HttpGet("{id}/carsRents")]
+        public ActionResult<IEnumerable<Rent>> GetCarsRents(int id)
+        {
+            if (!_unitOfWork.RentRepository.Any(x => x.CarId == id))
+                return NotFound();
+
+            return _unitOfWork.RentRepository.GetByCondition(x => x.CarId == id).ToList();
+        }
+
+        [HttpGet("{id}/racRents")]
+        public ActionResult<IEnumerable<Rent>> GetRacRents(int id)
+        {
+            List<Rent> retList = new List<Rent>();
+
+            if (!_unitOfWork.CarRepository.Any(x => x.RACServiceId == id))
+                return NotFound();
+
+            var listOfCars = _unitOfWork.CarRepository.GetByCondition(x => x.RACServiceId == id).ToList();
+
+            foreach (var car in listOfCars)
+            {
+                var listOfRents = _unitOfWork.RentRepository.GetByCondition(x => x.CarId == car.Id).ToList();
+
+                foreach (var item in listOfRents)
+                {
+                    item.Car = _unitOfWork.CarRepository.Get(item.CarId);
+                    item.StartRACAddress = _unitOfWork.RACAddressRepository.Get(item.StartRACAddressId);
+                    item.EndRACAddress = _unitOfWork.RACAddressRepository.Get(item.EndRACAddressId);
+                    item.RegisteredUser = _unitOfWork.RegisteredUserRepository.Get(item.RegisteredUserId);
+                    retList.Add(item);
+                }
+            }
+            return retList;
+        }
+
+        [HttpGet("{id}/addressRented")]
+        public ActionResult<bool> IsAddressRented(int id)
+        {
+            bool isRented = false;
+
+            if (_unitOfWork.RentRepository.Any(x => (x.StartRACAddressId == id || x.EndRACAddressId == id) && x.EndDate > DateTime.Now))
+                isRented = true;
+
+            return isRented;
+        }
+
+        [HttpGet("{id}/carRented")]
+        public ActionResult<bool> IsCarRented(int id)
+        {
+            bool isRented = false;
+
+            if (_unitOfWork.RentRepository.Any(x => x.CarId == id && x.EndDate > DateTime.Now))
+                isRented = true;
+
+            return isRented;
+        }
+
+        [HttpGet("notRentedCarsInSomeDateRange/racId={id}&year1={year1}&month1={month1}&day1={day1}&hour1={hour1}&minute1={minute1}&year2={year2}&month2={month2}&day2={day2}&hour2={hour2}&minute2={minute2}")]
+        public ActionResult<IEnumerable<Car>> notRentedCarsInSomeDateRange(int id, int year1, int month1, int day1, int hour1, int minute1, int year2, int month2, int day2, int hour2, int minute2)
+        {
+            DateTime startDate = new DateTime(year1, month1, day1, hour1, minute1, 0);
+            DateTime endDate = new DateTime(year2, month2, day2, hour2, minute2, 0);
+
+            List<Car> retList = new List<Car>();
+
+            if (!_unitOfWork.CarRepository.Any(x => x.RACServiceId == id))
+                return NotFound();
+
+            var listOfCars = _unitOfWork.CarRepository.GetByCondition(x => x.RACServiceId == id).ToList();
+
+            foreach (var car in listOfCars)
+            {
+                var listOfRents = _unitOfWork.RentRepository.GetByCondition(x => x.CarId == car.Id).ToList();
+                var isRented = false;
+
+                foreach (var rent in listOfRents)
+                {
+                    if ((rent.StartDate <= startDate && startDate <= rent.EndDate) || (rent.StartDate <= endDate && endDate <= rent.EndDate) || (startDate <= rent.StartDate && rent.EndDate <= endDate))
+                    {
+                        isRented = true;
+                        break;
+                    }
+                }
+
+                if (!isRented)
+                    retList.Add(car);
+            }
+            return retList;
+        }
+
+        [HttpGet("notRentedServicesInSomeDateRange/year1={year1}&month1={month1}&day1={day1}&hour1={hour1}&minute1={minute1}&year2={year2}&month2={month2}&day2={day2}&hour2={hour2}&minute2={minute2}")]
+        public ActionResult<IEnumerable<RACService>> notRentedServicesInSomeDateRange(int year1, int month1, int day1, int hour1, int minute1, int year2, int month2, int day2, int hour2, int minute2)
+        {
+            DateTime startDate = new DateTime(year1, month1, day1, hour1, minute1, 0);
+            DateTime endDate = new DateTime(year2, month2, day2, hour2, minute2, 0);
+
+            List<RACService> retList = new List<RACService>(); 
+            List<RACService> racList = new List<RACService>();
+
+            racList = _unitOfWork.RACServiceRepository.GetAll().ToList();
+
+            foreach (var rac in racList)
+            {
+                if (!_unitOfWork.CarRepository.Any(x => x.RACServiceId == rac.Id))
+                    return NotFound();
+
+                var listOfCars = _unitOfWork.CarRepository.GetByCondition(x => x.RACServiceId == rac.Id).ToList();
+                //var isRented = false;
+                var boolList = new List<bool>();
+                var boolListRAC = new List<bool>();
+
+                foreach (var car in listOfCars)
+                {
+                    var listOfRents = _unitOfWork.RentRepository.GetByCondition(x => x.CarId == car.Id).ToList();                   
+
+                    foreach (var rent in listOfRents)
+                    {
+                        if ((rent.StartDate > startDate && endDate < rent.StartDate) || (rent.EndDate < startDate && endDate > rent.EndDate))
+                        {
+                            boolList.Add(true);//Dodaju se bool elementi u listu, ukoliko lista ne sadrzi false RAC je prihvatljiv
+                        }
+                        else
+                        {
+                            boolList.Add(false);
+                            break;
+                        }
+                    }
+
+                    if (boolList.Contains(false))
+                    {
+                        boolListRAC.Add(false);
+                        break;
+                    }
+                    else
+                    {
+                        boolListRAC.Add(true);
+                    }
+                }
+
+                if (!boolListRAC.Contains(false))
+                    retList.Add(rac);
+            }
+            
+            return retList;
         }
     }
 }

@@ -1,100 +1,66 @@
-<body class="myBody2 text-center">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
-                <table class="table table-borderless">
-                    <thead>
-                      <tr>
-                        <th scope="col" style="color:white">History</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let historyRAC of rents; let i = index;">
-                            <td scope="row">
-                                <div>
-                                    <table class="table table-bordered table-dark">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th colspan="2">{{ i + 1 }}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th>Delivery address</th>
-                                                <td>
-                                                    {{ historyRAC.startRACAddress.street }}
-                                                    {{ historyRAC.startRACAddress.number }},    
-                                                    {{ historyRAC.startRACAddress.city }},
-                                                    {{ historyRAC.startRACAddress.country }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Return address</th>
-                                                <td>
-                                                    {{ historyRAC.endRACAddress.street }}
-                                                    {{ historyRAC.endRACAddress.number }},    
-                                                    {{ historyRAC.endRACAddress.city }},
-                                                    {{ historyRAC.endRACAddress.country }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Start date</th>
-                                                <td> {{ historyRAC.startDate }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>End date</th>
-                                                <td> {{ historyRAC.endDate }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Total price</th>
-                                                <td> {{ historyRAC.price }} €</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Car</th>
-                                                <td> 
-                                                    {{ historyRAC.car.mark }}
-                                                    {{ historyRAC.car.model }}
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Rate car</th>
-                                                <td> 
-                                                    <ngb-rating [(rate)]="historyRAC.car.rating" [readonly]="true" class="ngb-rating"></ngb-rating>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Service</th>
-                                                <td> {{ historyRAC.rac.name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Rate service</th>
-                                                <td> 
-                                                    <ngb-rating [(rate)]="historyRAC.rac.rating" [readonly]="true" class="ngb-rating"></ngb-rating>
-                                                </td>
-                                            </tr>
-                                            <tr *ngIf="is2DaysBeforeDelivery(historyRAC.startDate)">
-                                                <th></th>
-                                                <td>
-                                                    <form>
-                                                        <div class="form-row">
-                                                            <div class="col">
-                                                                <button type="button" (click)="drop(historyRAC.id)" class="btn btn-info">Drop</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </td>
-                          </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-sm-3" ></div>
-      </div>
-    </div>
+<body class="myBody text-center">
+    <table class="table table-borderless table-hover myBody">
+        <thead class="thead-light">
+        <tr class="bg-primary">
+            <th>Delivery</th>
+            <th>Return</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Price</th>
+            <th>Car</th>
+            <th>Rate car</th>
+            <th>Service</th>
+            <th>Rate service</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let rent of rents; let i = index;">
+                <td>
+                    {{ rent.startRACAddress.street }}
+                    {{ rent.startRACAddress.number }},    
+                    {{ rent.startRACAddress.city }},
+                    {{ rent.startRACAddress.country }}
+                </td>
+                <td>
+                    {{ rent.endRACAddress.street }}
+                    {{ rent.endRACAddress.number }},    
+                    {{ rent.endRACAddress.city }},
+                    {{ rent.endRACAddress.country }}
+                </td>
+                <td>
+                    {{ rent.startDate | date:"MM/dd/yyyy" }}
+                </td>
+                <td>
+                    {{ rent.endDate | date:"MM/dd/yyyy" }}
+                </td>
+                <td>
+                    {{ rent.price }}€
+                </td>
+                <td>
+                    {{ rent.car.mark }}
+                    {{ rent.car.model }}
+                </td>
+                <td *ngIf="isFinished(rent.endDate) == true">
+                    <ngb-rating [(rate)]="rent.ratingForCar" class="ngb-rating" (rateChange)="carChangeRating(rent, rent.ratingForCar)"></ngb-rating>
+                </td>
+                <td *ngIf="isFinished(rent.endDate) == false">
+                    <ngb-rating [(rate)]="rent.ratingForCar" class="ngb-rating-disabled" [readonly]="true"></ngb-rating>
+                </td>
+                <td>
+                    {{ rent.rac.name }}
+                </td>
+                <td *ngIf="isFinished(rent.endDate) == true">
+                    <ngb-rating [(rate)]="rent.ratingForRACService" class="ngb-rating" (rateChange)="racChangeRating(rent, rent.ratingForRACService)"></ngb-rating>
+                </td>
+                <td *ngIf="isFinished(rent.endDate) == false">
+                    <ngb-rating [(rate)]="rent.ratingForRACService" class="ngb-rating-disabled" [readonly]="true"></ngb-rating>
+                </td>
+                <td *ngIf="is2DaysBeforeDelivery(rent.startDate)">
+                    <button type="button" (click)="dropRent(rent)" class="btn btn-info">Drop</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
   </body>
+  

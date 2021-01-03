@@ -6,6 +6,8 @@ import { RACService } from '../ModelRAC/racService';
 import { RacServiceService } from '../Services/RACService/rac-service.service';
 import { SearchDataRAC } from '../ModelRAC/HelperModelRAC/searchDataRAC';
 import { IgxDatePickerTemplateDirective } from 'igniteui-angular/lib/date-picker/date-picker.directives';
+import { RacAddressService } from '../Services/RACAddress/rac-address.service';
+import { RACAddress } from '../ModelRAC/racAddress';
 
 @Component({
   selector: 'search-rac',
@@ -15,6 +17,9 @@ import { IgxDatePickerTemplateDirective } from 'igniteui-angular/lib/date-picker
 export class SearchRacComponent implements OnInit {
   
   @Output() change = new EventEmitter<SearchDataRAC>();
+
+  public addresses: Array<RACAddress>;
+  public selectedAddress: RACAddress;
 
   form = new FormGroup({
     name: new FormControl('', [
@@ -51,9 +56,11 @@ export class SearchRacComponent implements OnInit {
     return this.form.get('date2');
   }
 
-  constructor(private router: Router, config: NgbTimepickerConfig, private racServiceService: RacServiceService) {
+  constructor(private router: Router, config: NgbTimepickerConfig, private racServiceService: RacServiceService, private racAddressService: RacAddressService) {
     config.meridian = true;
     config.minuteStep = 15;
+    this.addresses = new Array<RACAddress>();
+    this.selectedAddress = new RACAddress();
   }
 
   onSubmit() {
@@ -62,14 +69,14 @@ export class SearchRacComponent implements OnInit {
       filterData.nameOfService = this.name.value;
       filterData.location = this.location.value;
       filterData.date1Day = this.date1.value.day;
-      filterData.date1Month = this.date1.value.month;
+      filterData.date1Month = this.date1.value.month-1;
       filterData.date1Year = this.date1.value.year;
       filterData.date2Day = this.date2.value.day;
-      filterData.date2Month = this.date2.value.month;
+      filterData.date2Month = this.date2.value.month-1;
       filterData.date2Year = this.date2.value.year;
-      filterData.time1Hour = this.minPickerTime1.hour;
+      filterData.time1Hour = this.minPickerTime1.hour+1;
       filterData.time1Minute = this.minPickerTime1.minute;
-      filterData.time2Hour = this.minPickerTime2.hour;
+      filterData.time2Hour = this.minPickerTime2.hour+1;
       filterData.time2Minute = this.minPickerTime2.minute;
 
       console.log(filterData);
@@ -95,5 +102,9 @@ export class SearchRacComponent implements OnInit {
       hour: new Date().getHours(),
       minutes: new Date().getMinutes()
     }
+
+    this.racAddressService.getRACServiceMainAddresses(1).subscribe(ret =>{
+      this.addresses = ret as Array<RACAddress>;
+    });
   } 
 }

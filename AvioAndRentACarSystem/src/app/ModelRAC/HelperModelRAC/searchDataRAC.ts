@@ -1,6 +1,8 @@
+import { RACAddress } from "../racAddress";
+
 export class SearchDataRAC {
     nameOfService: string;
-    location: string;
+    location: RACAddress;
     date1Year: number;
     date1Month: number; 
     date1Day: number;

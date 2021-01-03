@@ -24,7 +24,7 @@
                         <ng-container *ngFor="let address of racAddresses; let i = index;">
                             <tr *ngIf="address.isMain != true">                  
                                 {{address.street}} {{address.number}}, {{address.city}}, {{address.country}}
-                                <button type="submit" class="btn xButton" (click)="deleteAddress(i)" *ngIf="this.loginService.userRole == UserRole.AdminRAC">
+                                <button type="submit" class="btn xButton" (click)="deleteAddress(i)" *ngIf="this.loginService.userRole == UserRole.AdminRAC && address.isUsedForRent == false">
                                     <i class="fa fa-close"></i>
                                 </button>              
                             </tr>

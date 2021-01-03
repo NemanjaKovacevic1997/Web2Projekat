@@ -1,10 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Options, LabelType } from 'ng5-slider';
 import { Router } from '@angular/router';
 import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { SearchDataRAC } from '../ModelRAC/HelperModelRAC/searchDataRAC';
 import { FilterDataRAC } from '../ModelRAC/HelperModelRAC/filterDataRAC';
+import { RACAddress } from '../ModelRAC/racAddress';
+import { RacAddressService } from '../Services/RACAddress/rac-address.service';
 
 @Component({
   selector: 'app-filter-rac',
@@ -14,12 +16,14 @@ import { FilterDataRAC } from '../ModelRAC/HelperModelRAC/filterDataRAC';
 export class FilterRacComponent implements OnInit {
 
   @Output() change = new EventEmitter<FilterDataRAC>();
+  @Input() racId: number;
 
   public minPickerDate;
   public minPickerTime1;
   public minPickerTime2;
   public minValue1: number = 100;
   public maxValue1: number = 400;
+  public racAddresses: Array<RACAddress>;
 
   form = new FormGroup({
     deliveryAddress: new FormControl('', [
@@ -81,9 +85,10 @@ export class FilterRacComponent implements OnInit {
     return this.form.get('passengers');
   }
 
-  constructor(private router: Router, config: NgbTimepickerConfig) {
+  constructor(private router: Router, config: NgbTimepickerConfig, private racAddressService: RacAddressService) {
     config.meridian = true;
     config.minuteStep = 15;
+    this.racAddresses = new Array<RACAddress>();
    }
 
   ngOnInit(): void {
@@ -102,6 +107,10 @@ export class FilterRacComponent implements OnInit {
       hour: new Date().getHours(),
       minutes: new Date().getMinutes()
     }
+
+    this.racAddressService.getRACServiceAddresses(this.racId).subscribe(ret => {
+      this.racAddresses = ret as Array<RACAddress>;
+    });
   }
 
   onSubmit() {
@@ -110,14 +119,14 @@ export class FilterRacComponent implements OnInit {
     filterData.deliveryAddress = this.deliveryAddress.value;
     filterData.returnAddress = this.returnAddress.value;
     filterData.date1Day = this.date1.value.day;
-    filterData.date1Month = this.date1.value.month;
+    filterData.date1Month = this.date1.value.month-1;
     filterData.date1Year = this.date1.value.year;
     filterData.date2Day = this.date2.value.day;
-    filterData.date2Month = this.date2.value.month;
+    filterData.date2Month = this.date2.value.month-1;
     filterData.date2Year = this.date2.value.year;
-    filterData.time1Hour = this.minPickerTime1.hour;
+    filterData.time1Hour = this.minPickerTime1.hour+1;
     filterData.time1Minute = this.minPickerTime1.minute;
-    filterData.time2Hour = this.minPickerTime2.hour;
+    filterData.time2Hour = this.minPickerTime2.hour+1;
     filterData.time2Minute = this.minPickerTime2.minute;
     filterData.carType = this.type.value;
     filterData.numberOfPasengers = this.passengers.value;

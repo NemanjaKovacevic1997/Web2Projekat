@@ -10,12 +10,22 @@
 <form [formGroup]="form" class="rounded-lg">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="Delivery address" formControlName="deliveryAddress"
-                [class.alert-danger]="deliveryAddress.invalid && deliveryAddress.touched">
-        </div>
+            <select id="deliveryAddress" class="form-control" placeholder="Delivery address" formControlName="deliveryAddress"
+             [class.alert-danger]="deliveryAddress.invalid && deliveryAddress.touched">
+                <option value="" hidden>Delivery address</option>
+                <option *ngFor="let address of racAddresses" [value]="address">
+                    {{address.street}} {{address.number}}, {{address.city}}
+                </option>
+            </select>
+        </div>  
         <div class="form-group col-md-6">
-            <input type="text" class="form-control" placeholder="Return address" formControlName="returnAddress"
-                [class.alert-danger]="returnAddress.invalid && returnAddress.touched">
+            <select id="returnAddress" class="form-control" placeholder="Return address" formControlName="returnAddress"
+             [class.alert-danger]="returnAddress.invalid && returnAddress.touched">
+             <option value="" hidden>Return address</option>
+             <option *ngFor="let address of racAddresses" [value]="address">
+                 {{address.street}} {{address.number}}, {{address.city}}
+             </option>
+            </select>
         </div>
     </div>
     <div class="form-row">
@@ -67,6 +77,7 @@
             <select id="type" class="form-control" placeholder="Car type" formControlName="type"
              [class.alert-danger]="type.invalid && type.touched">
                 <option value="" hidden>Car type</option>
+                <option value="All">All</option>
                 <option value="Micro">Micro</option>
                 <option value="Hatchback">Hatchback</option>
                 <option value="Sedan">Sedan</option>
@@ -85,7 +96,7 @@
                 <option value=2>2 passengers</option>
                 <option value=3>3 passengers</option>
                 <option value=4>4 passengers</option>
-                <option value=5>5 passengers</option>
+                <option value=5>More than 4 passengers</option>
             </select>
         </div>
     </div>

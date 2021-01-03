@@ -10,20 +10,17 @@
 <form [formGroup]="form" class="rounded-lg">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <select id="name" class="form-control" placeholder="Name of service" formControlName="name"
+            <input id="name" type="text" class="form-control" placeholder="Name of service" formControlName="name"
              [class.alert-danger]="name.invalid && name.touched">
-                <option value="" hidden>Name of service</option>
-                <option value="Belgrade Rent-a-car">Belgrade Rent-a-car</option>
-                <option value="Istanbul Rent-a-car">Istanbul Rent-a-car</option>
-                <option value="Moscow Rent-a-car">Moscow Rent-a-car</option>
-            </select></div>
+        </div>
         <div class="form-group col-md-6">
             <select id="location" class="form-control" placeholder="Location" formControlName="location"
              [class.alert-danger]="location.invalid && location.touched">
-                <option value="" hidden>Location</option>
-                <option value="Belgrade, Serbia">Belgrade, Serbia</option>
-                <option value="Istanbul, Turkey">Istanbul, Turkey</option>
-                <option value="Moscow, Russia">Moscow, Russia</option>
+             <option value="" hidden>Location</option>
+             <option value="null">All</option>
+             <option *ngFor="let address of addresses" [ngValue]="address">
+                {{address.city}}, {{address.country}}
+             </option>
             </select>
         </div>
     </div>

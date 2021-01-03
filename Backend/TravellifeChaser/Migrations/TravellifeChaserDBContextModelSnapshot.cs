@@ -956,6 +956,9 @@ namespace TravellifeChaser.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsReservedForRent")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Mark")
                         .HasColumnType("nvarchar(max)");
 
@@ -992,6 +995,7 @@ namespace TravellifeChaser.Migrations
                             Id = 1,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car1.jpg",
+                            IsReservedForRent = false,
                             Mark = "Mercedes",
                             Model = "A 250",
                             RACServiceId = 1,
@@ -1006,6 +1010,7 @@ namespace TravellifeChaser.Migrations
                             Id = 2,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car2.jpg",
+                            IsReservedForRent = false,
                             Mark = "BMW",
                             Model = "M5",
                             RACServiceId = 1,
@@ -1020,6 +1025,7 @@ namespace TravellifeChaser.Migrations
                             Id = 3,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car3.jpg",
+                            IsReservedForRent = false,
                             Mark = "Range Rover",
                             Model = "P525",
                             RACServiceId = 1,
@@ -1034,6 +1040,7 @@ namespace TravellifeChaser.Migrations
                             Id = 4,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car4.jpg",
+                            IsReservedForRent = false,
                             Mark = "RAM",
                             Model = "1500",
                             RACServiceId = 1,
@@ -1048,6 +1055,7 @@ namespace TravellifeChaser.Migrations
                             Id = 5,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car5.jpg",
+                            IsReservedForRent = false,
                             Mark = "Audi",
                             Model = "TT",
                             RACServiceId = 1,
@@ -1062,6 +1070,7 @@ namespace TravellifeChaser.Migrations
                             Id = 6,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car6.jpg",
+                            IsReservedForRent = false,
                             Mark = "Renault",
                             Model = "Clio 5",
                             RACServiceId = 1,
@@ -1076,6 +1085,7 @@ namespace TravellifeChaser.Migrations
                             Id = 7,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car7.jpg",
+                            IsReservedForRent = false,
                             Mark = "BMW",
                             Model = "X6",
                             RACServiceId = 1,
@@ -1090,6 +1100,7 @@ namespace TravellifeChaser.Migrations
                             Id = 8,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car8.jpg",
+                            IsReservedForRent = false,
                             Mark = "Mercedes",
                             Model = "A 100",
                             RACServiceId = 1,
@@ -1104,6 +1115,7 @@ namespace TravellifeChaser.Migrations
                             Id = 9,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car9.jpg",
+                            IsReservedForRent = false,
                             Mark = "BMW",
                             Model = "X6",
                             RACServiceId = 2,
@@ -1118,6 +1130,7 @@ namespace TravellifeChaser.Migrations
                             Id = 10,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car10.jpg",
+                            IsReservedForRent = false,
                             Mark = "Mercedes",
                             Model = "A 100",
                             RACServiceId = 2,
@@ -1132,6 +1145,7 @@ namespace TravellifeChaser.Migrations
                             Id = 11,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car11.jpg",
+                            IsReservedForRent = false,
                             Mark = "BMW",
                             Model = "X6",
                             RACServiceId = 3,
@@ -1146,6 +1160,7 @@ namespace TravellifeChaser.Migrations
                             Id = 12,
                             DailyPrice = 100.0,
                             Image = "../../assets/images/cars/car12.jpg",
+                            IsReservedForRent = false,
                             Mark = "Mercedes",
                             Model = "A 100",
                             RACServiceId = 3,
@@ -1188,6 +1203,9 @@ namespace TravellifeChaser.Migrations
                     b.Property<bool>("IsMain")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsUsedForRent")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
@@ -1210,6 +1228,7 @@ namespace TravellifeChaser.Migrations
                             City = "Belgrade",
                             Country = "Serbia",
                             IsMain = true,
+                            IsUsedForRent = false,
                             Number = 3,
                             RACServiceId = 1,
                             Street = "Pozeska"
@@ -1220,6 +1239,7 @@ namespace TravellifeChaser.Migrations
                             City = "Belgrade",
                             Country = "Serbia",
                             IsMain = false,
+                            IsUsedForRent = false,
                             Number = 33,
                             RACServiceId = 1,
                             Street = "Nemanjina"
@@ -1230,6 +1250,7 @@ namespace TravellifeChaser.Migrations
                             City = "Istanbul",
                             Country = "Turkey",
                             IsMain = true,
+                            IsUsedForRent = false,
                             Number = 33,
                             RACServiceId = 2,
                             Street = "Azar"
@@ -1240,6 +1261,7 @@ namespace TravellifeChaser.Migrations
                             City = "Istanbul",
                             Country = "Turkey",
                             IsMain = false,
+                            IsUsedForRent = false,
                             Number = 3,
                             RACServiceId = 2,
                             Street = "Izmir"
@@ -1250,6 +1272,7 @@ namespace TravellifeChaser.Migrations
                             City = "Moscow",
                             Country = "Russia",
                             IsMain = true,
+                            IsUsedForRent = false,
                             Number = 55,
                             RACServiceId = 3,
                             Street = "Putin"
@@ -1260,6 +1283,7 @@ namespace TravellifeChaser.Migrations
                             City = "Moscow",
                             Country = "Russia",
                             IsMain = false,
+                            IsUsedForRent = false,
                             Number = 73,
                             RACServiceId = 3,
                             Street = "Artem"
@@ -1288,8 +1312,8 @@ namespace TravellifeChaser.Migrations
                     b.Property<string>("PromotionalDescription")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -1305,7 +1329,7 @@ namespace TravellifeChaser.Migrations
                             Name = "Belgrade Rent-a-car",
                             PriceList = "",
                             PromotionalDescription = "Just say where, we know how!",
-                            Rating = 0
+                            Rating = 0.0
                         },
                         new
                         {
@@ -1314,7 +1338,7 @@ namespace TravellifeChaser.Migrations
                             Name = "Istanbul Rent-a-car",
                             PriceList = "",
                             PromotionalDescription = "Just say where, we know how!",
-                            Rating = 0
+                            Rating = 0.0
                         },
                         new
                         {
@@ -1323,7 +1347,7 @@ namespace TravellifeChaser.Migrations
                             Name = "Moscow Rent-a-car",
                             PriceList = "",
                             PromotionalDescription = "Just say where, we know how!",
-                            Rating = 0
+                            Rating = 0.0
                         });
                 });
 
@@ -19065,13 +19089,13 @@ namespace TravellifeChaser.Migrations
                         {
                             Id = 2,
                             AddressId = 2,
-                            Email = "kovacevicnemanja1997@gmail.com",
-                            FirstName = "Radovan",
+                            Email = "natasatrudic@gmail.com",
+                            FirstName = "Natasa",
                             LastName = "Trudic",
                             MobileNumber = "+381650000000",
-                            Password = "rasa123",
+                            Password = "naca",
                             Role = 0,
-                            Username = "rasa123"
+                            Username = "naca"
                         },
                         new
                         {

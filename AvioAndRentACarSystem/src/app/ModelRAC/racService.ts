@@ -1,3 +1,4 @@
+import { RACAddress } from "./racAddress";
 
 export class RACService
 {
@@ -7,6 +8,7 @@ export class RACService
     rating: number;
     priceList: string;
     logo: string;
+    mainAddress: RACAddress;
 
     constructor(id?: number, name?: string, promotionalDescription?: string, rating?: number, priceList?: string, logo?: string )
     {

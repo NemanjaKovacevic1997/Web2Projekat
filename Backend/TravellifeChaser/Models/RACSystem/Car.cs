@@ -17,6 +17,7 @@ namespace TravellifeChaser.Models.RACSystem
         public double DailyPrice { get; set; }
         public string Image { get; set; }//u bazi cuvati putanje do slika koje ce biti smestene u folderu Images
         public bool Rented { get; set; }
+        public bool IsReservedForRent { get; set; }
         public int RACServiceId { get; set; }
         public RACService RACService { get; set; }
         public ICollection<Rent> Rents { get; set; } = new List<Rent>(); // N : 1  Rent - Car

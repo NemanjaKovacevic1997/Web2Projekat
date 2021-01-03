@@ -58,22 +58,13 @@ export class AddAdminComponent implements OnInit {
     }
       
     var address = new Address(0, this.city, this.country);
-    var newUser = new User(this.firstname, this.lastname,this.email, address, this.phoneNumber, this.password, UserRole.AdminSys, this.username)
+    var newUser = new User(this.firstname, this.lastname,this.email, this.phoneNumber, this.password, UserRole.AdminSys, this.username, address)
     var adminSysUser = new AdminSysUser();
     adminSysUser.user = newUser;
     adminSysUser.predefined = false;
     this.adminSysUserService.add(adminSysUser).subscribe(() => {
       alert("New system administrator added. Reload this page to show up new list.")
     });
-    
-    /*
-    this.userService.add(newUser)
-                     .subscribe(
-                       (res: any) => {
-                         //this.router.navigateByUrl('/sign-in');
-                         alert("New system administrator added. Reload this page to show up new list.")
-                       },
-                     ); */
   }
 
   checkInput():boolean{

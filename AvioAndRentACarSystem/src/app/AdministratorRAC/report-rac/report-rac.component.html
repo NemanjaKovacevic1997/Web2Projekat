@@ -2,21 +2,23 @@
     <div>
         <div class="form-row">
             <div class="col">
-                <button class="btn btn-info" style="width: 100px;">Daily</button>
+                <button class="btn btn-info" style="width: 100px;" (click)="dailyClick()">Daily</button>
             </div>
             <div class="col">
-                <button class="btn btn-info" style="width: 100px;">Weekly</button>
+                <button class="btn btn-info" style="width: 100px;" (click)="weeklyClick()">Weekly</button>
             </div>
             <div class="col">
-                <button class="btn btn-info" style="width: 100px;">Monthly</button>
+                <button class="btn btn-info" style="width: 100px;" (click)="monthlyClick()">Monthly</button>
             </div>
         </div>
         <br>
-        <chart-cards [tickets]='tickets' class="margins"></chart-cards>
-        <chart-earnings [earnings]='earnings' class="margins"></chart-earnings>
+        <div *ngIf="isLoaded">
+            <chart-cards [tickets]='tickets' class="margins"></chart-cards>
+            <chart-earnings [earnings]='earnings' class="margins"></chart-earnings>
+        </div>      
         <br>
         <br>
         <label class="margins">Full {{ interval }} earnings : </label>
-        <label class="earnings">{{ fullEarnings | currency:'EUR':'symbol'}}</label>
+        <label class="earnings">{{ fullEarningsAverage | currency:'EUR':'symbol'}}</label>
     </div>
 </form>

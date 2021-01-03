@@ -164,7 +164,7 @@ namespace TravellifeChaser.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(nullable: true),
                     PromotionalDescription = table.Column<string>(nullable: true),
-                    Rating = table.Column<int>(nullable: false),
+                    Rating = table.Column<double>(nullable: false),
                     PriceList = table.Column<string>(nullable: true),
                     Logo = table.Column<string>(nullable: true),
                     AdminSysUserId = table.Column<int>(nullable: true)
@@ -360,6 +360,7 @@ namespace TravellifeChaser.Migrations
                     DailyPrice = table.Column<double>(nullable: false),
                     Image = table.Column<string>(nullable: true),
                     Rented = table.Column<bool>(nullable: false),
+                    IsReservedForRent = table.Column<bool>(nullable: false),
                     RACServiceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -384,6 +385,7 @@ namespace TravellifeChaser.Migrations
                     Country = table.Column<string>(nullable: true),
                     Number = table.Column<int>(nullable: false),
                     IsMain = table.Column<bool>(nullable: false),
+                    IsUsedForRent = table.Column<bool>(nullable: false),
                     RACServiceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -634,9 +636,9 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AdminSysUserId", "Logo", "Name", "PriceList", "PromotionalDescription", "Rating" },
                 values: new object[,]
                 {
-                    { 2, null, "../../assets/images/logos/rac3.png", "Istanbul Rent-a-car", "", "Just say where, we know how!", 0 },
-                    { 1, null, "../../assets/images/logos/rac1.png", "Belgrade Rent-a-car", "", "Just say where, we know how!", 0 },
-                    { 3, null, "../../assets/images/logos/rac7.png", "Moscow Rent-a-car", "", "Just say where, we know how!", 0 }
+                    { 2, null, "../../assets/images/logos/rac3.png", "Istanbul Rent-a-car", "", "Just say where, we know how!", 0.0 },
+                    { 1, null, "../../assets/images/logos/rac1.png", "Belgrade Rent-a-car", "", "Just say where, we know how!", 0.0 },
+                    { 3, null, "../../assets/images/logos/rac7.png", "Moscow Rent-a-car", "", "Just say where, we know how!", 0.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -670,34 +672,34 @@ namespace TravellifeChaser.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cars",
-                columns: new[] { "Id", "DailyPrice", "Image", "Mark", "Model", "RACServiceId", "Rating", "Rented", "Seats", "Type", "Year" },
+                columns: new[] { "Id", "DailyPrice", "Image", "IsReservedForRent", "Mark", "Model", "RACServiceId", "Rating", "Rented", "Seats", "Type", "Year" },
                 values: new object[,]
                 {
-                    { 5, 100.0, "../../assets/images/cars/car5.jpg", "Audi", "TT", 1, 0.0, false, 2, "Coupe", 2016 },
-                    { 1, 100.0, "../../assets/images/cars/car1.jpg", "Mercedes", "A 250", 1, 0.0, false, 5, "Hatchback", 2020 },
-                    { 12, 100.0, "../../assets/images/cars/car12.jpg", "Mercedes", "A 100", 3, 0.0, false, 5, "Hatchback", 2020 },
-                    { 11, 100.0, "../../assets/images/cars/car11.jpg", "BMW", "X6", 3, 0.0, false, 5, "SUV", 2019 },
-                    { 4, 100.0, "../../assets/images/cars/car4.jpg", "RAM", "1500", 1, 0.0, false, 6, "Pickup", 2019 },
-                    { 3, 100.0, "../../assets/images/cars/car3.jpg", "Range Rover", "P525", 1, 0.0, false, 5, "SUV", 2018 },
-                    { 7, 100.0, "../../assets/images/cars/car7.jpg", "BMW", "X6", 1, 0.0, false, 5, "SUV", 2019 },
-                    { 10, 100.0, "../../assets/images/cars/car10.jpg", "Mercedes", "A 100", 2, 0.0, false, 5, "Hatchback", 2020 },
-                    { 2, 100.0, "../../assets/images/cars/car2.jpg", "BMW", "M5", 1, 0.0, false, 5, "Sedan", 2020 },
-                    { 8, 100.0, "../../assets/images/cars/car8.jpg", "Mercedes", "A 100", 1, 0.0, false, 5, "Hatchback", 2020 },
-                    { 9, 100.0, "../../assets/images/cars/car9.jpg", "BMW", "X6", 2, 0.0, false, 5, "SUV", 2019 },
-                    { 6, 100.0, "../../assets/images/cars/car6.jpg", "Renault", "Clio 5", 1, 0.0, false, 5, "Hatchback", 2017 }
+                    { 5, 100.0, "../../assets/images/cars/car5.jpg", false, "Audi", "TT", 1, 0.0, false, 2, "Coupe", 2016 },
+                    { 1, 100.0, "../../assets/images/cars/car1.jpg", false, "Mercedes", "A 250", 1, 0.0, false, 5, "Hatchback", 2020 },
+                    { 12, 100.0, "../../assets/images/cars/car12.jpg", false, "Mercedes", "A 100", 3, 0.0, false, 5, "Hatchback", 2020 },
+                    { 11, 100.0, "../../assets/images/cars/car11.jpg", false, "BMW", "X6", 3, 0.0, false, 5, "SUV", 2019 },
+                    { 4, 100.0, "../../assets/images/cars/car4.jpg", false, "RAM", "1500", 1, 0.0, false, 6, "Pickup", 2019 },
+                    { 3, 100.0, "../../assets/images/cars/car3.jpg", false, "Range Rover", "P525", 1, 0.0, false, 5, "SUV", 2018 },
+                    { 7, 100.0, "../../assets/images/cars/car7.jpg", false, "BMW", "X6", 1, 0.0, false, 5, "SUV", 2019 },
+                    { 10, 100.0, "../../assets/images/cars/car10.jpg", false, "Mercedes", "A 100", 2, 0.0, false, 5, "Hatchback", 2020 },
+                    { 2, 100.0, "../../assets/images/cars/car2.jpg", false, "BMW", "M5", 1, 0.0, false, 5, "Sedan", 2020 },
+                    { 8, 100.0, "../../assets/images/cars/car8.jpg", false, "Mercedes", "A 100", 1, 0.0, false, 5, "Hatchback", 2020 },
+                    { 9, 100.0, "../../assets/images/cars/car9.jpg", false, "BMW", "X6", 2, 0.0, false, 5, "SUV", 2019 },
+                    { 6, 100.0, "../../assets/images/cars/car6.jpg", false, "Renault", "Clio 5", 1, 0.0, false, 5, "Hatchback", 2017 }
                 });
 
             migrationBuilder.InsertData(
                 table: "RACAddresses",
-                columns: new[] { "Id", "City", "Country", "IsMain", "Number", "RACServiceId", "Street" },
+                columns: new[] { "Id", "City", "Country", "IsMain", "IsUsedForRent", "Number", "RACServiceId", "Street" },
                 values: new object[,]
                 {
-                    { 1, "Belgrade", "Serbia", true, 3, 1, "Pozeska" },
-                    { 3, "Istanbul", "Turkey", true, 33, 2, "Azar" },
-                    { 4, "Istanbul", "Turkey", false, 3, 2, "Izmir" },
-                    { 2, "Belgrade", "Serbia", false, 33, 1, "Nemanjina" },
-                    { 6, "Moscow", "Russia", false, 73, 3, "Artem" },
-                    { 5, "Moscow", "Russia", true, 55, 3, "Putin" }
+                    { 1, "Belgrade", "Serbia", true, false, 3, 1, "Pozeska" },
+                    { 3, "Istanbul", "Turkey", true, false, 33, 2, "Azar" },
+                    { 4, "Istanbul", "Turkey", false, false, 3, 2, "Izmir" },
+                    { 2, "Belgrade", "Serbia", false, false, 33, 1, "Nemanjina" },
+                    { 6, "Moscow", "Russia", false, false, 73, 3, "Artem" },
+                    { 5, "Moscow", "Russia", true, false, 55, 3, "Putin" }
                 });
 
             migrationBuilder.InsertData(
@@ -716,7 +718,7 @@ namespace TravellifeChaser.Migrations
                     { 4, 10, "kovacevicnemanja1997@gmail.com", "Milovan", "Zec", "+381604520858", "milovan123", 0, "milovan123" },
                     { 10, 6, "kovacevicnemanja1997@gmail.com", "Burak", "Yilmaz", "+381650000000", "burak", 2, "burak" },
                     { 9, 2, "kovacevicnemanja1997@gmail.com", "Radovan", "Trudic", "+381650000000", "rasa", 2, "rasa" },
-                    { 2, 2, "kovacevicnemanja1997@gmail.com", "Radovan", "Trudic", "+381650000000", "rasa123", 0, "rasa123" },
+                    { 2, 2, "natasatrudic@gmail.com", "Natasa", "Trudic", "+381650000000", "naca", 0, "naca" },
                     { 1, 1, "kovacevicnemanja1997@gmail.com", "Nemanja", "Kovacevic", "+381604520858", "nemanja123", 0, "nemanja123" }
                 });
 

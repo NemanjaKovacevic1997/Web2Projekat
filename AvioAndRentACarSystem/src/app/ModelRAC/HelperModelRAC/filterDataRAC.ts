@@ -1,6 +1,8 @@
+import { RACAddress } from "../racAddress";
+
 export class FilterDataRAC {
-    deliveryAddress: string;
-    returnAddress: string;
+    deliveryAddress: RACAddress;
+    returnAddress: RACAddress;
     date1Year: number;
     date1Month: number; 
     date1Day: number;

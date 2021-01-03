@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { NgbDropdownModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModalModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { SearchComponent } from './search/search.component';
 import { NgbDatepickerModule , NgbTimepickerModule , NgbRatingModule} from '@ng-bootstrap/ng-bootstrap';
@@ -112,6 +112,8 @@ import { AdministratorRacModalComponent } from './ModalsRAC/administrator-rac-mo
 import { MatExpansionModule } from  '@angular/material/expansion';
 import { BusinessDestinationsModalComponent } from './ModalsRAC/business-destinations-modal/business-destinations-modal.component';
 import { RentModalComponent } from './ModalsRAC/rent-modal/rent-modal.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -213,7 +215,9 @@ import { RentModalComponent } from './ModalsRAC/rent-modal/rent-modal.component'
     HttpClientModule,
     MatTabsModule,
     MatExpansionModule,
-    //NgbTooltip,
+    NgbTooltipModule,
+    MatButtonModule,
+    MatIconModule,
     RouterModule.forRoot([
 
       //for UNREGISTERED and REGISTERED users

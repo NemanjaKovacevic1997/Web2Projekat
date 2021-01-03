@@ -1,14 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import * as Chart from 'chart.js';
+import { subscribeOn } from 'rxjs/operators';
 
 @Component({
   selector: 'chart-cards',
   templateUrl: './chart-cards.component.html',
   styleUrls: ['./chart-cards.component.css']
 })
-export class ChartCardsComponent implements OnInit {
+export class ChartCardsComponent implements OnChanges {
   
   @Input('tickets') soldTicketsOnEachDay? : Map<string, number>;
 
@@ -19,17 +20,11 @@ export class ChartCardsComponent implements OnInit {
   lineChartLegend;
   lineChartPlugins;
   lineChartType;
+  sortedList: Array<string>;
 
-  constructor() { }
+  constructor() { 
 
-  ngOnInit(): void {
-    this.lineChartData = [
-      { data: Array.from(this.soldTicketsOnEachDay.values()) , label: 'Sold tickets' },
-    ];
-  
-    this.lineChartLabels = Array.from(this.soldTicketsOnEachDay.keys());
-  
-    Chart.defaults.global.defaultFontColor = '#FFFFFF';
+    this.sortedList = new Array<string>();
 
     this.lineChartOptions = {
       responsive: true
@@ -46,5 +41,21 @@ export class ChartCardsComponent implements OnInit {
     this.lineChartLegend = true;
     this.lineChartPlugins = [];
     this.lineChartType = 'line';
+  }
+
+  ngOnInit(){
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes)
+
+    this.lineChartData = [
+      { data: Array.from(this.soldTicketsOnEachDay.values()) , label: 'Rented cars' },
+    ];
+
+    this.lineChartLabels = Array.from(this.soldTicketsOnEachDay.keys());
+
+    Chart.defaults.global.defaultFontColor = '#FFFFFF';
   }
 }

@@ -3,6 +3,7 @@ import { LoginService } from '../Services/Login/login.service';
 import { UserRole } from '../AirlineModel/userRole';
 import { AdminSysUserService } from '../Services/AdminSysUser/admin-sys-user.service';
 import { AdminSysUser } from '../ModelRAC/adminSysUser';
+import { User } from '../AirlineModel/user';
 
 @Component({
   selector: 'app-navbar',

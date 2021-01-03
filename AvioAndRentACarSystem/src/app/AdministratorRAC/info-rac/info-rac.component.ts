@@ -20,6 +20,8 @@ import { AirlineService } from 'src/app/Services/Airline/airline.service';
 import { ActivatedRoute } from '@angular/router';
 import { RacAddressService } from 'src/app/Services/RACAddress/rac-address.service';
 import { RACAddress } from 'src/app/ModelRAC/racAddress';
+import { RentService } from 'src/app/Services/Rent/rent.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-info-rac',
@@ -47,7 +49,7 @@ export class InfoRacComponent implements OnInit {
   public maxId: number;
   get UserRole() { return UserRole; }
   
-  constructor(private modalService: NgbModal, private activatedRoute: ActivatedRoute, loginService: LoginService, private racServiceService: RacServiceService, private racAddressService: RacAddressService) {
+  constructor(private modalService: NgbModal, private activatedRoute: ActivatedRoute, loginService: LoginService, private racServiceService: RacServiceService, private racAddressService: RacAddressService, private rentService: RentService) {
     this.rac = new RACService();
     this.racAddresses = new Array<RACAddress>();
     this.racAddressesOld = new Array<RACAddress>();
@@ -60,6 +62,10 @@ export class InfoRacComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.racAddresses = new Array<RACAddress>();
+    this.racAddressesOld = new Array<RACAddress>();
+    this.racAddressesNew = new Array<RACAddress>();
+    this.racAddressesDeleted = new Array<RACAddress>();
     this.activatedRoute.params.subscribe(paramsId => {
       this.id = paramsId.id;
     });
@@ -100,6 +106,8 @@ export class InfoRacComponent implements OnInit {
           this.racAddresses.forEach(element => {
             if(element.isMain == true)
               this.mainAddress = element;
+
+            this.isAddressRented(element);
           }); 
         });
       });
@@ -137,6 +145,12 @@ export class InfoRacComponent implements OnInit {
     }
   }
 
+  isAddressRented(racAddress : RACAddress){
+    this.rentService.isAddressRented(racAddress.id).subscribe(ret => {
+      racAddress.isUsedForRent = ret as boolean;
+    });
+  }
+
   saveChanges() {
     if (confirm('Are you sure you want to save changes?')) {
       this.rac.priceList = "For one person " + this.priceListForOne + "€\n"+
@@ -145,9 +159,6 @@ export class InfoRacComponent implements OnInit {
                            "For four persons " + this.priceListForFour + "€\n"+
                            "For more persons " + this.priceListForMore + "€"
       ;
-      this.racServiceService.update(this.rac.id, this.rac).subscribe(() => {
-        alert("Changes are saved successfuly.")
-      });
       
       //PROVERA DA LI JE GLAVNA ADRESA IZMENJENA
       if(this.mainAddressChanged){
@@ -155,11 +166,15 @@ export class InfoRacComponent implements OnInit {
       }
 
       //PROVERA DA LI JE NEKA OD STARIH ADRESA IZBRISANA
-      this.racAddressesDeleted.forEach(elementDeleted => {
-        this.racAddressesOld.forEach(elementOld => {
-          if(elementDeleted.id == elementOld.id){
-            this.racAddressService.remove(elementOld.id).subscribe(()=>{});
-          }
+      //GET ADDRESSES
+      this.racAddressService.getRACServiceAddresses(this.rac.id).subscribe( ret => {
+        this.racAddressesOld = ret as Array<RACAddress>;
+        this.racAddressesDeleted.forEach(elementDeleted => {
+          this.racAddressesOld.forEach(elementOld => {
+            if(elementDeleted.id == elementOld.id){
+              this.racAddressService.remove(elementOld.id).subscribe(()=>{});
+            }
+          });
         });
       });
 
@@ -179,6 +194,11 @@ export class InfoRacComponent implements OnInit {
           elementNew.isMain = false;
           this.racAddressService.add(elementNew).subscribe(()=>{});
         }    
+      });
+
+      this.racServiceService.update(this.rac.id, this.rac).subscribe(() => {
+        alert("Changes are saved successfuly.")
+        this.ngOnInit();
       });
     }
   }
@@ -232,7 +252,6 @@ export class InfoRacComponent implements OnInit {
       modalRef.result.then((result) => {
         if (result) {
           this.mainAddress = result;
-          //this.racAddresses[this.mainAddress.id] = this.mainAddress;
           this.mainAddressChanged = true;
           console.log(result);
         }
@@ -259,6 +278,7 @@ export class InfoRacComponent implements OnInit {
               this.maxId = element.id;
           });
           this.address.id = this.maxId+1;
+          this.address.isUsedForRent = false;
           this.racAddresses.push(this.address);
           this.racAddressesNew.push(this.address);
           console.log(result);

@@ -10,7 +10,7 @@ namespace TravellifeChaser.Models.RACSystem
         public int Id { get; set; }
         public string Name { get; set; }
         public string PromotionalDescription { get; set; }
-        public int Rating { get; set; }
+        public double Rating { get; set; }
         public string PriceList { get; set; }
         public string Logo { get; set; }
         public ICollection<RACAddress> RACAddresses { get; set; } = new List<RACAddress>();

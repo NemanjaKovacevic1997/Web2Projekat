@@ -13,7 +13,7 @@
             <app-info-rac></app-info-rac>
         </mat-tab>
         <mat-tab label="Filters" *ngIf="this.loginService.userRole == UserRole.Registered || this.loginService.userRole == UserRole.Unregistered">  
-            <app-filter-rac (change)="fetchFilterData($event)"></app-filter-rac>
+            <app-filter-rac (change)="fetchFilterData($event)" [racId]="racId"></app-filter-rac>
         </mat-tab>
         <mat-tab label="Report" *ngIf="this.loginService.userRole == UserRole.AdminRAC">
             <app-report-rac></app-report-rac>

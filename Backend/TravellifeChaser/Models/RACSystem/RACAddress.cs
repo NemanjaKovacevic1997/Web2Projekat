@@ -14,6 +14,7 @@ namespace TravellifeChaser.Models.RACSystem
         public string Country { get; set; }
         public int Number { get; set; }
         public bool IsMain { get; set; }
+        public bool IsUsedForRent { get; set; }
         public RACService RACService { get; set; }
         public int RACServiceId { get; set; }
         public ICollection<RACAddressRent> RACAddressRents { get; set; } = new List<RACAddressRent>();

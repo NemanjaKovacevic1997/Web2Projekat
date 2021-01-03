@@ -7,3 +7,10 @@
     -o-background-size: cover;
     background-size: cover; 
 }
+
+.btn-outline-secondary{
+    margin-top: 140px;
+    margin-left: 340px;
+    background-color: unset;
+    outline:none;
+}

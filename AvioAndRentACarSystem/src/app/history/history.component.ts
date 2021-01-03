@@ -20,10 +20,9 @@ export class HistoryComponent implements OnInit {
 
   historys: Array<HistoryFlight>;
   rents: Array<Rent>;
+  allRents: Array<Rent>;
 
-  constructor(private loginService: LoginService, private ticketService: TicketService, private rentService: RentService, private racAddressService: RacAddressService, private carService: CarService, private racService: RacServiceService) {
-    this.rents = new Array<Rent>();
-  }
+  constructor(private loginService: LoginService, private ticketService: TicketService, private rentService: RentService, private racAddressService: RacAddressService, private carService: CarService, private racService: RacServiceService) { }
 
   ngOnInit(): void {
     let id = this.loginService.user.id;
@@ -31,9 +30,10 @@ export class HistoryComponent implements OnInit {
       this.historys = res as Array<HistoryFlight>;
     });
 
+    this.rents = new Array<Rent>();
     this.rentService.getAll().subscribe(ret => {
-      var temp = ret as Array<Rent>;
-      temp.forEach(element => {
+      this.allRents = ret as Array<Rent>;
+      this.allRents.forEach(element => {
         if(element.registeredUserId == id){
           this.racAddressService.get(element.startRACAddressId).subscribe(res => {
             element.startRACAddress = res as RACAddress;
@@ -53,14 +53,70 @@ export class HistoryComponent implements OnInit {
     });
   }
 
-  dropRent(id: number) {
-    this.rentService.remove(id).subscribe(() => this.ngOnInit());
+  dropRent(rent:Rent) {
+    rent.car.rented = false;
+    this.carService.update(rent.carId, rent.car).subscribe(()=>{
+      this.rentService.remove(rent.id).subscribe(() => this.ngOnInit());
+    });
+  }
+
+  racChangeRating(rent:Rent, newRatingForRACService: number) {
+    let rac = rent.rac;
+    let count = 0;
+    let sumOfPoints = 0;
+    this.allRents.forEach(element => {
+      if(element.rac.id == rac.id && element.ratingForRACService != 0){
+        count++;
+      }
+    });
+    //AKO JE VEC OCENJEN, MORA DA SE POKUPI TA STARA OCENA I ODUZME OD UKUPNE SUME POENA
+    this.rentService.get(rent.id).subscribe(res => {
+      let temp = res as Rent;
+      if(temp.ratingForRACService == 0)
+        count--;
+      sumOfPoints = count * rac.rating - temp.ratingForRACService;
+      if(temp.ratingForRACService == 0)
+        count++;
+      rac.rating = (sumOfPoints + newRatingForRACService) / count;
+      this.racService.update(rac.id, rac).subscribe(() => {
+        rent.ratingForRACService = newRatingForRACService;
+        this.rentService.update(rent.id, rent).subscribe(() => {
+          this.ngOnInit();
+        });
+      });
+    });
+  }
+
+  carChangeRating(rent:Rent, newRatingForCar: number) {
+    let car = rent.car;
+    let count = 0;
+    let sumOfPoints = 0;
+    this.allRents.forEach(element => {
+      if(element.car.id == car.id && element.ratingForCar != 0){
+        count++;
+      }
+    });
+    //AKO JE VEC OCENJEN, MORA DA SE POKUPI TA STARA OCENA I ODUZME OD UKUPNE SUME POENA
+    this.rentService.get(rent.id).subscribe(res => {
+      let temp = res as Rent;
+      if(temp.ratingForCar == 0)
+        count--;
+      sumOfPoints = count * car.rating - temp.ratingForCar;
+      if(temp.ratingForCar == 0)
+        count++;
+      car.rating = (sumOfPoints + newRatingForCar) / count;
+      this.carService.update(car.id, car).subscribe(() => {
+        rent.ratingForCar = newRatingForCar;
+        this.rentService.update(rent.id, rent).subscribe(() => {
+          this.ngOnInit();
+        });
+      });
+    });
   }
 
   is2DaysBeforeDelivery(startDate: Date): boolean {
     let now = new Date();
     let rentDate = new Date(startDate);
-    //startDate.setHours(startDate.getDate() - 3);
     rentDate.setDate(rentDate.getDate() - 2);
 
     console.log("now :" +  now + " : " + now.getTime());
@@ -73,7 +129,22 @@ export class HistoryComponent implements OnInit {
 
     console.log("false");
     return true;
+  }
 
+  isFinished(endDate: Date): boolean {
+    let now = new Date();
+    let rentDate = new Date(endDate);
+
+    console.log("now :" +  now + " : " + now.getTime());
+    console.log("date :" + rentDate + " : " + rentDate.getTime());
+
+    if(now.getTime() <= rentDate.getTime()){
+      console.log("true");
+      return false;
+    }
+
+    console.log("false");
+    return true;
   }
 
   drop(ticketId: number) {
@@ -96,6 +167,5 @@ export class HistoryComponent implements OnInit {
 
     console.log("false");
     return true;
-
   }
 }

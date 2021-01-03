@@ -1,1 +1,49 @@
-<p>rent-a-car-rents works!</p>
+<body class="myBody text-center">
+    <table class="table table-borderless table-hover myBody">
+        <thead class="thead-light">
+        <tr class="bg-primary">
+            <th>Delivery</th>
+            <th>Return</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Price</th>
+            <th>Car</th>
+            <th>User</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr  *ngFor="let rent of rents; let i = index;">
+                <td>
+                    {{ rent.startRACAddress.street }}
+                    {{ rent.startRACAddress.number }},    
+                    {{ rent.startRACAddress.city }},
+                    {{ rent.startRACAddress.country }}
+                </td>
+                <td>
+                    {{ rent.endRACAddress.street }}
+                    {{ rent.endRACAddress.number }},    
+                    {{ rent.endRACAddress.city }},
+                    {{ rent.endRACAddress.country }}
+                </td>
+                <td>
+                    {{ rent.startDate | date:"MM/dd/yyyy" }}
+                </td>
+                <td>
+                    {{ rent.endDate | date:"MM/dd/yyyy" }}
+                </td>
+                <td>
+                    {{ rent.price }}€
+                </td>
+                <td>
+                    {{ rent.car.mark }}
+                    {{ rent.car.model }}
+                </td>
+                <td>
+                    {{ rent.registeredUser.user.firstName }}
+                    {{ rent.registeredUser.user.lastName }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </body>
+  

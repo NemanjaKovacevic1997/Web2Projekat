@@ -29,7 +29,7 @@ export class LoginService {
     }
     else {
       this.userRole = this.setUserRole(role);
-      this.user = new User(firstName, lastName, '', address, '', '', this.userRole, username);
+      this.user = new User(firstName, lastName, '', '', '', this.userRole, username, address);
       this.user.id = +id;  
     }
 

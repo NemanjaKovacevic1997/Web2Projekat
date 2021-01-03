@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-row">
                     <div class="input-group">
-                        <input class="form-control" id="TextInput1" placeholder="Start date" name="dp" ngbDatepicker #d1="ngbDatepicker" [minDate]="minPickerDate" [(ngModel)]="startDate">
+                        <input class="form-control" id="TextInput1" placeholder="Start date" name="dp" ngbDatepicker #d1="ngbDatepicker" [minDate]="minPickerDate" [(ngModel)]="startDate" [markDisabled]="isDisabled">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
                         </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-row">
                     <div class="input-group" >
-                        <input class="form-control" id="TextInput2" placeholder="End date" name="dp" ngbDatepicker #d2="ngbDatepicker" [minDate]="minPickerDate" [(ngModel)]="endDate">
+                        <input class="form-control" id="TextInput2" placeholder="End date" name="dp" ngbDatepicker #d2="ngbDatepicker" [minDate]="minPickerDate" [(ngModel)]="endDate" [markDisabled]="isDisabled">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
                         </div>
@@ -61,6 +61,26 @@
             <div class="form-group col-md-6"> 
                 <ngb-timepicker id="tp2" [ngModelOptions]="{standalone: true}" [(ngModel)]="minPickerTime2" ></ngb-timepicker>
             </div> 
+        </div>
+        <div class="form-group">
+            <label for="TextInput5">Number of users :</label>
+            <select name="input5" id="TextInput5" class="form-control" [(ngModel)]="myRent.numberOfUsers">
+                <option value="1">
+                    One
+                </option>
+                <option value="2">
+                    Two
+                </option>
+                <option value="3">
+                    Three
+                </option>
+                <option value="4">
+                    Four
+                </option>
+                <option value="5">
+                    More than four                    
+                </option>
+            </select>
         </div>
     </form>
   </div>

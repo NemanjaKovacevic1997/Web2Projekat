@@ -40,7 +40,7 @@ namespace TravellifeChaser.Models
             User u1 = new User() { Id = 1, FirstName = "Nemanja", LastName = "Kovacevic", Username = "nemanja123", Email = "kovacevicnemanja1997@gmail.com", Password = "nemanja123", MobileNumber = "+381604520858", AddressId = addr1.Id, Role = UserRole.Registered };
             RegisteredUser ru1 = new RegisteredUser() { Id = u1.Id, BounusPoints = 0 };
 
-            User u2 = new User() { Id = 2, FirstName = "Radovan", LastName = "Trudic", Username = "rasa123", Email = "kovacevicnemanja1997@gmail.com", Password = "rasa123", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.Registered };
+            User u2 = new User() { Id = 2, FirstName = "Natasa", LastName = "Trudic", Username = "naca", Email = "natasatrudic@gmail.com", Password = "naca", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.Registered };
             RegisteredUser ru2 = new RegisteredUser() { Id = u2.Id, BounusPoints = 0 };
 
             User u3 = new User() { Id = 3, FirstName = "Lana", LastName = "Kovacevic", Username = "lana123", Email = "kovacevicnemanja1997@gmail.com", Password = "lana123", MobileNumber = "+381604520858", AddressId = addr11.Id, Role = UserRole.Registered };
@@ -652,6 +652,7 @@ namespace TravellifeChaser.Models
             racAddr1.Id = 1;
             racAddr1.RACServiceId = 1;
             racAddr1.IsMain = true;
+            racAddr1.IsUsedForRent = false;
             //racAddr1.RACService = racs1;
 
             racAddr2.Street = "Nemanjina";
@@ -661,6 +662,7 @@ namespace TravellifeChaser.Models
             racAddr2.Id = 2;
             racAddr2.RACServiceId = 1;
             racAddr2.IsMain = false;
+            racAddr2.IsUsedForRent = false;
             //racAddr2.RACService = racs1;
 
             racAddr3.Street = "Azar";
@@ -670,6 +672,7 @@ namespace TravellifeChaser.Models
             racAddr3.Id = 3;
             racAddr3.RACServiceId = 2;
             racAddr3.IsMain = true;
+            racAddr3.IsUsedForRent = false;
             //racAddr3.RACService = racs2;
 
             racAddr4.Street = "Izmir";
@@ -679,6 +682,7 @@ namespace TravellifeChaser.Models
             racAddr4.Id = 4;
             racAddr4.RACServiceId = 2;
             racAddr4.IsMain = false;
+            racAddr4.IsUsedForRent = false;
             //racAddr4.RACService = racs2;
 
             racAddr5.Street = "Putin";
@@ -688,6 +692,7 @@ namespace TravellifeChaser.Models
             racAddr5.Id = 5;
             racAddr5.RACServiceId = 3;
             racAddr5.IsMain = true;
+            racAddr5.IsUsedForRent = false;
             //racAddr5.RACService = racs3;
 
             racAddr6.Street = "Artem";
@@ -697,6 +702,7 @@ namespace TravellifeChaser.Models
             racAddr6.Id = 6;
             racAddr6.RACServiceId = 3;
             racAddr6.IsMain = false;
+            racAddr6.IsUsedForRent = false;
             //racAddr6.RACService = racs3;
 
             //RAC SERVISI
@@ -750,6 +756,7 @@ namespace TravellifeChaser.Models
                 Type = "Hatchback",
                 Year = 2020,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs1.Id
             };
 
@@ -765,6 +772,7 @@ namespace TravellifeChaser.Models
                 Type = "Sedan",
                 Year = 2020,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs1.Id
             };
 
@@ -780,6 +788,7 @@ namespace TravellifeChaser.Models
                 Type = "SUV",
                 Year = 2018,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs1.Id
             };
 
@@ -795,6 +804,7 @@ namespace TravellifeChaser.Models
                 Type = "Pickup",
                 Year = 2019,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs1.Id
             };
 
@@ -810,6 +820,7 @@ namespace TravellifeChaser.Models
                 Type = "Coupe",
                 Year = 2016,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs1.Id
             };
 
@@ -825,6 +836,7 @@ namespace TravellifeChaser.Models
                 Type = "Hatchback",
                 Year = 2017,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs1.Id
             };
 
@@ -840,6 +852,7 @@ namespace TravellifeChaser.Models
                 Type = "SUV",
                 Year = 2019,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs1.Id
             };
 
@@ -855,6 +868,7 @@ namespace TravellifeChaser.Models
                 Type = "Hatchback",
                 Year = 2020,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs1.Id
             };
 
@@ -870,6 +884,7 @@ namespace TravellifeChaser.Models
                 Type = "SUV",
                 Year = 2019,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs2.Id
             };
 
@@ -885,6 +900,7 @@ namespace TravellifeChaser.Models
                 Type = "Hatchback",
                 Year = 2020,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs2.Id
             };
 
@@ -900,6 +916,7 @@ namespace TravellifeChaser.Models
                 Type = "SUV",
                 Year = 2019,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs3.Id
             };
 
@@ -915,6 +932,7 @@ namespace TravellifeChaser.Models
                 Type = "Hatchback",
                 Year = 2020,
                 Rented = false,
+                IsReservedForRent = false,
                 RACServiceId = racs3.Id
             };
 

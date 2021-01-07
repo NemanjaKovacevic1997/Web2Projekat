@@ -15,4 +15,5 @@ export class Ticket {
     lastName: string;
     passportNumber: string;
     creatorId: number;
+    rentId: number;
 }

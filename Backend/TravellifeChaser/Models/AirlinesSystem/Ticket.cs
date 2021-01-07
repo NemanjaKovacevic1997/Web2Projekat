@@ -31,5 +31,6 @@ namespace TravellifeChaser.Models
         public string PassportNumber { get; set; }
         public DateTime CreationDateAndTime { get; set; }
         public int CreatorId { get; set; }
+        public int RentId { get; set; }
     }
 }

@@ -50,4 +50,8 @@ export class TicketService extends DataService{
     });
     return this.httpClient.post(environment.serverUrl + 'Tickets/' + ticketId + '/acceptFastTicket', body, {headers: headers});
   }
+
+  ticketHasRent(rentId: number){
+    return this.httpClient.get(environment.serverUrl + 'Tickets/' + rentId + '/hasRent');
+  }
 }

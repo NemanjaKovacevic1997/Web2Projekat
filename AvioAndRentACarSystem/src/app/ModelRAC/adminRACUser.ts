@@ -7,10 +7,4 @@ export class AdminRACUser
     racServiceId: number;
     racService: RACService;
     user: User;
-
-    /*constructor(id?: number, racServiceId?: number )
-    {
-        this.id = id;
-        this.racServiceId = racServiceId;
-    }*/
 }

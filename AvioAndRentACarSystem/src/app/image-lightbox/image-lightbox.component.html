@@ -16,7 +16,7 @@
                             <button class="btn btn-info" style="width: 100px; visibility: hidden;" (click)="removeCar(car.id)">Remove</button>
                         </div>
                         <div class="columnBtn">
-                            <button class="btn btn-info" style="width: 100px;" (click)="openRentModal(car.id)">Rent</button>
+                            <button class="btn btn-info" style="width: 100px;" (click)="openRentModal(car.id, car)">Rent</button>
                         </div>
                         <div class="columnBtnRight">
                             <button class="btn btn-info" style="width: 100px; visibility: hidden;" (click)="openChangeCarModal(car.id);">Change</button>
@@ -28,7 +28,7 @@
                             <button class="btn btn-info" [disabled]="car.isReservedForRent" style="width: 100px;" (click)="removeCar(car.id)">Remove</button>
                         </div>
                         <div class="columnBtn">
-                            <button class="btn btn-info" style="width: 100px; visibility: hidden;" (click)="openRentModal(car.id)">Rent</button>
+                            <button class="btn btn-info" style="width: 100px;" (click)="openQuickRentAdminModal(car.id)">Quick</button>
                         </div>
                         <div class="columnBtnRight" >
                             <button class="btn btn-info" [disabled]="car.isReservedForRent" style="width: 100px;" (click)="openChangeCarModal(car.id);">Change</button>

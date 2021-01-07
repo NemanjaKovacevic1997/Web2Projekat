@@ -5,7 +5,6 @@ import { User } from 'src/app/AirlineModel/user';
 import { UserRole } from 'src/app/AirlineModel/userRole';
 import { AdministratorRacModalComponent } from 'src/app/ModalsRAC/administrator-rac-modal/administrator-rac-modal.component';
 import { BranchesModalComponent } from 'src/app/ModalsRAC/branches-modal/branches-modal.component';
-import { PriceListModalComponent } from 'src/app/ModalsRAC/price-list-modal/price-list-modal.component';
 import { AdminRACUser } from 'src/app/ModelRAC/adminRACUser';
 import { RACAddress } from 'src/app/ModelRAC/racAddress';
 import { RACService } from 'src/app/ModelRAC/racService';
@@ -38,6 +37,7 @@ export class AddRentACarComponent implements OnInit {
   public address: RACAddress;
   public racAdministrator: User;
   public mainAddress: RACAddress;
+  public message: string;
   get UserRole() { return UserRole; }
 
   constructor(private adminRACUserService: AdminRacUserService, private modalService: NgbModal, private activatedRoute: ActivatedRoute, loginService: LoginService, private racServiceService: RacServiceService, private racAddressService: RacAddressService, private userService: UserService) {
@@ -61,51 +61,56 @@ export class AddRentACarComponent implements OnInit {
   }
 
   addRAC() {
-    if (confirm('Are you sure you want to save this service?')) {
-      this.rac.rating = 0;
-      this.rac.priceList = "For one person " + this.priceListForOne + "€\n"+
-                           "For two persons " + this.priceListForTwo + "€\n"+
-                           "For three persons " + this.priceListForThree + "€\n"+
-                           "For four persons " + this.priceListForFour + "€\n"+
-                           "For more persons " + this.priceListForMore + "€"
-      ;
-
-      this.racServiceService.add(this.rac).subscribe(() => {
-        this.userService.add(this.racAdministrator).subscribe(() => {
-          //PRONALAZIM NAJVECI ID UNUTAR LISTE RAC SERVISA KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
-          this.allRAC.forEach(element => {
-            if(element.id > this.racId)
-              this.racId = element.id;
-          });
-          
-          this.mainAddress.racServiceId = this.racId + 1;
-          this.mainAddress.isMain = true;
-          this.racAddressService.add(this.mainAddress).subscribe(() => {
-            this.racAddresses.forEach(element => {
-              element.racServiceId = this.racId + 1;
-              element.isMain = false;
-              this.racAddressService.add(element).subscribe(() => {
-                
+    if(this.checkInput()){
+      if (confirm('Are you sure you want to save this service?')) {
+        this.rac.rating = 0;
+        this.rac.priceList = "For one person " + this.priceListForOne + "€\n"+
+                             "For two persons " + this.priceListForTwo + "€\n"+
+                             "For three persons " + this.priceListForThree + "€\n"+
+                             "For four persons " + this.priceListForFour + "€\n"+
+                             "For more persons " + this.priceListForMore + "€"
+        ;
+  
+        this.racServiceService.add(this.rac).subscribe(() => {
+          this.userService.add(this.racAdministrator).subscribe(() => {
+            //PRONALAZIM NAJVECI ID UNUTAR LISTE RAC SERVISA KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
+            this.allRAC.forEach(element => {
+              if(element.id > this.racId)
+                this.racId = element.id;
+            });
+            
+            this.mainAddress.racServiceId = this.racId + 1;
+            this.mainAddress.isMain = true;
+            this.racAddressService.add(this.mainAddress).subscribe(() => {
+              this.racAddresses.forEach(element => {
+                element.racServiceId = this.racId + 1;
+                element.isMain = false;
+                this.racAddressService.add(element).subscribe(() => {
+                  
+                });
               });
             });
-          });
-     
-          //PRONALAZIM NAJVECI ID UNUTAR LISTE USER-A KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
-          this.allUsers.forEach(element => {
-            if(element.id > this.userId)
-              this.userId = element.id;
-          });
-          
-          var adminRACUser = new AdminRACUser();
-          adminRACUser.id = this.userId + 1;
-          adminRACUser.racServiceId = this.racId + 1;
-          this.adminRACUserService.add(adminRACUser).subscribe(() => {
+       
+            //PRONALAZIM NAJVECI ID UNUTAR LISTE USER-A KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
+            this.allUsers.forEach(element => {
+              if(element.id > this.userId)
+                this.userId = element.id;
+            });
             
-          });  
+            var adminRACUser = new AdminRACUser();
+            adminRACUser.id = this.userId + 1;
+            adminRACUser.racServiceId = this.racId + 1;
+            this.adminRACUserService.add(adminRACUser).subscribe(() => {
+              
+            });  
+          }); 
+          alert("Service is saved successfuly.")
+          this.deleteAdmin();
         }); 
-        alert("Service is saved successfuly.")
-      }); 
+      }
     }
+    else
+      alert(this.message);
   }
 
   onSelectFile(event) { // called each time file input changes
@@ -158,5 +163,25 @@ export class AddRentACarComponent implements OnInit {
 
   deleteAdmin(){
     this.racAdministrator = new User();
+  }
+
+  checkInput():boolean{
+    if(this.rac.logo=="" || this.rac.logo ==undefined || 
+       this.rac.name=="" || this.rac.name==undefined || 
+       this.rac.promotionalDescription=="" || this.rac.promotionalDescription==undefined || 
+       this.mainAddress.city=="" || this.mainAddress.city==undefined || 
+       this.mainAddress.country=="" || this.mainAddress.country==undefined || 
+       this.mainAddress.number==undefined || this.mainAddress.number <= 0 || this.mainAddress.number > 10000 || 
+       this.mainAddress.street=="" || this.mainAddress.street==undefined || 
+       this.racAdministrator.username=="" || this.racAdministrator.username==undefined || 
+       this.racAdministrator.email=="" || this.racAdministrator.email==undefined || 
+       this.racAdministrator.firstName=="" || this.racAdministrator.firstName==undefined || 
+       this.racAdministrator.lastName=="" || this.racAdministrator.lastName==undefined || 
+       this.racAdministrator.mobileNumber=="" || this.racAdministrator.mobileNumber==undefined || 
+       this.racAdministrator.password=="" || this.racAdministrator.password==undefined){
+      this.message = "Bad input. All fields must be provided.";
+      return false;
+    }
+    return true
   }
 }

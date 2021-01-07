@@ -15,4 +15,5 @@ export class HistoryFlight {
     returnDay: string;
     returnHours: string;
     returnMinutes: string;
+    rentId: number;
 }

@@ -32,6 +32,7 @@ export class AddAirlineComponent implements OnInit {
   public businessDestination: Airport;
   public businessDestinations: Array<Airport>;
   public airlineAirports: Array<AirlineAirport>;
+  public message: string;
   get UserRole() { return UserRole; }
 
   constructor(private airlineService: AirlineService, private modalService: NgbModal, private userService: UserService, private loginService: LoginService, private adminAirlinesUserService: AdminAirlinesUserService) {
@@ -56,34 +57,38 @@ export class AddAirlineComponent implements OnInit {
   }
 
   addAirline(){
-    if (confirm('Are you sure you want to save this service?')) {
-      this.airline.averageRating = 0;
-
-      this.airlineService.add(this.airline).subscribe(() => {
-        this.airlineAdministrator.role = UserRole.AdminAirlines;
-        this.userService.add(this.airlineAdministrator).subscribe(() => {
-          //PRONALAZIM NAJVECI ID UNUTAR LISTE AIRLINE SERVISA KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
-          this.allAirlines.forEach(element => {
-            if(element.id > this.airlineId)
-              this.airlineId = element.id;
-          });
-     
-          //PRONALAZIM NAJVECI ID UNUTAR LISTE USER-A KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
-          this.allUsers.forEach(element => {
-            if(element.id > this.userId)
-              this.userId = element.id;
-          });
-          
-          var adminAirlineUser = new AdminAirlinesUser();
-          adminAirlineUser.id = this.userId + 1;
-          adminAirlineUser.airlineServiceId = this.airlineId + 1;
-          this.adminAirlinesUserService.add(adminAirlineUser).subscribe(() => {
+    if(this.checkInput()){
+      if (confirm('Are you sure you want to save this service?')) {
+        this.airline.averageRating = 0;
+  
+        this.airlineService.add(this.airline).subscribe(() => {
+          this.airlineAdministrator.role = UserRole.AdminAirlines;
+          this.userService.add(this.airlineAdministrator).subscribe(() => {
+            //PRONALAZIM NAJVECI ID UNUTAR LISTE AIRLINE SERVISA KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
+            this.allAirlines.forEach(element => {
+              if(element.id > this.airlineId)
+                this.airlineId = element.id;
+            });
+       
+            //PRONALAZIM NAJVECI ID UNUTAR LISTE USER-A KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
+            this.allUsers.forEach(element => {
+              if(element.id > this.userId)
+                this.userId = element.id;
+            });
             
-          });
+            var adminAirlineUser = new AdminAirlinesUser();
+            adminAirlineUser.id = this.userId + 1;
+            adminAirlineUser.airlineServiceId = this.airlineId + 1;
+            this.adminAirlinesUserService.add(adminAirlineUser).subscribe(() => {
+              
+            });
+          }); 
+          alert("Service is saved successfuly.")
         }); 
-        alert("Service is saved successfuly.")
-      }); 
+      }
     }
+    else
+      alert(this.message);
   }
 
   openAdministratorAirlineModal(){
@@ -124,5 +129,25 @@ export class AddAirlineComponent implements OnInit {
 
   deleteBusinessDestination(i: number){
     this.businessDestinations.splice(i,1);
+  }
+
+  checkInput():boolean{
+    if(this.airline.name=="" || this.airline.name==undefined || 
+       this.airline.promotionalDescription=="" || this.airline.promotionalDescription==undefined || 
+       this.airline.address.city=="" || this.airline.address.city==undefined || 
+       this.airline.address.country=="" || this.airline.address.country==undefined || 
+       this.airline.pricelist.handLuggageOverMaxDimensions==undefined || 
+       this.airline.pricelist.luggageOver10kg==undefined || 
+       this.airline.pricelist.luggageOver20kg==undefined || 
+       this.airlineAdministrator.username=="" || this.airlineAdministrator.username==undefined || 
+       this.airlineAdministrator.email=="" || this.airlineAdministrator.email==undefined || 
+       this.airlineAdministrator.firstName=="" || this.airlineAdministrator.firstName==undefined || 
+       this.airlineAdministrator.lastName=="" || this.airlineAdministrator.lastName==undefined || 
+       this.airlineAdministrator.mobileNumber=="" || this.airlineAdministrator.mobileNumber==undefined || 
+       this.airlineAdministrator.password=="" || this.airlineAdministrator.password==undefined){
+      this.message = "Bad input. All fields must be provided.";
+      return false;
+    }
+    return true
   }
 }

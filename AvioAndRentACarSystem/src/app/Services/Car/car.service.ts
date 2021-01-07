@@ -15,6 +15,10 @@ export class CarService extends DataService {
    getRACServiceCars(racServiceId: number) {
     return this.httpClient.get(environment.serverUrl + 'Cars/' + racServiceId + '/racServiceCars');
   }
+
+  getQuickRentCars(year: number, month: number, day: number, location: string) {
+    return this.httpClient.get(environment.serverUrl + 'Cars/quickRentCars/year=' + year + '&month=' + month + '&day=' + day + '&location=' + location);
+  }
 }
 
 

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Car } from 'src/app/ModelRAC/car';
 import { RACReport } from 'src/app/ModelRAC/HelperModelRAC/racReport';
 import { RACService } from 'src/app/ModelRAC/racService';
-import { Rent } from 'src/app/ModelRAC/rent';
 import { CarService } from 'src/app/Services/Car/car.service';
 import { LoginService } from 'src/app/Services/Login/login.service';
 import { RacServiceService } from 'src/app/Services/RACService/rac-service.service';

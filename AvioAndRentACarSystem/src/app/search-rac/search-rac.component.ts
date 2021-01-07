@@ -2,10 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbTimepickerConfig } from '@ng-bootstrap/ng-bootstrap';
-import { RACService } from '../ModelRAC/racService';
 import { RacServiceService } from '../Services/RACService/rac-service.service';
 import { SearchDataRAC } from '../ModelRAC/HelperModelRAC/searchDataRAC';
-import { IgxDatePickerTemplateDirective } from 'igniteui-angular/lib/date-picker/date-picker.directives';
 import { RacAddressService } from '../Services/RACAddress/rac-address.service';
 import { RACAddress } from '../ModelRAC/racAddress';
 
@@ -63,6 +61,28 @@ export class SearchRacComponent implements OnInit {
     this.selectedAddress = new RACAddress();
   }
 
+  ngOnInit(): void {
+    this.minPickerDate = {
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+      day: new Date().getDate()
+    };
+
+    this.minPickerTime1 = {
+      hour: new Date().getHours(),
+      minutes: new Date().getMinutes()
+    }
+
+    this.minPickerTime2 = {
+      hour: new Date().getHours(),
+      minutes: new Date().getMinutes()
+    }
+
+    this.racAddressService.getRACServiceMainAddresses(1).subscribe(ret =>{
+      this.addresses = ret as Array<RACAddress>;
+    });
+  } 
+  
   onSubmit() {
     if (this.form.valid){
       let filterData: SearchDataRAC = new SearchDataRAC();
@@ -85,26 +105,4 @@ export class SearchRacComponent implements OnInit {
     else
       alert("Bad input.");
   }
-
-  ngOnInit(): void {
-    this.minPickerDate = {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth() + 1,
-      day: new Date().getDate()
-    };
-
-    this.minPickerTime1 = {
-      hour: new Date().getHours(),
-      minutes: new Date().getMinutes()
-    }
-
-    this.minPickerTime2 = {
-      hour: new Date().getHours(),
-      minutes: new Date().getMinutes()
-    }
-
-    this.racAddressService.getRACServiceMainAddresses(1).subscribe(ret =>{
-      this.addresses = ret as Array<RACAddress>;
-    });
-  } 
 }

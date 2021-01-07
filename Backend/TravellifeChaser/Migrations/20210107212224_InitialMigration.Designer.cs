@@ -10,7 +10,7 @@ using TravellifeChaser.Data;
 namespace TravellifeChaser.Migrations
 {
     [DbContext(typeof(TravellifeChaserDBContext))]
-    [Migration("20201229114319_InitialMigration")]
+    [Migration("20210107212224_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -620,11 +620,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 300.0,
-                            Duration = 270.0,
+                            Duration = 2980.0,
                             FromId = 1,
-                            LandingTime = new DateTime(2020, 9, 7, 17, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 2506,
-                            TakeoffTime = new DateTime(2020, 9, 7, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 2
                         },
                         new
@@ -633,11 +633,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 2,
                             AverageRating = 0.0,
                             Cost = 250.0,
-                            Duration = 100.0,
+                            Duration = 2980.0,
                             FromId = 1,
-                            LandingTime = new DateTime(2020, 9, 7, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 1003,
-                            TakeoffTime = new DateTime(2020, 9, 7, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 3
                         },
                         new
@@ -646,11 +646,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 100.0,
-                            Duration = 165.0,
+                            Duration = 2980.0,
                             FromId = 2,
-                            LandingTime = new DateTime(2020, 9, 8, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 400,
-                            TakeoffTime = new DateTime(2020, 9, 8, 12, 15, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 3
                         },
                         new
@@ -659,11 +659,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 200.0,
-                            Duration = 330.0,
+                            Duration = 2980.0,
                             FromId = 4,
-                            LandingTime = new DateTime(2020, 9, 8, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 500,
-                            TakeoffTime = new DateTime(2020, 9, 8, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 5
                         },
                         new
@@ -672,11 +672,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 300.0,
-                            Duration = 270.0,
+                            Duration = 2980.0,
                             FromId = 5,
-                            LandingTime = new DateTime(2020, 9, 9, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 250,
-                            TakeoffTime = new DateTime(2020, 9, 9, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 4
                         },
                         new
@@ -685,11 +685,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 300.0,
-                            Duration = 90.0,
+                            Duration = 2980.0,
                             FromId = 7,
-                            LandingTime = new DateTime(2020, 9, 10, 19, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 567,
-                            TakeoffTime = new DateTime(2020, 9, 10, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 9
                         },
                         new
@@ -698,11 +698,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 300.0,
-                            Duration = 90.0,
+                            Duration = 2980.0,
                             FromId = 3,
-                            LandingTime = new DateTime(2020, 9, 11, 8, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 567,
-                            TakeoffTime = new DateTime(2020, 9, 11, 7, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 7
                         },
                         new
@@ -711,11 +711,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 301.0,
-                            Duration = 90.0,
+                            Duration = 2980.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 567,
-                            TakeoffTime = new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -724,11 +724,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 2,
                             AverageRating = 0.0,
                             Cost = 250.0,
-                            Duration = 90.0,
+                            Duration = 2980.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 300,
-                            TakeoffTime = new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -737,11 +737,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 450.0,
-                            Duration = 90.0,
+                            Duration = 2980.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 600,
-                            TakeoffTime = new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -750,11 +750,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 2,
                             AverageRating = 0.0,
                             Cost = 100.0,
-                            Duration = 90.0,
+                            Duration = 2980.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 1000,
-                            TakeoffTime = new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -763,11 +763,11 @@ namespace TravellifeChaser.Migrations
                             AirlineId = 1,
                             AverageRating = 0.0,
                             Cost = 305.0,
-                            Duration = 140.0,
+                            Duration = 2980.0,
                             FromId = 5,
-                            LandingTime = new DateTime(2020, 9, 12, 11, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 555,
-                            TakeoffTime = new DateTime(2020, 9, 12, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 9
                         });
                 });
@@ -967,6 +967,15 @@ namespace TravellifeChaser.Migrations
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("QuickRentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("QuickRentDiscount")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("QuickRented")
+                        .HasColumnType("bit");
+
                     b.Property<int>("RACServiceId")
                         .HasColumnType("int");
 
@@ -1000,6 +1009,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "Mercedes",
                             Model = "A 250",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 1,
                             Rating = 0.0,
                             Rented = false,
@@ -1015,6 +1027,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "BMW",
                             Model = "M5",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 1,
                             Rating = 0.0,
                             Rented = false,
@@ -1030,6 +1045,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "Range Rover",
                             Model = "P525",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 1,
                             Rating = 0.0,
                             Rented = false,
@@ -1045,6 +1063,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "RAM",
                             Model = "1500",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 1,
                             Rating = 0.0,
                             Rented = false,
@@ -1060,6 +1081,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "Audi",
                             Model = "TT",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 1,
                             Rating = 0.0,
                             Rented = false,
@@ -1075,6 +1099,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "Renault",
                             Model = "Clio 5",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 1,
                             Rating = 0.0,
                             Rented = false,
@@ -1090,6 +1117,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "BMW",
                             Model = "X6",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 1,
                             Rating = 0.0,
                             Rented = false,
@@ -1105,6 +1135,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "Mercedes",
                             Model = "A 100",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 1,
                             Rating = 0.0,
                             Rented = false,
@@ -1120,6 +1153,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "BMW",
                             Model = "X6",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 2,
                             Rating = 0.0,
                             Rented = false,
@@ -1135,6 +1171,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "Mercedes",
                             Model = "A 100",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 2,
                             Rating = 0.0,
                             Rented = false,
@@ -1150,6 +1189,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "BMW",
                             Model = "X6",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 3,
                             Rating = 0.0,
                             Rented = false,
@@ -1165,6 +1207,9 @@ namespace TravellifeChaser.Migrations
                             IsReservedForRent = false,
                             Mark = "Mercedes",
                             Model = "A 100",
+                            QuickRentDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            QuickRentDiscount = 0,
+                            QuickRented = false,
                             RACServiceId = 3,
                             Rating = 0.0,
                             Rented = false,
@@ -18788,6 +18833,9 @@ namespace TravellifeChaser.Migrations
                     b.Property<string>("PassportNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RentId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Row")
                         .HasColumnType("int");
 
@@ -18817,6 +18865,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 7,
                             IsAccepted = true,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 3,
                             UserId = 1
                         },
@@ -18831,6 +18880,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 8,
                             IsAccepted = true,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 8,
                             UserId = 2
                         },
@@ -18845,6 +18895,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 10,
                             IsAccepted = true,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 9,
                             UserId = 3
                         },
@@ -18859,6 +18910,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 7,
                             IsAccepted = true,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 13,
                             UserId = 4
                         },
@@ -18873,6 +18925,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 8,
                             IsAccepted = true,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 15,
                             UserId = 1
                         },
@@ -18887,6 +18940,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 10,
                             IsAccepted = true,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 5,
                             UserId = 2
                         },
@@ -18901,6 +18955,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 7,
                             IsAccepted = true,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 1,
                             UserId = 3
                         },
@@ -18915,6 +18970,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 8,
                             IsAccepted = true,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 18,
                             UserId = 4
                         },
@@ -18929,6 +18985,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 1,
                             IsAccepted = false,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 3
                         },
                         new
@@ -18942,6 +18999,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 3,
                             IsAccepted = false,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 10
                         },
                         new
@@ -18955,6 +19013,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 4,
                             IsAccepted = false,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 12
                         },
                         new
@@ -18968,6 +19027,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 5,
                             IsAccepted = false,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 13
                         },
                         new
@@ -18981,6 +19041,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 6,
                             IsAccepted = false,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 3
                         },
                         new
@@ -18994,6 +19055,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 7,
                             IsAccepted = false,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 0
                         },
                         new
@@ -19007,6 +19069,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 12,
                             IsAccepted = false,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 5
                         },
                         new
@@ -19020,6 +19083,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 8,
                             IsAccepted = false,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 15
                         },
                         new
@@ -19033,6 +19097,7 @@ namespace TravellifeChaser.Migrations
                             FlightId = 8,
                             IsAccepted = false,
                             PassportNumber = "134214412",
+                            RentId = 0,
                             Row = 4
                         });
                 });

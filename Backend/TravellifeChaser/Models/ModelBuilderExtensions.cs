@@ -113,44 +113,44 @@ namespace TravellifeChaser.Models
             AirlineAirport aa12 = new AirlineAirport() { AirlineId = 2, AirportId = 8 };
             AirlineAirport aa13 = new AirlineAirport() { AirlineId = 2, AirportId = 9 };
 
-            var TakeoffTime1 = new DateTime(2020, 9, 7, 13, 0, 0);
-            var LandingTime1 = new DateTime(2020, 9, 7, 17, 30, 0);
+            var TakeoffTime1 = new DateTime(2021, 1, 12, 7, 40, 0);
+            var LandingTime1 = new DateTime(2021, 1, 14, 9, 20, 0);
             var Duration1 = LandingTime1.Subtract(TakeoffTime1).TotalMinutes;
 
-            var TakeoffTime2 = new DateTime(2020, 9, 7, 7, 40, 0);
-            var LandingTime2 = new DateTime(2020, 9, 7, 9, 20, 0);
+            var TakeoffTime2 = new DateTime(2021, 1, 12, 7, 40, 0);
+            var LandingTime2 = new DateTime(2021, 1, 14, 9, 20, 0);
             var Duration2 = LandingTime2.Subtract(TakeoffTime2).TotalMinutes;
 
-            var TakeoffTime3 = new DateTime(2020, 9, 8, 12, 15, 0);
-            var LandingTime3 = new DateTime(2020, 9, 8, 15, 0, 0);
+            var TakeoffTime3 = new DateTime(2021, 1, 12, 7, 40, 0);
+            var LandingTime3 = new DateTime(2021, 1, 14, 9, 20, 0);
             var Duration3 = LandingTime3.Subtract(TakeoffTime3).TotalMinutes;
 
-            var TakeoffTime4 = new DateTime(2020, 9, 8, 14, 0, 0);
-            var LandingTime4 = new DateTime(2020, 9, 8, 19, 30, 0);
+            var TakeoffTime4 = new DateTime(2021, 1, 12, 7, 40, 0);
+            var LandingTime4 = new DateTime(2021, 1, 14, 9, 20, 0);
             var Duration4 = LandingTime4.Subtract(TakeoffTime4).TotalMinutes;
 
-            var TakeoffTime5 = new DateTime(2020, 9, 9, 15, 0, 0);
-            var LandingTime5 = new DateTime(2020, 9, 9, 19, 30, 0);
+            var TakeoffTime5 = new DateTime(2021, 1, 12, 7, 40, 0);
+            var LandingTime5 = new DateTime(2021, 1, 14, 9, 20, 0);
             var Duration5 = LandingTime5.Subtract(TakeoffTime5).TotalMinutes;
 
-            var TakeoffTime6 = new DateTime(2020, 9, 10, 18, 0, 0);
-            var LandingTime6 = new DateTime(2020, 9, 10, 19, 30, 0);
+            var TakeoffTime6 = new DateTime(2021, 1, 12, 7, 40, 0);
+            var LandingTime6 = new DateTime(2021, 1, 14, 9, 20, 0);
             var Duration6 = LandingTime6.Subtract(TakeoffTime6).TotalMinutes;
 
-            var TakeoffTime7 = new DateTime(2020, 9, 11, 7, 0, 0);
-            var LandingTime7 = new DateTime(2020, 9, 11, 8, 30, 0);
+            var TakeoffTime7 = new DateTime(2021, 1, 12, 7, 40, 0);
+            var LandingTime7 = new DateTime(2021, 1, 14, 9, 20, 0);
             var Duration7 = LandingTime7.Subtract(TakeoffTime7).TotalMinutes;
 
-            var TakeoffTime8 = new DateTime(2020, 9, 11, 9, 0, 0);
-            var LandingTime8 = new DateTime(2020, 9, 11, 10, 30, 0);
+            var TakeoffTime8 = new DateTime(2021, 1, 12, 7, 40, 0);
+            var LandingTime8 = new DateTime(2021, 1, 14, 9, 20, 0);
             var Duration8 = LandingTime8.Subtract(TakeoffTime8).TotalMinutes;
 
-            var TakeoffTime9 = new DateTime(2020, 9, 12, 9, 0, 0);
-            var LandingTime9 = new DateTime(2020, 9, 12, 11, 20, 0);
+            var TakeoffTime9 = new DateTime(2021, 1, 12, 7, 40, 0);
+            var LandingTime9 = new DateTime(2021, 1, 14, 9, 20, 0);
             var Duration9 = LandingTime9.Subtract(TakeoffTime9).TotalMinutes;
 
-            var TakeoffTime10 = new DateTime(2020, 9, 12, 14, 0, 0);
-            var LandingTime10 = new DateTime(2020, 9, 12, 20, 30, 0);
+            var TakeoffTime10 = new DateTime(2021, 1, 12, 7, 40, 0);
+            var LandingTime10 = new DateTime(2021, 1, 14, 9, 20, 0);
             var Duration10 = LandingTime10.Subtract(TakeoffTime10).TotalMinutes;
 
             int rows = 20;
@@ -344,7 +344,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = true,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 3, 14, 30, 11),
-                CreatorId = 1
+                CreatorId = 1,
+                RentId = 0
             };
 
             Ticket t2 = new Ticket()
@@ -359,7 +360,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = true,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 4, 14, 30, 11),
-                CreatorId = 1
+                CreatorId = 1,
+                RentId = 0
             };
 
             Ticket t3 = new Ticket()
@@ -374,7 +376,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = true,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 4, 14, 30, 11),
-                CreatorId = 1
+                CreatorId = 1,
+                RentId = 0
             };
 
 
@@ -391,7 +394,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = true,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 25, 14, 30, 11),
-                CreatorId = 1
+                CreatorId = 1,
+                RentId = 0
             };
 
             Ticket t5 = new Ticket()
@@ -406,7 +410,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = true,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 25, 14, 30, 11),
-                CreatorId = 1
+                CreatorId = 1,
+                RentId = 0
             };
 
             Ticket t6 = new Ticket()
@@ -421,7 +426,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = true,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 26, 14, 30, 11),
-                CreatorId = 1
+                CreatorId = 1,
+                RentId = 0
             };
 
             Ticket t7 = new Ticket()
@@ -436,7 +442,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = true,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 28, 14, 30, 11),
-                CreatorId = 1
+                CreatorId = 1,
+                RentId = 0
             };
 
             Ticket t8 = new Ticket()
@@ -451,7 +458,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = true,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 29, 14, 30, 11),
-                CreatorId = 1
+                CreatorId = 1,
+                RentId = 0
             };
 
 
@@ -469,7 +477,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = false,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 29, 14, 30, 11),
-                CreatorId = 7
+                CreatorId = 7,
+                RentId = 0
             };
 
             Ticket t10 = new Ticket()
@@ -484,7 +493,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = false,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 29, 14, 30, 11),
-                CreatorId = 7
+                CreatorId = 7,
+                RentId = 0
             };
 
             Ticket t11 = new Ticket()
@@ -499,7 +509,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = false,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 29, 14, 30, 11),
-                CreatorId = 7
+                CreatorId = 7,
+                RentId = 0
             };
             Ticket t12 = new Ticket()
             {
@@ -513,7 +524,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = false,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 29, 14, 30, 11),
-                CreatorId = 7
+                CreatorId = 7,
+                RentId = 0
             };
 
             Ticket t13 = new Ticket()
@@ -528,7 +540,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = false,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 29, 14, 30, 11),
-                CreatorId = 7
+                CreatorId = 7,
+                RentId = 0
             };
 
             Ticket t14 = new Ticket()
@@ -543,7 +556,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = false,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 29, 14, 30, 11),
-                CreatorId = 7
+                CreatorId = 7,
+                RentId = 0
             };
 
             Ticket t15 = new Ticket()
@@ -558,7 +572,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = false,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 29, 14, 30, 11),
-                CreatorId = 7
+                CreatorId = 7,
+                RentId = 0
             };
 
             Ticket t16 = new Ticket()
@@ -573,7 +588,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = false,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 29, 14, 30, 11),
-                CreatorId = 7
+                CreatorId = 7,
+                RentId = 0
             };
 
             Ticket t17 = new Ticket()
@@ -588,7 +604,8 @@ namespace TravellifeChaser.Models
                 IsAccepted = false,
                 PassportNumber = "134214412",
                 CreationDateAndTime = new DateTime(2020, 8, 29, 14, 30, 11),
-                CreatorId = 7
+                CreatorId = 7,
+                RentId = 0
             };
 
             List<Ticket> tickets = new List<Ticket>();

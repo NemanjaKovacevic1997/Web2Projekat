@@ -41,7 +41,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TimepickerBasicComponent } from './timepicker-basic/timepicker-basic.component';
 import { RentACarSelectedComponent } from './rent-a-car-selected/rent-a-car-selected.component';
 import { ImageLightboxComponent } from './image-lightbox/image-lightbox.component';
-//import { LightBoxModule, CarouselModule, ModalModule, WavesModule } from 'angular-bootstrap-md';
 import { SeatsMapComponent } from './seats-map/seats-map.component';
 import { SeatsComponent } from './seats/seats.component';
 import { InviteComponent } from './invite/invite.component';
@@ -77,7 +76,6 @@ import { PromotionalDescriptionModalComponent } from './AdministratorAirline/Air
 import { AddressModalComponent } from './AdministratorAirline/AirlineProfileModals/address-modal/address-modal.component';
 import { PricelistModalComponent } from './AdministratorAirline/AirlineProfileModals/pricelist-modal/pricelist-modal.component';
 import { FastTicketsComponent } from './fast-tickets/fast-tickets.component';
-
 import {MatTabsModule} from '@angular/material/tabs';
 import { BranchesModalComponent } from './ModalsRAC/branches-modal/branches-modal.component';
 import { PriceListModalComponent } from './ModalsRAC/price-list-modal/price-list-modal.component';
@@ -108,12 +106,13 @@ import { PageAirlinesComponent } from './AdministratorSystem/page-airlines/page-
 import { PageAdministratorsComponent } from './AdministratorSystem/page-administrators/page-administrators.component';
 import { AdminsComponent } from './AdministratorSystem/admins/admins.component';
 import { AdministratorRacModalComponent } from './ModalsRAC/administrator-rac-modal/administrator-rac-modal.component';
-//import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { MatExpansionModule } from  '@angular/material/expansion';
 import { BusinessDestinationsModalComponent } from './ModalsRAC/business-destinations-modal/business-destinations-modal.component';
 import { RentModalComponent } from './ModalsRAC/rent-modal/rent-modal.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { QuickRentAdminModalComponent } from './ModalsRAC/quick-rent-admin-modal/quick-rent-admin-modal.component';
+import { QuickRentUserModalComponent } from './ModalsRAC/quick-rent-user-modal/quick-rent-user-modal.component';
 
 @NgModule({
   declarations: [
@@ -195,7 +194,9 @@ import { MatIconModule } from '@angular/material/icon';
     AdminsComponent,
     AdministratorRacModalComponent,
     BusinessDestinationsModalComponent,
-    RentModalComponent
+    RentModalComponent,
+    QuickRentAdminModalComponent,
+    QuickRentUserModalComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HistoryFlight } from '../AirlineModel/HelperModel/historyFlight';
+import { Ticket } from '../AirlineModel/ticket';
+import { QuickRentUserModalComponent } from '../ModalsRAC/quick-rent-user-modal/quick-rent-user-modal.component';
 import { Car } from '../ModelRAC/car';
 import { RACAddress } from '../ModelRAC/racAddress';
 import { RACService } from '../ModelRAC/racService';
 import { Rent } from '../ModelRAC/rent';
 import { CarService } from '../Services/Car/car.service';
+import { FlightService } from '../Services/Flights/flight.service';
 import { LoginService } from '../Services/Login/login.service';
 import { RacAddressService } from '../Services/RACAddress/rac-address.service';
 import { RacServiceService } from '../Services/RACService/rac-service.service';
@@ -21,15 +25,17 @@ export class HistoryComponent implements OnInit {
   historys: Array<HistoryFlight>;
   rents: Array<Rent>;
   allRents: Array<Rent>;
+  ticket: Ticket;
+  cars: Array<Car>;
+  car: Car;
 
-  constructor(private loginService: LoginService, private ticketService: TicketService, private rentService: RentService, private racAddressService: RacAddressService, private carService: CarService, private racService: RacServiceService) { }
+  constructor(private loginService: LoginService, private modalService: NgbModal, private ticketService: TicketService, private rentService: RentService, private racAddressService: RacAddressService, private carService: CarService, private racService: RacServiceService, private flightService: FlightService) { }
 
   ngOnInit(): void {
     let id = this.loginService.user.id;
     this.ticketService.userFlightHistory(id).subscribe(res => {
       this.historys = res as Array<HistoryFlight>;
     });
-
     this.rents = new Array<Rent>();
     this.rentService.getAll().subscribe(ret => {
       this.allRents = ret as Array<Rent>;
@@ -43,7 +49,10 @@ export class HistoryComponent implements OnInit {
                 element.car = res as Car;
                 this.racService.get(element.car.racServiceId).subscribe(res => {
                   element.rac = res as RACService;
-                  this.rents.push(element);
+                  this.ticketService.ticketHasRent(element.id).subscribe(ret => {
+                    element.ticketId = ret as number;
+                    this.rents.push(element);
+                  });              
                 });
               });
             });
@@ -53,10 +62,37 @@ export class HistoryComponent implements OnInit {
     });
   }
 
+  openQuickRentUserModal(ticketId: number, location: string){
+    const modalRef = this.modalService.open(QuickRentUserModalComponent);
+    modalRef.componentInstance.ticketId = ticketId;
+    modalRef.componentInstance.location = location;
+    modalRef.componentInstance.car = this.car;
+    modalRef.result.then((result) => {
+      if (result) {
+        this.car = result;
+        this.ngOnInit();
+      }
+    }, (reason) => {
+      console.log(reason);
+    });
+  }
+
   dropRent(rent:Rent) {
     rent.car.rented = false;
     this.carService.update(rent.carId, rent.car).subscribe(()=>{
-      this.rentService.remove(rent.id).subscribe(() => this.ngOnInit());
+      this.rentService.remove(rent.id).subscribe(() => {
+        if(rent.ticketId > 0){
+          this.ticketService.get(rent.ticketId).subscribe(ret => {
+            rent.ticket = ret as Ticket;
+            rent.ticket.rentId = 0;
+            this.ticketService.update(rent.ticketId, rent.ticket).subscribe(() =>{
+              this.ngOnInit()
+            });
+          });
+        }else{
+          this.ngOnInit()
+        }
+      });
     });
   }
 
@@ -131,6 +167,23 @@ export class HistoryComponent implements OnInit {
     return true;
   }
 
+  is3HoursBeforeDelivery(startDate: Date): boolean {
+    let now = new Date();
+    let rentDate = new Date(startDate);
+    rentDate.setHours(rentDate.getHours() - 3);
+
+    console.log("now :" +  now + " : " + now.getTime());
+    console.log("date :" + rentDate + " : " + rentDate.getTime());
+
+    if(now.getTime() >= rentDate.getTime()){
+      console.log("true");
+      return false;
+    }
+
+    console.log("false");
+    return true;
+  }
+
   isFinished(endDate: Date): boolean {
     let now = new Date();
     let rentDate = new Date(endDate);
@@ -148,7 +201,13 @@ export class HistoryComponent implements OnInit {
   }
 
   drop(ticketId: number) {
-    this.ticketService.remove(ticketId).subscribe(() => this.ngOnInit());
+    if (confirm('Are you sure you want to delete this reservation? If you have rented a car, that rent will also be deleted.')){
+      this.rentService.deleteRentWithTicketId(ticketId).subscribe(() => {
+        this.ticketService.remove(ticketId).subscribe(() => {
+          this.ngOnInit();
+        });
+      });
+    }
   }
 
   isAfter3HoursBeforeFlight(day: number, month: number, year: number, hour: number, minute: number): boolean {

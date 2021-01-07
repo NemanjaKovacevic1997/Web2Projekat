@@ -1,27 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PriceListModalComponent } from 'src/app/ModalsRAC/price-list-modal/price-list-modal.component';
 import { BranchesModalComponent } from 'src/app/ModalsRAC/branches-modal/branches-modal.component';
 import { AddressRacModalComponent } from 'src/app/ModalsRAC/address-rac-modal/address-rac-modal.component';
-import { ImageService } from 'src/app/Services/Image/image.service';
 import { LoginService } from 'src/app/Services/Login/login.service';
 import { UserRole } from 'src/app/AirlineModel/userRole';
 import { NameRacModalComponent } from 'src/app/ModalsRAC/name-rac-modal/name-rac-modal.component';
 import { PromotionalDescriptionRacComponent } from 'src/app/ModalsRAC/promotional-description-rac/promotional-description-rac.component';
 import { RacServiceService } from 'src/app/Services/RACService/rac-service.service';
-import { AdminRacAuthGuardService } from 'src/app/Services/AuthGuards/adminRAC/admin-rac-auth-guard.service';
-import { AdminRACUser } from 'src/app/ModelRAC/adminRACUser';
-import { AdminRacUserService } from 'src/app/Services/AdminRACUser/admin-rac-user.service';
 import { RACService } from 'src/app/ModelRAC/racService';
-import { CarService } from 'src/app/Services/Car/car.service';
-import { Car } from 'src/app/ModelRAC/car';
-import { Airline } from 'src/app/AirlineModel/airline';
-import { AirlineService } from 'src/app/Services/Airline/airline.service';
 import { ActivatedRoute } from '@angular/router';
 import { RacAddressService } from 'src/app/Services/RACAddress/rac-address.service';
 import { RACAddress } from 'src/app/ModelRAC/racAddress';
 import { RentService } from 'src/app/Services/Rent/rent.service';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-info-rac',
@@ -265,7 +255,7 @@ export class InfoRacComponent implements OnInit {
     if(this.loginService.userRole == UserRole.AdminRAC){
       this.address = new RACAddress();
       const modalRef = this.modalService.open(BranchesModalComponent);
-      modalRef.componentInstance.address = this.address;//componentInstance mora da se zove isto kao i u komponenti za modal
+      modalRef.componentInstance.address = this.address;
       modalRef.result.then((result) => {
         if (result) {
           this.address = result;

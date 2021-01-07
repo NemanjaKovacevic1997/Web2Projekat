@@ -12,9 +12,8 @@ import { RACService } from '../ModelRAC/racService';
 import { RentService } from '../Services/Rent/rent.service';
 import { Rent } from '../ModelRAC/rent';
 import { RentModalComponent } from '../ModalsRAC/rent-modal/rent-modal.component';
-import { PriceList } from '../AirlineModel/priceList';
 import { RacAddressService } from '../Services/RACAddress/rac-address.service';
-import { RACAddress } from '../ModelRAC/racAddress';
+import { QuickRentAdminModalComponent } from '../ModalsRAC/quick-rent-admin-modal/quick-rent-admin-modal.component';
 
 @Component({
   selector: 'app-image-lightbox',
@@ -31,6 +30,7 @@ export class ImageLightboxComponent implements OnInit {
   public slideIndex = 0;
   public myCar: Car;
   public myCarBefore: Car;
+  public quickRentCar: Car;
   public indexOfMyCar: number;
   public myRent: Rent;
   public allRents: Array<Rent>;
@@ -109,6 +109,21 @@ export class ImageLightboxComponent implements OnInit {
     });
   }
 
+  openQuickRentAdminModal(id){
+    this.quickRentCar = this.cars.find(x=>x.id == id);
+    const modalRef = this.modalService.open(QuickRentAdminModalComponent);
+    modalRef.componentInstance.quickRentCar = this.quickRentCar;
+    modalRef.result.then((result) => {
+      if (result) {
+        this.quickRentCar = result;
+        this.quickRentCar.quickRented = true;
+        this.carService.update(this.quickRentCar.id, this.quickRentCar).subscribe(() => this.ngOnInit());
+      }
+    }, (reason) => {
+      console.log(reason);
+    }); 
+  }
+
   removeCar(id){
     if (confirm('Are you sure you want to remove this car?')) {
       this.carService.remove(id).subscribe(() => this.ngOnInit());
@@ -141,9 +156,10 @@ export class ImageLightboxComponent implements OnInit {
     return rented;
   }
 
-  openRentModal(id){ 
+  openRentModal(id: number, car: Car){ 
     this.myRent = new Rent();
     this.myRent.carId = id;
+    this.myRent.car = car;
     const modalRef = this.modalService.open(RentModalComponent);
     modalRef.componentInstance.myRent = this.myRent;
     modalRef.componentInstance.racId = this.id;
@@ -158,6 +174,7 @@ export class ImageLightboxComponent implements OnInit {
           this.myRent.price = days * this.cars.find(x => x.id == id).dailyPrice + this.getPriceForNumberOfUsers(this.myRent.numberOfUsers);
         this.myRent.registeredUserId = this.loginService.user.id;
         this.myRent.carId = id;
+        this.myRent.car = undefined;
         this.rentService.add(this.myRent).subscribe((res: any) => {
             this.router.navigateByUrl("/"+ this.loginService.user.username + '/history');
         });
@@ -219,38 +236,43 @@ export class ImageLightboxComponent implements OnInit {
     }); 
   }
 
-   openModal() {
+  //METODE ZA PRIKAZ SLIKA
+  openModal() {
     document.getElementById('imgModal').style.display = "block";
-   }
-   closeModal() {
+  }
+
+  closeModal() {
     document.getElementById('imgModal').style.display = "none";
-   }
-   plusSlides(n) {
+  }
+
+  plusSlides(n) {
     this.showSlides(this.slideIndex += n);
-   }
-   currentSlide(n) {
+  }
+
+  currentSlide(n) {
     this.showSlides(this.slideIndex = n);
-   }
-   showSlides(slideIndex);
-   showSlides(n) {
+  }
+
+  showSlides(slideIndex);
+  showSlides(n) {
     let i;
     const slides = document.getElementsByClassName("img-slides") as HTMLCollectionOf < HTMLElement > ;
     const dots = document.getElementsByClassName("images") as HTMLCollectionOf < HTMLElement > ;
     if (n > slides.length) {
-     this.slideIndex = 1
+      this.slideIndex = 1
     }
     if (n < 1) {
-     this.slideIndex = slides.length
+      this.slideIndex = slides.length
     }
     for (i = 0; i < slides.length; i++) {
-     slides[i].style.display = "none";
+      slides[i].style.display = "none";
     }
     for (i = 0; i < dots.length; i++) {
-     dots[i].className = dots[i].className.replace(" active", "");
+      dots[i].className = dots[i].className.replace(" active", "");
     }
     slides[this.slideIndex - 1].style.display = "block";
     if (dots && dots.length > 0) {
-     dots[this.slideIndex - 1].className += " active";
+      dots[this.slideIndex - 1].className += " active";
     }
   }
 }

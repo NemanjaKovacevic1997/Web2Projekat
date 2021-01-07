@@ -19,6 +19,9 @@ namespace TravellifeChaser.Models.RACSystem
         public bool Rented { get; set; }
         public bool IsReservedForRent { get; set; }
         public int RACServiceId { get; set; }
+        public bool QuickRented { get; set; }
+        public DateTime QuickRentDate { get; set; }
+        public int QuickRentDiscount { get; set; }
         public RACService RACService { get; set; }
         public ICollection<Rent> Rents { get; set; } = new List<Rent>(); // N : 1  Rent - Car
     }

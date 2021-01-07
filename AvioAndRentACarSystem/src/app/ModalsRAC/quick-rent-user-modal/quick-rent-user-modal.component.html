@@ -1,0 +1,86 @@
+<div>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Quick rent</h4>
+        <button type="button" class="close myButton" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <div class="form-group">
+                        <label for="numberOfDays">Number of days :</label>
+                        <input name="numberOfDays" type="number" id="numberOfDays" class="form-control" [(ngModel)]="numberOfDays" min="1" max="999">
+                    </div>
+                </div>
+                <div class="form-group col-md-6"> 
+                    <div class="form-group">
+                        <label for="numberOfUsers">Number of users :</label>
+                        <select name="numberOfUsers" id="numberOfUsers" class="form-control" [(ngModel)]="numberOfUsers">
+                            <option value="1" selected>
+                                One
+                            </option>
+                            <option value="2">
+                                Two
+                            </option>
+                            <option value="3">
+                                Three
+                            </option>
+                            <option value="4">
+                                Four
+                            </option>
+                            <option value="5">
+                                More than four                    
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <table class="table table-borderless table-hover myBody">
+            <thead class="thead-light">
+            <tr class="bg-primary">
+                <th>Car</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Service</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr  *ngFor="let car of cars;">
+                    <td>
+                        <ng-template #list>
+                            <div class="d-flex flex-column">
+                              <span>{{ car.mark }} {{ car.model}}</span>
+                              <span>Type: {{ car.type }}</span>
+                              <span>Seats: {{ car.seats }}</span>
+                              <span>Year: {{ car.year }}</span>
+                              <span>Daily price: {{ car.dailyPrice }}€</span>
+                            </div>
+                        </ng-template>
+                        <img src="{{car.image}}" class="img rounded-lg" [ngbTooltip]="list">
+                    </td>
+                    <td>
+                        <div class="form-row strikethrough">
+                            {{ car.dailyPrice * numberOfDays }}€
+                        </div>
+                        <div class="form-row">
+                            {{ (car.dailyPrice * numberOfDays) - (car.dailyPrice * numberOfDays * car.quickRentDiscount / 100) }}€
+                        </div>
+                    </td>
+                    <td>
+                        {{ car.quickRentDiscount }}%
+                    </td>
+                    <td>
+                        {{ car.racService.name }}
+                    </td>
+                    <td>
+                        <button type="button" (click)="passBack(car)" class="btn btn-info">Rent</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

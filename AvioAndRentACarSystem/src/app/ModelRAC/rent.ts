@@ -1,3 +1,4 @@
+import { Ticket } from "../AirlineModel/ticket";
 import { User } from "../AirlineModel/user";
 import { Car } from "./car";
 import { RACAddress } from "./racAddress";
@@ -21,6 +22,8 @@ export class Rent
     registeredUserId: number;
     registeredUser: User;
     numberOfUsers: number;
+    ticketId: number;
+    ticket: Ticket;
 
     constructor(id?: number, startDate?: Date, endDate?: Date, price?: number, ratingForRACService?: number, ratingForCar?: number, startRACAddressId?: number, endRACAddressId?: number, carId?: number, registeredUserId?: number )
     {

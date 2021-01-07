@@ -361,7 +361,10 @@ namespace TravellifeChaser.Migrations
                     Image = table.Column<string>(nullable: true),
                     Rented = table.Column<bool>(nullable: false),
                     IsReservedForRent = table.Column<bool>(nullable: false),
-                    RACServiceId = table.Column<int>(nullable: false)
+                    RACServiceId = table.Column<int>(nullable: false),
+                    QuickRented = table.Column<bool>(nullable: false),
+                    QuickRentDate = table.Column<DateTime>(nullable: false),
+                    QuickRentDiscount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -540,7 +543,8 @@ namespace TravellifeChaser.Migrations
                     LastName = table.Column<string>(nullable: true),
                     PassportNumber = table.Column<string>(nullable: true),
                     CreationDateAndTime = table.Column<DateTime>(nullable: false),
-                    CreatorId = table.Column<int>(nullable: false)
+                    CreatorId = table.Column<int>(nullable: false),
+                    RentId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -672,21 +676,21 @@ namespace TravellifeChaser.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cars",
-                columns: new[] { "Id", "DailyPrice", "Image", "IsReservedForRent", "Mark", "Model", "RACServiceId", "Rating", "Rented", "Seats", "Type", "Year" },
+                columns: new[] { "Id", "DailyPrice", "Image", "IsReservedForRent", "Mark", "Model", "QuickRentDate", "QuickRentDiscount", "QuickRented", "RACServiceId", "Rating", "Rented", "Seats", "Type", "Year" },
                 values: new object[,]
                 {
-                    { 5, 100.0, "../../assets/images/cars/car5.jpg", false, "Audi", "TT", 1, 0.0, false, 2, "Coupe", 2016 },
-                    { 1, 100.0, "../../assets/images/cars/car1.jpg", false, "Mercedes", "A 250", 1, 0.0, false, 5, "Hatchback", 2020 },
-                    { 12, 100.0, "../../assets/images/cars/car12.jpg", false, "Mercedes", "A 100", 3, 0.0, false, 5, "Hatchback", 2020 },
-                    { 11, 100.0, "../../assets/images/cars/car11.jpg", false, "BMW", "X6", 3, 0.0, false, 5, "SUV", 2019 },
-                    { 4, 100.0, "../../assets/images/cars/car4.jpg", false, "RAM", "1500", 1, 0.0, false, 6, "Pickup", 2019 },
-                    { 3, 100.0, "../../assets/images/cars/car3.jpg", false, "Range Rover", "P525", 1, 0.0, false, 5, "SUV", 2018 },
-                    { 7, 100.0, "../../assets/images/cars/car7.jpg", false, "BMW", "X6", 1, 0.0, false, 5, "SUV", 2019 },
-                    { 10, 100.0, "../../assets/images/cars/car10.jpg", false, "Mercedes", "A 100", 2, 0.0, false, 5, "Hatchback", 2020 },
-                    { 2, 100.0, "../../assets/images/cars/car2.jpg", false, "BMW", "M5", 1, 0.0, false, 5, "Sedan", 2020 },
-                    { 8, 100.0, "../../assets/images/cars/car8.jpg", false, "Mercedes", "A 100", 1, 0.0, false, 5, "Hatchback", 2020 },
-                    { 9, 100.0, "../../assets/images/cars/car9.jpg", false, "BMW", "X6", 2, 0.0, false, 5, "SUV", 2019 },
-                    { 6, 100.0, "../../assets/images/cars/car6.jpg", false, "Renault", "Clio 5", 1, 0.0, false, 5, "Hatchback", 2017 }
+                    { 5, 100.0, "../../assets/images/cars/car5.jpg", false, "Audi", "TT", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 2, "Coupe", 2016 },
+                    { 1, 100.0, "../../assets/images/cars/car1.jpg", false, "Mercedes", "A 250", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Hatchback", 2020 },
+                    { 12, 100.0, "../../assets/images/cars/car12.jpg", false, "Mercedes", "A 100", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 5, "Hatchback", 2020 },
+                    { 11, 100.0, "../../assets/images/cars/car11.jpg", false, "BMW", "X6", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 5, "SUV", 2019 },
+                    { 4, 100.0, "../../assets/images/cars/car4.jpg", false, "RAM", "1500", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 6, "Pickup", 2019 },
+                    { 3, 100.0, "../../assets/images/cars/car3.jpg", false, "Range Rover", "P525", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "SUV", 2018 },
+                    { 7, 100.0, "../../assets/images/cars/car7.jpg", false, "BMW", "X6", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "SUV", 2019 },
+                    { 10, 100.0, "../../assets/images/cars/car10.jpg", false, "Mercedes", "A 100", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 5, "Hatchback", 2020 },
+                    { 2, 100.0, "../../assets/images/cars/car2.jpg", false, "BMW", "M5", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Sedan", 2020 },
+                    { 8, 100.0, "../../assets/images/cars/car8.jpg", false, "Mercedes", "A 100", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Hatchback", 2020 },
+                    { 9, 100.0, "../../assets/images/cars/car9.jpg", false, "BMW", "X6", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 5, "SUV", 2019 },
+                    { 6, 100.0, "../../assets/images/cars/car6.jpg", false, "Renault", "Clio 5", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Hatchback", 2017 }
                 });
 
             migrationBuilder.InsertData(
@@ -775,18 +779,18 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AirlineId", "AverageRating", "Cost", "Duration", "FromId", "LandingTime", "Length", "TakeoffTime", "ToId" },
                 values: new object[,]
                 {
-                    { 1, 1, 0.0, 300.0, 270.0, 1, new DateTime(2020, 9, 7, 17, 30, 0, 0, DateTimeKind.Unspecified), 2506, new DateTime(2020, 9, 7, 13, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 2, 2, 0.0, 250.0, 100.0, 1, new DateTime(2020, 9, 7, 9, 20, 0, 0, DateTimeKind.Unspecified), 1003, new DateTime(2020, 9, 7, 7, 40, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 12, 1, 0.0, 305.0, 140.0, 5, new DateTime(2020, 9, 12, 11, 20, 0, 0, DateTimeKind.Unspecified), 555, new DateTime(2020, 9, 12, 9, 0, 0, 0, DateTimeKind.Unspecified), 9 },
-                    { 10, 1, 0.0, 450.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 600, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
-                    { 11, 2, 0.0, 100.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 1000, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
-                    { 7, 1, 0.0, 300.0, 90.0, 3, new DateTime(2020, 9, 11, 8, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 9, 11, 7, 0, 0, 0, DateTimeKind.Unspecified), 7 },
-                    { 6, 1, 0.0, 300.0, 90.0, 7, new DateTime(2020, 9, 10, 19, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 9, 10, 18, 0, 0, 0, DateTimeKind.Unspecified), 9 },
-                    { 5, 1, 0.0, 300.0, 270.0, 5, new DateTime(2020, 9, 9, 19, 30, 0, 0, DateTimeKind.Unspecified), 250, new DateTime(2020, 9, 9, 15, 0, 0, 0, DateTimeKind.Unspecified), 4 },
-                    { 4, 1, 0.0, 200.0, 330.0, 4, new DateTime(2020, 9, 8, 19, 30, 0, 0, DateTimeKind.Unspecified), 500, new DateTime(2020, 9, 8, 14, 0, 0, 0, DateTimeKind.Unspecified), 5 },
-                    { 3, 1, 0.0, 100.0, 165.0, 2, new DateTime(2020, 9, 8, 15, 0, 0, 0, DateTimeKind.Unspecified), 400, new DateTime(2020, 9, 8, 12, 15, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 9, 2, 0.0, 250.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 300, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 },
-                    { 8, 1, 0.0, 301.0, 90.0, 6, new DateTime(2020, 9, 11, 10, 30, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2020, 9, 11, 9, 0, 0, 0, DateTimeKind.Unspecified), 8 }
+                    { 1, 1, 0.0, 300.0, 2980.0, 1, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 2506, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 2, 2, 0.0, 250.0, 2980.0, 1, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 1003, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 12, 1, 0.0, 305.0, 2980.0, 5, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 555, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 9 },
+                    { 10, 1, 0.0, 450.0, 2980.0, 6, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 600, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 },
+                    { 11, 2, 0.0, 100.0, 2980.0, 6, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 1000, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 },
+                    { 7, 1, 0.0, 300.0, 2980.0, 3, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 7 },
+                    { 6, 1, 0.0, 300.0, 2980.0, 7, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 9 },
+                    { 5, 1, 0.0, 300.0, 2980.0, 5, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 250, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 4 },
+                    { 4, 1, 0.0, 200.0, 2980.0, 4, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 500, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 5 },
+                    { 3, 1, 0.0, 100.0, 2980.0, 2, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 400, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 9, 2, 0.0, 250.0, 2980.0, 6, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 300, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 },
+                    { 8, 1, 0.0, 301.0, 2980.0, 6, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 }
                 });
 
             migrationBuilder.InsertData(
@@ -3024,26 +3028,26 @@ namespace TravellifeChaser.Migrations
 
             migrationBuilder.InsertData(
                 table: "Tickets",
-                columns: new[] { "Id", "Column", "Cost", "CreationDateAndTime", "CreatorId", "Discount", "FirstName", "FlightId", "IsAccepted", "LastName", "PassportNumber", "Row", "UserId" },
+                columns: new[] { "Id", "Column", "Cost", "CreationDateAndTime", "CreatorId", "Discount", "FirstName", "FlightId", "IsAccepted", "LastName", "PassportNumber", "RentId", "Row", "UserId" },
                 values: new object[,]
                 {
-                    { 9, 6, 500.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 1, false, null, "134214412", 3, null },
-                    { 6, 5, 150.0, new DateTime(2020, 8, 26, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 10, true, null, "134214412", 5, 2 },
-                    { 8, 5, 124.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 8, true, null, "134214412", 18, 4 },
-                    { 5, 5, 300.0, new DateTime(2020, 8, 25, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 8, true, null, "134214412", 15, 1 },
-                    { 16, 3, 600.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 8, false, null, "134214412", 15, null },
-                    { 2, 5, 400.0, new DateTime(2020, 8, 4, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 8, true, null, "134214412", 8, 2 },
-                    { 17, 2, 156.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 8, false, null, "134214412", 4, null },
-                    { 3, 5, 200.0, new DateTime(2020, 8, 4, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 10, true, null, "134214412", 9, 3 },
-                    { 4, 5, 400.0, new DateTime(2020, 8, 25, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 7, true, null, "134214412", 13, 4 },
-                    { 7, 5, 160.0, new DateTime(2020, 8, 28, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 7, true, null, "134214412", 1, 3 },
-                    { 14, 8, 260.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 7, false, null, "134214412", 0, null },
-                    { 13, 7, 300.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 6, false, null, "134214412", 3, null },
-                    { 12, 8, 400.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 5, false, null, "134214412", 13, null },
-                    { 11, 7, 500.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 4, false, null, "134214412", 12, null },
-                    { 10, 6, 320.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 3, false, null, "134214412", 10, null },
-                    { 1, 5, 400.0, new DateTime(2020, 8, 3, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 7, true, null, "134214412", 3, 1 },
-                    { 15, 5, 259.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 12, false, null, "134214412", 5, null }
+                    { 9, 6, 500.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 1, false, null, "134214412", 0, 3, null },
+                    { 6, 5, 150.0, new DateTime(2020, 8, 26, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 10, true, null, "134214412", 0, 5, 2 },
+                    { 8, 5, 124.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 8, true, null, "134214412", 0, 18, 4 },
+                    { 5, 5, 300.0, new DateTime(2020, 8, 25, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 8, true, null, "134214412", 0, 15, 1 },
+                    { 16, 3, 600.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 8, false, null, "134214412", 0, 15, null },
+                    { 2, 5, 400.0, new DateTime(2020, 8, 4, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 8, true, null, "134214412", 0, 8, 2 },
+                    { 17, 2, 156.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 8, false, null, "134214412", 0, 4, null },
+                    { 3, 5, 200.0, new DateTime(2020, 8, 4, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 10, true, null, "134214412", 0, 9, 3 },
+                    { 4, 5, 400.0, new DateTime(2020, 8, 25, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 7, true, null, "134214412", 0, 13, 4 },
+                    { 7, 5, 160.0, new DateTime(2020, 8, 28, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 7, true, null, "134214412", 0, 1, 3 },
+                    { 14, 8, 260.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 7, false, null, "134214412", 0, 0, null },
+                    { 13, 7, 300.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 6, false, null, "134214412", 0, 3, null },
+                    { 12, 8, 400.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 5, false, null, "134214412", 0, 13, null },
+                    { 11, 7, 500.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 4, false, null, "134214412", 0, 12, null },
+                    { 10, 6, 320.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 3, false, null, "134214412", 0, 10, null },
+                    { 1, 5, 400.0, new DateTime(2020, 8, 3, 14, 30, 11, 0, DateTimeKind.Unspecified), 1, 10.0, null, 7, true, null, "134214412", 0, 3, 1 },
+                    { 15, 5, 259.0, new DateTime(2020, 8, 29, 14, 30, 11, 0, DateTimeKind.Unspecified), 7, 10.0, null, 12, false, null, "134214412", 0, 5, null }
                 });
 
             migrationBuilder.CreateIndex(

@@ -117,5 +117,58 @@ namespace TravellifeChaser.Controllers
 
             return _unitOfWork.CarRepository.GetByCondition(x => x.RACServiceId == id).ToList();
         }
+
+        [HttpGet("quickRentCars/year={year}&month={month}&day={day}&location={location}")]
+        public ActionResult<IEnumerable<Car>> GetQuickRentCars(int year, int month, int day, string location)
+        {
+            DateTime date = new DateTime(year, month, day);
+
+            List<Car> retList = new List<Car>();
+
+            if (!_unitOfWork.CarRepository.Any(x=> x.QuickRented == true))
+                return NotFound();
+
+            var listOfCarsAll = _unitOfWork.CarRepository.GetByCondition(x => x.QuickRented == true).ToList();
+            var listOfCars = new List<Car>();
+
+            foreach (var car in listOfCarsAll)
+            {
+                var compareDate = new DateTime(car.QuickRentDate.Year, car.QuickRentDate.Month, car.QuickRentDate.Day);
+                if (compareDate == date)
+                {
+                    var rentList = _unitOfWork.RentRepository.GetByCondition(x => x.CarId == car.Id).ToList();
+                    var rented = false;
+                    foreach (var x in rentList)
+                    {
+                        var compareDate2 = new DateTime(x.StartDate.Year, x.StartDate.Month, x.StartDate.Day);
+                        if (compareDate == compareDate2)
+                        {
+                            rented = true;
+                        }
+                    }
+                    if (!rented)
+                    {
+                        listOfCars.Add(car);
+                    }
+                }
+            }
+
+            foreach (var car in listOfCars)
+            {
+                car.RACService = _unitOfWork.RACServiceRepository.Get(car.RACServiceId);
+                var addressList = _unitOfWork.RACAddressRepository.GetByCondition(x => x.RACServiceId == car.RACService.Id).ToList();
+                foreach (var address in addressList)
+                {
+                    var str = address.City + ", " + address.Country;
+                    if (str == location) 
+                    {
+                        retList.Add(car);
+                        break;
+                    }
+                }
+            }
+
+            return retList;
+        }
     }
 }

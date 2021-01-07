@@ -105,6 +105,23 @@ namespace TravellifeChaser.Controllers
             return rent;
         }
 
+        [HttpDelete("{id}/rentWithTicketId")]
+        public ActionResult<Rent> DeleteRentWithTicketId(int id)
+        {
+            var ticket = _unitOfWork.TicketRepository.Get(id);
+            var rent = _unitOfWork.RentRepository.Get(ticket.RentId);
+
+            if (rent == null)
+            {
+                return NotFound();
+            }
+
+            _unitOfWork.RentRepository.Remove(rent.Id);
+            _unitOfWork.Save();
+
+            return rent;
+        }
+
         private bool RentExists(int id)
         {
             return _unitOfWork.RentRepository.Any(e => e.Id == id);
@@ -218,38 +235,38 @@ namespace TravellifeChaser.Controllers
 
                 var listOfCars = _unitOfWork.CarRepository.GetByCondition(x => x.RACServiceId == rac.Id).ToList();
                 //var isRented = false;
-                var boolList = new List<bool>();
                 var boolListRAC = new List<bool>();
 
                 foreach (var car in listOfCars)
                 {
-                    var listOfRents = _unitOfWork.RentRepository.GetByCondition(x => x.CarId == car.Id).ToList();                   
+                    var listOfRents = _unitOfWork.RentRepository.GetByCondition(x => x.CarId == car.Id).ToList();
+                    var boolList = new List<bool>();
 
                     foreach (var rent in listOfRents)
                     {
-                        if ((rent.StartDate > startDate && endDate < rent.StartDate) || (rent.EndDate < startDate && endDate > rent.EndDate))
+                        if ((rent.StartDate <= startDate && startDate <= rent.EndDate) || (rent.StartDate <= endDate && endDate <= rent.EndDate) || (startDate <= rent.StartDate && rent.EndDate <= endDate))
                         {
-                            boolList.Add(true);//Dodaju se bool elementi u listu, ukoliko lista ne sadrzi false RAC je prihvatljiv
+                            boolList.Add(false);//Dodaju se bool elementi u listu, ukoliko lista ne sadrzi false auto je prihvatljiv
+                            break;
                         }
                         else
                         {
-                            boolList.Add(false);
-                            break;
+                            boolList.Add(true);
                         }
                     }
 
                     if (boolList.Contains(false))
                     {
                         boolListRAC.Add(false);
-                        break;
                     }
                     else
                     {
-                        boolListRAC.Add(true);
+                        boolListRAC.Add(true);//Ukoliko se pronasao neki auto u okviru ovog RAC servisa koji je bez rezervacije u datom periodu, odmah se prekida pretraga za taj RAC
+                        break;
                     }
                 }
 
-                if (!boolListRAC.Contains(false))
+                if (boolListRAC.Contains(true))
                     retList.Add(rac);
             }
             

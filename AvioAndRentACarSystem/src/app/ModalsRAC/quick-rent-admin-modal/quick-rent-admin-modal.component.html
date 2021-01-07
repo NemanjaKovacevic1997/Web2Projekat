@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Quick rent details</h4>
+    <button type="button" class="close myButton" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" class="rounded-lg">
+        <div class="form-group">
+            <label for="TextInput">Discount :</label>
+            <input name="discount" type="number" id="discount" class="form-control" formControlName="discount" [(ngModel)]="quickRentCar.quickRentDiscount" max="100" min="0">
+        </div>
+        <div class="form-row">
+            <div class="input-group" >
+                <input class="form-control" id="date" placeholder="Date" formControlName="date" name="date" ngbDatepicker #d2="ngbDatepicker" [minDate]="minPickerDate" [(ngModel)]="date" [markDisabled]="isDisabled">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button (click)="passBack()" type="submit" class="btn btn-outline-dark">Done</button>
+</div>

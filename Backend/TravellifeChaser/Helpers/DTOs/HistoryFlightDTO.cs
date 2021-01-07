@@ -24,5 +24,6 @@ namespace TravellifeChaser.Helpers.DTOs
         public int? ReturnDay { get; set; }
         public int? ReturnHours { get; set; }
         public int? ReturnMinutes { get; set; }
+        public int? RentId { get; set; }
     }
 }

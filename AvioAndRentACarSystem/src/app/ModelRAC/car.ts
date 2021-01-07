@@ -1,3 +1,4 @@
+import { RACService } from "./racService";
 
 export class Car
 {
@@ -11,8 +12,12 @@ export class Car
     dailyPrice: number;
     image: string;
     rented: boolean;
+    racService: RACService;
     racServiceId: number;
     isReservedForRent: boolean;
+    quickRented: boolean;
+    quickRentDate: Date;
+    quickRentDiscount: number;
 
     constructor(id?: number, model?: string, mark?: string, type?: string, year?: number, seats?: number, rating?: number, dailyPrice?: number, image?: string, rented?: boolean, racServiceId?: number )
     {

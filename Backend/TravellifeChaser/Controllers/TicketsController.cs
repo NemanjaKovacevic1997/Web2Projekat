@@ -280,6 +280,7 @@ namespace TravellifeChaser.Controllers
                     historyFlight.SeatRow = ticket.Seat.Row;
                     historyFlight.SeatColumn = ticket.Seat.Column;
                     historyFlight.SeatClass = ticket.Seat.Class.ToString();
+                    historyFlight.RentId = ticket.RentId;
 
                     historys.Add(historyFlight);
                 }              
@@ -391,6 +392,16 @@ namespace TravellifeChaser.Controllers
         private bool TicketExists(int id)
         {
             return _unitOfWork.TicketRepository.Any(e => e.Id == id);
+        }
+
+        [HttpGet("{id}/hasRent")]
+        public int HasRent(int id)
+        {
+            var ticket = _unitOfWork.TicketRepository.GetByCondition(x=>x.RentId == id).ToList();
+            if (ticket.Count == 0)
+                return 0;
+
+            return ticket[0].Id;//UKOLIKO IMA QUICK RENT UZ REZERVACIJU, VRACA SE ID OD TIKETA KOJI CE SE UPISATI U RENT 
         }
     }
 }

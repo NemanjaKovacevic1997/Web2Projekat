@@ -1,66 +1,136 @@
 <body class="myBody text-center">
-    <table class="table table-borderless table-hover myBody">
-        <thead class="thead-light">
-        <tr class="bg-primary">
-            <th>Delivery</th>
-            <th>Return</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Price</th>
-            <th>Car</th>
-            <th>Rate car</th>
-            <th>Service</th>
-            <th>Rate service</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr  *ngFor="let rent of rents; let i = index;">
-                <td>
-                    {{ rent.startRACAddress.street }}
-                    {{ rent.startRACAddress.number }},    
-                    {{ rent.startRACAddress.city }},
-                    {{ rent.startRACAddress.country }}
-                </td>
-                <td>
-                    {{ rent.endRACAddress.street }}
-                    {{ rent.endRACAddress.number }},    
-                    {{ rent.endRACAddress.city }},
-                    {{ rent.endRACAddress.country }}
-                </td>
-                <td>
-                    {{ rent.startDate | date:"MM/dd/yyyy" }}
-                </td>
-                <td>
-                    {{ rent.endDate | date:"MM/dd/yyyy" }}
-                </td>
-                <td>
-                    {{ rent.price }}€
-                </td>
-                <td>
-                    {{ rent.car.mark }}
-                    {{ rent.car.model }}
-                </td>
-                <td *ngIf="isFinished(rent.endDate) == true">
-                    <ngb-rating [(rate)]="rent.ratingForCar" class="ngb-rating" (rateChange)="carChangeRating(rent, rent.ratingForCar)"></ngb-rating>
-                </td>
-                <td *ngIf="isFinished(rent.endDate) == false">
-                    <ngb-rating [(rate)]="rent.ratingForCar" class="ngb-rating-disabled" [readonly]="true"></ngb-rating>
-                </td>
-                <td>
-                    {{ rent.rac.name }}
-                </td>
-                <td *ngIf="isFinished(rent.endDate) == true">
-                    <ngb-rating [(rate)]="rent.ratingForRACService" class="ngb-rating" (rateChange)="racChangeRating(rent, rent.ratingForRACService)"></ngb-rating>
-                </td>
-                <td *ngIf="isFinished(rent.endDate) == false">
-                    <ngb-rating [(rate)]="rent.ratingForRACService" class="ngb-rating-disabled" [readonly]="true"></ngb-rating>
-                </td>
-                <td *ngIf="is2DaysBeforeDelivery(rent.startDate)">
-                    <button type="button" (click)="dropRent(rent)" class="btn btn-info">Drop</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-  </body>
-  
+    <div>
+        <mat-tab-group>
+            <mat-tab label="Rents"> 
+                <table class="table table-borderless table-hover myBody">
+                    <thead class="thead-light">
+                    <tr class="bg-primary">
+                        <th>Delivery</th>
+                        <th>Return</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Price</th>
+                        <th>Car</th>
+                        <th>Rate car</th>
+                        <th>Service</th>
+                        <th>Rate service</th>
+                        <th>Quick</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr  *ngFor="let rent of rents; let i = index;">
+                            <td>
+                                {{ rent.startRACAddress.street }}
+                                {{ rent.startRACAddress.number }},    
+                                {{ rent.startRACAddress.city }},
+                                {{ rent.startRACAddress.country }}
+                            </td>
+                            <td>
+                                {{ rent.endRACAddress.street }}
+                                {{ rent.endRACAddress.number }},    
+                                {{ rent.endRACAddress.city }},
+                                {{ rent.endRACAddress.country }}
+                            </td>
+                            <td>
+                                {{ rent.startDate | date:"MM/dd/yyyy" }}
+                            </td>
+                            <td>
+                                {{ rent.endDate | date:"MM/dd/yyyy" }}
+                            </td>
+                            <td>
+                                {{ rent.price }}€
+                            </td>
+                            <td>
+                                {{ rent.car.mark }}
+                                {{ rent.car.model }}
+                            </td>
+                            <td *ngIf="isFinished(rent.endDate) == true">
+                                <ngb-rating [(rate)]="rent.ratingForCar" class="ngb-rating" (rateChange)="carChangeRating(rent, rent.ratingForCar)"></ngb-rating>
+                            </td>
+                            <td *ngIf="isFinished(rent.endDate) == false">
+                                <ngb-rating [(rate)]="rent.ratingForCar" class="ngb-rating-disabled" [readonly]="true"></ngb-rating>
+                            </td>
+                            <td>
+                                {{ rent.rac.name }}
+                            </td>
+                            <td *ngIf="isFinished(rent.endDate) == true">
+                                <ngb-rating [(rate)]="rent.ratingForRACService" class="ngb-rating" (rateChange)="racChangeRating(rent, rent.ratingForRACService)"></ngb-rating>
+                            </td>
+                            <td *ngIf="isFinished(rent.endDate) == false">
+                                <ngb-rating [(rate)]="rent.ratingForRACService" class="ngb-rating-disabled" [readonly]="true"></ngb-rating>
+                            </td>
+                            <td *ngIf="rent.ticketId == 0">
+                                No
+                            </td>
+                            <td *ngIf="rent.ticketId > 0">
+                                Yes
+                            </td>
+                            <td *ngIf="rent.ticketId == 0">
+                                <button type="button" (click)="dropRent(rent)" class="btn btn-info" [disabled]="!is2DaysBeforeDelivery(rent.startDate)">Drop</button>
+                            </td>
+                            <td *ngIf="rent.ticketId > 0">
+                                <button type="button" (click)="dropRent(rent)" class="btn btn-info" [disabled]="!is3HoursBeforeDelivery(rent.startDate)">Drop</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-tab>
+            <mat-tab label="Flights">  
+                <table class="table table-borderless table-hover myBody">
+                    <thead class="thead-light">
+                    <tr class="bg-primary">
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Depart</th>
+                        <th>Seat</th>
+                        <th>Flight</th>
+                        <th>Rate flight</th>
+                        <th>Service</th>
+                        <th>Rate service</th>
+                        <th>Quick rent</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let history of historys; let i = index;">
+                            <td>
+                                {{ history.from }}
+                            </td>
+                            <td>
+                                {{ history.to }}
+                            </td>
+                            <td>
+                                {{ history.departHours + 'h ' + history.departMinutes + 'min  ' + history.departDay + '.' + history.departMonth + '.' + history.departYear }}
+                            </td>
+                            <td>
+                                {{ history.seatRow + '' + history.seatColumn + ', ' + history.seatClass + ' class'}}
+                            </td>
+                            <td>
+                                {{ history.ticketId }}
+                            </td>
+                            <td>
+                                <ngb-rating class="ngb-rating"></ngb-rating>
+                            </td>
+                            <td>
+                                {{ history.ticketId }}
+                            </td>
+                            <td>
+                                <ngb-rating class="ngb-rating"></ngb-rating>                            
+                            </td>
+                            <td *ngIf="history.rentId == 0">
+                                <button type="button" class="btn btn-info" (click)="openQuickRentUserModal(history.ticketId, history.to)" [disabled]="!isAfter3HoursBeforeFlight(history.departDay, history.departMonth, history.departYear, history.departHours, history.departMinutes)">Rent</button>
+                            </td>
+                            <td *ngIf="history.rentId > 0">
+                                Already rented
+                            </td>
+                            <td *ngIf="isAfter3HoursBeforeFlight(history.departDay, history.departMonth, history.departYear, history.departHours, history.departMinutes)">
+                                <button type="button" class="btn btn-info" (click)="drop(history.ticketId)">Drop</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</body>

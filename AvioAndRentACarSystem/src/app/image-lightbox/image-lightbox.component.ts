@@ -14,6 +14,7 @@ import { Rent } from '../ModelRAC/rent';
 import { RentModalComponent } from '../ModalsRAC/rent-modal/rent-modal.component';
 import { RacAddressService } from '../Services/RACAddress/rac-address.service';
 import { QuickRentAdminModalComponent } from '../ModalsRAC/quick-rent-admin-modal/quick-rent-admin-modal.component';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-image-lightbox',
@@ -126,7 +127,9 @@ export class ImageLightboxComponent implements OnInit {
 
   removeCar(id){
     if (confirm('Are you sure you want to remove this car?')) {
-      this.carService.remove(id).subscribe(() => this.ngOnInit());
+      this.carService.remove(id).subscribe(() => this.ngOnInit() , (error:HttpErrorResponse) => {
+        alert(error.error);
+      });
     }  
   }
 
@@ -177,6 +180,8 @@ export class ImageLightboxComponent implements OnInit {
         this.myRent.car = undefined;
         this.rentService.add(this.myRent).subscribe((res: any) => {
             this.router.navigateByUrl("/"+ this.loginService.user.username + '/history');
+        }, (error:HttpErrorResponse) => {
+            alert(error.error);
         });
       }
     }, (reason) => {
@@ -203,6 +208,10 @@ export class ImageLightboxComponent implements OnInit {
       this.carService.update(id, this.myCar).subscribe(() => {
         this.cars[this.indexOfMyCar] = this.myCar;
         alert("Changes are saved successfuly.")
+      }, (error:HttpErrorResponse) => {
+        alert(error.error);
+        this.myCar = this.myCarBefore;
+        this.cars[this.indexOfMyCar] = this.myCar;
       });
       return;
     }

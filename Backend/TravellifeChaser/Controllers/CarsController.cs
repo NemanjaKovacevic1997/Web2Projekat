@@ -54,6 +54,12 @@ namespace TravellifeChaser.Controllers
                 return BadRequest();
             }
 
+            /*var reservedRents = _unitOfWork.RentRepository.GetByCondition(x => x.CarId == id).ToList();
+            if (reservedRents.Count > 0)
+            {
+                return NotFound("Oops! Change failed. Someone has just rented this car.");
+            }*/
+
             _unitOfWork.CarRepository.Update(car);
 
             try
@@ -94,7 +100,13 @@ namespace TravellifeChaser.Controllers
             var car = _unitOfWork.CarRepository.Get(id);
             if (car == null)
             {
-                return NotFound();
+                return NotFound("Oops! Delete failed. Someone has already deleted this car.");
+            }
+
+            var reservedRents = _unitOfWork.RentRepository.GetByCondition(x => x.CarId == id).ToList();
+            if (reservedRents.Count > 0)
+            {
+                return NotFound("Oops! Delete failed. Someone has just rented this car.");
             }
 
             _unitOfWork.CarRepository.Remove(car.Id);

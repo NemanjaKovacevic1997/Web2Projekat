@@ -1,11 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HistoryFlight } from '../AirlineModel/HelperModel/historyFlight';
 import { Ticket } from '../AirlineModel/ticket';
 import { QuickRentUserModalComponent } from '../ModalsRAC/quick-rent-user-modal/quick-rent-user-modal.component';
 import { Car } from '../ModelRAC/car';
-import { RACAddress } from '../ModelRAC/racAddress';
-import { RACService } from '../ModelRAC/racService';
 import { Rent } from '../ModelRAC/rent';
 import { CarService } from '../Services/Car/car.service';
 import { FlightService } from '../Services/Flights/flight.service';
@@ -37,27 +36,14 @@ export class HistoryComponent implements OnInit {
       this.historys = res as Array<HistoryFlight>;
     });
     this.rents = new Array<Rent>();
-    this.rentService.getAll().subscribe(ret => {
+    this.rentService.getAllFull(this.loginService.user.id).subscribe(ret => {
       this.allRents = ret as Array<Rent>;
       this.allRents.forEach(element => {
-        if(element.registeredUserId == id){
-          this.racAddressService.get(element.startRACAddressId).subscribe(res => {
-            element.startRACAddress = res as RACAddress;
-            this.racAddressService.get(element.endRACAddressId).subscribe(res => {
-              element.endRACAddress = res as RACAddress;
-              this.carService.get(element.carId).subscribe(res => {
-                element.car = res as Car;
-                this.racService.get(element.car.racServiceId).subscribe(res => {
-                  element.rac = res as RACService;
-                  this.ticketService.ticketHasRent(element.id).subscribe(ret => {
-                    element.ticketId = ret as number;
-                    this.rents.push(element);
-                  });              
-                });
-              });
-            });
-          });
-        }
+        element.rac = element.car.racService;
+        this.ticketService.ticketHasRent(element.id).subscribe(ret => {
+          element.ticketId = ret as number;
+          this.rents.push(element);
+        });
       });
     });
   }
@@ -78,21 +64,20 @@ export class HistoryComponent implements OnInit {
   }
 
   dropRent(rent:Rent) {
-    rent.car.rented = false;
-    this.carService.update(rent.carId, rent.car).subscribe(()=>{
-      this.rentService.remove(rent.id).subscribe(() => {
-        if(rent.ticketId > 0){
-          this.ticketService.get(rent.ticketId).subscribe(ret => {
-            rent.ticket = ret as Ticket;
-            rent.ticket.rentId = 0;
-            this.ticketService.update(rent.ticketId, rent.ticket).subscribe(() =>{
-              this.ngOnInit()
-            });
+    this.rentService.remove(rent.id).subscribe(() => {
+      if(rent.ticketId > 0){
+        this.ticketService.get(rent.ticketId).subscribe(ret => {
+          rent.ticket = ret as Ticket;
+          rent.ticket.rentId = 0;
+          this.ticketService.update(rent.ticketId, rent.ticket).subscribe(() =>{
+            this.ngOnInit()
           });
-        }else{
-          this.ngOnInit()
-        }
-      });
+        });
+      }else{
+        this.ngOnInit()
+      }
+    }, (error:HttpErrorResponse) => {
+      alert(error.error);
     });
   }
 
@@ -155,15 +140,15 @@ export class HistoryComponent implements OnInit {
     let rentDate = new Date(startDate);
     rentDate.setDate(rentDate.getDate() - 2);
 
-    console.log("now :" +  now + " : " + now.getTime());
-    console.log("date :" + rentDate + " : " + rentDate.getTime());
+    //console.log("now :" +  now + " : " + now.getTime());
+    //console.log("date :" + rentDate + " : " + rentDate.getTime());
 
     if(now.getTime() >= rentDate.getTime()){
-      console.log("true");
+      //console.log("true");
       return false;
     }
 
-    console.log("false");
+    //console.log("false");
     return true;
   }
 
@@ -172,15 +157,15 @@ export class HistoryComponent implements OnInit {
     let rentDate = new Date(startDate);
     rentDate.setHours(rentDate.getHours() - 3);
 
-    console.log("now :" +  now + " : " + now.getTime());
-    console.log("date :" + rentDate + " : " + rentDate.getTime());
+    //console.log("now :" +  now + " : " + now.getTime());
+    //console.log("date :" + rentDate + " : " + rentDate.getTime());
 
     if(now.getTime() >= rentDate.getTime()){
-      console.log("true");
+      //console.log("true");
       return false;
     }
 
-    console.log("false");
+    //console.log("false");
     return true;
   }
 
@@ -188,15 +173,15 @@ export class HistoryComponent implements OnInit {
     let now = new Date();
     let rentDate = new Date(endDate);
 
-    console.log("now :" +  now + " : " + now.getTime());
-    console.log("date :" + rentDate + " : " + rentDate.getTime());
+    //console.log("now :" +  now + " : " + now.getTime());
+    //console.log("date :" + rentDate + " : " + rentDate.getTime());
 
     if(now.getTime() <= rentDate.getTime()){
-      console.log("true");
+      //console.log("true");
       return false;
     }
 
-    console.log("false");
+    //console.log("false");
     return true;
   }
 
@@ -216,15 +201,15 @@ export class HistoryComponent implements OnInit {
 
     date.setHours(date.getHours() - 3);
 
-    console.log("now :" +  now + " : " + now.getTime());
-    console.log("date :" + date + " : " + date.getTime());
+    //console.log("now :" +  now + " : " + now.getTime());
+    //console.log("date :" + date + " : " + date.getTime());
 
     if(now.getTime() >= date.getTime()){
-      console.log("true");
+      //console.log("true");
       return false;
     }
 
-    console.log("false");
+    //console.log("false");
     return true;
   }
 }

@@ -12,6 +12,10 @@ export class RentService extends DataService {
     super(environment.serverUrl + 'Rents', http)
   }
 
+  getAllFull(userId: number) {
+    return this.httpClient.get(environment.serverUrl + 'Rents/' + userId + '/allFull');
+  }
+
   getRACRents(racId: number) {
     return this.httpClient.get(environment.serverUrl + 'Rents/' + racId + '/racRents');
   }

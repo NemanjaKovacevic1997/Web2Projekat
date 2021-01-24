@@ -31,6 +31,22 @@ namespace TravellifeChaser.Controllers
             return _unitOfWork.RentRepository.GetAll().ToList();
         }
 
+        // GET: api/Rents
+        [HttpGet("{id}/allFull")]
+        public ActionResult<IEnumerable<Rent>> GetAllFull(int id)
+        {
+            var list = _unitOfWork.RentRepository.GetByCondition(x => x.RegisteredUserId == id).ToList();
+            foreach (var element in list)
+            {
+                element.Car = _unitOfWork.CarRepository.Get(element.CarId);
+                element.Car.RACService = _unitOfWork.RACServiceRepository.Get(element.Car.RACServiceId);
+                element.StartRACAddress = _unitOfWork.RACAddressRepository.Get(element.StartRACAddressId);
+                element.EndRACAddress = _unitOfWork.RACAddressRepository.Get(element.EndRACAddressId);
+            }
+
+            return list;
+        }
+
         // GET: api/Rents/5
         [HttpGet("{id}")]
         public ActionResult<Rent> GetRent(int id)
@@ -81,12 +97,22 @@ namespace TravellifeChaser.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public ActionResult<Rent> PostRent(Rent rent)
+        public async Task<Object> PostRent(Rent rent)
         {
+            var reservedRents = _unitOfWork.RentRepository.GetByCondition(x => x.CarId == rent.CarId).ToList();
+            foreach (var element in reservedRents)
+            {
+                if (!(element.StartDate > rent.EndDate || element.EndDate < rent.StartDate))
+                {
+                    return NotFound("Oops! Rent failed. Someone has already rented this car.");
+                }
+            }
+
             _unitOfWork.RentRepository.Add(rent);
             _unitOfWork.Save();
 
-            return CreatedAtAction("GetRent", new { id = rent.Id }, rent);
+            return Ok();
+            //return CreatedAtAction("GetRent", new { id = rent.Id }, rent);
         }
 
         // DELETE: api/Rents/5
@@ -96,7 +122,7 @@ namespace TravellifeChaser.Controllers
             var rent = _unitOfWork.RentRepository.Get(id);
             if (rent == null)
             {
-                return NotFound();
+                return NotFound("Oops! Delete failed. Someone has already deleted this rent.");
             }
 
             _unitOfWork.RentRepository.Remove(rent.Id);

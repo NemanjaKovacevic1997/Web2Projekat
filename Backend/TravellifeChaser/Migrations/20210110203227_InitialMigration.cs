@@ -606,7 +606,7 @@ namespace TravellifeChaser.Migrations
                     { 18, "Amsterdam", "Netherland", 52.30805556, 4.7641666699999998 },
                     { 17, "Brussel", "Belgium", 50.90138889, 4.4844444399999999 },
                     { 15, "Lisbon", "Portugal", 38.77416667, 38.77416667 },
-                    { 14, "Munich", "Deuschland", 48.35388889, 11.78611111 },
+                    { 14, "München", "Germany", 48.35388889, 11.78611111 },
                     { 13, "Subotica", "Serbia", null, null },
                     { 12, "Krusevac", "Serbia", null, null },
                     { 16, "Madrid", "Spain", 49.009700000000002, 2.5478999999999998 },
@@ -640,9 +640,10 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AdminSysUserId", "Logo", "Name", "PriceList", "PromotionalDescription", "Rating" },
                 values: new object[,]
                 {
-                    { 2, null, "../../assets/images/logos/rac3.png", "Istanbul Rent-a-car", "", "Just say where, we know how!", 0.0 },
+                    { 3, null, "../../assets/images/logos/rac7.png", "Moscow Rent-a-car", "", "Always with you!", 0.0 },
                     { 1, null, "../../assets/images/logos/rac1.png", "Belgrade Rent-a-car", "", "Just say where, we know how!", 0.0 },
-                    { 3, null, "../../assets/images/logos/rac7.png", "Moscow Rent-a-car", "", "Just say where, we know how!", 0.0 }
+                    { 2, null, "../../assets/images/logos/rac3.png", "Istanbul Rent-a-car", "", "Drive with us!", 0.0 },
+                    { 4, null, "../../assets/images/logos/rac10.png", "Sports car rental", "", "The best sports cars!", 0.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -651,10 +652,10 @@ namespace TravellifeChaser.Migrations
                 values: new object[,]
                 {
                     { 1, 6, null, 9.1199999999999992, "Turkish Airlines", 1, "Widen Your World" },
-                    { 6, 4, null, 8.0399999999999991, "Air Serbia", 6, "Fly with us" },
-                    { 5, 20, null, 9.1199999999999992, "British Airways", 5, "With you" },
-                    { 4, 21, null, 8.7300000000000004, "Etihad Airways", 4, "With you" },
                     { 3, 22, null, 9.1199999999999992, "Emirates", 3, "Enjoy flight" },
+                    { 4, 21, null, 8.7300000000000004, "Etihad Airways", 4, "With you" },
+                    { 5, 20, null, 9.1199999999999992, "British Airways", 5, "With you" },
+                    { 6, 4, null, 8.0399999999999991, "Air Serbia", 6, "Fly with us" },
                     { 2, 7, null, 8.7300000000000004, "Qatar Airways", 2, "Going Places Together" }
                 });
 
@@ -664,14 +665,14 @@ namespace TravellifeChaser.Migrations
                 values: new object[,]
                 {
                     { 8, 19, "Sheremetyevo" },
-                    { 9, 18, "Schiphol" },
                     { 7, 17, "Brussel-Nationaal" },
-                    { 5, 15, "Humberto Delgado" },
-                    { 6, 14, "Munich Airport" },
                     { 4, 16, "Adolfo Suárez" },
-                    { 1, 4, "Nikola Tesla" },
+                    { 5, 15, "Humberto Delgado" },
+                    { 6, 14, "München Airport" },
+                    { 9, 18, "Schiphol" },
+                    { 3, 9, "Charles de Gaulle" },
                     { 2, 8, "Heathrow" },
-                    { 3, 9, "Charles de Gaulle" }
+                    { 1, 4, "Nikola Tesla" }
                 });
 
             migrationBuilder.InsertData(
@@ -679,18 +680,54 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "DailyPrice", "Image", "IsReservedForRent", "Mark", "Model", "QuickRentDate", "QuickRentDiscount", "QuickRented", "RACServiceId", "Rating", "Rented", "Seats", "Type", "Year" },
                 values: new object[,]
                 {
-                    { 5, 100.0, "../../assets/images/cars/car5.jpg", false, "Audi", "TT", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 2, "Coupe", 2016 },
+                    { 15, 400.0, "../../assets/images/cars/car57.jpg", false, "Ferrari", "488", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 2, "Coupe", 2020 },
+                    { 14, 300.0, "../../assets/images/cars/car65.jpg", false, "Porsche", "Cayenne", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 5, "SUV", 2017 },
+                    { 13, 80.0, "../../assets/images/cars/car6.jpg", false, "Renault", "Clio", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 5, "Hatchback", 2016 },
+                    { 25, 330.0, "../../assets/images/cars/car17.jpg", false, "Ford", "Mustang GT", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 4, "Coupe", 2015 },
+                    { 11, 200.0, "../../assets/images/cars/car30.jpg", false, "Nissan", "Juke", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 5, "SUV", 2020 },
+                    { 16, 370.0, "../../assets/images/cars/car58.jpg", false, "Lamborghini", "Urus", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 5, "SUV", 2020 },
+                    { 17, 330.0, "../../assets/images/cars/car31.jpg", false, "Mercedes", "SLK", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 5, "Cabriolet", 2015 },
+                    { 12, 150.0, "../../assets/images/cars/car40.jpg", false, "Opel", "Insignia", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 5, "Sedan", 2020 },
+                    { 19, 450.0, "../../assets/images/cars/car75.jpg", false, "Lamborghini", "Huracán", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 2, "Coupe", 2019 },
+                    { 20, 430.0, "../../assets/images/cars/car46.jpg", false, "Mercedes", "AMG GT", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 2, "Coupe", 2019 },
+                    { 10, 200.0, "../../assets/images/cars/car37.jpg", false, "Audi", "S5", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 5, "Sedan", 2020 },
+                    { 21, 330.0, "../../assets/images/cars/car20.jpg", false, "BMW", "X6", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 5, "SUV", 2019 },
+                    { 22, 300.0, "../../assets/images/cars/car22.jpg", false, "Mercedes", "AMG G65", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 5, "SUV", 2019 },
+                    { 23, 200.0, "../../assets/images/cars/car4.jpg", false, "RAM", "1500", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 6, "Pickup", 2015 },
+                    { 24, 210.0, "../../assets/images/cars/car68.jpg", false, "Nissan", "VR", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 6, "Pickup", 2019 },
+                    { 41, 80.0, "../../assets/images/cars/car74.jpg", false, "Renault", "Twingo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 2, "Micro", 2019 },
+                    { 42, 90.0, "../../assets/images/cars/car35.jpg", false, "Smart", "Fortwo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 2, "Micro", 2019 },
+                    { 43, 140.0, "../../assets/images/cars/car52.jpg", false, "Renault", "Megane", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 5, "Hatchback", 2019 },
+                    { 44, 340.0, "../../assets/images/cars/car54.jpg", false, "Volkswagen", "Arteon", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 5, "Sedan", 2019 },
+                    { 45, 410.0, "../../assets/images/cars/car47.jpg", false, "Ferrari", "458", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 2, "Cabriolet", 2019 },
+                    { 46, 310.0, "../../assets/images/cars/car48.jpg", false, "Porsche", "Taycan", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 2, "Coupe", 2018 },
+                    { 18, 200.0, "../../assets/images/cars/car36.jpg", false, "Audi", "A7", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 5, "Sedan", 2018 },
+                    { 9, 220.0, "../../assets/images/cars/car9.jpg", false, "Toyota", "Supra", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 2, "Coupe", 2019 },
+                    { 4, 200.0, "../../assets/images/cars/car21.jpg", false, "Toyota", "C-HR", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "SUV", 2019 },
+                    { 27, 450.0, "../../assets/images/cars/car63.jpg", false, "Lamborghini", "Huracán", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Coupe", 2019 },
+                    { 40, 360.0, "../../assets/images/cars/car78.jpg", false, "Chevrolet", "Corvette", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Coupe", 2019 },
+                    { 39, 300.0, "../../assets/images/cars/car34.jpg", false, "BMW", "i8", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Coupe", 2015 },
+                    { 38, 370.0, "../../assets/images/cars/car44.jpg", false, "Ferrari", "Enzo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Pickup", 2010 },
+                    { 37, 300.0, "../../assets/images/cars/car45.jpg", false, "Lamborghini", "Gallardo", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Coupe", 2015 },
+                    { 36, 350.0, "../../assets/images/cars/car70.jpg", false, "Mercedes", "SLR McLaren", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Coupe", 2016 },
+                    { 35, 400.0, "../../assets/images/cars/car42.jpg", false, "Mercedes", "AMG GT-R", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Coupe", 2020 },
+                    { 34, 410.0, "../../assets/images/cars/car76.jpg", false, "Ferrari", "488 Pista", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Cabriolet", 2019 },
+                    { 33, 400.0, "../../assets/images/cars/car69.jpg", false, "Lamborghini", "Aventador", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Cabriolet", 2018 },
+                    { 32, 290.0, "../../assets/images/cars/car25.jpg", false, "Audi", "R8", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Pickup", 2019 },
+                    { 31, 200.0, "../../assets/images/cars/car5.jpg", false, "Audi", "TT", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Coupe", 2017 },
+                    { 30, 340.0, "../../assets/images/cars/car71.jpg", false, "Ferrari", "Roma", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Coupe", 2019 },
+                    { 29, 320.0, "../../assets/images/cars/car67.jpg", false, "Ferrari", "468", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Coupe", 2019 },
+                    { 28, 430.0, "../../assets/images/cars/car64.jpg", false, "Lamborghini", "Huracán", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Coupe", 2019 },
                     { 1, 100.0, "../../assets/images/cars/car1.jpg", false, "Mercedes", "A 250", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Hatchback", 2020 },
-                    { 12, 100.0, "../../assets/images/cars/car12.jpg", false, "Mercedes", "A 100", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 5, "Hatchback", 2020 },
-                    { 11, 100.0, "../../assets/images/cars/car11.jpg", false, "BMW", "X6", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 5, "SUV", 2019 },
-                    { 4, 100.0, "../../assets/images/cars/car4.jpg", false, "RAM", "1500", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 6, "Pickup", 2019 },
-                    { 3, 100.0, "../../assets/images/cars/car3.jpg", false, "Range Rover", "P525", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "SUV", 2018 },
-                    { 7, 100.0, "../../assets/images/cars/car7.jpg", false, "BMW", "X6", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "SUV", 2019 },
-                    { 10, 100.0, "../../assets/images/cars/car10.jpg", false, "Mercedes", "A 100", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 5, "Hatchback", 2020 },
-                    { 2, 100.0, "../../assets/images/cars/car2.jpg", false, "BMW", "M5", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Sedan", 2020 },
-                    { 8, 100.0, "../../assets/images/cars/car8.jpg", false, "Mercedes", "A 100", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Hatchback", 2020 },
-                    { 9, 100.0, "../../assets/images/cars/car9.jpg", false, "BMW", "X6", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 2, 0.0, false, 5, "SUV", 2019 },
-                    { 6, 100.0, "../../assets/images/cars/car6.jpg", false, "Renault", "Clio 5", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Hatchback", 2017 }
+                    { 2, 200.0, "../../assets/images/cars/car2.jpg", false, "BMW", "M5", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Sedan", 2020 },
+                    { 3, 250.0, "../../assets/images/cars/car23.jpg", false, "Range Rover", "Evoque", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "SUV", 2018 },
+                    { 47, 250.0, "../../assets/images/cars/car11.jpg", false, "BMW", "M4", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 4, "Cabriolet", 2019 },
+                    { 5, 150.0, "../../assets/images/cars/car39.jpg", false, "Volkswagen", "Scirocco", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Coupe", 2016 },
+                    { 6, 80.0, "../../assets/images/cars/car12.jpg", false, "Renault", "Clio 5", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Hatchback", 2017 },
+                    { 7, 180.0, "../../assets/images/cars/car29.jpg", false, "Audi", "A8", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Sedan", 2019 },
+                    { 8, 300.0, "../../assets/images/cars/car33.jpg", false, "BMW", "i8", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 1, 0.0, false, 5, "Coupe", 2018 },
+                    { 26, 490.0, "../../assets/images/cars/car77.jpg", false, "Lamborghini", "Huracán", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 4, 0.0, false, 2, "Coupe", 2018 },
+                    { 48, 170.0, "../../assets/images/cars/car18.jpg", false, "Volkswagen", "Pasat", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, false, 3, 0.0, false, 5, "Sedan", 2017 }
                 });
 
             migrationBuilder.InsertData(
@@ -698,12 +735,14 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "City", "Country", "IsMain", "IsUsedForRent", "Number", "RACServiceId", "Street" },
                 values: new object[,]
                 {
-                    { 1, "Belgrade", "Serbia", true, false, 3, 1, "Pozeska" },
-                    { 3, "Istanbul", "Turkey", true, false, 33, 2, "Azar" },
-                    { 4, "Istanbul", "Turkey", false, false, 3, 2, "Izmir" },
-                    { 2, "Belgrade", "Serbia", false, false, 33, 1, "Nemanjina" },
+                    { 5, "Moscow", "Russia", true, false, 55, 3, "Putin" },
                     { 6, "Moscow", "Russia", false, false, 73, 3, "Artem" },
-                    { 5, "Moscow", "Russia", true, false, 55, 3, "Putin" }
+                    { 8, "München", "Germany", false, false, 99, 4, "Sonnenstraße" },
+                    { 3, "Istanbul", "Turkey", true, false, 33, 2, "Azar" },
+                    { 7, "München", "Germany", true, false, 69, 4, "Steinerstraße" },
+                    { 2, "Belgrade", "Serbia", false, false, 33, 1, "Nemanjina" },
+                    { 1, "Belgrade", "Serbia", true, false, 3, 1, "Pozeska" },
+                    { 4, "Istanbul", "Turkey", false, false, 3, 2, "Izmir" }
                 });
 
             migrationBuilder.InsertData(
@@ -711,19 +750,20 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AddressId", "Email", "FirstName", "LastName", "MobileNumber", "Password", "Role", "Username" },
                 values: new object[,]
                 {
-                    { 13, 19, "donaldtrump@gmail.com", "Melanie", "Trump", "+381650000000", "melanie", 4, "melanie" },
-                    { 12, 19, "donaldtrump@gmail.com", "Donald", "Trump", "+381650000000", "trump", 4, "trump" },
-                    { 11, 19, "kovacevicnemanja1997@gmail.com", "Vladimir", "Putin", "+381650000000", "putin", 2, "putin" },
-                    { 7, 15, "marijamiric@gmail.com", "Marija", "Miric", "+381604520858", "marijaaaa", 3, "marijaaa" },
-                    { 8, 13, "milicamiric@gmail.com", "Milica", "Miric", "+381604520858", "milicaaaa", 3, "milicaaa" },
-                    { 6, 12, "kovacevicnemanja1997@gmail.com", "Mitar", "Miric", "+381604520858", "mitar123", 0, "mitar123" },
-                    { 5, 11, "kovacevicnemanja1997@gmail.com", "Milica", "Krivokapic", "+381604520858", "milica123", 0, "milica123" },
-                    { 3, 11, "kovacevicnemanja1997@gmail.com", "Lana", "Kovacevic", "+381604520858", "lana123", 0, "lana123" },
-                    { 4, 10, "kovacevicnemanja1997@gmail.com", "Milovan", "Zec", "+381604520858", "milovan123", 0, "milovan123" },
-                    { 10, 6, "kovacevicnemanja1997@gmail.com", "Burak", "Yilmaz", "+381650000000", "burak", 2, "burak" },
-                    { 9, 2, "kovacevicnemanja1997@gmail.com", "Radovan", "Trudic", "+381650000000", "rasa", 2, "rasa" },
                     { 2, 2, "natasatrudic@gmail.com", "Natasa", "Trudic", "+381650000000", "naca", 0, "naca" },
-                    { 1, 1, "kovacevicnemanja1997@gmail.com", "Nemanja", "Kovacevic", "+381604520858", "nemanja123", 0, "nemanja123" }
+                    { 9, 2, "radovantrudic@gmail.com", "Radovan", "Trudic", "+381650000000", "rasa", 2, "rasa" },
+                    { 10, 6, "burakyilmaz@gmail.com", "Burak", "Yilmaz", "+381650000000", "burak", 2, "burak" },
+                    { 4, 10, "kovacevicnemanja1997@gmail.com", "Milovan", "Zec", "+381604520858", "milovan123", 0, "milovan123" },
+                    { 3, 11, "kovacevicnemanja1997@gmail.com", "Lana", "Kovacevic", "+381604520858", "lana123", 0, "lana123" },
+                    { 5, 11, "kovacevicnemanja1997@gmail.com", "Milica", "Krivokapic", "+381604520858", "milica123", 0, "milica123" },
+                    { 8, 13, "milicamiric@gmail.com", "Milica", "Miric", "+381604520858", "milicaaaa", 3, "milicaaa" },
+                    { 14, 14, "miroklose@gmail.com", "Miroslav", "Klose", "+381650000000", "klose", 2, "klose" },
+                    { 7, 15, "marijamiric@gmail.com", "Marija", "Miric", "+381604520858", "marijaaaa", 3, "marijaaa" },
+                    { 11, 19, "vladimirputin@gmail.com", "Vladimir", "Putin", "+381650000000", "putin", 2, "putin" },
+                    { 12, 19, "donaldtrump@gmail.com", "Donald", "Trump", "+381650000000", "trump", 4, "trump" },
+                    { 13, 19, "donaldtrump@gmail.com", "Melanie", "Trump", "+381650000000", "melanie", 4, "melanie" },
+                    { 6, 12, "kovacevicnemanja1997@gmail.com", "Mitar", "Miric", "+381604520858", "mitar123", 0, "mitar123" },
+                    { 1, 1, "kovacevicnemanja1997@gmail.com", "Nemanja", "Kovacevic", "+381604520858", "cone", 0, "cone" }
                 });
 
             migrationBuilder.InsertData(
@@ -742,7 +782,8 @@ namespace TravellifeChaser.Migrations
                 {
                     { 1, 9, 1 },
                     { 2, 10, 2 },
-                    { 3, 11, 3 }
+                    { 3, 11, 3 },
+                    { 4, 14, 4 }
                 });
 
             migrationBuilder.InsertData(
@@ -759,7 +800,7 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "AirlineId", "AirportId" },
                 values: new object[,]
                 {
-                    { 2, 5 },
+                    { 2, 6 },
                     { 2, 8 },
                     { 2, 4 },
                     { 2, 9 },
@@ -770,7 +811,7 @@ namespace TravellifeChaser.Migrations
                     { 1, 4 },
                     { 1, 6 },
                     { 1, 7 },
-                    { 2, 6 },
+                    { 2, 5 },
                     { 2, 2 }
                 });
 
@@ -811,8 +852,8 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "FromId", "ToId" },
                 values: new object[,]
                 {
-                    { 1, 1, 2 },
-                    { 2, 3, 1 }
+                    { 2, 3, 1 },
+                    { 1, 1, 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -820,8 +861,45 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "User1Id", "User2Id" },
                 values: new object[,]
                 {
-                    { 1, 4 },
-                    { 1, 6 }
+                    { 1, 6 },
+                    { 1, 4 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Rents",
+                columns: new[] { "Id", "CarId", "EndDate", "EndRACAddressId", "Price", "RatingForCar", "RatingForRACService", "RegisteredUserId", "StartDate", "StartRACAddressId" },
+                values: new object[,]
+                {
+                    { 15, 4, new DateTime(2021, 2, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1200.0, 0, 0, 4, new DateTime(2021, 2, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 23, 4, new DateTime(2020, 9, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1850.0, 0, 0, 4, new DateTime(2020, 9, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 9, 5, new DateTime(2020, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 300.0, 0, 0, 3, new DateTime(2020, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 10, 2, new DateTime(2020, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1240.0, 0, 0, 3, new DateTime(2020, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 18, 4, new DateTime(2020, 5, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3000.0, 0, 0, 3, new DateTime(2020, 5, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 21, 6, new DateTime(2020, 7, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1010.0, 0, 0, 3, new DateTime(2020, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 25, 5, new DateTime(2020, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1240.0, 0, 0, 3, new DateTime(2020, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 30, 8, new DateTime(2021, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2200.0, 0, 0, 3, new DateTime(2021, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 16, 2, new DateTime(2020, 3, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2400.0, 0, 0, 5, new DateTime(2020, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 19, 3, new DateTime(2020, 5, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 700.0, 0, 0, 5, new DateTime(2020, 5, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 22, 1, new DateTime(2020, 8, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2000.0, 0, 0, 5, new DateTime(2020, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 28, 6, new DateTime(2021, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 500.0, 0, 0, 6, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 24, 2, new DateTime(2020, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2300.0, 0, 0, 3, new DateTime(2020, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 8, 6, new DateTime(2020, 9, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 850.0, 0, 0, 4, new DateTime(2020, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 1, 1, new DateTime(2020, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 400.0, 0, 0, 1, new DateTime(2020, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 29, 2, new DateTime(2021, 1, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 300.0, 0, 0, 2, new DateTime(2021, 1, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 7, 7, new DateTime(2020, 8, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2000.0, 0, 0, 4, new DateTime(2020, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 3, 2, new DateTime(2020, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 100.0, 0, 0, 1, new DateTime(2020, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 4, 4, new DateTime(2020, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 700.0, 0, 0, 1, new DateTime(2020, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 5, 1, new DateTime(2020, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1000.0, 0, 0, 1, new DateTime(2020, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 6, 8, new DateTime(2020, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1010.0, 0, 0, 1, new DateTime(2020, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 13, 1, new DateTime(2021, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 700.0, 0, 0, 1, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 2, 5, new DateTime(2020, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 200.0, 0, 0, 1, new DateTime(2020, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 20, 1, new DateTime(2020, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 850.0, 0, 0, 1, new DateTime(2020, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 11, 1, new DateTime(2020, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 400.0, 0, 0, 2, new DateTime(2020, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 12, 3, new DateTime(2020, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1000.0, 0, 0, 2, new DateTime(2020, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 14, 7, new DateTime(2021, 1, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1500.0, 0, 0, 2, new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 26, 7, new DateTime(2020, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1500.0, 0, 0, 2, new DateTime(2020, 12, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 27, 3, new DateTime(2020, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 900.0, 0, 0, 2, new DateTime(2020, 12, 27, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
+                    { 17, 8, new DateTime(2020, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2000.0, 0, 0, 1, new DateTime(2020, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -834,23 +912,22 @@ namespace TravellifeChaser.Migrations
                     { 19, 7, 10, 1, 1 },
                     { 19, 8, 10, 1, 1 },
                     { 0, 0, 12, 3, 1 },
-                    { 0, 1, 12, 3, 1 },
                     { 0, 3, 12, 3, 1 },
-                    { 19, 4, 10, 1, 1 },
+                    { 0, 2, 12, 3, 1 },
                     { 0, 4, 12, 3, 1 },
                     { 0, 5, 12, 3, 1 },
                     { 0, 6, 12, 3, 1 },
+                    { 19, 4, 10, 1, 1 },
                     { 0, 7, 12, 3, 1 },
-                    { 0, 2, 12, 3, 1 },
+                    { 0, 1, 12, 3, 1 },
                     { 19, 3, 10, 1, 1 },
+                    { 18, 4, 10, 1, 1 },
                     { 19, 1, 10, 1, 1 },
-                    { 0, 8, 12, 3, 1 },
                     { 19, 0, 10, 1, 1 },
                     { 18, 8, 10, 1, 1 },
                     { 18, 7, 10, 1, 1 },
                     { 18, 6, 10, 1, 1 },
                     { 18, 5, 10, 1, 1 },
-                    { 18, 4, 10, 1, 1 },
                     { 18, 3, 10, 1, 1 },
                     { 18, 2, 10, 1, 1 },
                     { 18, 1, 10, 1, 1 },
@@ -858,10 +935,11 @@ namespace TravellifeChaser.Migrations
                     { 17, 8, 10, 1, 1 },
                     { 17, 7, 10, 1, 1 },
                     { 17, 6, 10, 1, 1 },
+                    { 0, 8, 12, 3, 1 },
                     { 19, 2, 10, 1, 1 },
                     { 1, 0, 12, 3, 1 },
+                    { 2, 8, 12, 3, 1 },
                     { 1, 2, 12, 3, 1 },
-                    { 17, 5, 10, 1, 1 },
                     { 4, 5, 12, 2, 1 },
                     { 4, 4, 12, 2, 1 },
                     { 4, 3, 12, 2, 1 },
@@ -892,10 +970,10 @@ namespace TravellifeChaser.Migrations
                     { 1, 5, 12, 3, 1 },
                     { 1, 4, 12, 3, 1 },
                     { 1, 3, 12, 3, 1 },
-                    { 2, 8, 12, 3, 1 },
+                    { 17, 5, 10, 1, 1 },
                     { 17, 4, 10, 1, 1 },
+                    { 15, 5, 10, 1, 1 },
                     { 17, 2, 10, 1, 1 },
-                    { 4, 6, 12, 2, 1 },
                     { 13, 3, 10, 1, 1 },
                     { 13, 2, 10, 1, 1 },
                     { 13, 1, 10, 1, 1 },
@@ -945,7 +1023,7 @@ namespace TravellifeChaser.Migrations
                     { 15, 7, 10, 1, 1 },
                     { 15, 6, 10, 1, 1 },
                     { 13, 6, 10, 1, 1 },
-                    { 15, 5, 10, 1, 1 },
+                    { 4, 6, 12, 2, 1 },
                     { 15, 3, 10, 1, 1 },
                     { 15, 2, 10, 1, 1 },
                     { 15, 1, 10, 1, 1 },
@@ -962,8 +1040,8 @@ namespace TravellifeChaser.Migrations
                     { 13, 8, 10, 1, 1 },
                     { 15, 4, 10, 1, 1 },
                     { 4, 7, 12, 2, 1 },
+                    { 6, 6, 12, 2, 1 },
                     { 5, 0, 12, 2, 1 },
-                    { 10, 0, 10, 1, 1 },
                     { 15, 7, 12, 1, 1 },
                     { 15, 6, 12, 1, 1 },
                     { 15, 5, 12, 1, 1 },
@@ -1061,7 +1139,7 @@ namespace TravellifeChaser.Migrations
                     { 5, 3, 12, 2, 1 },
                     { 5, 2, 12, 2, 1 },
                     { 5, 1, 12, 2, 1 },
-                    { 6, 6, 12, 2, 1 },
+                    { 10, 0, 10, 1, 1 },
                     { 4, 8, 12, 2, 1 },
                     { 8, 5, 12, 2, 1 },
                     { 8, 7, 12, 2, 1 },
@@ -1097,8 +1175,8 @@ namespace TravellifeChaser.Migrations
                     { 8, 8, 12, 2, 1 },
                     { 10, 4, 12, 1, 1 },
                     { 9, 8, 10, 1, 1 },
+                    { 8, 0, 10, 2, 1 },
                     { 9, 6, 10, 1, 1 },
-                    { 19, 6, 12, 1, 1 },
                     { 10, 7, 8, 1, 1 },
                     { 10, 6, 8, 1, 1 },
                     { 10, 5, 8, 1, 1 },
@@ -1185,7 +1263,14 @@ namespace TravellifeChaser.Migrations
                     { 1, 5, 8, 3, 1 },
                     { 1, 4, 8, 3, 1 },
                     { 1, 3, 8, 3, 1 },
-                    { 1, 2, 8, 3, 1 },
+                    { 1, 2, 8, 3, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Seats",
+                columns: new[] { "Row", "Column", "FlightId", "Class", "Status" },
+                values: new object[,]
+                {
                     { 1, 1, 8, 3, 1 },
                     { 1, 0, 8, 3, 1 },
                     { 0, 8, 8, 3, 1 },
@@ -1245,14 +1330,7 @@ namespace TravellifeChaser.Migrations
                     { 4, 8, 10, 2, 1 },
                     { 4, 7, 10, 2, 1 },
                     { 4, 6, 10, 2, 1 },
-                    { 4, 5, 10, 2, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Seats",
-                columns: new[] { "Row", "Column", "FlightId", "Class", "Status" },
-                values: new object[,]
-                {
+                    { 4, 5, 10, 2, 1 },
                     { 4, 4, 10, 2, 1 },
                     { 4, 3, 10, 2, 1 },
                     { 4, 2, 10, 2, 1 },
@@ -1289,7 +1367,7 @@ namespace TravellifeChaser.Migrations
                     { 8, 2, 10, 2, 1 },
                     { 8, 1, 10, 2, 1 },
                     { 2, 5, 10, 3, 1 },
-                    { 8, 0, 10, 2, 1 },
+                    { 19, 6, 12, 1, 1 },
                     { 7, 7, 10, 2, 1 },
                     { 7, 6, 10, 2, 1 },
                     { 7, 5, 10, 2, 1 },
@@ -1374,8 +1452,8 @@ namespace TravellifeChaser.Migrations
                     { 18, 8, 8, 1, 1 },
                     { 0, 4, 10, 3, 1 },
                     { 19, 7, 12, 1, 1 },
+                    { 1, 6, 2, 3, 1 },
                     { 0, 0, 2, 3, 1 },
-                    { 0, 0, 8, 3, 1 },
                     { 0, 8, 11, 3, 1 },
                     { 0, 7, 11, 3, 1 },
                     { 0, 6, 11, 3, 1 },
@@ -1611,7 +1689,14 @@ namespace TravellifeChaser.Migrations
                     { 6, 7, 11, 2, 1 },
                     { 5, 0, 11, 2, 1 },
                     { 8, 6, 11, 2, 1 },
-                    { 8, 8, 11, 2, 1 },
+                    { 8, 8, 11, 2, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Seats",
+                columns: new[] { "Row", "Column", "FlightId", "Class", "Status" },
+                values: new object[,]
+                {
                     { 12, 2, 11, 1, 1 },
                     { 12, 1, 11, 1, 1 },
                     { 12, 0, 11, 1, 1 },
@@ -1671,14 +1756,7 @@ namespace TravellifeChaser.Migrations
                     { 8, 3, 2, 2, 1 },
                     { 8, 2, 2, 2, 1 },
                     { 8, 1, 2, 2, 1 },
-                    { 8, 0, 2, 2, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Seats",
-                columns: new[] { "Row", "Column", "FlightId", "Class", "Status" },
-                values: new object[,]
-                {
+                    { 8, 0, 2, 2, 1 },
                     { 7, 8, 2, 2, 1 },
                     { 7, 7, 2, 2, 1 },
                     { 7, 6, 2, 2, 1 },
@@ -1750,7 +1828,7 @@ namespace TravellifeChaser.Migrations
                     { 0, 3, 2, 3, 1 },
                     { 0, 2, 2, 3, 1 },
                     { 0, 1, 2, 3, 1 },
-                    { 1, 6, 2, 3, 1 },
+                    { 0, 0, 8, 3, 1 },
                     { 14, 6, 2, 1, 1 },
                     { 3, 5, 2, 3, 1 },
                     { 3, 7, 2, 3, 1 },
@@ -1922,8 +2000,8 @@ namespace TravellifeChaser.Migrations
                     { 18, 8, 2, 1, 1 },
                     { 0, 4, 9, 3, 1 },
                     { 19, 8, 7, 1, 1 },
+                    { 18, 0, 7, 1, 1 },
                     { 19, 6, 7, 1, 1 },
-                    { 19, 7, 11, 1, 1 },
                     { 0, 6, 4, 3, 1 },
                     { 0, 5, 4, 3, 1 },
                     { 0, 4, 4, 3, 1 },
@@ -2037,7 +2115,14 @@ namespace TravellifeChaser.Migrations
                     { 16, 0, 3, 1, 1 },
                     { 15, 8, 3, 1, 1 },
                     { 15, 7, 3, 1, 1 },
-                    { 15, 6, 3, 1, 1 },
+                    { 15, 6, 3, 1, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Seats",
+                columns: new[] { "Row", "Column", "FlightId", "Class", "Status" },
+                values: new object[,]
+                {
                     { 15, 5, 3, 1, 1 },
                     { 13, 5, 3, 1, 1 },
                     { 15, 4, 3, 1, 1 },
@@ -2097,14 +2182,7 @@ namespace TravellifeChaser.Migrations
                     { 19, 2, 4, 1, 1 },
                     { 19, 1, 4, 1, 1 },
                     { 19, 0, 4, 1, 1 },
-                    { 18, 8, 4, 1, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Seats",
-                columns: new[] { "Row", "Column", "FlightId", "Class", "Status" },
-                values: new object[,]
-                {
+                    { 18, 8, 4, 1, 1 },
                     { 18, 7, 4, 1, 1 },
                     { 18, 6, 4, 1, 1 },
                     { 18, 5, 4, 1, 1 },
@@ -2463,7 +2541,14 @@ namespace TravellifeChaser.Migrations
                     { 19, 4, 1, 1, 1 },
                     { 19, 3, 1, 1, 1 },
                     { 19, 2, 1, 1, 1 },
-                    { 19, 1, 1, 1, 1 },
+                    { 19, 1, 1, 1, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Seats",
+                columns: new[] { "Row", "Column", "FlightId", "Class", "Status" },
+                values: new object[,]
+                {
                     { 19, 0, 1, 1, 1 },
                     { 18, 8, 1, 1, 1 },
                     { 18, 7, 1, 1, 1 },
@@ -2523,14 +2608,7 @@ namespace TravellifeChaser.Migrations
                     { 2, 7, 7, 3, 1 },
                     { 2, 6, 7, 3, 1 },
                     { 2, 5, 7, 3, 1 },
-                    { 2, 4, 7, 3, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Seats",
-                columns: new[] { "Row", "Column", "FlightId", "Class", "Status" },
-                values: new object[,]
-                {
+                    { 2, 4, 7, 3, 1 },
                     { 2, 3, 7, 3, 1 },
                     { 2, 2, 7, 3, 1 },
                     { 2, 1, 7, 3, 1 },
@@ -2661,7 +2739,7 @@ namespace TravellifeChaser.Migrations
                     { 18, 2, 7, 1, 1 },
                     { 18, 1, 7, 1, 1 },
                     { 12, 5, 7, 1, 1 },
-                    { 18, 0, 7, 1, 1 },
+                    { 19, 7, 11, 1, 1 },
                     { 17, 7, 7, 1, 1 },
                     { 17, 6, 7, 1, 1 },
                     { 17, 5, 7, 1, 1 },
@@ -2889,7 +2967,14 @@ namespace TravellifeChaser.Migrations
                     { 5, 4, 6, 2, 1 },
                     { 5, 3, 6, 2, 1 },
                     { 5, 2, 6, 2, 1 },
-                    { 5, 1, 6, 2, 1 },
+                    { 5, 1, 6, 2, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Seats",
+                columns: new[] { "Row", "Column", "FlightId", "Class", "Status" },
+                values: new object[,]
+                {
                     { 5, 0, 6, 2, 1 },
                     { 4, 8, 6, 2, 1 },
                     { 4, 7, 6, 2, 1 },
@@ -2949,14 +3034,7 @@ namespace TravellifeChaser.Migrations
                     { 6, 3, 6, 2, 1 },
                     { 7, 8, 6, 2, 1 },
                     { 19, 7, 7, 1, 1 },
-                    { 2, 3, 6, 3, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Seats",
-                columns: new[] { "Row", "Column", "FlightId", "Class", "Status" },
-                values: new object[,]
-                {
+                    { 2, 3, 6, 3, 1 },
                     { 2, 1, 6, 3, 1 },
                     { 18, 2, 5, 1, 1 },
                     { 18, 1, 5, 1, 1 },

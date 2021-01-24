@@ -216,8 +216,8 @@ export class RentModalComponent implements OnInit {
 
   passBack() {
     let contain = false;
-    this.myRent.startDate = new Date(this.startDate.year,this.startDate.month - 1,this.startDate.day,this.minPickerTime1.hour+1, this.minPickerTime1.minute);
-    this.myRent.endDate = new Date(this.endDate.year,this.endDate.month - 1,this.endDate.day,this.minPickerTime2.hour+1, this.minPickerTime2.minute);
+    this.myRent.startDate = new Date(this.startDate.year,this.startDate.month - 1,this.startDate.day,this.minPickerTime1.hour, this.minPickerTime1.minute);
+    this.myRent.endDate = new Date(this.endDate.year,this.endDate.month - 1,this.endDate.day,this.minPickerTime2.hour, this.minPickerTime2.minute);
     
     if(this.checkInput()){
       this.disabledDates.forEach(element => {

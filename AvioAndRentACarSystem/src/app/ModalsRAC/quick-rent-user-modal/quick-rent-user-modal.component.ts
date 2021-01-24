@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Flight } from 'src/app/AirlineModel/flight';
@@ -127,33 +128,35 @@ export class QuickRentUserModalComponent implements OnInit {
           newRent.endRACAddressId = address.id;
           newRent.carId = car.id;
           this.rentService.add(newRent).subscribe(ret => {
-          let rent = ret as Rent;
-          this.ticket.rentId = rent.id;
-          this.ticketService.update(this.ticket.id, this.ticket).subscribe(() => {
-            let updatedCar = new Car();
-            updatedCar.id = car.id;
-            updatedCar.image = car.image;
-            updatedCar.mark = car.mark;
-            updatedCar.model = car.model;
-            updatedCar.seats = car.seats;
-            updatedCar.type = car.type;
-            updatedCar.year = car.year;
-            updatedCar.rating = car.rating;
-            updatedCar.dailyPrice = car.dailyPrice;
-            updatedCar.isReservedForRent = car.isReservedForRent;
-            updatedCar.quickRentDate = new Date(car.quickRentDate);
-            updatedCar.quickRentDiscount = car.quickRentDiscount;
-            updatedCar.quickRented = car.quickRented;
-            updatedCar.racServiceId = car.racService.id;
-            updatedCar.rented = car.rented;
-            this.car = updatedCar;
-            this.car.isReservedForRent = true;
-            this.carService.update(this.car.id, this.car).subscribe(() => {console.log(this.car)});
-            this.passEntry.emit(this.car);
-            this.activeModal.close(this.ticket);
-            this.activeModal.close(this.car);
+            let rent = ret as Rent;
+            this.ticket.rentId = rent.id;
+            this.ticketService.update(this.ticket.id, this.ticket).subscribe(() => {
+              let updatedCar = new Car();
+              updatedCar.id = car.id;
+              updatedCar.image = car.image;
+              updatedCar.mark = car.mark;
+              updatedCar.model = car.model;
+              updatedCar.seats = car.seats;
+              updatedCar.type = car.type;
+              updatedCar.year = car.year;
+              updatedCar.rating = car.rating;
+              updatedCar.dailyPrice = car.dailyPrice;
+              updatedCar.isReservedForRent = car.isReservedForRent;
+              updatedCar.quickRentDate = new Date(car.quickRentDate);
+              updatedCar.quickRentDiscount = car.quickRentDiscount;
+              updatedCar.quickRented = car.quickRented;
+              updatedCar.racServiceId = car.racService.id;
+              updatedCar.rented = car.rented;
+              this.car = updatedCar;
+              this.car.isReservedForRent = true;
+              this.carService.update(this.car.id, this.car).subscribe(() => {console.log(this.car)});
+              this.passEntry.emit(this.car);
+              this.activeModal.close(this.ticket);
+              this.activeModal.close(this.car);
+            });
+          }, (error:HttpErrorResponse) => {
+            alert(error.error);
           });
-        });
         });
       }
     }

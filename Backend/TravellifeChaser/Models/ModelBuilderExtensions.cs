@@ -26,7 +26,7 @@ namespace TravellifeChaser.Models
             Address addr11 = new Address() { Id = 11, City = "Smederevo", Country = "Serbia" };
             Address addr12 = new Address() { Id = 12, City = "Krusevac", Country = "Serbia" };
             Address addr13 = new Address() { Id = 13, City = "Subotica", Country = "Serbia" };
-            Address addr14 = new Address() { Id = 14, City = "Munich", Country = "Deuschland", Latitude = 48.35388889, Longitude = 11.78611111 };
+            Address addr14 = new Address() { Id = 14, City = "München", Country = "Germany", Latitude = 48.35388889, Longitude = 11.78611111 };
             Address addr15 = new Address() { Id = 15, City = "Lisbon", Country = "Portugal", Latitude = 38.77416667, Longitude = 38.77416667 };
             Address addr16 = new Address() { Id = 16, City = "Madrid", Country = "Spain", Latitude = 49.0097, Longitude = 2.5479 };
             Address addr17 = new Address() { Id = 17, City = "Brussel", Country = "Belgium", Latitude = 50.90138889, Longitude = 4.48444444 };
@@ -37,7 +37,7 @@ namespace TravellifeChaser.Models
             Address addr21 = new Address() { Id = 21, City = "Abu Dhabi", Country = "UAE", Latitude = 24.466667, Longitude = 54.366669 };
             Address addr22 = new Address() { Id = 22, City = "Dubai", Country = "UAE", Latitude = 25.276987, Longitude = 55.296249 };
 
-            User u1 = new User() { Id = 1, FirstName = "Nemanja", LastName = "Kovacevic", Username = "nemanja123", Email = "kovacevicnemanja1997@gmail.com", Password = "nemanja123", MobileNumber = "+381604520858", AddressId = addr1.Id, Role = UserRole.Registered };
+            User u1 = new User() { Id = 1, FirstName = "Nemanja", LastName = "Kovacevic", Username = "cone", Email = "kovacevicnemanja1997@gmail.com", Password = "cone", MobileNumber = "+381604520858", AddressId = addr1.Id, Role = UserRole.Registered };
             RegisteredUser ru1 = new RegisteredUser() { Id = u1.Id, BounusPoints = 0 };
 
             User u2 = new User() { Id = 2, FirstName = "Natasa", LastName = "Trudic", Username = "naca", Email = "natasatrudic@gmail.com", Password = "naca", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.Registered };
@@ -83,16 +83,17 @@ namespace TravellifeChaser.Models
             User u8 = new User() { Id = 8, FirstName = "Milica", LastName = "Miric", Username = "milicaaa", Email = "milicamiric@gmail.com", Password = "milicaaaa", MobileNumber = "+381604520858", AddressId = addr13.Id, Role = UserRole.AdminAirlines };
             AdminAirlinesUser ru8 = new AdminAirlinesUser() { adminId = 2, Id = u8.Id, AirlineId = 2 };
 
-            User u9 = new User() { Id = 9, FirstName = "Radovan", LastName = "Trudic", Username = "rasa", Email = "kovacevicnemanja1997@gmail.com", Password = "rasa", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.AdminRAC };
-            User u10 = new User() { Id = 10, FirstName = "Burak", LastName = "Yilmaz", Username = "burak", Email = "kovacevicnemanja1997@gmail.com", Password = "burak", MobileNumber = "+381650000000", AddressId = addr6.Id, Role = UserRole.AdminRAC };
-            User u11 = new User() { Id = 11, FirstName = "Vladimir", LastName = "Putin", Username = "putin", Email = "kovacevicnemanja1997@gmail.com", Password = "putin", MobileNumber = "+381650000000", AddressId = addr19.Id, Role = UserRole.AdminRAC };
+            User u9 = new User() { Id = 9, FirstName = "Radovan", LastName = "Trudic", Username = "rasa", Email = "radovantrudic@gmail.com", Password = "rasa", MobileNumber = "+381650000000", AddressId = addr2.Id, Role = UserRole.AdminRAC };
+            User u10 = new User() { Id = 10, FirstName = "Burak", LastName = "Yilmaz", Username = "burak", Email = "burakyilmaz@gmail.com", Password = "burak", MobileNumber = "+381650000000", AddressId = addr6.Id, Role = UserRole.AdminRAC };
+            User u11 = new User() { Id = 11, FirstName = "Vladimir", LastName = "Putin", Username = "putin", Email = "vladimirputin@gmail.com", Password = "putin", MobileNumber = "+381650000000", AddressId = addr19.Id, Role = UserRole.AdminRAC };
+            User u14 = new User() { Id = 14, FirstName = "Miroslav", LastName = "Klose", Username = "klose", Email = "miroklose@gmail.com", Password = "klose", MobileNumber = "+381650000000", AddressId = addr14.Id, Role = UserRole.AdminRAC };
 
             Airport airport1 = new Airport() { Id = 1, AddressId = addr4.Id, Name = "Nikola Tesla" };
             Airport airport2 = new Airport() { Id = 2, AddressId = addr8.Id, Name = "Heathrow" };
             Airport airport3 = new Airport() { Id = 3, AddressId = addr9.Id, Name = "Charles de Gaulle" };
             Airport airport4 = new Airport() { Id = 4, AddressId = addr16.Id, Name = "Adolfo Suárez" };
             Airport airport5 = new Airport() { Id = 5, AddressId = addr15.Id, Name = "Humberto Delgado" };
-            Airport airport6 = new Airport() { Id = 6, AddressId = addr14.Id, Name = "Munich Airport" };
+            Airport airport6 = new Airport() { Id = 6, AddressId = addr14.Id, Name = "München Airport" };
             Airport airport7 = new Airport() { Id = 7, AddressId = addr17.Id, Name = "Brussel-Nationaal" };
             Airport airport8 = new Airport() { Id = 8, AddressId = addr19.Id, Name = "Sheremetyevo" };
             Airport airport9 = new Airport() { Id = 9, AddressId = addr18.Id, Name = "Schiphol" };
@@ -635,7 +636,7 @@ namespace TravellifeChaser.Models
             modelBuilder.Entity<Address>().HasData(addr1, addr2, addr3, addr4, addr5, addr6, addr7, addr8, addr9, addr10,
                                                    addr11, addr12, addr13, addr14, addr15, addr16, addr17, addr18, addr19,
                                                    addr20, addr21, addr22);
-            modelBuilder.Entity<User>().HasData(u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, u11, u12, u13);
+            modelBuilder.Entity<User>().HasData(u1, u2, u3, u4, u5, u6, u7, u8, u9, u10, u11, u12, u13, u14);
             modelBuilder.Entity<RegisteredUser>().HasData(ru1, ru2, ru3, ru4, ru5, ru6);
             modelBuilder.Entity<AdminAirlinesUser>().HasData(ru7, ru8);
             modelBuilder.Entity<FriendshipRequest>().HasData(fr1, fr2);
@@ -653,6 +654,7 @@ namespace TravellifeChaser.Models
             RACService racs1 = new RACService();
             RACService racs2 = new RACService();
             RACService racs3 = new RACService();
+            RACService racs4 = new RACService();
 
             RACAddress racAddr1 = new RACAddress();
             RACAddress racAddr2 = new RACAddress();
@@ -660,6 +662,8 @@ namespace TravellifeChaser.Models
             RACAddress racAddr4 = new RACAddress();
             RACAddress racAddr5 = new RACAddress();
             RACAddress racAddr6 = new RACAddress();
+            RACAddress racAddr7 = new RACAddress();
+            RACAddress racAddr8 = new RACAddress();
 
             //ADRESE
             racAddr1.Street = "Pozeska";
@@ -670,7 +674,6 @@ namespace TravellifeChaser.Models
             racAddr1.RACServiceId = 1;
             racAddr1.IsMain = true;
             racAddr1.IsUsedForRent = false;
-            //racAddr1.RACService = racs1;
 
             racAddr2.Street = "Nemanjina";
             racAddr2.Number = 33;
@@ -680,7 +683,6 @@ namespace TravellifeChaser.Models
             racAddr2.RACServiceId = 1;
             racAddr2.IsMain = false;
             racAddr2.IsUsedForRent = false;
-            //racAddr2.RACService = racs1;
 
             racAddr3.Street = "Azar";
             racAddr3.Number = 33;
@@ -690,7 +692,6 @@ namespace TravellifeChaser.Models
             racAddr3.RACServiceId = 2;
             racAddr3.IsMain = true;
             racAddr3.IsUsedForRent = false;
-            //racAddr3.RACService = racs2;
 
             racAddr4.Street = "Izmir";
             racAddr4.Number = 3;
@@ -700,7 +701,6 @@ namespace TravellifeChaser.Models
             racAddr4.RACServiceId = 2;
             racAddr4.IsMain = false;
             racAddr4.IsUsedForRent = false;
-            //racAddr4.RACService = racs2;
 
             racAddr5.Street = "Putin";
             racAddr5.Number = 55;
@@ -710,7 +710,6 @@ namespace TravellifeChaser.Models
             racAddr5.RACServiceId = 3;
             racAddr5.IsMain = true;
             racAddr5.IsUsedForRent = false;
-            //racAddr5.RACService = racs3;
 
             racAddr6.Street = "Artem";
             racAddr6.Number = 73;
@@ -720,47 +719,65 @@ namespace TravellifeChaser.Models
             racAddr6.RACServiceId = 3;
             racAddr6.IsMain = false;
             racAddr6.IsUsedForRent = false;
-            //racAddr6.RACService = racs3;
+
+            racAddr7.Street = "Steinerstraße";
+            racAddr7.Number = 69;
+            racAddr7.City = "München";
+            racAddr7.Country = "Germany";
+            racAddr7.Id = 7;
+            racAddr7.RACServiceId = 4;
+            racAddr7.IsMain = true;
+            racAddr7.IsUsedForRent = false;
+
+            racAddr8.Street = "Sonnenstraße";
+            racAddr8.Number = 99;
+            racAddr8.City = "München";
+            racAddr8.Country = "Germany";
+            racAddr8.Id = 8;
+            racAddr8.RACServiceId = 4;
+            racAddr8.IsMain = false;
+            racAddr8.IsUsedForRent = false;
 
             //RAC SERVISI
             racs2.Id = 2;
             racs2.Logo = @"../../assets/images/logos/rac3.png";
-            //racs2.MainAddress = "Azar 33, Istanbul, Turkey";
             racs2.Name = "Istanbul Rent-a-car";
             racs2.PriceList = "";
-            racs2.PromotionalDescription = "Just say where, we know how!";
+            racs2.PromotionalDescription = "Drive with us!";
             racs2.Rating = 0;
-            //racs2.AdminSysUserId = u12.Id;
 
             racs1.Id = 1;
             racs1.Logo = @"../../assets/images/logos/rac1.png";
-            //racs1.MainAddress = "Pozeska 3, Belgrade, Serbia";
             racs1.Name = "Belgrade Rent-a-car";
             racs1.PriceList = "";
             racs1.PromotionalDescription = "Just say where, we know how!";
             racs1.Rating = 0;
-            //racs1.AdminSysUserId = u12.Id;
 
             racs3.Id = 3;
             racs3.Logo = @"../../assets/images/logos/rac7.png";
-            //racs3.MainAddress = "Putin 55, Moscow, Russia";
             racs3.Name = "Moscow Rent-a-car";
             racs3.PriceList = "";
-            racs3.PromotionalDescription = "Just say where, we know how!";
+            racs3.PromotionalDescription = "Always with you!";
             racs3.Rating = 0;
-            //racs3.AdminSysUserId = u12.Id;
-            //racs1.AdminRACUser = adminRAC1;
+
+            racs4.Id = 4;
+            racs4.Logo = @"../../assets/images/logos/rac10.png";
+            racs4.Name = "Sports car rental";
+            racs4.PriceList = "";
+            racs4.PromotionalDescription = "The best sports cars!";
+            racs4.Rating = 0;
 
             //RAC ADMINI
             AdminRACUser adminRAC1 = new AdminRACUser() { RACServiceId = racs1.Id, Id = u9.Id, adminId = 1 };
             AdminRACUser adminRAC2 = new AdminRACUser() { RACServiceId = racs2.Id, Id = u10.Id, adminId = 2 };
             AdminRACUser adminRAC3 = new AdminRACUser() { RACServiceId = racs3.Id, Id = u11.Id, adminId = 3 };
-            //AdminRACUser ru9 = new AdminRACUser() { Id = u9.Id, RACServiceId = 1 };
+            AdminRACUser adminRAC4 = new AdminRACUser() { RACServiceId = racs4.Id, Id = u14.Id, adminId = 4 };
 
             //SYS ADMINI
             AdminSysUser adminSys1 = new AdminSysUser() { Predefined = true, Id = u12.Id };
-            AdminSysUser adminSys2 = new AdminSysUser() { Predefined = false, Id = u13.Id };//Ovu obrisi posle
+            AdminSysUser adminSys2 = new AdminSysUser() { Predefined = false, Id = u13.Id };
 
+            //BELGRADE RENT-A-CAR
             Car c1 = new Car()
             {
                 Id = 1,
@@ -780,7 +797,7 @@ namespace TravellifeChaser.Models
             Car c2 = new Car()
             {
                 Id = 2,
-                DailyPrice = 100,
+                DailyPrice = 200,
                 Image = @"../../assets/images/cars/car2.jpg",
                 Mark = "BMW",
                 Model = "M5",
@@ -796,10 +813,10 @@ namespace TravellifeChaser.Models
             Car c3 = new Car()
             {
                 Id = 3,
-                DailyPrice = 100,
-                Image = @"../../assets/images/cars/car3.jpg",
+                DailyPrice = 250,
+                Image = @"../../assets/images/cars/car23.jpg",
                 Mark = "Range Rover",
-                Model = "P525",
+                Model = "Evoque",
                 Rating = 0,
                 Seats = 5,
                 Type = "SUV",
@@ -812,13 +829,13 @@ namespace TravellifeChaser.Models
             Car c4 = new Car()
             {
                 Id = 4,
-                DailyPrice = 100,
-                Image = @"../../assets/images/cars/car4.jpg",
-                Mark = "RAM",
-                Model = "1500",
+                DailyPrice = 200,
+                Image = @"../../assets/images/cars/car21.jpg",
+                Mark = "Toyota",
+                Model = "C-HR",
                 Rating = 0,
-                Seats = 6,
-                Type = "Pickup",
+                Seats = 5,
+                Type = "SUV",
                 Year = 2019,
                 Rented = false,
                 IsReservedForRent = false,
@@ -828,12 +845,12 @@ namespace TravellifeChaser.Models
             Car c5 = new Car()
             {
                 Id = 5,
-                DailyPrice = 100,
-                Image = @"../../assets/images/cars/car5.jpg",
-                Mark = "Audi",
-                Model = "TT",
+                DailyPrice = 150,
+                Image = @"../../assets/images/cars/car39.jpg",
+                Mark = "Volkswagen",
+                Model = "Scirocco",
                 Rating = 0,
-                Seats = 2,
+                Seats = 5,
                 Type = "Coupe",
                 Year = 2016,
                 Rented = false,
@@ -844,8 +861,8 @@ namespace TravellifeChaser.Models
             Car c6 = new Car()
             {
                 Id = 6,
-                DailyPrice = 100,
-                Image = @"../../assets/images/cars/car6.jpg",
+                DailyPrice = 80,
+                Image = @"../../assets/images/cars/car12.jpg",
                 Mark = "Renault",
                 Model = "Clio 5",
                 Rating = 0,
@@ -860,13 +877,13 @@ namespace TravellifeChaser.Models
             Car c7 = new Car()
             {
                 Id = 7,
-                DailyPrice = 100,
-                Image = @"../../assets/images/cars/car7.jpg",
-                Mark = "BMW",
-                Model = "X6",
+                DailyPrice = 180,
+                Image = @"../../assets/images/cars/car29.jpg",
+                Mark = "Audi",
+                Model = "A8",
                 Rating = 0,
                 Seats = 5,
-                Type = "SUV",
+                Type = "Sedan",
                 Year = 2019,
                 Rented = false,
                 IsReservedForRent = false,
@@ -876,29 +893,30 @@ namespace TravellifeChaser.Models
             Car c8 = new Car()
             {
                 Id = 8,
-                DailyPrice = 100,
-                Image = @"../../assets/images/cars/car8.jpg",
-                Mark = "Mercedes",
-                Model = "A 100",
+                DailyPrice = 300,
+                Image = @"../../assets/images/cars/car33.jpg",
+                Mark = "BMW",
+                Model = "i8",
                 Rating = 0,
                 Seats = 5,
-                Type = "Hatchback",
-                Year = 2020,
+                Type = "Coupe",
+                Year = 2018,
                 Rented = false,
                 IsReservedForRent = false,
                 RACServiceId = racs1.Id
             };
 
+            //ISTANBUL RENT-A-CAR
             Car c9 = new Car()
             {
                 Id = 9,
-                DailyPrice = 100,
+                DailyPrice = 220,
                 Image = @"../../assets/images/cars/car9.jpg",
-                Mark = "BMW",
-                Model = "X6",
+                Mark = "Toyota",
+                Model = "Supra",
                 Rating = 0,
-                Seats = 5,
-                Type = "SUV",
+                Seats = 2,
+                Type = "Coupe",
                 Year = 2019,
                 Rented = false,
                 IsReservedForRent = false,
@@ -908,13 +926,13 @@ namespace TravellifeChaser.Models
             Car c10 = new Car()
             {
                 Id = 10,
-                DailyPrice = 100,
-                Image = @"../../assets/images/cars/car10.jpg",
-                Mark = "Mercedes",
-                Model = "A 100",
+                DailyPrice = 200,
+                Image = @"../../assets/images/cars/car37.jpg",
+                Mark = "Audi",
+                Model = "S5",
                 Rating = 0,
                 Seats = 5,
-                Type = "Hatchback",
+                Type = "Sedan",
                 Year = 2020,
                 Rented = false,
                 IsReservedForRent = false,
@@ -924,8 +942,169 @@ namespace TravellifeChaser.Models
             Car c11 = new Car()
             {
                 Id = 11,
-                DailyPrice = 100,
-                Image = @"../../assets/images/cars/car11.jpg",
+                DailyPrice = 200,
+                Image = @"../../assets/images/cars/car30.jpg",
+                Mark = "Nissan",
+                Model = "Juke",
+                Rating = 0,
+                Seats = 5,
+                Type = "SUV",
+                Year = 2020,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs2.Id
+            };
+
+            Car c12 = new Car()
+            {
+                Id = 12,
+                DailyPrice = 150,
+                Image = @"../../assets/images/cars/car40.jpg",
+                Mark = "Opel",
+                Model = "Insignia",
+                Rating = 0,
+                Seats = 5,
+                Type = "Sedan",
+                Year = 2020,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs2.Id
+            };
+
+            Car c13 = new Car()
+            {
+                Id = 13,
+                DailyPrice = 80,
+                Image = @"../../assets/images/cars/car6.jpg",
+                Mark = "Renault",
+                Model = "Clio",
+                Rating = 0,
+                Seats = 5,
+                Type = "Hatchback",
+                Year = 2016,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs2.Id
+            };
+
+            Car c14 = new Car()
+            {
+                Id = 14,
+                DailyPrice = 300,
+                Image = @"../../assets/images/cars/car65.jpg",
+                Mark = "Porsche",
+                Model = "Cayenne",
+                Rating = 0,
+                Seats = 5,
+                Type = "SUV",
+                Year = 2017,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs2.Id
+            };
+
+            Car c15 = new Car()
+            {
+                Id = 15,
+                DailyPrice = 400,
+                Image = @"../../assets/images/cars/car57.jpg",
+                Mark = "Ferrari",
+                Model = "488",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2020,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs2.Id
+            };
+
+            Car c16 = new Car()
+            {
+                Id = 16,
+                DailyPrice = 370,
+                Image = @"../../assets/images/cars/car58.jpg",
+                Mark = "Lamborghini",
+                Model = "Urus",
+                Rating = 0,
+                Seats = 5,
+                Type = "SUV",
+                Year = 2020,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs2.Id
+            };
+
+            //MOSCOW RENT-A-CAR
+            Car c17 = new Car()
+            {
+                Id = 17,
+                DailyPrice = 330,
+                Image = @"../../assets/images/cars/car31.jpg",
+                Mark = "Mercedes",
+                Model = "SLK",
+                Rating = 0,
+                Seats = 5,
+                Type = "Cabriolet",
+                Year = 2015,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c18 = new Car()
+            {
+                Id = 18,
+                DailyPrice = 200,
+                Image = @"../../assets/images/cars/car36.jpg",
+                Mark = "Audi",
+                Model = "A7",
+                Rating = 0,
+                Seats = 5,
+                Type = "Sedan",
+                Year = 2018,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c19 = new Car()
+            {
+                Id = 19,
+                DailyPrice = 450,
+                Image = @"../../assets/images/cars/car75.jpg",
+                Mark = "Lamborghini",
+                Model = "Huracán",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c20 = new Car()
+            {
+                Id = 20,
+                DailyPrice = 430,
+                Image = @"../../assets/images/cars/car46.jpg",
+                Mark = "Mercedes",
+                Model = "AMG GT",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c21 = new Car()
+            {
+                Id = 21,
+                DailyPrice = 330,
+                Image = @"../../assets/images/cars/car20.jpg",
                 Mark = "BMW",
                 Model = "X6",
                 Rating = 0,
@@ -937,20 +1116,437 @@ namespace TravellifeChaser.Models
                 RACServiceId = racs3.Id
             };
 
-            Car c12 = new Car()
+            Car c22 = new Car()
             {
-                Id = 12,
-                DailyPrice = 100,
-                Image = @"../../assets/images/cars/car12.jpg",
+                Id = 22,
+                DailyPrice = 300,
+                Image = @"../../assets/images/cars/car22.jpg",
                 Mark = "Mercedes",
-                Model = "A 100",
+                Model = "AMG G65",
                 Rating = 0,
                 Seats = 5,
-                Type = "Hatchback",
-                Year = 2020,
+                Type = "SUV",
+                Year = 2019,
                 Rented = false,
                 IsReservedForRent = false,
                 RACServiceId = racs3.Id
+            };
+
+            Car c23 = new Car()
+            {
+                Id = 23,
+                DailyPrice = 200,
+                Image = @"../../assets/images/cars/car4.jpg",
+                Mark = "RAM",
+                Model = "1500",
+                Rating = 0,
+                Seats = 6,
+                Type = "Pickup",
+                Year = 2015,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c24 = new Car()
+            {
+                Id = 24,
+                DailyPrice = 210,
+                Image = @"../../assets/images/cars/car68.jpg",
+                Mark = "Nissan",
+                Model = "VR",
+                Rating = 0,
+                Seats = 6,
+                Type = "Pickup",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c41 = new Car()
+            {
+                Id = 41,
+                DailyPrice = 80,
+                Image = @"../../assets/images/cars/car74.jpg",
+                Mark = "Renault",
+                Model = "Twingo",
+                Rating = 0,
+                Seats = 2,
+                Type = "Micro",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c42 = new Car()
+            {
+                Id = 42,
+                DailyPrice = 90,
+                Image = @"../../assets/images/cars/car35.jpg",
+                Mark = "Smart",
+                Model = "Fortwo",
+                Rating = 0,
+                Seats = 2,
+                Type = "Micro",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c43 = new Car()
+            {
+                Id = 43,
+                DailyPrice = 140,
+                Image = @"../../assets/images/cars/car52.jpg",
+                Mark = "Renault",
+                Model = "Megane",
+                Rating = 0,
+                Seats = 5,
+                Type = "Hatchback",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c44 = new Car()
+            {
+                Id = 44,
+                DailyPrice = 340,
+                Image = @"../../assets/images/cars/car54.jpg",
+                Mark = "Volkswagen",
+                Model = "Arteon",
+                Rating = 0,
+                Seats = 5,
+                Type = "Sedan",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c45 = new Car()
+            {
+                Id = 45,
+                DailyPrice = 410,
+                Image = @"../../assets/images/cars/car47.jpg",
+                Mark = "Ferrari",
+                Model = "458",
+                Rating = 0,
+                Seats = 2,
+                Type = "Cabriolet",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c46 = new Car()
+            {
+                Id = 46,
+                DailyPrice = 310,
+                Image = @"../../assets/images/cars/car48.jpg",
+                Mark = "Porsche",
+                Model = "Taycan",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2018,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c47 = new Car()
+            {
+                Id = 47,
+                DailyPrice = 250,
+                Image = @"../../assets/images/cars/car11.jpg",
+                Mark = "BMW",
+                Model = "M4",
+                Rating = 0,
+                Seats = 4,
+                Type = "Cabriolet",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            Car c48 = new Car()
+            {
+                Id = 48,
+                DailyPrice = 170,
+                Image = @"../../assets/images/cars/car18.jpg",
+                Mark = "Volkswagen",
+                Model = "Pasat",
+                Rating = 0,
+                Seats = 5,
+                Type = "Sedan",
+                Year = 2017,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs3.Id
+            };
+
+            //SPORT CARS RENT(MUNICH,GERMANY)
+            Car c25 = new Car()
+            {
+                Id = 25,
+                DailyPrice = 330,
+                Image = @"../../assets/images/cars/car17.jpg",
+                Mark = "Ford",
+                Model = "Mustang GT",
+                Rating = 0,
+                Seats = 4,
+                Type = "Coupe",
+                Year = 2015,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c26 = new Car()
+            {
+                Id = 26,
+                DailyPrice = 490,
+                Image = @"../../assets/images/cars/car77.jpg",
+                Mark = "Lamborghini",
+                Model = "Huracán",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2018,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c27 = new Car()
+            {
+                Id = 27,
+                DailyPrice = 450,
+                Image = @"../../assets/images/cars/car63.jpg",
+                Mark = "Lamborghini",
+                Model = "Huracán",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c28 = new Car()
+            {
+                Id = 28,
+                DailyPrice = 430,
+                Image = @"../../assets/images/cars/car64.jpg",
+                Mark = "Lamborghini",
+                Model = "Huracán",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c29 = new Car()
+            {
+                Id = 29,
+                DailyPrice = 320,
+                Image = @"../../assets/images/cars/car67.jpg",
+                Mark = "Ferrari",
+                Model = "468",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c30 = new Car()
+            {
+                Id = 30,
+                DailyPrice = 340,
+                Image = @"../../assets/images/cars/car71.jpg",
+                Mark = "Ferrari",
+                Model = "Roma",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c31 = new Car()
+            {
+                Id = 31,
+                DailyPrice = 200,
+                Image = @"../../assets/images/cars/car5.jpg",
+                Mark = "Audi",
+                Model = "TT",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2017,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c32 = new Car()
+            {
+                Id = 32,
+                DailyPrice = 290,
+                Image = @"../../assets/images/cars/car25.jpg",
+                Mark = "Audi",
+                Model = "R8",
+                Rating = 0,
+                Seats = 2,
+                Type = "Pickup",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c33 = new Car()
+            {
+                Id = 33,
+                DailyPrice = 400,
+                Image = @"../../assets/images/cars/car69.jpg",
+                Mark = "Lamborghini",
+                Model = "Aventador",
+                Rating = 0,
+                Seats = 2,
+                Type = "Cabriolet",
+                Year = 2018,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c34 = new Car()
+            {
+                Id = 34,
+                DailyPrice = 410,
+                Image = @"../../assets/images/cars/car76.jpg",
+                Mark = "Ferrari",
+                Model = "488 Pista",
+                Rating = 0,
+                Seats = 2,
+                Type = "Cabriolet",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c35 = new Car()
+            {
+                Id = 35,
+                DailyPrice = 400,
+                Image = @"../../assets/images/cars/car42.jpg",
+                Mark = "Mercedes",
+                Model = "AMG GT-R",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2020,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c36 = new Car()
+            {
+                Id = 36,
+                DailyPrice = 350,
+                Image = @"../../assets/images/cars/car70.jpg",
+                Mark = "Mercedes",
+                Model = "SLR McLaren",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2016,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c37 = new Car()
+            {
+                Id = 37,
+                DailyPrice = 300,
+                Image = @"../../assets/images/cars/car45.jpg",
+                Mark = "Lamborghini",
+                Model = "Gallardo",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2015,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c38 = new Car()
+            {
+                Id = 38,
+                DailyPrice = 370,
+                Image = @"../../assets/images/cars/car44.jpg",
+                Mark = "Ferrari",
+                Model = "Enzo",
+                Rating = 0,
+                Seats = 2,
+                Type = "Pickup",
+                Year = 2010,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c39 = new Car()
+            {
+                Id = 39,
+                DailyPrice = 300,
+                Image = @"../../assets/images/cars/car34.jpg",
+                Mark = "BMW",
+                Model = "i8",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2015,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
+            };
+
+            Car c40 = new Car()
+            {
+                Id = 40,
+                DailyPrice = 360,
+                Image = @"../../assets/images/cars/car78.jpg",
+                Mark = "Chevrolet",
+                Model = "Corvette",
+                Rating = 0,
+                Seats = 2,
+                Type = "Coupe",
+                Year = 2019,
+                Rented = false,
+                IsReservedForRent = false,
+                RACServiceId = racs4.Id
             };
 
             List<Car> cars = new List<Car>();
@@ -966,12 +1562,469 @@ namespace TravellifeChaser.Models
             cars.Add(c10);
             cars.Add(c11);
             cars.Add(c12);
+            cars.Add(c13);
+            cars.Add(c14);
+            cars.Add(c15);
+            cars.Add(c16);
+            cars.Add(c17);
+            cars.Add(c18);
+            cars.Add(c19);
+            cars.Add(c20);
+            cars.Add(c21);
+            cars.Add(c22);
+            cars.Add(c23);
+            cars.Add(c24);
+            cars.Add(c25);
+            cars.Add(c26);
+            cars.Add(c27);
+            cars.Add(c28);
+            cars.Add(c29);
+            cars.Add(c30);
+            cars.Add(c31);
+            cars.Add(c32);
+            cars.Add(c33);
+            cars.Add(c34);
+            cars.Add(c35);
+            cars.Add(c36);
+            cars.Add(c37);
+            cars.Add(c38);
+            cars.Add(c39);
+            cars.Add(c40);
+            cars.Add(c41);
+            cars.Add(c42);
+            cars.Add(c43);
+            cars.Add(c44);
+            cars.Add(c45);
+            cars.Add(c46);
+            cars.Add(c47);
+            cars.Add(c48);
+
+            Rent r1 = new Rent()
+            {
+                Id = 1,
+                CarId = 1,
+                RegisteredUserId = 1,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 2, 1),
+                EndDate = new DateTime(2020, 2, 2),
+                Price = 400,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r2 = new Rent()
+            {
+                Id = 2,
+                CarId = 5,
+                RegisteredUserId = 1,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 3, 1),
+                EndDate = new DateTime(2020, 3, 2),
+                Price = 200,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r3 = new Rent()
+            {
+                Id = 3,
+                CarId = 2,
+                RegisteredUserId = 1,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 4, 1),
+                EndDate = new DateTime(2020, 4, 2),
+                Price = 100,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r4 = new Rent()
+            {
+                Id = 4,
+                CarId = 4,
+                RegisteredUserId = 1,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 5, 1),
+                EndDate = new DateTime(2020, 5, 2),
+                Price = 700,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r5 = new Rent()
+            {
+                Id = 5,
+                CarId = 1,
+                RegisteredUserId = 1,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 6, 1),
+                EndDate = new DateTime(2020, 6, 2),
+                Price = 1000,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r6 = new Rent()
+            {
+                Id = 6,
+                CarId = 8,
+                RegisteredUserId = 1,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 7, 1),
+                EndDate = new DateTime(2020, 7, 2),
+                Price = 1010,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r7 = new Rent()
+            {
+                Id = 7,
+                CarId = 7,
+                RegisteredUserId = 4,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 8, 1),
+                EndDate = new DateTime(2020, 8, 2),
+                Price = 2000,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r8 = new Rent()
+            {
+                Id = 8,
+                CarId = 6,
+                RegisteredUserId = 4,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 9, 1),
+                EndDate = new DateTime(2020, 9, 2),
+                Price = 850,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r9 = new Rent()
+            {
+                Id = 9,
+                CarId = 5,
+                RegisteredUserId = 3,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 10, 1),
+                EndDate = new DateTime(2020, 10, 2),
+                Price = 300,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r10 = new Rent()
+            {
+                Id = 10,
+                CarId = 2,
+                RegisteredUserId = 3,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 11, 1),
+                EndDate = new DateTime(2020, 11, 2),
+                Price = 1240,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r11 = new Rent()
+            {
+                Id = 11,
+                CarId = 1,
+                RegisteredUserId = 2,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 12, 1),
+                EndDate = new DateTime(2020, 12, 2),
+                Price = 400,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r12 = new Rent()
+            {
+                Id = 12,
+                CarId = 3,
+                RegisteredUserId = 2,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 12, 7),
+                EndDate = new DateTime(2020, 12, 14),
+                Price = 1000,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r13 = new Rent()
+            {
+                Id = 13,
+                CarId = 1,
+                RegisteredUserId = 1,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2021, 1, 1),
+                EndDate = new DateTime(2021, 1, 5),
+                Price = 700,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r14 = new Rent()
+            {
+                Id = 14,
+                CarId = 7,
+                RegisteredUserId = 2,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2021, 1, 1),
+                EndDate = new DateTime(2021, 1, 7),
+                Price = 1500,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r15 = new Rent()
+            {
+                Id = 15,
+                CarId = 4,
+                RegisteredUserId = 4,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2021, 2, 11),
+                EndDate = new DateTime(2021, 2, 18),
+                Price = 1200,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r16 = new Rent()
+            {
+                Id = 16,
+                CarId = 2,
+                RegisteredUserId = 5,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 3, 16),
+                EndDate = new DateTime(2020, 3, 22),
+                Price = 2400,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r17 = new Rent()
+            {
+                Id = 17,
+                CarId = 8,
+                RegisteredUserId = 1,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 4, 15),
+                EndDate = new DateTime(2020, 4, 20),
+                Price = 2000,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r18 = new Rent()
+            {
+                Id = 18,
+                CarId = 4,
+                RegisteredUserId = 3,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 5, 11),
+                EndDate = new DateTime(2020, 5, 21),
+                Price = 3000,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r19 = new Rent()
+            {
+                Id = 19,
+                CarId = 3,
+                RegisteredUserId = 5,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 5, 22),
+                EndDate = new DateTime(2020, 5, 27),
+                Price = 700,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r20 = new Rent()
+            {
+                Id = 20,
+                CarId = 1,
+                RegisteredUserId = 1,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 6, 21),
+                EndDate = new DateTime(2020, 6, 23),
+                Price = 850,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r21 = new Rent()
+            {
+                Id = 21,
+                CarId = 6,
+                RegisteredUserId = 3,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 7, 13),
+                EndDate = new DateTime(2020, 7, 23),
+                Price = 1010,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r22 = new Rent()
+            {
+                Id = 22,
+                CarId = 1,
+                RegisteredUserId = 5,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 8, 11),
+                EndDate = new DateTime(2020, 8, 21),
+                Price = 2000,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r23 = new Rent()
+            {
+                Id = 23,
+                CarId = 4,
+                RegisteredUserId = 4,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 9, 11),
+                EndDate = new DateTime(2020, 9, 21),
+                Price = 1850,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r24 = new Rent()
+            {
+                Id = 24,
+                CarId = 2,
+                RegisteredUserId = 3,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 10, 11),
+                EndDate = new DateTime(2020, 10, 21),
+                Price = 2300,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r25 = new Rent()
+            {
+                Id = 25,
+                CarId = 5,
+                RegisteredUserId = 3,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 11, 11),
+                EndDate = new DateTime(2020, 11, 21),
+                Price = 1240,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r26 = new Rent()
+            {
+                Id = 26,
+                CarId = 7,
+                RegisteredUserId = 2,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 12, 11),
+                EndDate = new DateTime(2020, 12, 21),
+                Price = 1500,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r27 = new Rent()
+            {
+                Id = 27,
+                CarId = 3,
+                RegisteredUserId = 2,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2020, 12, 27),
+                EndDate = new DateTime(2020, 12, 29),
+                Price = 900,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r28 = new Rent()
+            {
+                Id = 28,
+                CarId = 6,
+                RegisteredUserId = 6,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2021, 1, 1),
+                EndDate = new DateTime(2021, 1, 5),
+                Price = 500,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r29 = new Rent()
+            {
+                Id = 29,
+                CarId = 2,
+                RegisteredUserId = 2,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2021, 1, 8),
+                EndDate = new DateTime(2021, 1, 9),
+                Price = 300,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
+
+            Rent r30 = new Rent()
+            {
+                Id = 30,
+                CarId = 8,
+                RegisteredUserId = 3,
+                StartRACAddressId = 1,
+                EndRACAddressId = 1,
+                StartDate = new DateTime(2021, 1, 2),
+                EndDate = new DateTime(2021, 1, 9),
+                Price = 2200,
+                RatingForCar = 0,
+                RatingForRACService = 0
+            };
 
             modelBuilder.Entity<Car>().HasData(cars);
-            modelBuilder.Entity<RACAddress>().HasData(racAddr1, racAddr2, racAddr3, racAddr4, racAddr5, racAddr6);
-            modelBuilder.Entity<RACService>().HasData(racs1, racs2, racs3);
-            modelBuilder.Entity<AdminRACUser>().HasData(adminRAC1, adminRAC2, adminRAC3);
+            modelBuilder.Entity<RACAddress>().HasData(racAddr1, racAddr2, racAddr3, racAddr4, racAddr5, racAddr6, racAddr7, racAddr8);
+            modelBuilder.Entity<RACService>().HasData(racs1, racs2, racs3, racs4);
+            modelBuilder.Entity<AdminRACUser>().HasData(adminRAC1, adminRAC2, adminRAC3, adminRAC4);
             modelBuilder.Entity<AdminSysUser>().HasData(adminSys1, adminSys2);
+            modelBuilder.Entity<Rent>().HasData(r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12, r13, r14, r15, r16, r17, r18, r19, r20, r21, r22, r23, r24, r25, r26, r27, r28, r29, r30);
         }
     }
 }

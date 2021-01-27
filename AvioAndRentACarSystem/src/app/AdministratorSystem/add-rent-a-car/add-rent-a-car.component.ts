@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/AirlineModel/user';
@@ -20,6 +20,8 @@ import { UserService } from 'src/app/Services/User/user.service';
   styleUrls: ['./add-rent-a-car.component.css']
 })
 export class AddRentACarComponent implements OnInit {
+
+  @Output() change = new EventEmitter<boolean>();
 
   public priceListForOne: number;
   public priceListForTwo: number;
@@ -71,41 +73,46 @@ export class AddRentACarComponent implements OnInit {
                              "For more persons " + this.priceListForMore + "€"
         ;
   
-        this.racServiceService.add(this.rac).subscribe(() => {
-          this.userService.add(this.racAdministrator).subscribe(() => {
+        this.racServiceService.add(this.rac).subscribe(ret => {
+          let retRAC = ret as RACService;
+          this.userService.add(this.racAdministrator).subscribe(ret => {
+            let retAdmin = ret as AdminRACUser;
+            /*
             //PRONALAZIM NAJVECI ID UNUTAR LISTE RAC SERVISA KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
             this.allRAC.forEach(element => {
               if(element.id > this.racId)
                 this.racId = element.id;
             });
-            
-            this.mainAddress.racServiceId = this.racId + 1;
+            */
+            //this.mainAddress.racServiceId = this.racId + 1;
+            this.mainAddress.racServiceId = retRAC.id;
             this.mainAddress.isMain = true;
             this.racAddressService.add(this.mainAddress).subscribe(() => {
               this.racAddresses.forEach(element => {
-                element.racServiceId = this.racId + 1;
+                element.racServiceId = retRAC.id;
                 element.isMain = false;
                 this.racAddressService.add(element).subscribe(() => {
-                  
+                  /*
+                  //PRONALAZIM NAJVECI ID UNUTAR LISTE USER-A KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
+                  this.allUsers.forEach(element => {
+                    if(element.id > this.userId)
+                      this.userId = element.id;
+                  });
+                  */
+                    
                 });
               });
+
+              var adminRACUser = new AdminRACUser();
+              adminRACUser.id = retAdmin.id;
+              adminRACUser.racServiceId = retRAC.id;
+              this.adminRACUserService.add(adminRACUser).subscribe(() => {
+                alert("Service is saved successfuly.")
+                this.deleteAdmin();
+                this.change.emit(true);
+              });
             });
-       
-            //PRONALAZIM NAJVECI ID UNUTAR LISTE USER-A KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
-            this.allUsers.forEach(element => {
-              if(element.id > this.userId)
-                this.userId = element.id;
-            });
-            
-            var adminRACUser = new AdminRACUser();
-            adminRACUser.id = this.userId + 1;
-            adminRACUser.racServiceId = this.racId + 1;
-            this.adminRACUserService.add(adminRACUser).subscribe(() => {
-              
-            });  
           }); 
-          alert("Service is saved successfuly.")
-          this.deleteAdmin();
         }); 
       }
     }

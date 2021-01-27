@@ -120,6 +120,9 @@ export class QuickRentUserModalComponent implements OnInit {
         newRent.registeredUserId = this.loginService.user.id;
         newRent.startDate = new Date(car.quickRentDate);
         let date = new Date();
+        //let newDate = new Date(newRent.startDate.getFullYear(), newRent.startDate.getMonth(), newRent.startDate.getDate())
+        date.setFullYear(newRent.startDate.getFullYear());
+        date.setMonth(newRent.startDate.getMonth());
         date.setDate(newRent.startDate.getDate() + this.numberOfDays);
         newRent.endDate = date;
         this.racAddressService.getRACServiceMainAddress(car.racService.id).subscribe(ret => {

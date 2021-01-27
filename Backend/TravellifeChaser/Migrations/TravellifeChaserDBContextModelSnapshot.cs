@@ -626,9 +626,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 300.0,
                             Duration = 2980.0,
                             FromId = 1,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 2506,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 2
                         },
                         new
@@ -639,9 +639,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 250.0,
                             Duration = 2980.0,
                             FromId = 1,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 1003,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 3
                         },
                         new
@@ -652,9 +652,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 100.0,
                             Duration = 2980.0,
                             FromId = 2,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 400,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 3
                         },
                         new
@@ -665,9 +665,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 200.0,
                             Duration = 2980.0,
                             FromId = 4,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 500,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 5
                         },
                         new
@@ -678,9 +678,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 300.0,
                             Duration = 2980.0,
                             FromId = 5,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 250,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 4
                         },
                         new
@@ -691,9 +691,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 300.0,
                             Duration = 2980.0,
                             FromId = 7,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 567,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 9
                         },
                         new
@@ -704,9 +704,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 300.0,
                             Duration = 2980.0,
                             FromId = 3,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 567,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 7
                         },
                         new
@@ -717,9 +717,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 301.0,
                             Duration = 2980.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 567,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -730,9 +730,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 250.0,
                             Duration = 2980.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 300,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -743,9 +743,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 450.0,
                             Duration = 2980.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 600,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -756,9 +756,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 100.0,
                             Duration = 2980.0,
                             FromId = 6,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 1000,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 8
                         },
                         new
@@ -769,9 +769,9 @@ namespace TravellifeChaser.Migrations
                             Cost = 305.0,
                             Duration = 2980.0,
                             FromId = 5,
-                            LandingTime = new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
+                            LandingTime = new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified),
                             Length = 555,
-                            TakeoffTime = new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
+                            TakeoffTime = new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified),
                             ToId = 9
                         });
                 });

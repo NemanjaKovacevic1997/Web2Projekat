@@ -102,4 +102,8 @@ export class RentACarSelectedComponent implements OnInit {
       });
     }
   }
+
+  fetchChange(change: boolean) {
+    this.ngOnInit();    
+  }
 }

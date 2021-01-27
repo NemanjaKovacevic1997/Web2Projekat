@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Address } from 'src/app/AirlineModel/address';
 import { AdminAirlinesUser } from 'src/app/AirlineModel/adminAirlinesUser';
@@ -21,6 +21,8 @@ import { UserService } from 'src/app/Services/User/user.service';
   styleUrls: ['./add-airline.component.css']
 })
 export class AddAirlineComponent implements OnInit {
+  
+  @Output() change = new EventEmitter<boolean>();
   
   public airline: Airline;
   public address: Address;
@@ -61,9 +63,12 @@ export class AddAirlineComponent implements OnInit {
       if (confirm('Are you sure you want to save this service?')) {
         this.airline.averageRating = 0;
   
-        this.airlineService.add(this.airline).subscribe(() => {
+        this.airlineService.add(this.airline).subscribe(ret => {
+          let retAirline = ret as Airline;
           this.airlineAdministrator.role = UserRole.AdminAirlines;
-          this.userService.add(this.airlineAdministrator).subscribe(() => {
+          this.userService.add(this.airlineAdministrator).subscribe(ret => {
+            let retAdmin = ret as User;
+            /*
             //PRONALAZIM NAJVECI ID UNUTAR LISTE AIRLINE SERVISA KAKO SE NE BI POTREFILO DA BUDU 2 SA ISTIM ID-JEM
             this.allAirlines.forEach(element => {
               if(element.id > this.airlineId)
@@ -74,16 +79,17 @@ export class AddAirlineComponent implements OnInit {
             this.allUsers.forEach(element => {
               if(element.id > this.userId)
                 this.userId = element.id;
-            });
+            });*/
             
             var adminAirlineUser = new AdminAirlinesUser();
-            adminAirlineUser.id = this.userId + 1;
-            adminAirlineUser.airlineServiceId = this.airlineId + 1;
+            adminAirlineUser.id = retAdmin.id;
+            adminAirlineUser.airlineServiceId = retAirline.id;
             this.adminAirlinesUserService.add(adminAirlineUser).subscribe(() => {
-              
+              alert("Service is saved successfuly.");
+              this.deleteAdmin();
+              this.change.emit(true);
             });
           }); 
-          alert("Service is saved successfuly.")
         }); 
       }
     }

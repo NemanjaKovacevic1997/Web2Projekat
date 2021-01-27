@@ -17,4 +17,8 @@ export class PageRentACarComponent implements OnInit {
   ngOnInit(): void {
     this.racServiceService.getAll().subscribe(res => {this.racServices = res as Array<RACService>;})
   }
+
+  fetchChange(change: boolean) {
+    this.ngOnInit();
+  }
 }

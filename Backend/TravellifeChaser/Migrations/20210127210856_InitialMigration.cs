@@ -820,18 +820,18 @@ namespace TravellifeChaser.Migrations
                 columns: new[] { "Id", "AirlineId", "AverageRating", "Cost", "Duration", "FromId", "LandingTime", "Length", "TakeoffTime", "ToId" },
                 values: new object[,]
                 {
-                    { 1, 1, 0.0, 300.0, 2980.0, 1, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 2506, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 2, 2, 0.0, 250.0, 2980.0, 1, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 1003, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 12, 1, 0.0, 305.0, 2980.0, 5, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 555, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 9 },
-                    { 10, 1, 0.0, 450.0, 2980.0, 6, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 600, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 },
-                    { 11, 2, 0.0, 100.0, 2980.0, 6, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 1000, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 },
-                    { 7, 1, 0.0, 300.0, 2980.0, 3, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 7 },
-                    { 6, 1, 0.0, 300.0, 2980.0, 7, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 9 },
-                    { 5, 1, 0.0, 300.0, 2980.0, 5, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 250, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 4 },
-                    { 4, 1, 0.0, 200.0, 2980.0, 4, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 500, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 5 },
-                    { 3, 1, 0.0, 100.0, 2980.0, 2, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 400, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 9, 2, 0.0, 250.0, 2980.0, 6, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 300, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 },
-                    { 8, 1, 0.0, 301.0, 2980.0, 6, new DateTime(2021, 1, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2021, 1, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 }
+                    { 1, 1, 0.0, 300.0, 2980.0, 1, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 2506, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 2 },
+                    { 2, 2, 0.0, 250.0, 2980.0, 1, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 1003, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 12, 1, 0.0, 305.0, 2980.0, 5, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 555, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 9 },
+                    { 10, 1, 0.0, 450.0, 2980.0, 6, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 600, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 },
+                    { 11, 2, 0.0, 100.0, 2980.0, 6, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 1000, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 },
+                    { 7, 1, 0.0, 300.0, 2980.0, 3, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 7 },
+                    { 6, 1, 0.0, 300.0, 2980.0, 7, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 9 },
+                    { 5, 1, 0.0, 300.0, 2980.0, 5, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 250, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 4 },
+                    { 4, 1, 0.0, 200.0, 2980.0, 4, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 500, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 5 },
+                    { 3, 1, 0.0, 100.0, 2980.0, 2, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 400, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 3 },
+                    { 9, 2, 0.0, 250.0, 2980.0, 6, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 300, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 },
+                    { 8, 1, 0.0, 301.0, 2980.0, 6, new DateTime(2021, 2, 14, 9, 20, 0, 0, DateTimeKind.Unspecified), 567, new DateTime(2021, 2, 12, 7, 40, 0, 0, DateTimeKind.Unspecified), 8 }
                 });
 
             migrationBuilder.InsertData(

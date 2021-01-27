@@ -97,7 +97,7 @@ namespace TravellifeChaser.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<Object> PostRent(Rent rent)
+        public ActionResult<Rent> PostRent(Rent rent)
         {
             var reservedRents = _unitOfWork.RentRepository.GetByCondition(x => x.CarId == rent.CarId).ToList();
             foreach (var element in reservedRents)
@@ -111,8 +111,8 @@ namespace TravellifeChaser.Controllers
             _unitOfWork.RentRepository.Add(rent);
             _unitOfWork.Save();
 
-            return Ok();
-            //return CreatedAtAction("GetRent", new { id = rent.Id }, rent);
+            //return Ok();
+            return CreatedAtAction("GetRent", new { id = rent.Id }, rent);
         }
 
         // DELETE: api/Rents/5
@@ -156,9 +156,6 @@ namespace TravellifeChaser.Controllers
         [HttpGet("{id}/carsRents")]
         public ActionResult<IEnumerable<Rent>> GetCarsRents(int id)
         {
-            if (!_unitOfWork.RentRepository.Any(x => x.CarId == id))
-                return NotFound();
-
             return _unitOfWork.RentRepository.GetByCondition(x => x.CarId == id).ToList();
         }
 
@@ -166,9 +163,6 @@ namespace TravellifeChaser.Controllers
         public ActionResult<IEnumerable<Rent>> GetRacRents(int id)
         {
             List<Rent> retList = new List<Rent>();
-
-            if (!_unitOfWork.CarRepository.Any(x => x.RACServiceId == id))
-                return NotFound();
 
             var listOfCars = _unitOfWork.CarRepository.GetByCondition(x => x.RACServiceId == id).ToList();
 
@@ -218,9 +212,6 @@ namespace TravellifeChaser.Controllers
 
             List<Car> retList = new List<Car>();
 
-            if (!_unitOfWork.CarRepository.Any(x => x.RACServiceId == id))
-                return NotFound();
-
             var listOfCars = _unitOfWork.CarRepository.GetByCondition(x => x.RACServiceId == id).ToList();
 
             foreach (var car in listOfCars)
@@ -256,9 +247,6 @@ namespace TravellifeChaser.Controllers
 
             foreach (var rac in racList)
             {
-                if (!_unitOfWork.CarRepository.Any(x => x.RACServiceId == rac.Id))
-                    return NotFound();
-
                 var listOfCars = _unitOfWork.CarRepository.GetByCondition(x => x.RACServiceId == rac.Id).ToList();
                 //var isRented = false;
                 var boolListRAC = new List<bool>();

@@ -28,7 +28,7 @@ export class RentModalComponent implements OnInit {
   public minPickerTime1;
   public minPickerTime2;
   public addresses: Array<RACAddress>;
-  public disabledDates:NgbDateStruct[]=[]
+  public disabledDates:NgbDateStruct[]=[];
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -192,6 +192,7 @@ export class RentModalComponent implements OnInit {
       //UKOLIKO JE AUTO NA POPUSTU ZA ODREDJENI DAN, POTREBNO JE UBACITI I TAJ DATUM U "disableDates"
       if(this.myRent.car.quickRented){
         let date = new Date(this.myRent.car.quickRentDate);
+        alert(date)
         this.disabledDates.push(new NgbDate(date.getFullYear(), date.getMonth()+1, date.getDate()));
       }
     });

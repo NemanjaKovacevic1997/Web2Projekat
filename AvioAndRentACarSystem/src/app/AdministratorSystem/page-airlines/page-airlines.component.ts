@@ -19,4 +19,7 @@ export class PageAirlinesComponent implements OnInit {
     })
   }
 
+  fetchChange(change: boolean) {
+    this.ngOnInit();
+  }
 }

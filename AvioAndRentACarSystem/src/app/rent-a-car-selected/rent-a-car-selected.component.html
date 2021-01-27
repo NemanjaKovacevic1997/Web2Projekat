@@ -21,7 +21,7 @@
                         <label>{{rac.promotionalDescription}}</label>
                     </div>
                 </div>           
-                <app-image-lightbox [cars]="cars" *ngIf="isLoaded"></app-image-lightbox>
+                <app-image-lightbox [cars]="cars" *ngIf="isLoaded" (change)="fetchChange($event)"></app-image-lightbox>
             </div>
         </div>
     </div>

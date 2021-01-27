@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation  } from '@angular/core';
 import { ImageService } from '../Services/Image/image.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ChangeCarModalComponent } from '../ModalsRAC/change-car-modal/change-car-modal.component';
@@ -24,6 +24,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 })
 export class ImageLightboxComponent implements OnInit {
 
+  @Output() change = new EventEmitter<boolean>();
   @Input() public cars: Array<Car>;
 
   public id: number;
@@ -127,7 +128,7 @@ export class ImageLightboxComponent implements OnInit {
 
   removeCar(id){
     if (confirm('Are you sure you want to remove this car?')) {
-      this.carService.remove(id).subscribe(() => this.ngOnInit() , (error:HttpErrorResponse) => {
+      this.carService.remove(id).subscribe(() => this.change.emit(true) , (error:HttpErrorResponse) => {
         alert(error.error);
       });
     }  
@@ -178,11 +179,14 @@ export class ImageLightboxComponent implements OnInit {
         this.myRent.registeredUserId = this.loginService.user.id;
         this.myRent.carId = id;
         this.myRent.car = undefined;
-        this.rentService.add(this.myRent).subscribe((res: any) => {
+
+        if (confirm('Total price for this rent: ' + this.myRent.price.toString() + '€. Proceed?')) {
+          this.rentService.add(this.myRent).subscribe((res: any) => {
             this.router.navigateByUrl("/"+ this.loginService.user.username + '/history');
-        }, (error:HttpErrorResponse) => {
+          }, (error:HttpErrorResponse) => {
             alert(error.error);
-        });
+          });
+        }
       }
     }, (reason) => {
       console.log(reason);

@@ -114,44 +114,44 @@ namespace TravellifeChaser.Models
             AirlineAirport aa12 = new AirlineAirport() { AirlineId = 2, AirportId = 8 };
             AirlineAirport aa13 = new AirlineAirport() { AirlineId = 2, AirportId = 9 };
 
-            var TakeoffTime1 = new DateTime(2021, 1, 12, 7, 40, 0);
-            var LandingTime1 = new DateTime(2021, 1, 14, 9, 20, 0);
+            var TakeoffTime1 = new DateTime(2021, 2, 12, 7, 40, 0);
+            var LandingTime1 = new DateTime(2021, 2, 14, 9, 20, 0);
             var Duration1 = LandingTime1.Subtract(TakeoffTime1).TotalMinutes;
 
-            var TakeoffTime2 = new DateTime(2021, 1, 12, 7, 40, 0);
-            var LandingTime2 = new DateTime(2021, 1, 14, 9, 20, 0);
+            var TakeoffTime2 = new DateTime(2021, 2, 12, 7, 40, 0);
+            var LandingTime2 = new DateTime(2021, 2, 14, 9, 20, 0);
             var Duration2 = LandingTime2.Subtract(TakeoffTime2).TotalMinutes;
 
-            var TakeoffTime3 = new DateTime(2021, 1, 12, 7, 40, 0);
-            var LandingTime3 = new DateTime(2021, 1, 14, 9, 20, 0);
+            var TakeoffTime3 = new DateTime(2021, 2, 12, 7, 40, 0);
+            var LandingTime3 = new DateTime(2021, 2, 14, 9, 20, 0);
             var Duration3 = LandingTime3.Subtract(TakeoffTime3).TotalMinutes;
 
-            var TakeoffTime4 = new DateTime(2021, 1, 12, 7, 40, 0);
-            var LandingTime4 = new DateTime(2021, 1, 14, 9, 20, 0);
+            var TakeoffTime4 = new DateTime(2021, 2, 12, 7, 40, 0);
+            var LandingTime4 = new DateTime(2021, 2, 14, 9, 20, 0);
             var Duration4 = LandingTime4.Subtract(TakeoffTime4).TotalMinutes;
 
-            var TakeoffTime5 = new DateTime(2021, 1, 12, 7, 40, 0);
-            var LandingTime5 = new DateTime(2021, 1, 14, 9, 20, 0);
+            var TakeoffTime5 = new DateTime(2021, 2, 12, 7, 40, 0);
+            var LandingTime5 = new DateTime(2021, 2, 14, 9, 20, 0);
             var Duration5 = LandingTime5.Subtract(TakeoffTime5).TotalMinutes;
 
-            var TakeoffTime6 = new DateTime(2021, 1, 12, 7, 40, 0);
-            var LandingTime6 = new DateTime(2021, 1, 14, 9, 20, 0);
+            var TakeoffTime6 = new DateTime(2021, 2, 12, 7, 40, 0);
+            var LandingTime6 = new DateTime(2021, 2, 14, 9, 20, 0);
             var Duration6 = LandingTime6.Subtract(TakeoffTime6).TotalMinutes;
 
-            var TakeoffTime7 = new DateTime(2021, 1, 12, 7, 40, 0);
-            var LandingTime7 = new DateTime(2021, 1, 14, 9, 20, 0);
+            var TakeoffTime7 = new DateTime(2021, 2, 12, 7, 40, 0);
+            var LandingTime7 = new DateTime(2021, 2, 14, 9, 20, 0);
             var Duration7 = LandingTime7.Subtract(TakeoffTime7).TotalMinutes;
 
-            var TakeoffTime8 = new DateTime(2021, 1, 12, 7, 40, 0);
-            var LandingTime8 = new DateTime(2021, 1, 14, 9, 20, 0);
+            var TakeoffTime8 = new DateTime(2021, 2, 12, 7, 40, 0);
+            var LandingTime8 = new DateTime(2021, 2, 14, 9, 20, 0);
             var Duration8 = LandingTime8.Subtract(TakeoffTime8).TotalMinutes;
 
-            var TakeoffTime9 = new DateTime(2021, 1, 12, 7, 40, 0);
-            var LandingTime9 = new DateTime(2021, 1, 14, 9, 20, 0);
+            var TakeoffTime9 = new DateTime(2021, 2, 12, 7, 40, 0);
+            var LandingTime9 = new DateTime(2021, 2, 14, 9, 20, 0);
             var Duration9 = LandingTime9.Subtract(TakeoffTime9).TotalMinutes;
 
-            var TakeoffTime10 = new DateTime(2021, 1, 12, 7, 40, 0);
-            var LandingTime10 = new DateTime(2021, 1, 14, 9, 20, 0);
+            var TakeoffTime10 = new DateTime(2021, 2, 3, 7, 40, 0);
+            var LandingTime10 = new DateTime(2021, 2, 4, 9, 20, 0);
             var Duration10 = LandingTime10.Subtract(TakeoffTime10).TotalMinutes;
 
             int rows = 20;

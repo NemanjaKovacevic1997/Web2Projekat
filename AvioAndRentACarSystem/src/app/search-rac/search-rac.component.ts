@@ -78,7 +78,7 @@ export class SearchRacComponent implements OnInit {
       minutes: new Date().getMinutes()
     }
 
-    this.racAddressService.getRACServiceMainAddresses(1).subscribe(ret =>{
+    this.racAddressService.getAddressesForSearch(1).subscribe(ret =>{
       this.addresses = ret as Array<RACAddress>;
     });
   } 
